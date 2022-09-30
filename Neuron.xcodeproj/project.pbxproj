@@ -1,0 +1,682 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E16BB26E28E0F25F00ABD2E0 /* NeuronApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB26D28E0F25F00ABD2E0 /* NeuronApp.swift */; };
+		E16BB27028E0F25F00ABD2E0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB26F28E0F25F00ABD2E0 /* Persistence.swift */; };
+		E16BB27328E0F25F00ABD2E0 /* Neuron.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E16BB27128E0F25F00ABD2E0 /* Neuron.xcdatamodeld */; };
+		E16BB27528E0F25F00ABD2E0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB27428E0F25F00ABD2E0 /* ContentView.swift */; };
+		E16BB27728E0F26000ABD2E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E16BB27628E0F26000ABD2E0 /* Assets.xcassets */; };
+		E16BB27B28E0F26000ABD2E0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E16BB27A28E0F26000ABD2E0 /* Preview Assets.xcassets */; };
+		E16BB28528E0F26000ABD2E0 /* NeuronTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB28428E0F26000ABD2E0 /* NeuronTests.swift */; };
+		E16BB28F28E0F26000ABD2E0 /* NeuronUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB28E28E0F26000ABD2E0 /* NeuronUITests.swift */; };
+		E16BB29128E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB29028E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift */; };
+		E16BB29E28E11CD300ABD2E0 /* BottomTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB29D28E11CD300ABD2E0 /* BottomTab.swift */; };
+		E16BB2A328E3C43300ABD2E0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB2A228E3C43300ABD2E0 /* HeaderView.swift */; };
+		E16BB2A428E3C43300ABD2E0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB2A228E3C43300ABD2E0 /* HeaderView.swift */; };
+		E16BB2A528E3C43300ABD2E0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB2A228E3C43300ABD2E0 /* HeaderView.swift */; };
+		E1C95DAF28E4D26700851C4E /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DAE28E4D26700851C4E /* TaskModel.swift */; };
+		E1C95DB028E4D26700851C4E /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DAE28E4D26700851C4E /* TaskModel.swift */; };
+		E1C95DB128E4D26700851C4E /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DAE28E4D26700851C4E /* TaskModel.swift */; };
+		E1C95DB328E4D50600851C4E /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DB228E4D50600851C4E /* TaskViewModel.swift */; };
+		E1C95DB428E4D50600851C4E /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DB228E4D50600851C4E /* TaskViewModel.swift */; };
+		E1C95DB528E4D50600851C4E /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DB228E4D50600851C4E /* TaskViewModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E16BB28128E0F26000ABD2E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E16BB26228E0F25F00ABD2E0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E16BB26928E0F25F00ABD2E0;
+			remoteInfo = Neuron;
+		};
+		E16BB28B28E0F26000ABD2E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E16BB26228E0F25F00ABD2E0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E16BB26928E0F25F00ABD2E0;
+			remoteInfo = Neuron;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E16BB26A28E0F25F00ABD2E0 /* Neuron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neuron.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E16BB26D28E0F25F00ABD2E0 /* NeuronApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuronApp.swift; sourceTree = "<group>"; };
+		E16BB26F28E0F25F00ABD2E0 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		E16BB27228E0F25F00ABD2E0 /* Neuron.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Neuron.xcdatamodel; sourceTree = "<group>"; };
+		E16BB27428E0F25F00ABD2E0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E16BB27628E0F26000ABD2E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E16BB27828E0F26000ABD2E0 /* Neuron.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Neuron.entitlements; sourceTree = "<group>"; };
+		E16BB27A28E0F26000ABD2E0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E16BB28028E0F26000ABD2E0 /* NeuronTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeuronTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E16BB28428E0F26000ABD2E0 /* NeuronTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuronTests.swift; sourceTree = "<group>"; };
+		E16BB28A28E0F26000ABD2E0 /* NeuronUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeuronUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E16BB28E28E0F26000ABD2E0 /* NeuronUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuronUITests.swift; sourceTree = "<group>"; };
+		E16BB29028E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuronUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E16BB29D28E11CD300ABD2E0 /* BottomTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTab.swift; sourceTree = "<group>"; };
+		E16BB2A228E3C43300ABD2E0 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		E1C95DAE28E4D26700851C4E /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
+		E1C95DB228E4D50600851C4E /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E16BB26728E0F25F00ABD2E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E16BB27D28E0F26000ABD2E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E16BB28728E0F26000ABD2E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E16BB26128E0F25F00ABD2E0 = {
+			isa = PBXGroup;
+			children = (
+				E16BB26C28E0F25F00ABD2E0 /* Neuron */,
+				E16BB28328E0F26000ABD2E0 /* NeuronTests */,
+				E16BB28D28E0F26000ABD2E0 /* NeuronUITests */,
+				E16BB26B28E0F25F00ABD2E0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E16BB26B28E0F25F00ABD2E0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E16BB26A28E0F25F00ABD2E0 /* Neuron.app */,
+				E16BB28028E0F26000ABD2E0 /* NeuronTests.xctest */,
+				E16BB28A28E0F26000ABD2E0 /* NeuronUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E16BB26C28E0F25F00ABD2E0 /* Neuron */ = {
+			isa = PBXGroup;
+			children = (
+				E16BB26D28E0F25F00ABD2E0 /* NeuronApp.swift */,
+				E16BB26F28E0F25F00ABD2E0 /* Persistence.swift */,
+				E16BB2A628E4D1E400ABD2E0 /* Model */,
+				E16BB2A128E3C41B00ABD2E0 /* Views */,
+				E16BB27628E0F26000ABD2E0 /* Assets.xcassets */,
+				E16BB27828E0F26000ABD2E0 /* Neuron.entitlements */,
+				E16BB27128E0F25F00ABD2E0 /* Neuron.xcdatamodeld */,
+				E16BB27928E0F26000ABD2E0 /* Preview Content */,
+			);
+			path = Neuron;
+			sourceTree = "<group>";
+		};
+		E16BB27928E0F26000ABD2E0 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				E16BB27A28E0F26000ABD2E0 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E16BB28328E0F26000ABD2E0 /* NeuronTests */ = {
+			isa = PBXGroup;
+			children = (
+				E16BB28428E0F26000ABD2E0 /* NeuronTests.swift */,
+			);
+			path = NeuronTests;
+			sourceTree = "<group>";
+		};
+		E16BB28D28E0F26000ABD2E0 /* NeuronUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E16BB28E28E0F26000ABD2E0 /* NeuronUITests.swift */,
+				E16BB29028E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift */,
+			);
+			path = NeuronUITests;
+			sourceTree = "<group>";
+		};
+		E16BB2A128E3C41B00ABD2E0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E16BB27428E0F25F00ABD2E0 /* ContentView.swift */,
+				E16BB29D28E11CD300ABD2E0 /* BottomTab.swift */,
+				E16BB2A228E3C43300ABD2E0 /* HeaderView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E16BB2A628E4D1E400ABD2E0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E1C95DAE28E4D26700851C4E /* TaskModel.swift */,
+				E1C95DB228E4D50600851C4E /* TaskViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E16BB26928E0F25F00ABD2E0 /* Neuron */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E16BB29428E0F26000ABD2E0 /* Build configuration list for PBXNativeTarget "Neuron" */;
+			buildPhases = (
+				E16BB26628E0F25F00ABD2E0 /* Sources */,
+				E16BB26728E0F25F00ABD2E0 /* Frameworks */,
+				E16BB26828E0F25F00ABD2E0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Neuron;
+			productName = Neuron;
+			productReference = E16BB26A28E0F25F00ABD2E0 /* Neuron.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E16BB27F28E0F26000ABD2E0 /* NeuronTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E16BB29728E0F26000ABD2E0 /* Build configuration list for PBXNativeTarget "NeuronTests" */;
+			buildPhases = (
+				E16BB27C28E0F26000ABD2E0 /* Sources */,
+				E16BB27D28E0F26000ABD2E0 /* Frameworks */,
+				E16BB27E28E0F26000ABD2E0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E16BB28228E0F26000ABD2E0 /* PBXTargetDependency */,
+			);
+			name = NeuronTests;
+			productName = NeuronTests;
+			productReference = E16BB28028E0F26000ABD2E0 /* NeuronTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E16BB28928E0F26000ABD2E0 /* NeuronUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E16BB29A28E0F26000ABD2E0 /* Build configuration list for PBXNativeTarget "NeuronUITests" */;
+			buildPhases = (
+				E16BB28628E0F26000ABD2E0 /* Sources */,
+				E16BB28728E0F26000ABD2E0 /* Frameworks */,
+				E16BB28828E0F26000ABD2E0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E16BB28C28E0F26000ABD2E0 /* PBXTargetDependency */,
+			);
+			name = NeuronUITests;
+			productName = NeuronUITests;
+			productReference = E16BB28A28E0F26000ABD2E0 /* NeuronUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E16BB26228E0F25F00ABD2E0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1400;
+				LastUpgradeCheck = 1400;
+				TargetAttributes = {
+					E16BB26928E0F25F00ABD2E0 = {
+						CreatedOnToolsVersion = 14.0;
+					};
+					E16BB27F28E0F26000ABD2E0 = {
+						CreatedOnToolsVersion = 14.0;
+						TestTargetID = E16BB26928E0F25F00ABD2E0;
+					};
+					E16BB28928E0F26000ABD2E0 = {
+						CreatedOnToolsVersion = 14.0;
+						TestTargetID = E16BB26928E0F25F00ABD2E0;
+					};
+				};
+			};
+			buildConfigurationList = E16BB26528E0F25F00ABD2E0 /* Build configuration list for PBXProject "Neuron" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E16BB26128E0F25F00ABD2E0;
+			productRefGroup = E16BB26B28E0F25F00ABD2E0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E16BB26928E0F25F00ABD2E0 /* Neuron */,
+				E16BB27F28E0F26000ABD2E0 /* NeuronTests */,
+				E16BB28928E0F26000ABD2E0 /* NeuronUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E16BB26828E0F25F00ABD2E0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E16BB27B28E0F26000ABD2E0 /* Preview Assets.xcassets in Resources */,
+				E16BB27728E0F26000ABD2E0 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E16BB27E28E0F26000ABD2E0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E16BB28828E0F26000ABD2E0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E16BB26628E0F25F00ABD2E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E16BB27328E0F25F00ABD2E0 /* Neuron.xcdatamodeld in Sources */,
+				E16BB26E28E0F25F00ABD2E0 /* NeuronApp.swift in Sources */,
+				E16BB2A328E3C43300ABD2E0 /* HeaderView.swift in Sources */,
+				E16BB27528E0F25F00ABD2E0 /* ContentView.swift in Sources */,
+				E16BB27028E0F25F00ABD2E0 /* Persistence.swift in Sources */,
+				E1C95DB328E4D50600851C4E /* TaskViewModel.swift in Sources */,
+				E16BB29E28E11CD300ABD2E0 /* BottomTab.swift in Sources */,
+				E1C95DAF28E4D26700851C4E /* TaskModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E16BB27C28E0F26000ABD2E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1C95DB028E4D26700851C4E /* TaskModel.swift in Sources */,
+				E1C95DB428E4D50600851C4E /* TaskViewModel.swift in Sources */,
+				E16BB2A428E3C43300ABD2E0 /* HeaderView.swift in Sources */,
+				E16BB28528E0F26000ABD2E0 /* NeuronTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E16BB28628E0F26000ABD2E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1C95DB528E4D50600851C4E /* TaskViewModel.swift in Sources */,
+				E16BB28F28E0F26000ABD2E0 /* NeuronUITests.swift in Sources */,
+				E16BB29128E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift in Sources */,
+				E1C95DB128E4D26700851C4E /* TaskModel.swift in Sources */,
+				E16BB2A528E3C43300ABD2E0 /* HeaderView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E16BB28228E0F26000ABD2E0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E16BB26928E0F25F00ABD2E0 /* Neuron */;
+			targetProxy = E16BB28128E0F26000ABD2E0 /* PBXContainerItemProxy */;
+		};
+		E16BB28C28E0F26000ABD2E0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E16BB26928E0F25F00ABD2E0 /* Neuron */;
+			targetProxy = E16BB28B28E0F26000ABD2E0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		E16BB29228E0F26000ABD2E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E16BB29328E0F26000ABD2E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		E16BB29528E0F26000ABD2E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Neuron/Neuron.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Neuron/Preview Content\"";
+				DEVELOPMENT_TEAM = KP29D4PN3M;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "NeKo-Tech.Neuron";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E16BB29628E0F26000ABD2E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Neuron/Neuron.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Neuron/Preview Content\"";
+				DEVELOPMENT_TEAM = KP29D4PN3M;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "NeKo-Tech.Neuron";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E16BB29828E0F26000ABD2E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KP29D4PN3M;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "NeKo-Tech.NeuronTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Neuron.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Neuron";
+			};
+			name = Debug;
+		};
+		E16BB29928E0F26000ABD2E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KP29D4PN3M;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "NeKo-Tech.NeuronTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Neuron.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Neuron";
+			};
+			name = Release;
+		};
+		E16BB29B28E0F26000ABD2E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KP29D4PN3M;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "NeKo-Tech.NeuronUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Neuron;
+			};
+			name = Debug;
+		};
+		E16BB29C28E0F26000ABD2E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KP29D4PN3M;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "NeKo-Tech.NeuronUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Neuron;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E16BB26528E0F25F00ABD2E0 /* Build configuration list for PBXProject "Neuron" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E16BB29228E0F26000ABD2E0 /* Debug */,
+				E16BB29328E0F26000ABD2E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E16BB29428E0F26000ABD2E0 /* Build configuration list for PBXNativeTarget "Neuron" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E16BB29528E0F26000ABD2E0 /* Debug */,
+				E16BB29628E0F26000ABD2E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E16BB29728E0F26000ABD2E0 /* Build configuration list for PBXNativeTarget "NeuronTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E16BB29828E0F26000ABD2E0 /* Debug */,
+				E16BB29928E0F26000ABD2E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E16BB29A28E0F26000ABD2E0 /* Build configuration list for PBXNativeTarget "NeuronUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E16BB29B28E0F26000ABD2E0 /* Debug */,
+				E16BB29C28E0F26000ABD2E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E16BB27128E0F25F00ABD2E0 /* Neuron.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E16BB27228E0F25F00ABD2E0 /* Neuron.xcdatamodel */,
+			);
+			currentVersion = E16BB27228E0F25F00ABD2E0 /* Neuron.xcdatamodel */;
+			path = Neuron.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = E16BB26228E0F25F00ABD2E0 /* Project object */;
+}
