@@ -10,7 +10,6 @@ import SwiftUI
 struct BottomTabView: View {
     var body: some View {
         VStack{
-            Spacer()
             
             HStack {
                 
@@ -55,9 +54,8 @@ struct BottomTabView: View {
                 }.frame(maxWidth: .infinity)
             }
             .frame(maxWidth: .infinity, minHeight: 30, maxHeight: 90)
-            .background(Color(white:0.97))
+            .background(Color(white:0.95))
         }
-        .ignoresSafeArea()
     }
 }
 

@@ -8,19 +8,18 @@
 import Foundation
 import SwiftUI
 
+struct Options: Codable{
+    var selectedDate: Date
+    var currentDate: Date
+}
 
-class TaskViewModel: ObservableObject{
-    
-    // MARK: Task Storage
-    @Published var taskStorage: [Task] = [
-        Task(taskTitle: "Do laundry", taskDescription: "Remeber to do your laundy", taskDate: .init(timeIntervalSince1970: 1641645497))
-    ]
-    
+class OptionsModel: ObservableObject{
     
     // MARK: Current Week Initialization
     @Published var currentWeek: [Date] = []
-    
     @Published var today: Date = Date()
+    @Published var selectedDay: Date = Date()
+
     
     init(){
         fetchCurrentWeek()
@@ -30,14 +29,14 @@ class TaskViewModel: ObservableObject{
         
         let today = Date()
         let calendar = Calendar.current
-        
+            
         let week = calendar.dateInterval(of: .weekOfMonth, for: today)
         
         guard let firstWeekDay = week?.start else {
             return
         }
         
-        (1...7).forEach { day in
+        (0...6).forEach { day in
             if let weekday = calendar.date(byAdding: .day, value:day, to:firstWeekDay){
                 currentWeek.append(weekday)
             }
@@ -55,11 +54,11 @@ class TaskViewModel: ObservableObject{
     
     // MARK: func for current date
     
-    func isToday(date: Date)->Bool{
+    func isSelected(date: Date)->Bool{
         
         let calendar = Calendar.current
         
-        return calendar.isDate( today, inSameDayAs: date)
+        return calendar.isDate( selectedDay, inSameDayAs: date)
     }
         
 }

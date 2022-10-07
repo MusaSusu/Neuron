@@ -20,12 +20,21 @@
 		E16BB2A328E3C43300ABD2E0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB2A228E3C43300ABD2E0 /* HeaderView.swift */; };
 		E16BB2A428E3C43300ABD2E0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB2A228E3C43300ABD2E0 /* HeaderView.swift */; };
 		E16BB2A528E3C43300ABD2E0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB2A228E3C43300ABD2E0 /* HeaderView.swift */; };
+		E18F4F8E28EB937D00351835 /* FullTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18F4F8D28EB937D00351835 /* FullTimelineView.swift */; };
+		E18F4F8F28EB937D00351835 /* FullTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18F4F8D28EB937D00351835 /* FullTimelineView.swift */; };
+		E18F4F9028EB937D00351835 /* FullTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18F4F8D28EB937D00351835 /* FullTimelineView.swift */; };
+		E18F4F9228EC059500351835 /* TimelineRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18F4F9128EC059500351835 /* TimelineRowView.swift */; };
+		E18F4F9328EC059500351835 /* TimelineRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18F4F9128EC059500351835 /* TimelineRowView.swift */; };
+		E18F4F9428EC059500351835 /* TimelineRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18F4F9128EC059500351835 /* TimelineRowView.swift */; };
+		E18F4F9A28EF726D00351835 /* DayTaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18F4F9928EF726D00351835 /* DayTaskModel.swift */; };
+		E18F4F9B28EF726D00351835 /* DayTaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18F4F9928EF726D00351835 /* DayTaskModel.swift */; };
+		E18F4F9C28EF726D00351835 /* DayTaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18F4F9928EF726D00351835 /* DayTaskModel.swift */; };
 		E1C95DAF28E4D26700851C4E /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DAE28E4D26700851C4E /* TaskModel.swift */; };
 		E1C95DB028E4D26700851C4E /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DAE28E4D26700851C4E /* TaskModel.swift */; };
 		E1C95DB128E4D26700851C4E /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DAE28E4D26700851C4E /* TaskModel.swift */; };
-		E1C95DB328E4D50600851C4E /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DB228E4D50600851C4E /* TaskViewModel.swift */; };
-		E1C95DB428E4D50600851C4E /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DB228E4D50600851C4E /* TaskViewModel.swift */; };
-		E1C95DB528E4D50600851C4E /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DB228E4D50600851C4E /* TaskViewModel.swift */; };
+		E1C95DB328E4D50600851C4E /* OptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DB228E4D50600851C4E /* OptionsModel.swift */; };
+		E1C95DB428E4D50600851C4E /* OptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DB228E4D50600851C4E /* OptionsModel.swift */; };
+		E1C95DB528E4D50600851C4E /* OptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DB228E4D50600851C4E /* OptionsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,8 +70,11 @@
 		E16BB29028E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuronUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E16BB29D28E11CD300ABD2E0 /* BottomTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTab.swift; sourceTree = "<group>"; };
 		E16BB2A228E3C43300ABD2E0 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		E18F4F8D28EB937D00351835 /* FullTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullTimelineView.swift; sourceTree = "<group>"; };
+		E18F4F9128EC059500351835 /* TimelineRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineRowView.swift; sourceTree = "<group>"; };
+		E18F4F9928EF726D00351835 /* DayTaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTaskModel.swift; sourceTree = "<group>"; };
 		E1C95DAE28E4D26700851C4E /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
-		E1C95DB228E4D50600851C4E /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
+		E1C95DB228E4D50600851C4E /* OptionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +168,8 @@
 				E16BB27428E0F25F00ABD2E0 /* ContentView.swift */,
 				E16BB29D28E11CD300ABD2E0 /* BottomTab.swift */,
 				E16BB2A228E3C43300ABD2E0 /* HeaderView.swift */,
+				E18F4F8D28EB937D00351835 /* FullTimelineView.swift */,
+				E18F4F9128EC059500351835 /* TimelineRowView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -164,7 +178,8 @@
 			isa = PBXGroup;
 			children = (
 				E1C95DAE28E4D26700851C4E /* TaskModel.swift */,
-				E1C95DB228E4D50600851C4E /* TaskViewModel.swift */,
+				E1C95DB228E4D50600851C4E /* OptionsModel.swift */,
+				E18F4F9928EF726D00351835 /* DayTaskModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -301,10 +316,13 @@
 			files = (
 				E16BB27328E0F25F00ABD2E0 /* Neuron.xcdatamodeld in Sources */,
 				E16BB26E28E0F25F00ABD2E0 /* NeuronApp.swift in Sources */,
+				E18F4F9228EC059500351835 /* TimelineRowView.swift in Sources */,
 				E16BB2A328E3C43300ABD2E0 /* HeaderView.swift in Sources */,
+				E18F4F8E28EB937D00351835 /* FullTimelineView.swift in Sources */,
+				E18F4F9A28EF726D00351835 /* DayTaskModel.swift in Sources */,
 				E16BB27528E0F25F00ABD2E0 /* ContentView.swift in Sources */,
 				E16BB27028E0F25F00ABD2E0 /* Persistence.swift in Sources */,
-				E1C95DB328E4D50600851C4E /* TaskViewModel.swift in Sources */,
+				E1C95DB328E4D50600851C4E /* OptionsModel.swift in Sources */,
 				E16BB29E28E11CD300ABD2E0 /* BottomTab.swift in Sources */,
 				E1C95DAF28E4D26700851C4E /* TaskModel.swift in Sources */,
 			);
@@ -314,9 +332,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E18F4F8F28EB937D00351835 /* FullTimelineView.swift in Sources */,
+				E18F4F9328EC059500351835 /* TimelineRowView.swift in Sources */,
 				E1C95DB028E4D26700851C4E /* TaskModel.swift in Sources */,
-				E1C95DB428E4D50600851C4E /* TaskViewModel.swift in Sources */,
+				E1C95DB428E4D50600851C4E /* OptionsModel.swift in Sources */,
 				E16BB2A428E3C43300ABD2E0 /* HeaderView.swift in Sources */,
+				E18F4F9B28EF726D00351835 /* DayTaskModel.swift in Sources */,
 				E16BB28528E0F26000ABD2E0 /* NeuronTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -325,10 +346,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1C95DB528E4D50600851C4E /* TaskViewModel.swift in Sources */,
+				E1C95DB528E4D50600851C4E /* OptionsModel.swift in Sources */,
 				E16BB28F28E0F26000ABD2E0 /* NeuronUITests.swift in Sources */,
+				E18F4F9C28EF726D00351835 /* DayTaskModel.swift in Sources */,
+				E18F4F9428EC059500351835 /* TimelineRowView.swift in Sources */,
 				E16BB29128E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift in Sources */,
 				E1C95DB128E4D26700851C4E /* TaskModel.swift in Sources */,
+				E18F4F9028EB937D00351835 /* FullTimelineView.swift in Sources */,
 				E16BB2A528E3C43300ABD2E0 /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,14 +16,14 @@ struct ContentView: View {
         animation: .default)
     private var items: FetchedResults<Item> /* fetches from cloud*/
     
-    @StateObject var taskStorage: TaskViewModel = TaskViewModel()
+    @StateObject var taskStorage: OptionsModel = OptionsModel()
     
     var body: some View {
-        ZStack{
-            VStack{
+            VStack(spacing:0){
                 HeaderView().padding(.horizontal)
+                    .print("content")
                 
-                // MARK: horizontal weekly scrollview
+                // MARK: horizontal weekly scrollview (todo: attach a function that when you select date it attaches the corresponding taskview to the timeline view
                 
                 ScrollView(.horizontal, showsIndicators: false){
                     
@@ -39,22 +39,25 @@ struct ContentView: View {
                                     .fontWeight(.semibold)
                                 
                                 Divider()
-                                    .frame(width:.infinity,height: 2)
-                                    .overlay(taskStorage.isToday(date: day) ? .red : Color(white: 0.9))
+                                    .frame(width:25,height: 2)
+                                    .overlay(taskStorage.isSelected(date: day) ? .red : Color(white: 0.9))
                                 
                                 Text(taskStorage.extractDate(date:day, format: "dd"))
                                     .font(.system(size:20))
                                     .fontWeight(.semibold)
                             }
-                            .foregroundColor(taskStorage.isToday(date: day) ? .black : Color(white:0.6)  )
+                            .onTapGesture {
+                                taskStorage.selectedDay = day
+                            }
+                            .foregroundColor(taskStorage.isSelected(date: day) ? .black : Color(white:0.65)  )
                             .background(
                                 ZStack{
                                     
                                     RoundedRectangle(cornerRadius: 10)
                                         .fill(Color.white)
                                         .aspectRatio(1.0, contentMode: .fill)
-                                        .shadow(radius: taskStorage.isToday(date: day) ? 6 : 2 )
-                                        .opacity(taskStorage.isToday(date: day) ? 1 : 0.5)
+                                        .shadow(radius: taskStorage.isSelected(date: day) ? 6 : 2 )
+                                        .opacity(taskStorage.isSelected(date: day) ? 1 : 0.5)
                                 }
                             )
                             
@@ -66,16 +69,19 @@ struct ContentView: View {
                 
                 // MARK: vertical time line view
                 
-                ScrollView(.vertical,showsIndicators: false){
-                    ForEach(1..<100){ i in
-                        Text("i is \(i)")
-                    }
-                }
-
-            }
-            BottomTabView()
+                
+                // Create an array that has the tasks for the date and then create the view so I know which date is first to extend the arrow with? 
+                FullTimelineView()
+                    .background(
+                        RoundedRectangle(cornerRadius: 25)
+                            .fill(Color(white : 0.995))
+                            .shadow(radius: 5)
+                    )
+                
+                BottomTabView()
+            }.ignoresSafeArea(edges:.bottom)
         }
-    }
+    
     
     
     
