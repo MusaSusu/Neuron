@@ -16,7 +16,9 @@ struct ContentView: View {
         animation: .default)
     private var items: FetchedResults<Item> /* fetches from cloud*/
     
-    @StateObject var taskStorage: OptionsModel = OptionsModel()
+    @StateObject var UserOptions: OptionsModel = OptionsModel()
+    @EnvironmentObject var data: DataSource
+    
     
     var body: some View {
             VStack(spacing:0){
@@ -30,34 +32,34 @@ struct ContentView: View {
                     HStack(spacing:11){
                         Spacer()
                         
-                        ForEach(taskStorage.currentWeek, id: \.self) { day in
+                        ForEach(UserOptions.currentWeek, id: \.self) { day in
                             
                             VStack(spacing:1){
                                 
-                                Text(taskStorage.extractDate(date:day, format: "EEE").prefix(3))
+                                Text(UserOptions.extractDate(date:day, format: "EEE").prefix(3))
                                     .font(.system(size:12))
                                     .fontWeight(.semibold)
                                 
                                 Divider()
-                                    .frame(width:25,height: 2)
-                                    .overlay(taskStorage.isSelected(date: day) ? .red : Color(white: 0.9))
+                                    .frame(width:25,height: 3)
+                                    .overlay(UserOptions.isSelected(date: day) ? .red : Color(white: 0.9))
                                 
-                                Text(taskStorage.extractDate(date:day, format: "dd"))
+                                Text(UserOptions.extractDate(date:day, format: "dd"))
                                     .font(.system(size:20))
-                                    .fontWeight(.semibold)
+                                   .fontWeight(.semibold)
                             }
                             .onTapGesture {
-                                taskStorage.selectedDay = day
+                                UserOptions.selectedDay = day
                             }
-                            .foregroundColor(taskStorage.isSelected(date: day) ? .black : Color(white:0.65)  )
+                            .foregroundColor(UserOptions.isSelected(date: day) ? .black : Color(white:0.7)  )
                             .background(
                                 ZStack{
-                                    
+                                   
                                     RoundedRectangle(cornerRadius: 10)
                                         .fill(Color.white)
                                         .aspectRatio(1.0, contentMode: .fill)
-                                        .shadow(radius: taskStorage.isSelected(date: day) ? 6 : 2 )
-                                        .opacity(taskStorage.isSelected(date: day) ? 1 : 0.5)
+                                        .shadow(radius: UserOptions.isSelected(date: day) ? 6 : 2 )
+                                        .opacity(UserOptions.isSelected(date: day) ? 1 : 0.5)
                                 }
                             )
                             
@@ -71,7 +73,8 @@ struct ContentView: View {
                 
                 
                 // Create an array that has the tasks for the date and then create the view so I know which date is first to extend the arrow with? 
-                FullTimelineView()
+                FullTimelineView( date: UserOptions.extractDate(date: UserOptions.selectedDay, format:"MM-dd-yyyy"))
+                    .environmentObject(data)
                     .background(
                         RoundedRectangle(cornerRadius: 25)
                             .fill(Color(white : 0.995))
@@ -128,5 +131,6 @@ private let itemFormatter: DateFormatter = {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            .environmentObject(DataSource())
     }
 }

@@ -8,11 +8,6 @@
 import Foundation
 import SwiftUI
 
-struct Options: Codable{
-    var selectedDate: Date
-    var currentDate: Date
-}
-
 class OptionsModel: ObservableObject{
     
     // MARK: Current Week Initialization

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E120A6B528F20B28008ED4F8 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E120A6B428F20B28008ED4F8 /* DataSource.swift */; };
 		E16BB26E28E0F25F00ABD2E0 /* NeuronApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB26D28E0F25F00ABD2E0 /* NeuronApp.swift */; };
 		E16BB27028E0F25F00ABD2E0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB26F28E0F25F00ABD2E0 /* Persistence.swift */; };
 		E16BB27328E0F25F00ABD2E0 /* Neuron.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E16BB27128E0F25F00ABD2E0 /* Neuron.xcdatamodeld */; };
@@ -26,9 +27,6 @@
 		E18F4F9228EC059500351835 /* TimelineRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18F4F9128EC059500351835 /* TimelineRowView.swift */; };
 		E18F4F9328EC059500351835 /* TimelineRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18F4F9128EC059500351835 /* TimelineRowView.swift */; };
 		E18F4F9428EC059500351835 /* TimelineRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18F4F9128EC059500351835 /* TimelineRowView.swift */; };
-		E18F4F9A28EF726D00351835 /* DayTaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18F4F9928EF726D00351835 /* DayTaskModel.swift */; };
-		E18F4F9B28EF726D00351835 /* DayTaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18F4F9928EF726D00351835 /* DayTaskModel.swift */; };
-		E18F4F9C28EF726D00351835 /* DayTaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18F4F9928EF726D00351835 /* DayTaskModel.swift */; };
 		E1C95DAF28E4D26700851C4E /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DAE28E4D26700851C4E /* TaskModel.swift */; };
 		E1C95DB028E4D26700851C4E /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DAE28E4D26700851C4E /* TaskModel.swift */; };
 		E1C95DB128E4D26700851C4E /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DAE28E4D26700851C4E /* TaskModel.swift */; };
@@ -55,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E120A6B428F20B28008ED4F8 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		E16BB26A28E0F25F00ABD2E0 /* Neuron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neuron.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16BB26D28E0F25F00ABD2E0 /* NeuronApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuronApp.swift; sourceTree = "<group>"; };
 		E16BB26F28E0F25F00ABD2E0 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -72,7 +71,7 @@
 		E16BB2A228E3C43300ABD2E0 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		E18F4F8D28EB937D00351835 /* FullTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullTimelineView.swift; sourceTree = "<group>"; };
 		E18F4F9128EC059500351835 /* TimelineRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineRowView.swift; sourceTree = "<group>"; };
-		E18F4F9928EF726D00351835 /* DayTaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTaskModel.swift; sourceTree = "<group>"; };
+		E18F4FA128F0299400351835 /* testdata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testdata.swift; sourceTree = "<group>"; };
 		E1C95DAE28E4D26700851C4E /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		E1C95DB228E4D50600851C4E /* OptionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -178,8 +177,9 @@
 			isa = PBXGroup;
 			children = (
 				E1C95DAE28E4D26700851C4E /* TaskModel.swift */,
+				E120A6B428F20B28008ED4F8 /* DataSource.swift */,
 				E1C95DB228E4D50600851C4E /* OptionsModel.swift */,
-				E18F4F9928EF726D00351835 /* DayTaskModel.swift */,
+				E18F4FA128F0299400351835 /* testdata.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -319,7 +319,7 @@
 				E18F4F9228EC059500351835 /* TimelineRowView.swift in Sources */,
 				E16BB2A328E3C43300ABD2E0 /* HeaderView.swift in Sources */,
 				E18F4F8E28EB937D00351835 /* FullTimelineView.swift in Sources */,
-				E18F4F9A28EF726D00351835 /* DayTaskModel.swift in Sources */,
+				E120A6B528F20B28008ED4F8 /* DataSource.swift in Sources */,
 				E16BB27528E0F25F00ABD2E0 /* ContentView.swift in Sources */,
 				E16BB27028E0F25F00ABD2E0 /* Persistence.swift in Sources */,
 				E1C95DB328E4D50600851C4E /* OptionsModel.swift in Sources */,
@@ -337,7 +337,6 @@
 				E1C95DB028E4D26700851C4E /* TaskModel.swift in Sources */,
 				E1C95DB428E4D50600851C4E /* OptionsModel.swift in Sources */,
 				E16BB2A428E3C43300ABD2E0 /* HeaderView.swift in Sources */,
-				E18F4F9B28EF726D00351835 /* DayTaskModel.swift in Sources */,
 				E16BB28528E0F26000ABD2E0 /* NeuronTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,7 +347,6 @@
 			files = (
 				E1C95DB528E4D50600851C4E /* OptionsModel.swift in Sources */,
 				E16BB28F28E0F26000ABD2E0 /* NeuronUITests.swift in Sources */,
-				E18F4F9C28EF726D00351835 /* DayTaskModel.swift in Sources */,
 				E18F4F9428EC059500351835 /* TimelineRowView.swift in Sources */,
 				E16BB29128E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift in Sources */,
 				E1C95DB128E4D26700851C4E /* TaskModel.swift in Sources */,
@@ -423,6 +421,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -475,6 +475,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -488,6 +490,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Neuron/Neuron.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Neuron/Preview Content\"";
@@ -526,6 +529,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Neuron/Neuron.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Neuron/Preview Content\"";
