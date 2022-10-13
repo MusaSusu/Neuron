@@ -15,6 +15,7 @@ struct TimelineRowView: View {
 
     let icon: String
     let duration: CGFloat
+    let taskTitle: String
     let text: String
     let dateStart : String
     let dateEnd : String
@@ -35,6 +36,9 @@ struct TimelineRowView: View {
         }
     }
     
+    var formattedStartDate: String { extractDate(data:dateStart)}
+    var formattedEndDate: String {extractDate(data: dateEnd)}
+    
     
     var body: some View {
         
@@ -43,10 +47,10 @@ struct TimelineRowView: View {
             HStack(spacing:0){
                 
                 VStack{
-                    Text(extractDate(data:dateStart))
+                    Text(formattedStartDate)
                         .timeFont()
                     Spacer()
-                    Text(extractDate(data:dateEnd))
+                    Text(formattedEndDate)
                         .timeFont()
                 }.frame(width:65,height: capsuleHeight+20,alignment: .topLeading)
                 
@@ -78,13 +82,23 @@ struct TimelineRowView: View {
                 
             }.frame(width: 120).padding(5)
             
-            HStack{
-                Text(text)
-                Text("\(prevDuration)")
-                Spacer()
+            HStack(spacing: 0){
+                VStack(alignment: .leading,spacing: 0){
+                    HStack(alignment:.center,spacing:0){
+                        Text("\(taskTitle)")
+                            .font(.system(.title3,design: .default,weight:.semibold))
+                        Text("  (\(formatDuration(duration: duration)))")
+                            .italic()
+                            .font(.system(.subheadline,weight: .light))
+                        Spacer()
+                        
+                    }
+                    Spacer()
+                }
+                    Spacer()
             }
-            .frame(height: (capsuleHeight + 60.0), alignment: .leading)
-            .padding(5)
+            .frame(height: (capsuleHeight + 60.0), alignment: .topLeading)
+            .padding(10)
             .background(
                 RoundedRectangle(cornerRadius: 10)
                     .fill(setColor).opacity(0.3) //white: 0.995
@@ -112,11 +126,19 @@ private func convertDate(data: String) -> Date{
     return formatter4.date(from: data) ?? Date.now
 }
 
+private func formatDuration(duration: CGFloat) -> String{
+    let df = DateComponentsFormatter()
+    var interval: TimeInterval{(duration * 3600)}
+    df.allowedUnits = [.hour,.minute]
+    df.unitsStyle = .short
+    return df.string(from: interval)!
+}
+
 
 private struct setTimeLineGradient: View{
     let color: Color
     let date: Date
-    let duration: TimeInterval      
+    let duration: TimeInterval
     let height: CGFloat
     let condition: String
     
@@ -278,6 +300,6 @@ private extension View{
 
 struct TimelineRowView_Previews: PreviewProvider {
     static var previews: some View {
-        TimelineRowView(icon: "moon.fill",duration:0.5,text:"fdsafdsfadsfsadf",dateStart:"10-10-2022 18:00", dateEnd: "10-10-2022 18:30",setColor: .orange,prevDuration: 1200,nextDuration: 1200)
+        TimelineRowView(icon: "moon.fill",duration:0.5,taskTitle:"Bedtime", text:"fdsafdsfadsfsadf",dateStart:"10-10-2022 18:00", dateEnd: "10-10-2022 18:30",setColor: .orange,prevDuration: 1200,nextDuration: 1200)
     }
 }

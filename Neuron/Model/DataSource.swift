@@ -14,7 +14,7 @@ class DataSource: ObservableObject {
     @Published var taskDataByDate: [String: [String]] = [:]
     
     //MARK: Later on we can set this as the universal wake up time that the user can edit
-    let temp:Task = Task(id: "1",taskTitle: "Wake up", taskDescription: "Wakey time",taskIcon: "pencil", taskDateStart: "10-11-2022 09:20",taskDateEnd:"10-11-2022 09:50",taskDuration: 0.5, taskColor:Color(red:0.949, green: 0.522, blue: 0))
+    let temp:Task = Task(id: "1",taskTitle: "Wake up", taskDescription: "Wakey time",taskIcon: "pencil", taskDateStart: "10-13-2022 09:20",taskDateEnd:"10-13-2022 09:50",taskDuration: 0.5, taskColor:Color(red:0.949, green: 0.522, blue: 0))
 
     
     init(){
@@ -33,13 +33,13 @@ class DataSource: ObservableObject {
         }
         
         let temp = [
-            Task(taskTitle: "Wake up", taskDescription: "Wakey time 10-08",taskIcon: "sun.max.fill", taskDateStart: "10-10-2022 09:20",taskDateEnd:"10-10-2022 09:50",taskDuration: 0.5, taskColor:Color(red:0.949, green: 0.522, blue: 0)),
-            Task(taskTitle: "Do work", taskDescription: "math",taskIcon: "pencil", taskDateStart:  "10-10-2022 10:20",taskDateEnd: "10-10-2022 11:20",taskDuration: 1,taskColor:Color(red:0.9098,green: 0.6039, blue: 0.6039)),
-            Task(taskTitle: "Play games", taskDescription: "Play League",taskIcon: "gamecontroller.fill", taskDateStart: "10-10-2022 12:20",taskDateEnd:"10-10-2022 13:20",taskDuration: 1,taskColor: Color(red:0.32,green: 0.62, blue: 0.81)),
-            Task(taskTitle: "Go for a jog", taskDescription: "Light jog at central park",taskIcon: "figure.walk", taskDateStart: "10-10-2022 13:20",taskDateEnd: "10-10-2022 13:50",taskDuration: 0.5,taskColor: Color(red:0.467, green: 0.867,blue: 0.467)),
-            Task(taskTitle: "Make dinner", taskDescription: "Fried chicken with legumes",taskIcon: "cooktop.fill", taskDateStart: "10-10-2022 14:50",taskDateEnd: "10-10-2022 15:50",taskDuration: 1, taskColor: Color(red:0.9098,green: 0.6039, blue: 0.6039)),
-            Task(taskTitle: "Do laundry", taskDescription: "Remeber to do your laundy",taskIcon: "tshirt.fill", taskDateStart: "10-10-2022 23:00",taskDateEnd: "10-10-2022 23:20",taskDuration: 0.33, taskColor: Color(red:0.9098,green: 0.6039, blue: 0.6039)),
-            Task(taskTitle: "Sleep", taskDescription: "Sleepytime",taskIcon: "moon.fill", taskDateStart:"10-10-2022 23:20",taskDateEnd: "10-10-2022 23:59",taskDuration: 1, taskColor: Color(red:0.9098,green: 0.6039, blue: 0.6039) )
+            Task(taskTitle: "Wake up", taskDescription: "Wakey time 10-08",taskIcon: "sun.max.fill", taskDateStart: "10-12-2022 09:20",taskDateEnd:"10-12-2022 09:50",taskDuration: 0.5, taskColor:Color(red:0.949, green: 0.522, blue: 0)),
+            Task(taskTitle: "Do work", taskDescription: "math",taskIcon: "pencil", taskDateStart:  "10-12-2022 10:20",taskDateEnd: "10-12-2022 11:20",taskDuration: 1,taskColor:Color(red:0.9098,green: 0.6039, blue: 0.6039)),
+            Task(taskTitle: "Play games", taskDescription: "Play League",taskIcon: "gamecontroller.fill", taskDateStart: "10-12-2022 12:20",taskDateEnd:"10-12-2022 13:20",taskDuration: 1,taskColor: Color(red:0.32,green: 0.62, blue: 0.81)),
+            Task(taskTitle: "Go for a jog", taskDescription: "Light jog at central park",taskIcon: "figure.walk", taskDateStart: "10-12-2022 13:20",taskDateEnd: "10-12-2022 13:50",taskDuration: 0.5,taskColor: Color(red:0.467, green: 0.867,blue: 0.467)),
+            Task(taskTitle: "Make dinner", taskDescription: "Fried chicken with legumes",taskIcon: "cooktop.fill", taskDateStart: "10-12-2022 14:50",taskDateEnd: "10-12-2022 15:50",taskDuration: 1, taskColor: Color(red:0.9098,green: 0.6039, blue: 0.6039)),
+            Task(taskTitle: "Do laundry", taskDescription: "Remeber to do your laundy",taskIcon: "tshirt.fill", taskDateStart: "10-12-2022 23:00",taskDateEnd: "10-12-2022 23:20",taskDuration: 0.33, taskColor: Color(red:0.9098,green: 0.6039, blue: 0.6039)),
+            Task(taskTitle: "Sleep", taskDescription: "Sleepytime",taskIcon: "moon.fill", taskDateStart:"10-12-2022 23:20",taskDateEnd: "10-12-2022 23:50",taskDuration: 0.5, taskColor: Color(red:0.9098,green: 0.6039, blue: 0.6039) )
         ]
         
         helper(data: temp)
@@ -90,20 +90,20 @@ class DataSource: ObservableObject {
         let array:[String] = taskDataByDate[date] ?? ["1"]
         let taskIndex:Int = array.firstIndex(of: id)!
         if array.count == 1{
-            return (0,0)
+            return (-5,-5)
         }
         else if taskIndex == 0 {
             let nextDuration = df.date(from:taskData[id]!.taskDateEnd)!.distance(to: df.date(from: taskData[array[taskIndex+1]]!.taskDateStart )!)
-            return (-5,nextDuration)
+            return (-5,nextDuration/2)
         }
         else if taskIndex == (array.count-1) {
             let prevDuration = df.date(from:taskData[array[taskIndex-1]]!.taskDateEnd)!.distance(to: df.date(from: taskData[id]!.taskDateStart )!)
-            return (prevDuration,0)
+            return (prevDuration/2,0)
         }
         else {
             let prevDuration = df.date(from:taskData[array[taskIndex-1]]!.taskDateEnd)!.distance(to: df.date(from: taskData[id]!.taskDateStart )!)
             let nextDuration = df.date(from:taskData[id]!.taskDateEnd)!.distance(to: df.date(from: taskData[array[taskIndex+1]]!.taskDateStart )!)
-            return (prevDuration,nextDuration)
+            return (prevDuration/2,nextDuration/2)
         }
     }
     

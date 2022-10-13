@@ -27,7 +27,7 @@ struct FullTimelineView: View {
                 ForEach(data.taskDataByDate[date] ?? ["1"], id: \.self) { task in
                     let temp = data.taskData[task]!
                     let tuple = data.getTimeInterval(date: date, id: task)
-                    TimelineRowView(icon: temp.taskIcon, duration: temp.taskDuration, text: temp.taskDescription,dateStart: temp.taskDateStart,dateEnd: temp.taskDateEnd,setColor: temp.taskColor,prevDuration: tuple.0,nextDuration: tuple.1)
+                    TimelineRowView(icon: temp.taskIcon, duration: temp.taskDuration,taskTitle: temp.taskTitle, text: temp.taskDescription,dateStart: temp.taskDateStart,dateEnd: temp.taskDateEnd,setColor: temp.taskColor,prevDuration: tuple.0,nextDuration: tuple.1)
                 }
             }
             VStack{
