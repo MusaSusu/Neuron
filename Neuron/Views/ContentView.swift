@@ -79,6 +79,7 @@ struct ContentView: View {
                         RoundedRectangle(cornerRadius: 25)
                             .fill(Color(white : 0.995))
                             .shadow(radius: 5)
+                            .padding(0)
                     )
                 
                 BottomTabView()

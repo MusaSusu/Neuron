@@ -13,6 +13,7 @@ import SwiftUI
 
 struct TimelineRowView: View {
 
+    let id: String
     let icon: String
     let duration: CGFloat
     let taskTitle: String
@@ -55,45 +56,37 @@ struct TimelineRowView: View {
                 }.frame(width:65,height: capsuleHeight+20,alignment: .topLeading)
                 
                 Spacer()
+                
+                let startDate = convertDate(data: dateStart).addingTimeInterval(-prevDuration)
+                let endDate = convertDate(data: dateEnd)
+                
+                VStack(spacing: 0){
                     VStack{
-                        let startDate = convertDate(data: dateStart).addingTimeInterval(-prevDuration)
-                        let endDate = convertDate(data: dateEnd)
-                        VStack(spacing: 0){
-                            VStack{
-                                if prevDuration != -5 {
-                                    setTimeLineGradient(color: setColor, date: startDate, duration: prevDuration, height: capsuleHeight, condition:"top")
-                                }
-                            }.frame(height:45)
-                            VStack{
-                                let tempDate = convertDate(data: dateStart)
-                                let tempDuration = (duration * 3600)
-                                createCapsule(color: setColor, date: tempDate, duration: tempDuration, height: capsuleHeight,       icon:icon)
-                                
-                            }
-                            VStack{
-                                if nextDuration != -5{
-                                    setTimeLineGradient(color: setColor, date: endDate, duration: nextDuration, height: capsuleHeight, condition: "bot")
-                                }
-                            }.frame(height: 45)
-                            
-                        }.frame(height: capsuleHeight+90)
-                }
+                        if prevDuration != -5 {
+                            setTimeLineGradient(color: setColor, date: startDate, duration: prevDuration, height: capsuleHeight, condition:"top")
+                        }
+                    }.frame(height:45)
+                    VStack{
+                        let tempDate = convertDate(data: dateStart)
+                        let tempDuration = (duration * 3600)
+                        createCapsule(color: setColor, date: tempDate, duration: tempDuration, height: capsuleHeight,       icon:icon)
+                        
+                    }
+                    VStack{
+                        if nextDuration != -5{
+                            setTimeLineGradient(color: setColor, date: endDate, duration: nextDuration, height: capsuleHeight, condition: "bot")
+                        }
+                    }.frame(height: 45)
+                    
+                }.frame(height: capsuleHeight+90)
+                
                 Spacer()
                 
             }.frame(width: 120).padding(5)
             
             HStack(spacing: 0){
                 VStack(alignment: .leading,spacing: 0){
-                    HStack(alignment:.center,spacing:0){
-                        Text("\(taskTitle)")
-                            .font(.system(.title3,design: .default,weight:.semibold))
-                        Text("  (\(formatDuration(duration: duration)))")
-                            .italic()
-                            .font(.system(.subheadline,weight: .light))
-                        Spacer()
-                        
-                    }
-                    Spacer()
+                    TaskDescriptionView(taskid: id,taskTitle: taskTitle, duration: duration,setColor: setColor)
                 }
                     Spacer()
             }
@@ -101,7 +94,7 @@ struct TimelineRowView: View {
             .padding(10)
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(setColor).opacity(0.3) //white: 0.995
+                    .fill(setColor).opacity(0.2) //white: 0.995
                     .shadow(radius: 5)
             )
             
@@ -300,6 +293,6 @@ private extension View{
 
 struct TimelineRowView_Previews: PreviewProvider {
     static var previews: some View {
-        TimelineRowView(icon: "moon.fill",duration:0.5,taskTitle:"Bedtime", text:"fdsafdsfadsfsadf",dateStart:"10-10-2022 18:00", dateEnd: "10-10-2022 18:30",setColor: .orange,prevDuration: 1200,nextDuration: 1200)
+        TimelineRowView(id: "1", icon: "moon.fill",duration:0.5,taskTitle:"Bedtime", text:"fdsafdsfadsfsadf",dateStart:"10-10-2022 18:00", dateEnd: "10-10-2022 18:30",setColor: .orange,prevDuration: 1200,nextDuration: 1200).environmentObject(DataSource())
     }
 }

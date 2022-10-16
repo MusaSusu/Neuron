@@ -18,7 +18,8 @@ struct Task: Identifiable{
     var taskDateEnd: String
     var taskDuration: CGFloat
     var taskColor: Color
-}
+    var taskChecker : Bool
 
+}
 
     

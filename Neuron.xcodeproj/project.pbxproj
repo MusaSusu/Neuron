@@ -11,22 +11,30 @@
 		E16BB26E28E0F25F00ABD2E0 /* NeuronApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB26D28E0F25F00ABD2E0 /* NeuronApp.swift */; };
 		E16BB27028E0F25F00ABD2E0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB26F28E0F25F00ABD2E0 /* Persistence.swift */; };
 		E16BB27328E0F25F00ABD2E0 /* Neuron.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E16BB27128E0F25F00ABD2E0 /* Neuron.xcdatamodeld */; };
-		E16BB27528E0F25F00ABD2E0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB27428E0F25F00ABD2E0 /* ContentView.swift */; };
 		E16BB27728E0F26000ABD2E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E16BB27628E0F26000ABD2E0 /* Assets.xcassets */; };
 		E16BB27B28E0F26000ABD2E0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E16BB27A28E0F26000ABD2E0 /* Preview Assets.xcassets */; };
 		E16BB28528E0F26000ABD2E0 /* NeuronTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB28428E0F26000ABD2E0 /* NeuronTests.swift */; };
 		E16BB28F28E0F26000ABD2E0 /* NeuronUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB28E28E0F26000ABD2E0 /* NeuronUITests.swift */; };
 		E16BB29128E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB29028E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift */; };
-		E16BB29E28E11CD300ABD2E0 /* BottomTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB29D28E11CD300ABD2E0 /* BottomTab.swift */; };
-		E16BB2A328E3C43300ABD2E0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB2A228E3C43300ABD2E0 /* HeaderView.swift */; };
-		E16BB2A428E3C43300ABD2E0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB2A228E3C43300ABD2E0 /* HeaderView.swift */; };
-		E16BB2A528E3C43300ABD2E0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB2A228E3C43300ABD2E0 /* HeaderView.swift */; };
-		E18F4F8E28EB937D00351835 /* FullTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18F4F8D28EB937D00351835 /* FullTimelineView.swift */; };
-		E18F4F8F28EB937D00351835 /* FullTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18F4F8D28EB937D00351835 /* FullTimelineView.swift */; };
-		E18F4F9028EB937D00351835 /* FullTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18F4F8D28EB937D00351835 /* FullTimelineView.swift */; };
-		E18F4F9228EC059500351835 /* TimelineRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18F4F9128EC059500351835 /* TimelineRowView.swift */; };
-		E18F4F9328EC059500351835 /* TimelineRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18F4F9128EC059500351835 /* TimelineRowView.swift */; };
-		E18F4F9428EC059500351835 /* TimelineRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18F4F9128EC059500351835 /* TimelineRowView.swift */; };
+		E1B0F71B28FBC60800925858 /* BottomTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F71A28FBC60800925858 /* BottomTab.swift */; };
+		E1B0F71C28FBC60800925858 /* BottomTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F71A28FBC60800925858 /* BottomTab.swift */; };
+		E1B0F71D28FBC60800925858 /* BottomTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F71A28FBC60800925858 /* BottomTab.swift */; };
+		E1B0F71F28FBC62000925858 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F71E28FBC61F00925858 /* ContentView.swift */; };
+		E1B0F72028FBC62000925858 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F71E28FBC61F00925858 /* ContentView.swift */; };
+		E1B0F72128FBC62000925858 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F71E28FBC61F00925858 /* ContentView.swift */; };
+		E1B0F72628FBC65000925858 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F72228FBC65000925858 /* HeaderView.swift */; };
+		E1B0F72728FBC65000925858 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F72228FBC65000925858 /* HeaderView.swift */; };
+		E1B0F72828FBC65000925858 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F72228FBC65000925858 /* HeaderView.swift */; };
+		E1B0F72C28FBC65000925858 /* TaskDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F72428FBC65000925858 /* TaskDescriptionView.swift */; };
+		E1B0F72D28FBC65000925858 /* TaskDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F72428FBC65000925858 /* TaskDescriptionView.swift */; };
+		E1B0F72E28FBC65000925858 /* TaskDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F72428FBC65000925858 /* TaskDescriptionView.swift */; };
+		E1B0F72F28FBC65000925858 /* FullTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F72528FBC65000925858 /* FullTimelineView.swift */; };
+		E1B0F73028FBC65000925858 /* FullTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F72528FBC65000925858 /* FullTimelineView.swift */; };
+		E1B0F73128FBC65000925858 /* FullTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F72528FBC65000925858 /* FullTimelineView.swift */; };
+		E1B0F73328FBC65C00925858 /* TimelineRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F73228FBC65C00925858 /* TimelineRowView.swift */; };
+		E1B0F73428FBC65C00925858 /* TimelineRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F73228FBC65C00925858 /* TimelineRowView.swift */; };
+		E1B0F73528FBC65C00925858 /* TimelineRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F73228FBC65C00925858 /* TimelineRowView.swift */; };
+		E1B0F73728FBCB3300925858 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E120A6B428F20B28008ED4F8 /* DataSource.swift */; };
 		E1C95DAF28E4D26700851C4E /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DAE28E4D26700851C4E /* TaskModel.swift */; };
 		E1C95DB028E4D26700851C4E /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DAE28E4D26700851C4E /* TaskModel.swift */; };
 		E1C95DB128E4D26700851C4E /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DAE28E4D26700851C4E /* TaskModel.swift */; };
@@ -34,6 +42,20 @@
 		E1C95DB428E4D50600851C4E /* OptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DB228E4D50600851C4E /* OptionsModel.swift */; };
 		E1C95DB528E4D50600851C4E /* OptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DB228E4D50600851C4E /* OptionsModel.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		E1B0F6ED28FBC28900925858 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = file.rcproject;
+			inputFiles = (
+			);
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# rctool\n";
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
 		E16BB28128E0F26000ABD2E0 /* PBXContainerItemProxy */ = {
@@ -58,7 +80,6 @@
 		E16BB26D28E0F25F00ABD2E0 /* NeuronApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuronApp.swift; sourceTree = "<group>"; };
 		E16BB26F28E0F25F00ABD2E0 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		E16BB27228E0F25F00ABD2E0 /* Neuron.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Neuron.xcdatamodel; sourceTree = "<group>"; };
-		E16BB27428E0F25F00ABD2E0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E16BB27628E0F26000ABD2E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E16BB27828E0F26000ABD2E0 /* Neuron.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Neuron.entitlements; sourceTree = "<group>"; };
 		E16BB27A28E0F26000ABD2E0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -67,11 +88,13 @@
 		E16BB28A28E0F26000ABD2E0 /* NeuronUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeuronUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16BB28E28E0F26000ABD2E0 /* NeuronUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuronUITests.swift; sourceTree = "<group>"; };
 		E16BB29028E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuronUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		E16BB29D28E11CD300ABD2E0 /* BottomTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTab.swift; sourceTree = "<group>"; };
-		E16BB2A228E3C43300ABD2E0 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
-		E18F4F8D28EB937D00351835 /* FullTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullTimelineView.swift; sourceTree = "<group>"; };
-		E18F4F9128EC059500351835 /* TimelineRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineRowView.swift; sourceTree = "<group>"; };
 		E18F4FA128F0299400351835 /* testdata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testdata.swift; sourceTree = "<group>"; };
+		E1B0F71A28FBC60800925858 /* BottomTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomTab.swift; sourceTree = "<group>"; };
+		E1B0F71E28FBC61F00925858 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E1B0F72228FBC65000925858 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		E1B0F72428FBC65000925858 /* TaskDescriptionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDescriptionView.swift; sourceTree = "<group>"; };
+		E1B0F72528FBC65000925858 /* FullTimelineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullTimelineView.swift; sourceTree = "<group>"; };
+		E1B0F73228FBC65C00925858 /* TimelineRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineRowView.swift; sourceTree = "<group>"; };
 		E1C95DAE28E4D26700851C4E /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		E1C95DB228E4D50600851C4E /* OptionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,10 +147,10 @@
 		E16BB26C28E0F25F00ABD2E0 /* Neuron */ = {
 			isa = PBXGroup;
 			children = (
+				E16BB2A628E4D1E400ABD2E0 /* Model */,
+				E1B0F73628FBC69800925858 /* Views */,
 				E16BB26D28E0F25F00ABD2E0 /* NeuronApp.swift */,
 				E16BB26F28E0F25F00ABD2E0 /* Persistence.swift */,
-				E16BB2A628E4D1E400ABD2E0 /* Model */,
-				E16BB2A128E3C41B00ABD2E0 /* Views */,
 				E16BB27628E0F26000ABD2E0 /* Assets.xcassets */,
 				E16BB27828E0F26000ABD2E0 /* Neuron.entitlements */,
 				E16BB27128E0F25F00ABD2E0 /* Neuron.xcdatamodeld */,
@@ -161,18 +184,6 @@
 			path = NeuronUITests;
 			sourceTree = "<group>";
 		};
-		E16BB2A128E3C41B00ABD2E0 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				E16BB27428E0F25F00ABD2E0 /* ContentView.swift */,
-				E16BB29D28E11CD300ABD2E0 /* BottomTab.swift */,
-				E16BB2A228E3C43300ABD2E0 /* HeaderView.swift */,
-				E18F4F8D28EB937D00351835 /* FullTimelineView.swift */,
-				E18F4F9128EC059500351835 /* TimelineRowView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		E16BB2A628E4D1E400ABD2E0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +193,19 @@
 				E18F4FA128F0299400351835 /* testdata.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		E1B0F73628FBC69800925858 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E1B0F71E28FBC61F00925858 /* ContentView.swift */,
+				E1B0F72428FBC65000925858 /* TaskDescriptionView.swift */,
+				E1B0F72228FBC65000925858 /* HeaderView.swift */,
+				E1B0F72528FBC65000925858 /* FullTimelineView.swift */,
+				E1B0F71A28FBC60800925858 /* BottomTab.swift */,
+				E1B0F73228FBC65C00925858 /* TimelineRowView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,6 +220,7 @@
 				E16BB26828E0F25F00ABD2E0 /* Resources */,
 			);
 			buildRules = (
+				E1B0F6ED28FBC28900925858 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -316,15 +341,16 @@
 			files = (
 				E16BB27328E0F25F00ABD2E0 /* Neuron.xcdatamodeld in Sources */,
 				E16BB26E28E0F25F00ABD2E0 /* NeuronApp.swift in Sources */,
-				E18F4F9228EC059500351835 /* TimelineRowView.swift in Sources */,
-				E16BB2A328E3C43300ABD2E0 /* HeaderView.swift in Sources */,
-				E18F4F8E28EB937D00351835 /* FullTimelineView.swift in Sources */,
 				E120A6B528F20B28008ED4F8 /* DataSource.swift in Sources */,
-				E16BB27528E0F25F00ABD2E0 /* ContentView.swift in Sources */,
 				E16BB27028E0F25F00ABD2E0 /* Persistence.swift in Sources */,
+				E1B0F72628FBC65000925858 /* HeaderView.swift in Sources */,
+				E1B0F72C28FBC65000925858 /* TaskDescriptionView.swift in Sources */,
+				E1B0F71F28FBC62000925858 /* ContentView.swift in Sources */,
 				E1C95DB328E4D50600851C4E /* OptionsModel.swift in Sources */,
-				E16BB29E28E11CD300ABD2E0 /* BottomTab.swift in Sources */,
+				E1B0F71B28FBC60800925858 /* BottomTab.swift in Sources */,
 				E1C95DAF28E4D26700851C4E /* TaskModel.swift in Sources */,
+				E1B0F73328FBC65C00925858 /* TimelineRowView.swift in Sources */,
+				E1B0F72F28FBC65000925858 /* FullTimelineView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,12 +358,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E18F4F8F28EB937D00351835 /* FullTimelineView.swift in Sources */,
-				E18F4F9328EC059500351835 /* TimelineRowView.swift in Sources */,
+				E1B0F73728FBCB3300925858 /* DataSource.swift in Sources */,
 				E1C95DB028E4D26700851C4E /* TaskModel.swift in Sources */,
+				E1B0F72028FBC62000925858 /* ContentView.swift in Sources */,
+				E1B0F71C28FBC60800925858 /* BottomTab.swift in Sources */,
+				E1B0F73028FBC65000925858 /* FullTimelineView.swift in Sources */,
 				E1C95DB428E4D50600851C4E /* OptionsModel.swift in Sources */,
-				E16BB2A428E3C43300ABD2E0 /* HeaderView.swift in Sources */,
 				E16BB28528E0F26000ABD2E0 /* NeuronTests.swift in Sources */,
+				E1B0F72D28FBC65000925858 /* TaskDescriptionView.swift in Sources */,
+				E1B0F72728FBC65000925858 /* HeaderView.swift in Sources */,
+				E1B0F73428FBC65C00925858 /* TimelineRowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,11 +377,14 @@
 			files = (
 				E1C95DB528E4D50600851C4E /* OptionsModel.swift in Sources */,
 				E16BB28F28E0F26000ABD2E0 /* NeuronUITests.swift in Sources */,
-				E18F4F9428EC059500351835 /* TimelineRowView.swift in Sources */,
+				E1B0F72128FBC62000925858 /* ContentView.swift in Sources */,
+				E1B0F71D28FBC60800925858 /* BottomTab.swift in Sources */,
+				E1B0F73128FBC65000925858 /* FullTimelineView.swift in Sources */,
+				E1B0F73528FBC65C00925858 /* TimelineRowView.swift in Sources */,
 				E16BB29128E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift in Sources */,
+				E1B0F72E28FBC65000925858 /* TaskDescriptionView.swift in Sources */,
 				E1C95DB128E4D26700851C4E /* TaskModel.swift in Sources */,
-				E18F4F9028EB937D00351835 /* FullTimelineView.swift in Sources */,
-				E16BB2A528E3C43300ABD2E0 /* HeaderView.swift in Sources */,
+				E1B0F72828FBC65000925858 /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
