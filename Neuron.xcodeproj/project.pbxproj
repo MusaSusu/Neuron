@@ -9,13 +9,17 @@
 /* Begin PBXBuildFile section */
 		E120A6B528F20B28008ED4F8 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E120A6B428F20B28008ED4F8 /* DataSource.swift */; };
 		E16BB26E28E0F25F00ABD2E0 /* NeuronApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB26D28E0F25F00ABD2E0 /* NeuronApp.swift */; };
-		E16BB27028E0F25F00ABD2E0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB26F28E0F25F00ABD2E0 /* Persistence.swift */; };
 		E16BB27328E0F25F00ABD2E0 /* Neuron.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E16BB27128E0F25F00ABD2E0 /* Neuron.xcdatamodeld */; };
 		E16BB27728E0F26000ABD2E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E16BB27628E0F26000ABD2E0 /* Assets.xcassets */; };
 		E16BB27B28E0F26000ABD2E0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E16BB27A28E0F26000ABD2E0 /* Preview Assets.xcassets */; };
 		E16BB28528E0F26000ABD2E0 /* NeuronTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB28428E0F26000ABD2E0 /* NeuronTests.swift */; };
 		E16BB28F28E0F26000ABD2E0 /* NeuronUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB28E28E0F26000ABD2E0 /* NeuronUITests.swift */; };
 		E16BB29128E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB29028E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift */; };
+		E19B9D6F28FD11C2009CC37A /* Neuron.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E16BB27128E0F25F00ABD2E0 /* Neuron.xcdatamodeld */; };
+		E19B9D7028FD11C2009CC37A /* Neuron.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E16BB27128E0F25F00ABD2E0 /* Neuron.xcdatamodeld */; };
+		E19B9D7128FD1601009CC37A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB26F28E0F25F00ABD2E0 /* Persistence.swift */; };
+		E19B9D7228FD1601009CC37A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB26F28E0F25F00ABD2E0 /* Persistence.swift */; };
+		E19B9D7328FD1602009CC37A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB26F28E0F25F00ABD2E0 /* Persistence.swift */; };
 		E1B0F71B28FBC60800925858 /* BottomTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F71A28FBC60800925858 /* BottomTab.swift */; };
 		E1B0F71C28FBC60800925858 /* BottomTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F71A28FBC60800925858 /* BottomTab.swift */; };
 		E1B0F71D28FBC60800925858 /* BottomTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F71A28FBC60800925858 /* BottomTab.swift */; };
@@ -199,11 +203,11 @@
 			isa = PBXGroup;
 			children = (
 				E1B0F71E28FBC61F00925858 /* ContentView.swift */,
-				E1B0F72428FBC65000925858 /* TaskDescriptionView.swift */,
 				E1B0F72228FBC65000925858 /* HeaderView.swift */,
 				E1B0F72528FBC65000925858 /* FullTimelineView.swift */,
 				E1B0F71A28FBC60800925858 /* BottomTab.swift */,
 				E1B0F73228FBC65C00925858 /* TimelineRowView.swift */,
+				E1B0F72428FBC65000925858 /* TaskDescriptionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -342,11 +346,11 @@
 				E16BB27328E0F25F00ABD2E0 /* Neuron.xcdatamodeld in Sources */,
 				E16BB26E28E0F25F00ABD2E0 /* NeuronApp.swift in Sources */,
 				E120A6B528F20B28008ED4F8 /* DataSource.swift in Sources */,
-				E16BB27028E0F25F00ABD2E0 /* Persistence.swift in Sources */,
 				E1B0F72628FBC65000925858 /* HeaderView.swift in Sources */,
 				E1B0F72C28FBC65000925858 /* TaskDescriptionView.swift in Sources */,
 				E1B0F71F28FBC62000925858 /* ContentView.swift in Sources */,
 				E1C95DB328E4D50600851C4E /* OptionsModel.swift in Sources */,
+				E19B9D7128FD1601009CC37A /* Persistence.swift in Sources */,
 				E1B0F71B28FBC60800925858 /* BottomTab.swift in Sources */,
 				E1C95DAF28E4D26700851C4E /* TaskModel.swift in Sources */,
 				E1B0F73328FBC65C00925858 /* TimelineRowView.swift in Sources */,
@@ -363,6 +367,8 @@
 				E1B0F72028FBC62000925858 /* ContentView.swift in Sources */,
 				E1B0F71C28FBC60800925858 /* BottomTab.swift in Sources */,
 				E1B0F73028FBC65000925858 /* FullTimelineView.swift in Sources */,
+				E19B9D6F28FD11C2009CC37A /* Neuron.xcdatamodeld in Sources */,
+				E19B9D7228FD1601009CC37A /* Persistence.swift in Sources */,
 				E1C95DB428E4D50600851C4E /* OptionsModel.swift in Sources */,
 				E16BB28528E0F26000ABD2E0 /* NeuronTests.swift in Sources */,
 				E1B0F72D28FBC65000925858 /* TaskDescriptionView.swift in Sources */,
@@ -381,8 +387,10 @@
 				E1B0F71D28FBC60800925858 /* BottomTab.swift in Sources */,
 				E1B0F73128FBC65000925858 /* FullTimelineView.swift in Sources */,
 				E1B0F73528FBC65C00925858 /* TimelineRowView.swift in Sources */,
+				E19B9D7028FD11C2009CC37A /* Neuron.xcdatamodeld in Sources */,
 				E16BB29128E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift in Sources */,
 				E1B0F72E28FBC65000925858 /* TaskDescriptionView.swift in Sources */,
+				E19B9D7328FD1602009CC37A /* Persistence.swift in Sources */,
 				E1C95DB128E4D26700851C4E /* TaskModel.swift in Sources */,
 				E1B0F72828FBC65000925858 /* HeaderView.swift in Sources */,
 			);

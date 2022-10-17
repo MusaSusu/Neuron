@@ -16,7 +16,6 @@ struct HeaderView: View {
                 Text("Today")
                     .font(.largeTitle.bold())
             }.frame(maxWidth: .infinity,alignment:.leading)
-                .print("header")
         }
     }
 }

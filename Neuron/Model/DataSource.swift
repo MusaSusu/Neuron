@@ -33,8 +33,8 @@ class DataSource: ObservableObject {
         }
         
         let temp = [
-            Task(taskTitle: "Wake up", taskDescription: "Wakey time 10-08",taskIcon: "sun.max.fill", taskDateStart: "10-16-2022 09:20",taskDateEnd:"10-16-2022 09:50",taskDuration: 0.5, taskColor:Color(red:0.949, green: 0.522, blue: 0), taskChecker: false),
-            Task(taskTitle: "Do work", taskDescription: "math",taskIcon: "pencil", taskDateStart:  "10-16-2022 10:20",taskDateEnd: "10-16-2022 11:20",taskDuration: 1,taskColor:Color(red:0.9098,green: 0.6039, blue: 0.6039), taskChecker: false),
+            Task(taskTitle: "Wake up", taskDescription: "Wakey time 10-08",taskIcon: "sun.max.fill", taskDateStart: "10-16-2022 01:00",taskDateEnd:"10-16-2022 01:30",taskDuration: 0.5, taskColor:Color(red:0.949, green: 0.522, blue: 0), taskChecker: false),
+            Task(taskTitle: "Do work", taskDescription: "math",taskIcon: "pencil", taskDateStart:  "10-16-2022 02:00",taskDateEnd: "10-16-2022 03:00",taskDuration: 1,taskColor:Color(red:0.9098,green: 0.6039, blue: 0.6039), taskChecker: false),
             Task(taskTitle: "Play games", taskDescription: "Play League",taskIcon: "gamecontroller.fill", taskDateStart: "10-16-2022 12:20",taskDateEnd:"10-16-2022 13:20",taskDuration: 1,taskColor: Color(red:0.32,green: 0.62, blue: 0.81),taskChecker: false),
             Task(taskTitle: "Go for a jog", taskDescription: "Light jog at central park",taskIcon: "figure.walk", taskDateStart: "10-16-2022 13:20",taskDateEnd: "10-16-2022 13:50",taskDuration: 0.5,taskColor: Color(red:0.467, green: 0.867,blue: 0.467),taskChecker: false),
             Task(taskTitle: "Make dinner", taskDescription: "Fried chicken with legumes",taskIcon: "cooktop.fill", taskDateStart: "10-16-2022 14:50",taskDateEnd: "10-16-2022 15:50",taskDuration: 1, taskColor: Color(red:0.9098,green: 0.6039, blue: 0.6039),taskChecker: false),
@@ -107,4 +107,19 @@ class DataSource: ObservableObject {
         }
     }
     
+    func createDateString(duration:TimeInterval)-> String{
+        let df = DateComponentsFormatter()
+        var interval: TimeInterval{(duration * 3600)}
+        df.allowedUnits = [.hour,.minute]
+        df.unitsStyle = .short
+        return df.string(from: interval)!
+    }
+    
+    // MARK: format current date
+    func extractDate(date: Date, format: String) -> String{
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = format
+        return formatter.string(from:date)
+    }
 }

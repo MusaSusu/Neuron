@@ -37,8 +37,8 @@ struct TimelineRowView: View {
         }
     }
     
-    var formattedStartDate: String { extractDate(data:dateStart)}
-    var formattedEndDate: String {extractDate(data: dateEnd)}
+    var formattedStartDate: String { formatDate(data:dateStart)}
+    var formattedEndDate: String {formatDate(data: dateEnd)}
     
     
     var body: some View {
@@ -105,7 +105,7 @@ struct TimelineRowView: View {
 }
 
 
-private func extractDate(data: String) -> String{
+func formatDate(data: String) -> String{
     let formatter4 = DateFormatter()
     formatter4.dateFormat = "MM-dd-yyyy HH:mm"
     let returnstring = formatter4.date(from: data)
@@ -119,15 +119,6 @@ private func convertDate(data: String) -> Date{
     return formatter4.date(from: data) ?? Date.now
 }
 
-private func formatDuration(duration: CGFloat) -> String{
-    let df = DateComponentsFormatter()
-    var interval: TimeInterval{(duration * 3600)}
-    df.allowedUnits = [.hour,.minute]
-    df.unitsStyle = .short
-    return df.string(from: interval)!
-}
-
-
 private struct setTimeLineGradient: View{
     let color: Color
     let date: Date
@@ -137,7 +128,7 @@ private struct setTimeLineGradient: View{
     
     var body: some View {
         TimelineView(.periodic(from: date, by: 30)){context in
-            let value = context.date.timeIntervalSince(date) / duration
+            let value = max(context.date.timeIntervalSince(date) / duration, 0)
             let gradient = Gradient(stops: [
                 .init(color: color, location: 0),
                 .init(color: Color(white: 0.95), location: value),
@@ -146,29 +137,15 @@ private struct setTimeLineGradient: View{
                 switch condition {
                 case "top":
                     VStack{
-                        if (value < 1){
-                            drawTopDashes()
-                                .stroke(style: StrokeStyle(lineWidth: 5))
-                                .fill(LinearGradient(gradient: gradient, startPoint: .top, endPoint: .bottom))
-                        }
-                        else{
-                            drawTopDashes()
-                                .stroke(style: StrokeStyle(lineWidth: 5))
-                                .fill(color)
-                        }
+                        drawTopDashes()
+                            .stroke(style: StrokeStyle(lineWidth: 5))
+                            .fill(LinearGradient(gradient: gradient, startPoint: .top, endPoint: .bottom))
                     }.frame(height: 45)
                 case "bot":
                     VStack{
-                        if (value < 1){
-                            drawBotDashes()
+                        drawBotDashes()
                                 .stroke(style: StrokeStyle(lineWidth: 5))
                                 .fill(LinearGradient(gradient: gradient, startPoint: .top, endPoint: .bottom))
-                        }
-                        else{
-                            drawBotDashes()
-                                .stroke(style: StrokeStyle(lineWidth: 5))
-                                .fill(color)
-                        }
                     }.frame(height: 45)
                 default:
                     Text("Default")
@@ -189,7 +166,7 @@ private struct setTimeLineGradient: View{
             path.addLine(to: CGPoint(x:(rect.midX), y: (rect.minY+30) ))
             
             path.move(to: CGPoint(x: (rect.midX), y: (rect.minY+40) ))
-            path.addLine(to: CGPoint(x:(rect.midX), y: (rect.minY+45) ))
+            path.addLine(to: CGPoint(x:(rect.midX), y: (rect.minY+50) ))
             
             
             return path
@@ -200,7 +177,7 @@ private struct setTimeLineGradient: View{
     private struct drawTopDashes: Shape {
         func path(in rect: CGRect) -> Path {
             var path = Path()
-            path.move(to: CGPoint(x: (rect.midX), y: (rect.minY)  ))
+            path.move(to: CGPoint(x: (rect.midX), y: (rect.minY-5)  ))
             path.addLine(to: CGPoint(x:(rect.midX), y: (rect.minY+5) ))
             
             path.move(to: CGPoint(x: (rect.midX), y: (rect.minY+15)  ))
@@ -234,52 +211,32 @@ private struct createCapsule: View {
     var body: some View{
         VStack{
             TimelineView(.periodic(from: date, by: 30)){context in
-                let value = context.date.timeIntervalSince(date) / duration
+                let value = max(0,context.date.timeIntervalSince(date) / duration)
                 let gradient = Gradient(stops: [
                     .init(color: color, location: 0),
                     .init(color: Color(white: 0.95), location: value),
                 ])
                 ZStack{
-                    if (value >= 1){
-                        Capsule()
-                            .fill(color)
-                            .frame(width: 45.0, height: height)
-                        Image(systemName: icon)
+                    Capsule()
+                        .fill(LinearGradient(gradient: gradient, startPoint: .top, endPoint: UnitPoint(x: 0.5, y: 1.25) ) )
+                        .frame(width: 45.0, height: height)
+                    let gradient = Gradient(stops: [
+                        .init(color: .white, location: 0),
+                        .init(color: color, location: value),
+                    ])
+                    LinearGradient(gradient: gradient, startPoint: .top, endPoint: UnitPoint(x: 0.5, y: 2))
+                        .mask(Image(systemName:icon)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(.white)
-                    }
-                    else{
-                        Capsule()
-                            .fill(LinearGradient(gradient: gradient, startPoint: .top, endPoint: UnitPoint(x: 1, y: 1.5) ))
-                            .frame(width: 45.0, height: height)
-                        if (value < 0){
-                            Image(systemName: icon)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 30.0, height: 30)
-                                .foregroundColor(color)
-                        }
-                        else{
-                            let gradient = Gradient(stops: [
-                                .init(color: .white, location: 0),
-                                .init(color: color, location: value),
-                            ])
-                            LinearGradient(gradient: gradient, startPoint: .top, endPoint: .bottom)
-                                .mask(Image(systemName:icon)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                ).frame(width: 30.0, height: 30.0)
-                        }
-                    }
-                    
+                        ).frame(width: 30.0, height: 30.0)
                 }
             }
             
         }
     }
 }
+
+
 
 
 private extension View{
@@ -293,6 +250,6 @@ private extension View{
 
 struct TimelineRowView_Previews: PreviewProvider {
     static var previews: some View {
-        TimelineRowView(id: "1", icon: "moon.fill",duration:0.5,taskTitle:"Bedtime", text:"fdsafdsfadsfsadf",dateStart:"10-10-2022 18:00", dateEnd: "10-10-2022 18:30",setColor: .orange,prevDuration: 1200,nextDuration: 1200).environmentObject(DataSource())
+        TimelineRowView(id: "1", icon: "moon.fill",duration:0.5,taskTitle:"Bedtime", text:"fdsafdsfadsfsadf",dateStart:"10-16-2022 01:45", dateEnd: "10-16-2022 02:15",setColor: .orange,prevDuration: 1200,nextDuration: 1200).environmentObject(DataSource())
     }
 }

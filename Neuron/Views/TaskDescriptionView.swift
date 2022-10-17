@@ -13,20 +13,15 @@ struct TaskDescriptionView: View {
     let duration: Double
     let setColor: Color
     @EnvironmentObject var data: DataSource
-    
-    @State private var buttonState: Bool = false
-    
+        
     var interval: String {
-        let df = DateComponentsFormatter()
-        var interval: TimeInterval{(duration * 3600)}
-        df.allowedUnits = [.hour,.minute]
-        df.unitsStyle = .short
-        return df.string(from: interval)!
+        data.createDateString(duration: duration)
     }
     
     
     var body: some View {
         HStack(alignment:.center,spacing:0){
+            
             HStack(spacing:0) {
                 Text("\(taskTitle)")
                     .font(.system(.title3,design: .default,weight:.semibold))
@@ -38,9 +33,11 @@ struct TaskDescriptionView: View {
                     .stroke(style: StrokeStyle(lineWidth: 2))
                     .fill(data.taskData[taskid]!.taskChecker ? .red : .clear)
                 )
+            
             Spacer()
-                Button {
-                    data.taskData[taskid]!.taskChecker.toggle()
+            
+            Button {
+                data.taskData[taskid]!.taskChecker.toggle()
             } label: {
                 Label {Text("Task Complete")} icon: {
                     Image(systemName: data.taskData[taskid]!.taskChecker ? "circle.inset.filled" : "circle")

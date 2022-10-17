@@ -5,12 +5,6 @@
 //  Created by Alvin Wu on 10/3/22.
 //
 
-
-
-let apple = "dkfmdskfkmsdkmfsdkmfdskmdsfkmsfdmksdfmksdf"
-let apple1 = "p'kasgkmpdkpjsgijpdfjpgjpdsfpjdfgpjofgsdopfgdopfdsopkgsopfdgopdsfgkopfdksopkpgofdskpogsdpkodsg  gdsfkongdksngdf g dfsg odfs"
-
-let apple2 = "fdijosafijooijs kkk dafoijdsajoigfjodfgojigsfdojdfgsjodsfoiing"
 import SwiftUI
 
 struct FullTimelineView: View {
@@ -30,23 +24,23 @@ struct FullTimelineView: View {
                     TimelineRowView(id: temp.id,icon: temp.taskIcon, duration: temp.taskDuration,taskTitle: temp.taskTitle, text: temp.taskDescription,dateStart: temp.taskDateStart,dateEnd: temp.taskDateEnd,setColor: temp.taskColor,prevDuration: tuple.0,nextDuration: tuple.1)
                 }
             }
+            
             VStack{
                 
             }.frame(height:300)
-            }
-        }
+            
+        }.cornerRadius(25)
+        .background(
+                Color(white : 0.995)
+                    .cornerRadius(25)
+                .shadow(radius: 5)
+        )
     }
+}
 
 
 struct FullTimelineView_Previews: PreviewProvider {
     static var previews: some View {
         FullTimelineView(date:"10-05-2022").environmentObject(DataSource())
-    }
-}
-
-extension View {
-    func print(_ value: Any) -> Self {
-        Swift.print(value)
-        return self
     }
 }
