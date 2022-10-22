@@ -12,18 +12,22 @@ import SwiftUI
 
 
 struct TimelineRowView: View {
-
-    let id: String
+    
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    @ObservedObject var task: Tasks
+    let id: UUID
     let icon: String
     let duration: CGFloat
     let taskTitle: String
     let text: String
-    let dateStart : String
-    let dateEnd : String
-    let setColor:Color
+    let dateStart : Date
+    let dateEnd : Date
+    let setColor1: [Double]
     let prevDuration: TimeInterval
     let nextDuration: TimeInterval
     
+    var setColor: Color {Color(red: setColor1[0], green: setColor1[1], blue: setColor1[2])}
     var capsuleHeight: CGFloat{
         let duration = abs((duration * 2))
         if duration <= 1 {
@@ -39,7 +43,19 @@ struct TimelineRowView: View {
     
     var formattedStartDate: String { formatDate(data:dateStart)}
     var formattedEndDate: String {formatDate(data: dateEnd)}
-    
+    init(task: Tasks,prevDuration: TimeInterval,nextDuration: TimeInterval){
+        self.task = task
+        self.id = task.id!
+        self.icon = task.icon!
+        self.duration = CGFloat(task.duration)
+        self.taskTitle = task.title!
+        self.dateStart = task.dateStart!
+        self.dateEnd = task.dateEnd!
+        self.setColor1 = task.color!
+        self.text = task.info!
+        self.prevDuration = prevDuration
+        self.nextDuration = nextDuration
+    }
     
     var body: some View {
         
@@ -57,8 +73,8 @@ struct TimelineRowView: View {
                 
                 Spacer()
                 
-                let startDate = convertDate(data: dateStart).addingTimeInterval(-prevDuration)
-                let endDate = convertDate(data: dateEnd)
+                let startDate = dateStart.addingTimeInterval(-prevDuration)
+                let endDate = dateEnd
                 
                 VStack(spacing: 0){
                     VStack{
@@ -67,9 +83,9 @@ struct TimelineRowView: View {
                         }
                     }.frame(height:45)
                     VStack{
-                        let tempDate = convertDate(data: dateStart)
+                        let tempDate = dateStart
                         let tempDuration = (duration * 3600)
-                        createCapsule(color: setColor, date: tempDate, duration: tempDuration, height: capsuleHeight,       icon:icon)
+                        createCapsule(color: setColor, date: tempDate, duration: tempDuration, height: capsuleHeight,icon:icon)
                         
                     }
                     VStack{
@@ -78,7 +94,7 @@ struct TimelineRowView: View {
                         }
                     }.frame(height: 45)
                     
-                }.frame(height: capsuleHeight+90)
+                }.frame(height: capsuleHeight+100)
                 
                 Spacer()
                 
@@ -86,8 +102,10 @@ struct TimelineRowView: View {
             
             HStack(spacing: 0){
                 VStack(alignment: .leading,spacing: 0){
-                    TaskDescriptionView(taskid: id,taskTitle: taskTitle, duration: duration,setColor: setColor)
+                    TaskDescriptionView(taskTitle: taskTitle, duration: duration,setColor: setColor)
+                    Text("\(id)")
                 }
+                
                     Spacer()
             }
             .frame(height: (capsuleHeight + 60.0), alignment: .topLeading)
@@ -105,18 +123,11 @@ struct TimelineRowView: View {
 }
 
 
-func formatDate(data: String) -> String{
+func formatDate(data: Date) -> String{
     let formatter4 = DateFormatter()
     formatter4.dateFormat = "MM-dd-yyyy HH:mm"
-    let returnstring = formatter4.date(from: data)
     formatter4.timeStyle = .short
-    return formatter4.string(from:returnstring ?? Date.now)
-}
-
-private func convertDate(data: String) -> Date{
-    let formatter4 = DateFormatter()
-    formatter4.dateFormat = "MM-dd-yyyy HH:mm"
-    return formatter4.date(from: data) ?? Date.now
+    return formatter4.string(from:data)
 }
 
 private struct setTimeLineGradient: View{
@@ -166,8 +177,7 @@ private struct setTimeLineGradient: View{
             path.addLine(to: CGPoint(x:(rect.midX), y: (rect.minY+30) ))
             
             path.move(to: CGPoint(x: (rect.midX), y: (rect.minY+40) ))
-            path.addLine(to: CGPoint(x:(rect.midX), y: (rect.minY+50) ))
-            
+            path.addLine(to: CGPoint(x:(rect.midX), y: (rect.minY+45) ))
             
             return path
         }
@@ -177,7 +187,7 @@ private struct setTimeLineGradient: View{
     private struct drawTopDashes: Shape {
         func path(in rect: CGRect) -> Path {
             var path = Path()
-            path.move(to: CGPoint(x: (rect.midX), y: (rect.minY-5)  ))
+            path.move(to: CGPoint(x: (rect.midX), y: (rect.minY)  ))
             path.addLine(to: CGPoint(x:(rect.midX), y: (rect.minY+5) ))
             
             path.move(to: CGPoint(x: (rect.midX), y: (rect.minY+15)  ))
@@ -249,7 +259,24 @@ private extension View{
 
 
 struct TimelineRowView_Previews: PreviewProvider {
+
+    static var previewscontainer: Tasks{
+        let newItem = Tasks(context: PersistenceController.preview.container.viewContext)
+        newItem.id = UUID()
+        newItem.title = "Wake up"
+        newItem.dateStart = convertDate(data: "10-17-2022 01:00")
+        newItem.dateEnd = convertDate(data: "10-17-2022 01:30")
+        newItem.info = "Wakey time 10-08"
+        newItem.icon = "sun.max.fill"
+        newItem.duration = 0.5
+        newItem.color = [0.949,  0.522,  0.1]
+        newItem.completed = false
+        return newItem
+    }
+    
     static var previews: some View {
-        TimelineRowView(id: "1", icon: "moon.fill",duration:0.5,taskTitle:"Bedtime", text:"fdsafdsfadsfsadf",dateStart:"10-16-2022 01:45", dateEnd: "10-16-2022 02:15",setColor: .orange,prevDuration: 1200,nextDuration: 1200).environmentObject(DataSource())
+        TimelineRowView(task: previewscontainer,prevDuration: 1200,nextDuration: 1200).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
+
+

@@ -8,16 +8,11 @@
 import SwiftUI
 import CoreData
 
+
 struct ContentView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
-    
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Tasks.dateStart, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Tasks>
-    
-    @StateObject var UserOptions: OptionsModel = OptionsModel()
+    @EnvironmentObject var UserOptions: OptionsModel
     @EnvironmentObject var data: DataSource
     
     
@@ -26,7 +21,6 @@ struct ContentView: View {
             
             HeaderView().padding(.horizontal)
             
-            // MARK: horizontal weekly scrollview (todo: attach a function that when you select date it attaches the corresponding taskview to the timeline vie
             ScrollView(.horizontal, showsIndicators: false){
                 
                 HStack(spacing:11){
@@ -50,6 +44,8 @@ struct ContentView: View {
                         }
                         .onTapGesture {
                             UserOptions.selectedDay = day
+                            UserOptions.selectedDayString = data.extractDate(date:day, format: "MM-dd-yyyy")
+                            
                         }
                         .foregroundColor(UserOptions.isSelected(date: day) ? .black : Color(white:0.7)  )
                         .background(
@@ -80,8 +76,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environmentObject(DataSource())
-        
-        //.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        ContentView().environmentObject(DataSource()).environmentObject(OptionsModel())
+        .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

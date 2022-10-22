@@ -25,11 +25,23 @@ struct Task1: Identifiable{
     var taskTitle: String
     var taskDescription: String
     var taskIcon: String
-    var taskDateStart: String
-    var taskDateEnd: String
+    var taskDateStart: Date
+    var taskDateEnd: Date
     var taskDuration: CGFloat
     var taskColor: [Double]
     var taskChecker : Bool
+}
+
+func convertDate(data: String) -> Date{
+    let formatter4 = DateFormatter()
+    formatter4.dateFormat = "MM-dd-yyyy HH:mm"
+    return formatter4.date(from: data) ?? Date.now
+}
+
+func convertDate1(data: String) -> Date{
+    let formatter4 = DateFormatter()
+    formatter4.dateFormat = "MM-dd-yyyy"
+    return formatter4.date(from: data) ?? Date.now
 }
 
 extension View {

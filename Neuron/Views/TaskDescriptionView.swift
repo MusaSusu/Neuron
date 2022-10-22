@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct TaskDescriptionView: View {
-    let taskid: String
+    @State var checker: Bool = false
     let taskTitle: String
     let duration: Double
     let setColor: Color
-    @EnvironmentObject var data: DataSource
         
     var interval: String {
-        data.createDateString(duration: duration)
+        "200"
     }
     
     
@@ -31,18 +30,18 @@ struct TaskDescriptionView: View {
             }.overlay(
                 strikethroughs()
                     .stroke(style: StrokeStyle(lineWidth: 2))
-                    .fill(data.taskData[taskid]!.taskChecker ? .red : .clear)
+                    .fill(checker ? .red : .clear)
                 )
             
             Spacer()
             
             Button {
-                data.taskData[taskid]!.taskChecker.toggle()
+                checker.toggle()
             } label: {
                 Label {Text("Task Complete")} icon: {
-                    Image(systemName: data.taskData[taskid]!.taskChecker ? "circle.inset.filled" : "circle")
-                        .foregroundColor(data.taskData[taskid]!.taskChecker ? setColor.opacity(1) : .secondary)
-                        .accessibility(label: Text(data.taskData[taskid]!.taskChecker ? "Checked" : "Unchecked"))
+                    Image(systemName: checker ? "circle.inset.filled" : "circle")
+                        .foregroundColor(checker ? setColor.opacity(1) : .secondary)
+                        .accessibility(label: Text(checker ? "Checked" : "Unchecked"))
                         .imageScale(.large)
                 }
             }.labelStyle(.iconOnly)
@@ -64,6 +63,6 @@ struct strikethroughs: Shape{
 
 struct TaskDescription_Previews: PreviewProvider {
     static var previews: some View {
-        TaskDescriptionView(taskid: "1",taskTitle: "Title", duration: 0.5, setColor: .orange).environmentObject(DataSource())
+        TaskDescriptionView(taskTitle: "Title", duration: 0.5, setColor: .orange)
     }
 }

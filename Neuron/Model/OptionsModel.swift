@@ -14,6 +14,8 @@ class OptionsModel: ObservableObject{
     @Published var currentWeek: [Date] = []
     @Published var today: Date = Date()
     @Published var selectedDay: Date = Date()
+    @Published var selectedDayString: String = String()
+
 
     
     init(){

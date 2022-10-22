@@ -11,6 +11,9 @@ import SwiftUI
 struct NeuronApp: App {
     let persistenceController = PersistenceController.shared
     @StateObject private var Data = DataSource()
+    @StateObject private var UserOptions = OptionsModel()
+
+    
 
 
     var body: some Scene {
@@ -18,6 +21,7 @@ struct NeuronApp: App {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(Data)
+                .environmentObject(UserOptions)
         }
     }
 }
