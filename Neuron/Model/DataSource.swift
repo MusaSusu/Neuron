@@ -106,20 +106,4 @@ class DataSource: ObservableObject {
             return (prevDuration/2,nextDuration/2)
         }
     }
-    
-    func createDateString(duration:TimeInterval)-> String{
-        let df = DateComponentsFormatter()
-        var interval: TimeInterval{(duration * 3600)}
-        df.allowedUnits = [.hour,.minute]
-        df.unitsStyle = .short
-        return df.string(from: interval)!
-    }
-    
-    // MARK: format current date
-    func extractDate(date: Date, format: String) -> String{
-        let formatter = DateFormatter()
-        
-        formatter.dateFormat = format
-        return formatter.string(from:date)
-    }
 }

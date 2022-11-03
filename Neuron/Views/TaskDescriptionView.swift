@@ -8,40 +8,44 @@
 import SwiftUI
 
 struct TaskDescriptionView: View {
-    @State var checker: Bool = false
-    let taskTitle: String
+    
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    @ObservedObject var task: Tasks
+    
     let duration: Double
     let setColor: Color
         
     var interval: String {
-        "200"
+        createDateString(duration:task.duration)
     }
-    
     
     var body: some View {
         HStack(alignment:.center,spacing:0){
             
             HStack(spacing:0) {
-                Text("\(taskTitle)")
+                Text("\(task.title!)")
                     .font(.system(.title3,design: .default,weight:.semibold))
+                    
                 Text("  (\(interval))")
                     .italic()
                     .font(.system(.subheadline,weight: .light))
-            }.overlay(
+            }
+            .overlay(
                 strikethroughs()
                     .stroke(style: StrokeStyle(lineWidth: 2))
-                    .fill(checker ? .red : .clear)
+                    .fill(task.completed ? .red : .clear)
                 )
             
             Spacer()
             
             Button {
-                checker.toggle()
+                task.completed.toggle()
             } label: {
                 Label {Text("Task Complete")} icon: {
-                    Image(systemName: checker ? "circle.inset.filled" : "circle")
-                        .foregroundColor(checker ? setColor.opacity(1) : .secondary)
-                        .accessibility(label: Text(checker ? "Checked" : "Unchecked"))
+                    Image(systemName: task.completed ? "circle.inset.filled" : "circle")
+                        .foregroundColor(task.completed ? setColor.opacity(1) : .secondary)
+                        .accessibility(label: Text(task.completed ? "Checked" : "Unchecked"))
                         .imageScale(.large)
                 }
             }.labelStyle(.iconOnly)
@@ -51,7 +55,7 @@ struct TaskDescriptionView: View {
 }
     
 
-struct strikethroughs: Shape{
+private struct strikethroughs: Shape{
     func path(in rect: CGRect) -> Path {
         var path = Path()
         path.move(to: CGPoint(x: (rect.minX-5), y: (rect.midY)  ))
@@ -61,8 +65,17 @@ struct strikethroughs: Shape{
     }
 }
 
+private func createDateString(duration:TimeInterval)-> String{
+    let df = DateComponentsFormatter()
+    var interval: TimeInterval{(duration * 3600)}
+    df.allowedUnits = [.hour,.minute]
+    df.unitsStyle = .short
+    return df.string(from: interval)!
+}
+
 struct TaskDescription_Previews: PreviewProvider {
     static var previews: some View {
-        TaskDescriptionView(taskTitle: "Title", duration: 0.5, setColor: .orange)
+        TaskDescriptionView(task: previewscontainer, duration: 0.5, setColor: .orange)
+            .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
     }
 }

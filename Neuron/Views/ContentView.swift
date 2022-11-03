@@ -13,24 +13,21 @@ struct ContentView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var UserOptions: OptionsModel
-    @EnvironmentObject var data: DataSource
-    
     
     var body: some View {
         VStack(spacing:0){
-            
-            HeaderView().padding(.horizontal)
-            
+            HStack(){
+                HeaderView().padding(.horizontal)
+            }
             ScrollView(.horizontal, showsIndicators: false){
                 
                 HStack(spacing:11){
-                    Spacer()
                     
                     ForEach(UserOptions.currentWeek, id: \.self) { day in
                         
                         VStack(spacing:1){
                             
-                            Text(data.extractDate(date:day, format: "EEE").prefix(3))
+                            Text(UserOptions.extractDate(date:day, format: "EEE").prefix(3))
                                 .font(.system(size:12))
                                 .fontWeight(.semibold)
                             
@@ -38,13 +35,13 @@ struct ContentView: View {
                                 .frame(width:25,height: 3)
                                 .overlay(UserOptions.isSelected(date: day) ? .red : Color(white: 0.9))
                             
-                            Text(data.extractDate(date:day, format: "dd"))
+                            Text(UserOptions.extractDate(date:day, format: "dd"))
                                 .font(.system(size:20))
                                 .fontWeight(.semibold)
                         }
                         .onTapGesture {
                             UserOptions.selectedDay = day
-                            UserOptions.selectedDayString = data.extractDate(date:day, format: "MM-dd-yyyy")
+                            UserOptions.selectedDayString = UserOptions.extractDate(date:day, format: "MM-dd-yyyy")
                             
                         }
                         .foregroundColor(UserOptions.isSelected(date: day) ? .black : Color(white:0.7)  )
@@ -66,9 +63,11 @@ struct ContentView: View {
             }
             
             // MARK: vertical time line view
-            FullTimelineView( date: data.extractDate(date: UserOptions.selectedDay, format:"MM-dd-yyyy"))
+            FullTimelineView( date: UserOptions.extractDate(date: UserOptions.selectedDay, format:"MM-dd-yyyy"))
+            
             
             BottomTabView()
+                .offset(y:-10)
             
         }.ignoresSafeArea(edges:.bottom)
     }
@@ -76,7 +75,8 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environmentObject(DataSource()).environmentObject(OptionsModel())
-        .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        ContentView()
+            .environmentObject(OptionsModel())
+            .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
     }
 }

@@ -23,11 +23,10 @@ struct TimelineRowView: View {
     let text: String
     let dateStart : Date
     let dateEnd : Date
-    let setColor1: [Double]
     let prevDuration: TimeInterval
     let nextDuration: TimeInterval
     
-    var setColor: Color {Color(red: setColor1[0], green: setColor1[1], blue: setColor1[2])}
+    let setColor: Color
     var capsuleHeight: CGFloat{
         let duration = abs((duration * 2))
         if duration <= 1 {
@@ -39,7 +38,7 @@ struct TimelineRowView: View {
         else {
             return duration * 40.0
         }
-    }
+    }   
     
     var formattedStartDate: String { formatDate(data:dateStart)}
     var formattedEndDate: String {formatDate(data: dateEnd)}
@@ -51,7 +50,7 @@ struct TimelineRowView: View {
         self.taskTitle = task.title!
         self.dateStart = task.dateStart!
         self.dateEnd = task.dateEnd!
-        self.setColor1 = task.color!
+        self.setColor = task.color!.fromDouble()
         self.text = task.info!
         self.prevDuration = prevDuration
         self.nextDuration = nextDuration
@@ -102,11 +101,9 @@ struct TimelineRowView: View {
             
             HStack(spacing: 0){
                 VStack(alignment: .leading,spacing: 0){
-                    TaskDescriptionView(taskTitle: taskTitle, duration: duration,setColor: setColor)
-                    Text("\(id)")
+                    TaskDescriptionView(task: task, duration: duration,setColor: setColor)
                 }
-                
-                    Spacer()
+                Spacer()
             }
             .frame(height: (capsuleHeight + 60.0), alignment: .topLeading)
             .padding(10)
@@ -123,7 +120,7 @@ struct TimelineRowView: View {
 }
 
 
-func formatDate(data: Date) -> String{
+private func formatDate(data: Date) -> String{
     let formatter4 = DateFormatter()
     formatter4.dateFormat = "MM-dd-yyyy HH:mm"
     formatter4.timeStyle = .short
@@ -246,9 +243,6 @@ private struct createCapsule: View {
     }
 }
 
-
-
-
 private extension View{
     func timeFont() -> some View{
         self
@@ -259,23 +253,10 @@ private extension View{
 
 
 struct TimelineRowView_Previews: PreviewProvider {
-
-    static var previewscontainer: Tasks{
-        let newItem = Tasks(context: PersistenceController.preview.container.viewContext)
-        newItem.id = UUID()
-        newItem.title = "Wake up"
-        newItem.dateStart = convertDate(data: "10-17-2022 01:00")
-        newItem.dateEnd = convertDate(data: "10-17-2022 01:30")
-        newItem.info = "Wakey time 10-08"
-        newItem.icon = "sun.max.fill"
-        newItem.duration = 0.5
-        newItem.color = [0.949,  0.522,  0.1]
-        newItem.completed = false
-        return newItem
-    }
     
     static var previews: some View {
-        TimelineRowView(task: previewscontainer,prevDuration: 1200,nextDuration: 1200).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        TimelineRowView(task: previewscontainer,prevDuration: 1200,nextDuration: 1200)
+            .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
     }
 }
 

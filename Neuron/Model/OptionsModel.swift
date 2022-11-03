@@ -16,8 +16,6 @@ class OptionsModel: ObservableObject{
     @Published var selectedDay: Date = Date()
     @Published var selectedDayString: String = String()
 
-
-    
     init(){
         fetchCurrentWeek()
     }
@@ -48,6 +46,13 @@ class OptionsModel: ObservableObject{
         let calendar = Calendar.current
         
         return calendar.isDate( selectedDay, inSameDayAs: date)
+    }
+    
+    func extractDate(date: Date, format: String) -> String{
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = format
+        return formatter.string(from:date)
     }
         
 }

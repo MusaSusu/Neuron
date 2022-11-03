@@ -44,10 +44,43 @@ func convertDate1(data: String) -> Date{
     return formatter4.date(from: data) ?? Date.now
 }
 
+func extractDate(date: Date) -> String{
+    let formatter = DateFormatter()
+    formatter.dateFormat = "MM-dd-yyyy HH:mm"
+    return formatter.string(from:date)
+}
+
 extension View {
     func print(_ value: Any) -> Self {
         Swift.print(value)
         return self
     }
 }
+
+var previewscontainer: Tasks{
+    let newItem = Tasks(context: PersistenceController.preview.container.viewContext)
+    newItem.id = UUID()
+    newItem.title = "Wake up"
+    newItem.dateStart = convertDate(data: "10-17-2022 01:00")
+    newItem.dateEnd = convertDate(data: "10-17-2022 01:30")
+    newItem.info = "Wakey time 10-08"
+    newItem.icon = "sun.max.fill"
+    newItem.duration = 0.5
+    newItem.color = [0.949,  0.522,  0.1]
+    newItem.completed = false
+    return newItem
+}
+
+extension Array<Double>{
+    func fromDouble() -> Color {
+        return Color(red: self[0], green: self[1], blue: self[2])
+    }
+}
+
+let userColor = Color(red: 0.5, green: 0.6039,  blue:0.8039)
+let hueColors = stride(from: 0, to: 1, by: 0.01).map {
+    Color(hue: $0, saturation: 1, brightness: 1)
+}
+
+
     

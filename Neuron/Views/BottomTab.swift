@@ -33,6 +33,9 @@ struct BottomTabView: View {
                     }
                 }.frame(maxWidth: .infinity)
                 
+
+                HeaderButtonsView().offset(y: -20)
+
                 Button(action: openInbox) {
                     VStack{
                         Image(systemName: "brain")
@@ -53,7 +56,8 @@ struct BottomTabView: View {
                     }
                 }.frame(maxWidth: .infinity)
             }
-            .frame(maxWidth: .infinity, minHeight: 30, maxHeight: 90)
+            .padding(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 10))
+            .frame(maxWidth: .infinity, minHeight: 30, maxHeight:70)
             .background(Color(white:0.95))
         }
     }

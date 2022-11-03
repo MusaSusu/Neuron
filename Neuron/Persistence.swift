@@ -9,23 +9,23 @@ import CoreData
 import SwiftUI
 
 private let temp1 = [
-    Task1(taskTitle: "Wake up", taskDescription: "Wakey time 10-08",taskIcon: "sun.max.fill", taskDateStart: convertDate(data: "10-17-2022 01:00"),taskDateEnd:convertDate(data: "10-17-2022 01:30"),taskDuration: 0.5, taskColor:[0.949,  0.522,  0.1], taskChecker: false),
-    Task1(taskTitle: "Do work", taskDescription: "math",taskIcon: "pencil", taskDateStart:  convertDate(data: "10-17-2022 02:00"),taskDateEnd: convertDate(data: "10-17-2022 03:00"),taskDuration: 1,taskColor:[0.9098, 0.6039,  0.6039], taskChecker: false),
-    Task1(taskTitle: "Play games", taskDescription: "Play League",taskIcon: "gamecontroller.fill", taskDateStart: convertDate(data: "10-17-2022 12:20"),taskDateEnd:convertDate(data: "10-17-2022 13:20"),taskDuration: 1,taskColor: [0.32, 0.62,  0.81],taskChecker: false),
-    Task1(taskTitle: "Go for a jog", taskDescription: "Light jog at central park",taskIcon: "figure.walk", taskDateStart: convertDate(data: "10-17-2022 13:20"),taskDateEnd: convertDate(data: "10-17-2022 13:50"),taskDuration: 0.5,taskColor: [0.467,  0.867, 0.467],taskChecker: false),
-    Task1(taskTitle: "Make dinner", taskDescription: "Fried chicken with legumes",taskIcon: "cooktop.fill", taskDateStart: convertDate(data: "10-17-2022 14:50"),taskDateEnd: convertDate(data: "10-17-2022 15:50"),taskDuration: 1, taskColor: [0.9098, 0.6039,  0.6039],taskChecker: false),
-    Task1(taskTitle: "Do laundry", taskDescription: "Remeber to do your laundy",taskIcon: "tshirt.fill", taskDateStart: convertDate(data: "10-17-2022 23:00"),taskDateEnd: convertDate(data: "10-17-2022 23:20"),taskDuration: 0.33, taskColor: [0.9098, 0.6039,  0.6039],taskChecker: false),
-    Task1(taskTitle: "Sleep", taskDescription: "Sleepytime",taskIcon: "moon.fill", taskDateStart:convertDate(data: "10-17-2022 23:20"),taskDateEnd: convertDate(data: "10-17-2022 23:50"),taskDuration: 0.5, taskColor: [0.9098, 0.6039,  0.6039],taskChecker: false)
+    Task1(taskTitle: "Wake up", taskDescription: "Wakey time 10-08",taskIcon: "sun.max.fill", taskDateStart: convertDate(data: "10-31-2022 01:00"),taskDateEnd:convertDate(data: "10-31-2022 01:30"),taskDuration: 0.5, taskColor:[0.949,  0.522,  0.1], taskChecker: false),
+    Task1(taskTitle: "Do work", taskDescription: "math",taskIcon: "pencil", taskDateStart:  convertDate(data: "10-31-2022 02:00"),taskDateEnd: convertDate(data: "10-31-2022 03:00"),taskDuration: 1,taskColor:[0.9098, 0.6039,  0.6039], taskChecker: false),
+    Task1(taskTitle: "Play games", taskDescription: "Play League",taskIcon: "gamecontroller.fill", taskDateStart: convertDate(data: "10-31-2022 12:20"),taskDateEnd:convertDate(data: "10-31-2022 13:20"),taskDuration: 1,taskColor: [0.32, 0.62,  0.81],taskChecker: false),
+    Task1(taskTitle: "Go for a jog", taskDescription: "Light jog at central park",taskIcon: "figure.walk", taskDateStart: convertDate(data: "10-31-2022 13:20"),taskDateEnd: convertDate(data: "10-31-2022 13:50"),taskDuration: 0.5,taskColor: [0.467,  0.867, 0.467],taskChecker: false),
+    Task1(taskTitle: "Make dinner", taskDescription: "Fried chicken with legumes",taskIcon: "cooktop.fill", taskDateStart: convertDate(data: "10-31-2022 14:50"),taskDateEnd: convertDate(data: "10-31-2022 15:50"),taskDuration: 1, taskColor: [0.9098, 0.6039,  0.6039],taskChecker: false),
+    Task1(taskTitle: "Do laundry", taskDescription: "Remeber to do your laundy",taskIcon: "tshirt.fill", taskDateStart: convertDate(data: "10-31-2022 23:00"),taskDateEnd: convertDate(data: "10-31-2022 23:20"),taskDuration: 0.33, taskColor: [0.9098, 0.6039,  0.6039],taskChecker: false),
+    Task1(taskTitle: "Sleep", taskDescription: "Sleepytime",taskIcon: "moon.fill", taskDateStart:convertDate(data: "10-31-2022 23:20"),taskDateEnd: convertDate(data: "10-31-2022 23:50"),taskDuration: 0.5, taskColor: [0.9098, 0.6039,  0.6039],taskChecker: false)
 ]
 
 private let temp = [
-    Task1(taskTitle: "Wake up", taskDescription: "Wakey time 10-08",taskIcon: "sun.max.fill", taskDateStart: convertDate(data: "10-16-2022 01:00"),taskDateEnd:convertDate(data: "10-16-2022 01:30"),taskDuration: 0.5, taskColor:[0.949,  0.522,  0.1], taskChecker: false),
-    Task1(taskTitle: "Do work", taskDescription: "math",taskIcon: "pencil", taskDateStart:  convertDate(data: "10-16-2022 02:00"),taskDateEnd: convertDate(data: "10-16-2022 03:00"),taskDuration: 1,taskColor:[0.9098, 0.6039,  0.6039], taskChecker: false),
-    Task1(taskTitle: "Play games", taskDescription: "Play League",taskIcon: "gamecontroller.fill", taskDateStart: convertDate(data: "10-16-2022 12:20"),taskDateEnd:convertDate(data: "10-16-2022 13:20"),taskDuration: 1,taskColor: [0.32, 0.62,  0.81],taskChecker: false),
-    Task1(taskTitle: "Go for a jog", taskDescription: "Light jog at central park",taskIcon: "figure.walk", taskDateStart: convertDate(data: "10-16-2022 13:20"),taskDateEnd: convertDate(data: "10-16-2022 13:50"),taskDuration: 0.5,taskColor: [0.467,  0.867, 0.467],taskChecker: false),
-    Task1(taskTitle: "Make dinner", taskDescription: "Fried chicken with legumes",taskIcon: "cooktop.fill", taskDateStart: convertDate(data: "10-16-2022 14:50"),taskDateEnd: convertDate(data: "10-16-2022 15:50"),taskDuration: 1, taskColor: [0.9098, 0.6039,  0.6039],taskChecker: false),
-    Task1(taskTitle: "Do laundry", taskDescription: "Remeber to do your laundy",taskIcon: "tshirt.fill", taskDateStart: convertDate(data: "10-16-2022 23:00"),taskDateEnd: convertDate(data: "10-16-2022 23:20"),taskDuration: 0.33, taskColor: [0.9098, 0.6039,  0.6039],taskChecker: false),
-    Task1(taskTitle: "Sleep", taskDescription: "Sleepytime",taskIcon: "moon.fill", taskDateStart:convertDate(data: "10-16-2022 23:20"),taskDateEnd: convertDate(data: "10-16-2022 23:50"),taskDuration: 0.5, taskColor: [0.9098, 0.6039,  0.6039],taskChecker: false)
+    Task1(taskTitle: "Wake up", taskDescription: "Wakey time 10-08",taskIcon: "sun.max.fill", taskDateStart: convertDate(data: "10-30-2022 01:00"),taskDateEnd:convertDate(data: "10-30-2022 01:30"),taskDuration: 0.5, taskColor:[0.949,  0.522,  0.1], taskChecker: false),
+    Task1(taskTitle: "Do work", taskDescription: "math",taskIcon: "pencil", taskDateStart:  convertDate(data: "10-30-2022 02:00"),taskDateEnd: convertDate(data: "10-30-2022 03:00"),taskDuration: 1,taskColor:[0.9098, 0.6039,  0.6039], taskChecker: false),
+    Task1(taskTitle: "Play games", taskDescription: "Play League",taskIcon: "gamecontroller.fill", taskDateStart: convertDate(data: "10-30-2022 12:20"),taskDateEnd:convertDate(data: "10-30-2022 13:20"),taskDuration: 1,taskColor: [0.32, 0.62,  0.81],taskChecker: false),
+    Task1(taskTitle: "Go for a jog", taskDescription: "Light jog at central park",taskIcon: "figure.walk", taskDateStart: convertDate(data: "10-30-2022 13:20"),taskDateEnd: convertDate(data: "10-30-2022 13:50"),taskDuration: 0.5,taskColor: [0.467,  0.867, 0.467],taskChecker: false),
+    Task1(taskTitle: "Make dinner", taskDescription: "Fried chicken with legumes",taskIcon: "cooktop.fill", taskDateStart: convertDate(data: "10-30-2022 14:50"),taskDateEnd: convertDate(data: "10-30-2022 15:50"),taskDuration: 1, taskColor: [0.9098, 0.6039,  0.6039],taskChecker: false),
+    Task1(taskTitle: "Do laundry", taskDescription: "Remeber to do your laundy",taskIcon: "tshirt.fill", taskDateStart: convertDate(data: "10-30-2022 23:00"),taskDateEnd: convertDate(data: "10-30-2022 23:20"),taskDuration: 0.33, taskColor: [0.9098, 0.6039,  0.6039],taskChecker: false),
+    Task1(taskTitle: "Sleep", taskDescription: "Sleepytime",taskIcon: "moon.fill", taskDateStart:convertDate(data: "10-30-2022 23:20"),taskDateEnd: convertDate(data: "10-30-2022 23:50"),taskDuration: 0.5, taskColor: [0.9098, 0.6039,  0.6039],taskChecker: false)
 ]
 
 
@@ -35,7 +35,7 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        let Date = "10-16-2022"
+        let Date = "10-30-2022"
         let newTaskDateModel = TaskDate(context: viewContext)
         newTaskDateModel.dateString = Date
         for i in 0..<7 {
@@ -46,12 +46,12 @@ struct PersistenceController {
             newItem.dateEnd = temp[i].taskDateEnd
             newItem.info = temp[i].taskDescription
             newItem.icon = temp[i].taskIcon
-            newItem.duration = Float(temp[i].taskDuration)
+            newItem.duration = temp[i].taskDuration
             newItem.color = temp[i].taskColor
             newItem.completed = false
             newItem.taskByDate = newTaskDateModel
         }
-        let Date1 = "10-17-2022"
+        let Date1 = "10-31-2022"
         let newTaskDateModel1 = TaskDate(context: viewContext)
         newTaskDateModel1.dateString = Date1
         for i in 0..<7 {
@@ -62,7 +62,7 @@ struct PersistenceController {
             newItem.dateEnd = temp1[i].taskDateEnd
             newItem.info = temp1[i].taskDescription
             newItem.icon = temp1[i].taskIcon
-            newItem.duration = Float(temp1[i].taskDuration)
+            newItem.duration = temp1[i].taskDuration
             newItem.color = temp1[i].taskColor
             newItem.completed = false
             newItem.taskByDate = newTaskDateModel1
