@@ -8,15 +8,15 @@
 import Foundation
 import CoreData
 
-struct AddTaskConfig: Identifiable {
+struct AddTaskConfig<Tasks: NSManagedObject>: Identifiable {
     let id = UUID()
-    let context: NSManagedObjectContext
+    let childContext: NSManagedObjectContext
     let task: Tasks
         
-    init(viewContext: NSManagedObjectContext, objectID: NSManagedObjectID) {
-        context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-        context.parent = viewContext
-        task = context.object(with: objectID) as! Tasks
+    init(withParentContext viewContext: NSManagedObjectContext) {
+        childContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        childContext.parent = viewContext
+        task = Tasks(context: childContext)
     }
 }
 

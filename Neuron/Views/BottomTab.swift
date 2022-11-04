@@ -34,7 +34,7 @@ struct BottomTabView: View {
                 }.frame(maxWidth: .infinity)
                 
 
-                HeaderButtonsView().offset(y: -20)
+                AddTaskButtonView().offset(y: -20)
 
                 Button(action: openInbox) {
                     VStack{

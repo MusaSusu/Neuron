@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E14F6E4029147939009946EB /* SymbolPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14F6E3F29147939009946EB /* SymbolPickerView.swift */; };
 		E16BB26E28E0F25F00ABD2E0 /* NeuronApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB26D28E0F25F00ABD2E0 /* NeuronApp.swift */; };
 		E16BB27328E0F25F00ABD2E0 /* Neuron.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E16BB27128E0F25F00ABD2E0 /* Neuron.xcdatamodeld */; };
 		E16BB27728E0F26000ABD2E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E16BB27628E0F26000ABD2E0 /* Assets.xcassets */; };
@@ -16,11 +17,11 @@
 		E16BB29128E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB29028E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift */; };
 		E176E14E290B279600B09604 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E14D290B279600B09604 /* AddTaskView.swift */; };
 		E176E150290B2D6900B09604 /* AddTaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E14F290B2D6900B09604 /* AddTaskModel.swift */; };
-		E176E152290B560C00B09604 /* HeaderButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E151290B560C00B09604 /* HeaderButtonsView.swift */; };
+		E176E152290B560C00B09604 /* AddTaskButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E151290B560C00B09604 /* AddTaskButtonView.swift */; };
 		E176E1542910E23C00B09604 /* TextPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E1532910E23C00B09604 /* TextPad.swift */; };
 		E176E156291103B500B09604 /* datePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E155291103B500B09604 /* datePickerView.swift */; };
-		E176E1572911067D00B09604 /* HeaderButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E151290B560C00B09604 /* HeaderButtonsView.swift */; };
-		E176E1582911069800B09604 /* HeaderButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E151290B560C00B09604 /* HeaderButtonsView.swift */; };
+		E176E1572911067D00B09604 /* AddTaskButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E151290B560C00B09604 /* AddTaskButtonView.swift */; };
+		E176E1582911069800B09604 /* AddTaskButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E151290B560C00B09604 /* AddTaskButtonView.swift */; };
 		E176E15A2911F50C00B09604 /* CustomColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E1592911F50C00B09604 /* CustomColorPickerView.swift */; };
 		E176E15E2913302900B09604 /* Symbol Picker Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E15D2913302900B09604 /* Symbol Picker Model.swift */; };
 		E19B9D6F28FD11C2009CC37A /* Neuron.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E16BB27128E0F25F00ABD2E0 /* Neuron.xcdatamodeld */; };
@@ -86,6 +87,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E14F6E3F29147939009946EB /* SymbolPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPickerView.swift; sourceTree = "<group>"; };
 		E16BB26A28E0F25F00ABD2E0 /* Neuron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neuron.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16BB26D28E0F25F00ABD2E0 /* NeuronApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuronApp.swift; sourceTree = "<group>"; };
 		E16BB26F28E0F25F00ABD2E0 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -100,7 +102,7 @@
 		E16BB29028E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuronUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E176E14D290B279600B09604 /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
 		E176E14F290B2D6900B09604 /* AddTaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskModel.swift; sourceTree = "<group>"; };
-		E176E151290B560C00B09604 /* HeaderButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderButtonsView.swift; sourceTree = "<group>"; };
+		E176E151290B560C00B09604 /* AddTaskButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskButtonView.swift; sourceTree = "<group>"; };
 		E176E1532910E23C00B09604 /* TextPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPad.swift; sourceTree = "<group>"; };
 		E176E155291103B500B09604 /* datePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = datePickerView.swift; sourceTree = "<group>"; };
 		E176E1592911F50C00B09604 /* CustomColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColorPickerView.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				E176E15D2913302900B09604 /* Symbol Picker Model.swift */,
+				E14F6E3F29147939009946EB /* SymbolPickerView.swift */,
 			);
 			path = "Symbol Picker";
 			sourceTree = "<group>";
@@ -230,7 +233,7 @@
 				E1B0F71A28FBC60800925858 /* BottomTab.swift */,
 				E1B0F73228FBC65C00925858 /* TimelineRowView.swift */,
 				E1B0F72428FBC65000925858 /* TaskDescriptionView.swift */,
-				E176E151290B560C00B09604 /* HeaderButtonsView.swift */,
+				E176E151290B560C00B09604 /* AddTaskButtonView.swift */,
 				E176E14D290B279600B09604 /* AddTaskView.swift */,
 				E176E155291103B500B09604 /* datePickerView.swift */,
 				E176E1532910E23C00B09604 /* TextPad.swift */,
@@ -380,9 +383,10 @@
 				E1B0F71F28FBC62000925858 /* ContentView.swift in Sources */,
 				E1C95DB328E4D50600851C4E /* OptionsModel.swift in Sources */,
 				E176E150290B2D6900B09604 /* AddTaskModel.swift in Sources */,
+				E14F6E4029147939009946EB /* SymbolPickerView.swift in Sources */,
 				E176E15A2911F50C00B09604 /* CustomColorPickerView.swift in Sources */,
 				E19B9D7128FD1601009CC37A /* Persistence.swift in Sources */,
-				E176E152290B560C00B09604 /* HeaderButtonsView.swift in Sources */,
+				E176E152290B560C00B09604 /* AddTaskButtonView.swift in Sources */,
 				E1B0F71B28FBC60800925858 /* BottomTab.swift in Sources */,
 				E1C95DAF28E4D26700851C4E /* TaskModel.swift in Sources */,
 				E1B0F73328FBC65C00925858 /* TimelineRowView.swift in Sources */,
@@ -404,7 +408,7 @@
 				E1C95DB428E4D50600851C4E /* OptionsModel.swift in Sources */,
 				E16BB28528E0F26000ABD2E0 /* NeuronTests.swift in Sources */,
 				E1B0F72D28FBC65000925858 /* TaskDescriptionView.swift in Sources */,
-				E176E1572911067D00B09604 /* HeaderButtonsView.swift in Sources */,
+				E176E1572911067D00B09604 /* AddTaskButtonView.swift in Sources */,
 				E1B0F72728FBC65000925858 /* HeaderView.swift in Sources */,
 				E1B0F73428FBC65C00925858 /* TimelineRowView.swift in Sources */,
 			);
@@ -416,7 +420,7 @@
 			files = (
 				E1C95DB528E4D50600851C4E /* OptionsModel.swift in Sources */,
 				E16BB28F28E0F26000ABD2E0 /* NeuronUITests.swift in Sources */,
-				E176E1582911069800B09604 /* HeaderButtonsView.swift in Sources */,
+				E176E1582911069800B09604 /* AddTaskButtonView.swift in Sources */,
 				E1B0F72128FBC62000925858 /* ContentView.swift in Sources */,
 				E1B0F71D28FBC60800925858 /* BottomTab.swift in Sources */,
 				E1B0F73128FBC65000925858 /* FullTimelineView.swift in Sources */,

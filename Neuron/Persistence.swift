@@ -49,6 +49,7 @@ struct PersistenceController {
             newItem.duration = temp[i].taskDuration
             newItem.color = temp[i].taskColor
             newItem.completed = false
+            newItem.taskDay = Date
             newItem.taskByDate = newTaskDateModel
         }
         let Date1 = "10-31-2022"
@@ -65,6 +66,7 @@ struct PersistenceController {
             newItem.duration = temp1[i].taskDuration
             newItem.color = temp1[i].taskColor
             newItem.completed = false
+            newItem.taskDay = Date1
             newItem.taskByDate = newTaskDateModel1
         }
         do {

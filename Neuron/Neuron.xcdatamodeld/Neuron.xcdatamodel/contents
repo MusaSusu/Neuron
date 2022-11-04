@@ -13,6 +13,7 @@
         <attribute name="icon" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="YES"/>
         <attribute name="info" optional="YES" attributeType="String"/>
+        <attribute name="taskDay" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="taskByDate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskDate" inverseName="hasTask" inverseEntity="TaskDate">
             <userInfo>

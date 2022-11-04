@@ -9,7 +9,7 @@ import SwiftUI
 import CoreData
 
 struct AddTaskView: View {
-    @State var item: AddTaskConfig? // this is the scratch pad item
+    @ObservedObject var item: Tasks // task object in child context
     @Environment(\.managedObjectContext) private var context
     @Environment(\.dismiss) private var dismiss // causes body to run
     @State var errorMessage: String?
@@ -19,16 +19,23 @@ struct AddTaskView: View {
     @State private var dateEnd: Date = Date.now.advanced(by: 300)
     @State private var taskColor: Color = Color(red: 0.5, green: 0.6039,  blue:0.8039)
     @State private var fullText: String = ""
-    @State private var icon: String = ""
+    @State private var icon: String = "gift.fill"
     
     
     var body: some View {
         VStack{
             
             HStack{
+                Spacer()
                 Text("Add Task").font(.title.bold())
                     .foregroundColor(userColor)
-            }.padding()
+                Spacer()
+                Button("Save") {
+                    addObject()
+                    try? context.save()
+                    dismiss()
+                }
+            }.padding(.vertical)
             
             Divider()
                 .background(.blue)
@@ -54,7 +61,7 @@ struct AddTaskView: View {
                     }
                 }
             }.frame(height: 80)
-                
+            
             ScrollView(.vertical,showsIndicators: true){
                 VStack{
                     
@@ -73,12 +80,11 @@ struct AddTaskView: View {
                             HStack{
                                 Text("Color").font(.title2.bold()).foregroundColor(.black)
                                 Spacer()
-                                
                                 Image(systemName: "circle.fill")
                                     .resizable()
                                     .aspectRatio(1, contentMode: .fill)
                                     .foregroundColor(taskColor)
-                                    .frame(width: 10).padding(.horizontal)
+                                    .frame(width: 40).offset(x:-5)
                             }
                         }
                     }
@@ -86,22 +92,19 @@ struct AddTaskView: View {
                     Divider().format()
                     
                     HStack{
-                        DisclosureGroup{
-                            CustomColorPickerView(selectedColor: $taskColor)
-                        } label: {
-                            HStack{
-                                Text("Color").font(.title2.bold()).foregroundColor(.black)
-                                Spacer()
-                                
-                                Image(systemName: "circle.fill")
+                        Text("Icon").font(.title2.weight(.bold))
+                        Spacer()
+                        ZStack{
+                            Circle().fill(taskColor).frame(width: 40)
+                            Rectangle().fill(.white).mask{
+                                Image(systemName:icon   )
                                     .resizable()
-                                    .aspectRatio(1, contentMode: .fill)
-                                    .foregroundColor(taskColor)
-                                    .frame(width: 10).padding(.horizontal)
-                            }
-                        }
+                                    .aspectRatio(contentMode: .fit)
+                            }.frame(width: 25.0, height: 25.0)
+                        }.frame(width: 40).offset(x:-23.5)
                     }
-
+                    
+                    
                     
                     Divider().format()
                     
@@ -132,11 +135,29 @@ struct AddTaskView: View {
             Color(white : 0.95)
         )
     }
+    private func addObject(){
+        item.title = taskName
+        item.icon = icon
+        item.dateStart = dateStart
+        item.dateEnd = dateEnd
+        item.color = taskColor.toDouble()
+        item.duration = dateEnd.timeIntervalSince(dateStart) / 3600
+        item.completed = false
+        item.id = UUID()
+        item.info = fullText
+        item.taskDay = extractDate(date: dateStart, format: "MM-dd-yyyy")
+    }
+    private func extractDate(date: Date, format: String) -> String{
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = format
+        return formatter.string(from:date)
+    }
 }
 
 struct AddTaskView_Previews: PreviewProvider {
     static var previews: some View {
-        AddTaskView()
+        AddTaskView( item: .init(entity: Tasks.entity(), insertInto: PersistenceController.preview.container.viewContext))
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 
     }

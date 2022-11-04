@@ -5,9 +5,7 @@
 //  Created by Alvin Wu on 9/28/22.
 //
 import Foundation
-import SwiftUI
-
-// I need one view model for each view but I should have a dictionary of the tasks at the highest view hierarchy. When the app starts it, should then partition all the tasks into new view models, that are generated from the views.
+import SwiftUI// I need one view model for each view but I should have a dictionary of the tasks at the highest view hierarchy. When the app starts it, should then partition all the tasks into new view models, that are generated from the views.
 
 struct Task: Identifiable{
     var id = UUID().uuidString
@@ -74,6 +72,14 @@ var previewscontainer: Tasks{
 extension Array<Double>{
     func fromDouble() -> Color {
         return Color(red: self[0], green: self[1], blue: self[2])
+    }
+}
+
+extension Color{
+    func toDouble() -> [Double]{
+        let comps = UIColor(self).cgColor.components
+        let returnColors = comps?.map{Double($0)}
+        return returnColors!
     }
 }
 

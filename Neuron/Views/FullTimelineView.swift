@@ -15,7 +15,7 @@ struct FullTimelineView: View {
     init(date: String) {
         _items = FetchRequest<Tasks>(
             sortDescriptors: [NSSortDescriptor(keyPath: \Tasks.dateStart, ascending: true)],
-            predicate: NSPredicate(format: "taskByDate.dateString = %@", date )
+            predicate: NSPredicate(format: "taskDay == %@", date )
         )
     }
 
@@ -55,7 +55,7 @@ struct FullTimelineView: View {
 
 struct FullTimelineView_Previews: PreviewProvider {
     static var previews: some View {
-        FullTimelineView( date:"10-27-2022")
+        FullTimelineView( date:"10-31-2022")
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
