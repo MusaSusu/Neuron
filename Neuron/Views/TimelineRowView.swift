@@ -42,6 +42,7 @@ struct TimelineRowView: View {
     
     var formattedStartDate: String { formatDate(data:dateStart)}
     var formattedEndDate: String {formatDate(data: dateEnd)}
+    
     init(task: Tasks,prevDuration: TimeInterval,nextDuration: TimeInterval){
         self.task = task
         self.id = task.id!
@@ -238,7 +239,6 @@ private struct createCapsule: View {
                         ).frame(width: 30.0, height: 30.0)
                 }
             }
-            
         }
     }
 }

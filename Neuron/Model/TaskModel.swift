@@ -30,6 +30,13 @@ struct Task1: Identifiable{
     var taskChecker : Bool
 }
 
+func extractDate(date: Date, format: String) -> String{
+    let formatter = DateFormatter()
+    
+    formatter.dateFormat = format
+    return formatter.string(from:date)
+}
+
 func convertDate(data: String) -> Date{
     let formatter4 = DateFormatter()
     formatter4.dateFormat = "MM-dd-yyyy HH:mm"

@@ -236,8 +236,8 @@
 				E176E151290B560C00B09604 /* AddTaskButtonView.swift */,
 				E176E14D290B279600B09604 /* AddTaskView.swift */,
 				E176E155291103B500B09604 /* datePickerView.swift */,
-				E176E1532910E23C00B09604 /* TextPad.swift */,
 				E176E1592911F50C00B09604 /* CustomColorPickerView.swift */,
+				E176E1532910E23C00B09604 /* TextPad.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

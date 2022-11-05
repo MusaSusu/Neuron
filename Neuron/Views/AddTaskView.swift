@@ -13,18 +13,22 @@ struct AddTaskView: View {
     @Environment(\.managedObjectContext) private var context
     @Environment(\.dismiss) private var dismiss // causes body to run
     @State var errorMessage: String?
-    @State private var taskName: String = ""
     @State private var isFocused: Bool = false
+    
+    
+    @State private var taskName: String = ""
     @State private var dateStart: Date = Date.now
     @State private var dateEnd: Date = Date.now.advanced(by: 300)
     @State private var taskColor: Color = Color(red: 0.5, green: 0.6039,  blue:0.8039)
-    @State private var fullText: String = ""
+    @State private var taskNotes: String = ""
     @State private var icon: String = "gift.fill"
+    @State private var taskDuration: Double = 30
+    
     
     
     var body: some View {
         VStack{
-            
+            //TITLE / SEARCH
             HStack{
                 Spacer()
                 Text("Add Task").font(.title.bold())
@@ -63,22 +67,49 @@ struct AddTaskView: View {
             }.frame(height: 80)
             
             ScrollView(.vertical,showsIndicators: true){
-                VStack{
+                VStack(spacing:10){
                     
-                    datePickerView(date: $dateStart,title: "Start")
+                    Group{
+                        datePickerView(date: $dateStart,title: "Start")
+                        
+                        Divider().format()
+                        
+                        HStack(alignment: .top){
+                            HStack{
+                                DisclosureGroup{
+                                    Slider(
+                                        value:$taskDuration,
+                                        in: 0...120,
+                                        step: 5
+                                    ).padding(.top,10)
+                                } label: {
+                                }
+                                .padding(.top,3)
+                                .alignmentGuide(VerticalAlignment.center) {_ in 30}
+                                .overlay{
+                                    
+                                    HStack(spacing:0){
+                                        Text("Duration").titleFont()
+                                        Spacer()
+                                        Text("\(createDateString(duration:taskDuration))")
+                                            .titleFont()
+                                    }
+                                    .alignmentGuide(VerticalAlignment.center) {_ in 30}
+                                    .background(.white).padding(.trailing,25)
+                                }
+                            }
+                        }
+                    }
+                    
                     
                     Divider().format()
-                    
-                    datePickerView(date: $dateEnd ,title: "End")
-                    
-                    Divider().format()
-                    
+                    //COLOR PICKER
                     HStack{
                         DisclosureGroup{
                             CustomColorPickerView(selectedColor: $taskColor)
                         } label: {
                             HStack{
-                                Text("Color").font(.title2.bold()).foregroundColor(.black)
+                                Text("Color").titleFont()
                                 Spacer()
                                 Image(systemName: "circle.fill")
                                     .resizable()
@@ -90,14 +121,14 @@ struct AddTaskView: View {
                     }
                     
                     Divider().format()
-                    
+                    //ICON PICKER
                     HStack{
-                        Text("Icon").font(.title2.weight(.bold))
+                        Text("Icon").titleFont()
                         Spacer()
                         ZStack{
                             Circle().fill(taskColor).frame(width: 40)
                             Rectangle().fill(.white).mask{
-                                Image(systemName:icon   )
+                                Image(systemName:icon)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                             }.frame(width: 25.0, height: 25.0)
@@ -105,11 +136,12 @@ struct AddTaskView: View {
                     }
                     
                     
-                    
                     Divider().format()
+                    //NOTES
                     
-                    HStack{ Text("Notes").font(.title2.weight(.bold)); Spacer()}
-                    TextEditor(text: $fullText)
+                    HStack{ Text("Notes").titleFont(); Spacer()}
+                    
+                    TextEditor(text: $taskNotes)
                         .scrollContentBackground(.hidden)
                         .background(
                             RoundedRectangle(cornerRadius: 10)
@@ -136,22 +168,16 @@ struct AddTaskView: View {
         )
     }
     private func addObject(){
+        item.id = UUID()
         item.title = taskName
         item.icon = icon
         item.dateStart = dateStart
         item.dateEnd = dateEnd
-        item.color = taskColor.toDouble()
         item.duration = dateEnd.timeIntervalSince(dateStart) / 3600
+        item.color = taskColor.toDouble()
         item.completed = false
-        item.id = UUID()
-        item.info = fullText
+        item.info = taskNotes
         item.taskDay = extractDate(date: dateStart, format: "MM-dd-yyyy")
-    }
-    private func extractDate(date: Date, format: String) -> String{
-        let formatter = DateFormatter()
-        
-        formatter.dateFormat = format
-        return formatter.string(from:date)
     }
 }
 
@@ -161,6 +187,14 @@ struct AddTaskView_Previews: PreviewProvider {
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 
     }
+}
+
+private func createDateString(duration:TimeInterval)-> String{
+    let df = DateComponentsFormatter()
+    var interval: TimeInterval{(duration * 60)}
+    df.allowedUnits = [.hour,.minute]
+    df.unitsStyle = .short
+    return df.string(from: interval)!
 }
 
 extension TextField {
@@ -192,4 +226,9 @@ extension Divider{
     }
 }
 
-
+private extension Text{
+    func titleFont() -> Self{
+        self
+            .font(.title2.bold()).foregroundColor(.black)
+    }
+}

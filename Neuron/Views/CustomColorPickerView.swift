@@ -65,7 +65,7 @@ struct CustomColorPickerView: View {
                     HStack{
                         Spacer()
                         Button{
-                            something()
+                            Edit()
                         }label:{
                             Label{ Text("Edit").font(.footnote)} icon:{
                                 Image(systemName: "pencil").imageScale(.small)
@@ -116,6 +116,6 @@ private struct ContainerView: View {
     }
 }
 
-private func something() -> Void{
+private func Edit() -> Void{
     
 }

@@ -30,11 +30,12 @@ struct AddTaskButtonView: View {
             }
         }.frame(width:60,height:60)
     }
+    
     private func addTask() {
         configuration = AddTaskConfig(withParentContext: viewContext)
     }
     private func cleanContext(){
-        
+        configuration = nil
     }
 }
 

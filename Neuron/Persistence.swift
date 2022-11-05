@@ -24,7 +24,7 @@ private let temp = [
     Task1(taskTitle: "Play games", taskDescription: "Play League",taskIcon: "gamecontroller.fill", taskDateStart: convertDate(data: "10-30-2022 12:20"),taskDateEnd:convertDate(data: "10-30-2022 13:20"),taskDuration: 1,taskColor: [0.32, 0.62,  0.81],taskChecker: false),
     Task1(taskTitle: "Go for a jog", taskDescription: "Light jog at central park",taskIcon: "figure.walk", taskDateStart: convertDate(data: "10-30-2022 13:20"),taskDateEnd: convertDate(data: "10-30-2022 13:50"),taskDuration: 0.5,taskColor: [0.467,  0.867, 0.467],taskChecker: false),
     Task1(taskTitle: "Make dinner", taskDescription: "Fried chicken with legumes",taskIcon: "cooktop.fill", taskDateStart: convertDate(data: "10-30-2022 14:50"),taskDateEnd: convertDate(data: "10-30-2022 15:50"),taskDuration: 1, taskColor: [0.9098, 0.6039,  0.6039],taskChecker: false),
-    Task1(taskTitle: "Do laundry", taskDescription: "Remeber to do your laundy",taskIcon: "tshirt.fill", taskDateStart: convertDate(data: "10-30-2022 23:00"),taskDateEnd: convertDate(data: "10-30-2022 23:20"),taskDuration: 0.33, taskColor: [0.9098, 0.6039,  0.6039],taskChecker: false),
+    Task1(taskTitle: "Do laundry", taskDescription: "Remeber to do your laundy",taskIcon: "tshirt.fill", taskDateStart: convertDate(data: "10-30-2022 23:00"),taskDateEnd: convertDate(data: "10-30-2022 23:20"),taskDuration: (1/3), taskColor: [0.9098, 0.6039,  0.6039],taskChecker: false),
     Task1(taskTitle: "Sleep", taskDescription: "Sleepytime",taskIcon: "moon.fill", taskDateStart:convertDate(data: "10-30-2022 23:20"),taskDateEnd: convertDate(data: "10-30-2022 23:50"),taskDuration: 0.5, taskColor: [0.9098, 0.6039,  0.6039],taskChecker: false)
 ]
 
