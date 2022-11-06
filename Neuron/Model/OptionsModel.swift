@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-
+ 
 class OptionsModel: ObservableObject{
     
     // MARK: Current Week Initialization
@@ -15,6 +15,7 @@ class OptionsModel: ObservableObject{
     @Published var today: Date = Date()
     @Published var selectedDay: Date = Date()
     @Published var selectedDayString: String = String()
+    @Published var distance: CGFloat = CGFloat()
 
     init(){
         fetchCurrentWeek()

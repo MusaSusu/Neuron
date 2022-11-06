@@ -47,32 +47,43 @@ struct AddTaskView: View {
             
             //MARK: Search Bar / Title Input
             HStack{
+                ZStack{
+                    Circle().fill(taskColor).frame(width: 40)
+                    Rectangle().fill(.white).mask{
+                        Image(systemName:icon)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    }.frame(width: 25.0, height: 25.0)
+                }.frame(width: 40).offset(x:10)
                 TextField(
                     "Something to do...",
                     text: $taskName,
                     onEditingChanged: {_ in isFocused.toggle()}
                 )
                 .customStyle()
-                .background{
-                    ZStack{
-                        RoundedRectangle(cornerRadius: 25,style: .continuous)
-                            .fill(Color(white:0.99))
-                        RoundedRectangle(cornerRadius: 25,style: .continuous)
-                            .strokeBorder(
-                                userColor,
-                                lineWidth: isFocused ? 4 : 2
-                            )
-                    }
-                }
+            }
+            .background{
+                ZStack{
+                    RoundedRectangle(cornerRadius: 25,style: .continuous)
+                        .fill(Color(white:0.99))
+                    RoundedRectangle(cornerRadius: 25,style: .continuous)
+                        .strokeBorder(
+                            userColor,
+                            lineWidth: isFocused ? 4 : 2
+                        )
+                }.frame(height: 60)
             }.frame(height: 80)
+            
+            HStack{
+                Text("Habit")
+                    .foregroundColor(userColor)
+                    .font(.title.bold())
+            }.padding(.vertical,5)
             
             ScrollView(.vertical,showsIndicators: true){
                 VStack(spacing:10){
                     
                     Group{
-                        datePickerView(date: $dateStart,title: "Start")
-                        
-                        Divider().format()
                         
                         HStack(alignment: .top){
                             HStack{
@@ -98,7 +109,7 @@ struct AddTaskView: View {
                                     .background(.white).padding(.trailing,25)
                                 }
                             }
-                        }
+                        }.padding(.top)
                     }
                     
                     
@@ -119,22 +130,6 @@ struct AddTaskView: View {
                             }
                         }
                     }
-                    
-                    Divider().format()
-                    //ICON PICKER
-                    HStack{
-                        Text("Icon").titleFont()
-                        Spacer()
-                        ZStack{
-                            Circle().fill(taskColor).frame(width: 40)
-                            Rectangle().fill(.white).mask{
-                                Image(systemName:icon)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                            }.frame(width: 25.0, height: 25.0)
-                        }.frame(width: 40).offset(x:-23.5)
-                    }
-                    
                     
                     Divider().format()
                     //NOTES
@@ -204,16 +199,6 @@ extension TextField {
             .font(.title2.weight(.regular))
             .padding(.vertical,10)
             .padding(.horizontal, 14)
-    }
-}
-
-extension Shape {
-    func fill<Fill: ShapeStyle, Stroke: ShapeStyle>(_ fillStyle: Fill, strokeBorder strokeStyle: Stroke, lineWidth: Double = 2) -> some View {
-        self
-            .stroke(strokeStyle, lineWidth: lineWidth)
-            .background(
-                self.fill(fillStyle)
-            )
     }
 }
 
