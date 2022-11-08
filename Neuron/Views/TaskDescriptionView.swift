@@ -17,7 +17,7 @@ struct TaskDescriptionView: View {
     let setColor: Color
         
     var interval: String {
-        createDateString(duration:task.duration)
+        createDateString(duration: task.duration * 60)
     }
     
     var body: some View {
@@ -63,14 +63,6 @@ private struct strikethroughs: Shape{
         
         return path
     }
-}
-
-private func createDateString(duration:TimeInterval)-> String{
-    let df = DateComponentsFormatter()
-    var interval: TimeInterval{(duration * 3600)}
-    df.allowedUnits = [.hour,.minute]
-    df.unitsStyle = .short
-    return df.string(from: interval)!
 }
 
 struct TaskDescription_Previews: PreviewProvider {

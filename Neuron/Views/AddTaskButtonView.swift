@@ -25,7 +25,7 @@ struct AddTaskButtonView: View {
             }
             .labelStyle(.iconOnly)
             .sheet(item: $configuration, onDismiss: cleanContext) {configuration in
-                AddTaskView(item: configuration.task)
+                AddTabSelectionView(item: configuration.task)
                     .environment(\.managedObjectContext,configuration.childContext)
             }
         }.frame(width:60,height:60)

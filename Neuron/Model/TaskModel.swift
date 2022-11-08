@@ -55,6 +55,14 @@ func extractDate(date: Date) -> String{
     return formatter.string(from:date)
 }
 
+func createDateString(duration:TimeInterval)-> String{
+    let df = DateComponentsFormatter()
+    var interval: TimeInterval{(duration * 60)}
+    df.allowedUnits = [.hour,.minute]
+    df.unitsStyle = .short
+    return df.string(from: interval)!
+}
+
 extension View {
     func print(_ value: Any) -> Self {
         Swift.print(value)
