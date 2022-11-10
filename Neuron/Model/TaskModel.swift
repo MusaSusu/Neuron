@@ -76,11 +76,11 @@ var previewscontainer: Tasks{
     newItem.title = "Wake up"
     newItem.dateStart = convertDate(data: "10-17-2022 01:00")
     newItem.dateEnd = convertDate(data: "10-17-2022 01:30")
-    newItem.info = "Wakey time 10-08"
+    newItem.taskInfo = "Wakey time 10-08"
     newItem.icon = "sun.max.fill"
     newItem.duration = 0.5
     newItem.color = [0.949,  0.522,  0.1]
-    newItem.completed = false
+    newItem.taskChecker = false
     return newItem
 }
 

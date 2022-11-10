@@ -36,38 +36,33 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         let Date = "10-30-2022"
-        let newTaskDateModel = TaskDate(context: viewContext)
-        newTaskDateModel.dateString = Date
         for i in 0..<7 {
             let newItem = Tasks(context: viewContext)
             newItem.id = UUID()
             newItem.title = temp[i].taskTitle
             newItem.dateStart = temp[i].taskDateStart
             newItem.dateEnd = temp[i].taskDateEnd
-            newItem.info = temp[i].taskDescription
+            newItem.taskInfo = temp[i].taskDescription
             newItem.icon = temp[i].taskIcon
             newItem.duration = temp[i].taskDuration
             newItem.color = temp[i].taskColor
-            newItem.completed = false
+            newItem.taskChecker = false
             newItem.taskDay = Date
-            newItem.taskByDate = newTaskDateModel
         }
         let Date1 = "10-31-2022"
-        let newTaskDateModel1 = TaskDate(context: viewContext)
-        newTaskDateModel1.dateString = Date1
+
         for i in 0..<7 {
             let newItem = Tasks(context: viewContext)
             newItem.id = UUID()
             newItem.title = temp1[i].taskTitle
             newItem.dateStart = temp1[i].taskDateStart
             newItem.dateEnd = temp1[i].taskDateEnd
-            newItem.info = temp1[i].taskDescription
+            newItem.taskInfo = temp1[i].taskDescription
             newItem.icon = temp1[i].taskIcon
             newItem.duration = temp1[i].taskDuration
             newItem.color = temp1[i].taskColor
-            newItem.completed = false
+            newItem.taskChecker = false
             newItem.taskDay = Date1
-            newItem.taskByDate = newTaskDateModel1
         }
         do {
             try viewContext.save()

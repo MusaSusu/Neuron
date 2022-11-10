@@ -10,7 +10,7 @@ import SwiftUI
 struct AddTaskButtonView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
-    @State private var configuration: AddTaskConfig<Tasks>?
+    @State var configuration: AddTaskConfig<Tasks>?
 
     var body: some View {
         HStack{
@@ -24,18 +24,18 @@ struct AddTaskButtonView: View {
                 }
             }
             .labelStyle(.iconOnly)
-            .sheet(item: $configuration, onDismiss: cleanContext) {configuration in
-                AddTabSelectionView(item: configuration.task)
-                    .environment(\.managedObjectContext,configuration.childContext)
+            .sheet(item: $configuration, onDismiss: cleanContext) {config in
+                AddTabSelectionView(item: config.task)
+                    .environment(\.managedObjectContext,config.childContext)
             }
         }.frame(width:60,height:60)
     }
     
-    private func addTask() {
+    func addTask() {
         configuration = AddTaskConfig(withParentContext: viewContext)
     }
-    private func cleanContext(){
-        configuration = nil
+    func cleanContext(){
+        try? viewContext.save()
     }
 }
 

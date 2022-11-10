@@ -76,12 +76,14 @@ struct AddTaskView: View {
                     
                     TextEditor(text: $taskNotes)
                         .scrollContentBackground(.hidden)
+                        .keyboardType(.default)
+                        .scrollDismissesKeyboard(.immediately)
+                        .frame(minHeight: 175,maxHeight: 250)
+                        .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
                         .background(
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(.yellow)
                         )
-                        .frame(minHeight: 175,maxHeight: 250)
-                        .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
                     
                     Spacer()
                 } // End of ScrollView
@@ -90,8 +92,7 @@ struct AddTaskView: View {
                     RoundedRectangle(cornerRadius: 20,style: .continuous)
                         .fill(.white, strokeBorder: userColor)
                 )
-            }
-            .frame(minWidth:200)
+            }.padding(.horizontal,5)
     }
 }
 

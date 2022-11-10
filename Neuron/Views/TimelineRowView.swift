@@ -52,7 +52,7 @@ struct TimelineRowView: View {
         self.dateStart = task.dateStart!
         self.dateEnd = task.dateEnd!
         self.setColor = task.color!.fromDouble()
-        self.text = task.info!
+        self.text = task.taskInfo!
         self.prevDuration = prevDuration
         self.nextDuration = nextDuration
     }

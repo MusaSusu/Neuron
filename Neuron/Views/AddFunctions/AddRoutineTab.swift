@@ -13,85 +13,88 @@ struct AddRoutineTab: View {
     @Binding var taskNotes: String
     
     var body: some View {
-        ScrollView(.vertical,showsIndicators: false){
-            VStack(spacing:10){
-                
-                Group{
+        VStack{
+            ScrollView(.vertical,showsIndicators: false){
+                    Group{
+                        HStack{
+                            DisclosureGroup{
+                                HStack{
+                                    Slider(
+                                        value:$taskDuration,
+                                        in: 0...120,
+                                        step: 5
+                                    )
+                                }.padding(.top,10)
+                                HStack{
+                                    Spacer()
+                                    Button("Custom Time") {
+                                        
+                                    }
+                                }
+                            } label: {
+                            }
+                            .padding(.top,3)
+                            .alignmentGuide(VerticalAlignment.center) {_ in 30}
+                            .overlay{
+                                
+                                HStack(spacing:0){
+                                    Text("Duration").titleFont()
+                                    Spacer()
+                                    Text("\(createDateString(duration:taskDuration))")
+                                        .titleFont()
+                                }
+                                .alignmentGuide(VerticalAlignment.center) {_ in 30}
+                                .background(.white).padding(.trailing,25)
+                            }
+                        }.padding(.top)
+                    }
+                    
+                    
+                    Divider().format()
+                    //COLOR PICKER
                     HStack{
                         DisclosureGroup{
-                            HStack{
-                                Slider(
-                                    value:$taskDuration,
-                                    in: 0...120,
-                                    step: 5
-                                )
-                            }.padding(.top,10)
-                            HStack{
-                                Spacer()
-                                Button("Custom Time") {
-                                    
-                                }
-                            }
+                            CustomColorPickerView(selectedColor: $taskColor)
                         } label: {
-                        }
-                        .padding(.top,3)
-                        .alignmentGuide(VerticalAlignment.center) {_ in 30}
-                        .overlay{
-                            
-                            HStack(spacing:0){
-                                Text("Duration").titleFont()
+                            HStack{
+                                Text("Color").titleFont()
                                 Spacer()
-                                Text("\(createDateString(duration:taskDuration))")
-                                    .titleFont()
+                                Image(systemName: "circle.fill")
+                                    .resizable()
+                                    .aspectRatio(1, contentMode: .fill)
+                                    .foregroundColor(taskColor)
+                                    .frame(width: 40).offset(x:-5)
                             }
-                            .alignmentGuide(VerticalAlignment.center) {_ in 30}
-                            .background(.white).padding(.trailing,25)
-                        }
-                    }.padding(.top)
-                }
-                
-                
-                Divider().format()
-                //COLOR PICKER
-                HStack{
-                    DisclosureGroup{
-                        CustomColorPickerView(selectedColor: $taskColor)
-                    } label: {
-                        HStack{
-                            Text("Color").titleFont()
-                            Spacer()
-                            Image(systemName: "circle.fill")
-                                .resizable()
-                                .aspectRatio(1, contentMode: .fill)
-                                .foregroundColor(taskColor)
-                                .frame(width: 40).offset(x:-5)
                         }
                     }
-                }
+                    
+                    Divider().format()
+                    //NOTES
+                    
+                    HStack{ Text("Notes").titleFont(); Spacer()}
                 
-                Divider().format()
-                //NOTES
-                
-                HStack{ Text("Notes").titleFont(); Spacer()}
-                
-                TextEditor(text: $taskNotes)
-                    .scrollContentBackground(.hidden)
+                    HStack(alignment:.top){
+                        TextField("", text: $taskNotes,axis: .vertical)
+                            .multilineTextAlignment(.leading)
+                            .padding()
+                            .lineLimit(10)
+                    }
+                    .frame(minHeight: 170,maxHeight: 200,alignment: .top)
                     .background(
                         RoundedRectangle(cornerRadius: 10)
-                            .fill(.yellow)
+                            .frame(minHeight: 150,maxHeight: 250)
+                            .foregroundColor(.yellow)
                     )
-                    .frame(minHeight: 175,maxHeight: 250)
                     .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
-                
-                Spacer()
-            } // End of ScrollView
-            .padding(10)
-            .background(
-                RoundedRectangle(cornerRadius: 20,style: .continuous)
-                    .fill(.white, strokeBorder: userColor)
-            )
+                Divider().format()
+                }.padding(10)
+                // End of ScrollView
         }
-        .frame(minWidth:300)
+        .background(
+            RoundedRectangle(cornerRadius: 20,style: .continuous)
+                .fill(.white, strokeBorder: userColor)
+        )
+        .padding(.horizontal,5)
     }
 }
 

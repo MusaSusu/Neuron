@@ -22,6 +22,7 @@ struct AddTabSelectionView: View {
     @State private var taskNotes: String = ""
     @State private var icon: String = "gift.fill"
     @State private var taskDuration: CGFloat = 30
+
     
     
     var body: some View {
@@ -35,15 +36,17 @@ struct AddTabSelectionView: View {
                 Button("Save") {
                     addObject()
                     try? context.save()
+                    errorMessage = nil
                     dismiss()
                 }
-            }.padding(.vertical)
+            }.padding(.top)
             
             Divider()
                 .background(.blue)
                 .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
             
             //MARK: Search Bar / Title Input
+            
             HStack{
                 ZStack{
                     Circle().fill(taskColor).frame(width: 40)
@@ -57,8 +60,7 @@ struct AddTabSelectionView: View {
                     "Something to do...",
                     text: $taskName,
                     onEditingChanged: {_ in isFocused.toggle()}
-                )
-                .customStyle()
+                ).customStyle()
             }
             .background{
                 ZStack{
@@ -73,15 +75,18 @@ struct AddTabSelectionView: View {
             }.frame(height: 80)
             
             //TABSView
-            TabsStruct(loc: 5)
+            GeometryReader{geometry in
+                TabsStruct(width:geometry.size.width,taskDuration: $taskDuration, taskColor: $taskColor, taskNotes: $taskNotes)
+                
+            }.padding(.horizontal,-5)
             
         }
         .padding(10)
-        .ignoresSafeArea(edges:.bottom)
         .background(
             Color(white : 0.95)
         )
     }
+
     private func addObject(){
         item.id = UUID()
         item.title = taskName
@@ -90,8 +95,8 @@ struct AddTabSelectionView: View {
         item.dateEnd = dateEnd
         item.duration = dateEnd.timeIntervalSince(dateStart) / 3600
         item.color = taskColor.toDouble()
-        item.completed = false
-        item.info = taskNotes
+        item.taskChecker = false
+        item.taskInfo = taskNotes
         item.taskDay = extractDate(date: dateStart, format: "MM-dd-yyyy")
     }
 }

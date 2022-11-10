@@ -26,7 +26,7 @@ struct TaskDescriptionView: View {
             HStack(spacing:0) {
                 Text("\(task.title!)")
                     .font(.system(.title3,design: .default,weight:.semibold))
-                    
+                
                 Text("  (\(interval))")
                     .italic()
                     .font(.system(.subheadline,weight: .light))
@@ -34,22 +34,25 @@ struct TaskDescriptionView: View {
             .overlay(
                 strikethroughs()
                     .stroke(style: StrokeStyle(lineWidth: 2))
-                    .fill(task.completed ? .red : .clear)
-                )
+                    .fill(task.taskChecker ? .red : .clear)
+            )
             
             Spacer()
             
             Button {
-                task.completed.toggle()
+                task.taskChecker.toggle()
             } label: {
                 Label {Text("Task Complete")} icon: {
-                    Image(systemName: task.completed ? "circle.inset.filled" : "circle")
-                        .foregroundColor(task.completed ? setColor.opacity(1) : .secondary)
-                        .accessibility(label: Text(task.completed ? "Checked" : "Unchecked"))
+                    Image(systemName: task.taskChecker ? "circle.inset.filled" : "circle")
+                        .foregroundColor(task.taskChecker ? setColor.opacity(1) : .secondary)
+                        .accessibility(label: Text(task.taskChecker ? "Checked" : "Unchecked"))
                         .imageScale(.large)
                 }
             }.labelStyle(.iconOnly)
                 .buttonStyle(PlainButtonStyle())
+        }
+        HStack{
+            Text("\(task.taskInfo ?? "nothing")")
         }
     }
 }

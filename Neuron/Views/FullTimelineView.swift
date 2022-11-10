@@ -37,7 +37,7 @@ struct FullTimelineView: View {
             
             VStack(spacing:0){
                 ForEach( Array(items.enumerated()) , id: \.element) { index,item in
-                    TimelineRowView(task: item,prevDuration: index == 0 ? -5 : durationArray[index-1]/2, nextDuration: durationArray[index]/2).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+                    TimelineRowView(task: item,prevDuration: index == 0 ? -5 : durationArray[index-1]/2, nextDuration: durationArray[index]/2)
                 }
             }
             
