@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 
-struct AddTabSelectionView: View {
+struct AddMainView: View {
     @ObservedObject var item: Tasks // task object in child context
     @Environment(\.managedObjectContext) private var context
     @Environment(\.dismiss) private var dismiss // causes body to run
@@ -27,7 +27,7 @@ struct AddTabSelectionView: View {
     
     var body: some View {
         VStack{
-            //TITLE / SEARCH
+            //Header
             HStack{
                 Spacer()
                 Text("Add Task").font(.title.bold())
@@ -45,7 +45,7 @@ struct AddTabSelectionView: View {
                 .background(.blue)
                 .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
             
-            //MARK: Search Bar / Title Input
+            //MARK: AddTaskView Title
             
             HStack{
                 ZStack{
@@ -101,9 +101,9 @@ struct AddTabSelectionView: View {
     }
 }
 
-struct AddTabSelectionView_Previews: PreviewProvider {
+struct AddMainView_Previews: PreviewProvider {
     static var previews: some View {
-        AddTabSelectionView( item: .init(entity: Tasks.entity(), insertInto: PersistenceController.preview.container.viewContext))
+        AddMainView( item: .init(entity: Tasks.entity(), insertInto: PersistenceController.preview.container.viewContext))
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 
     }

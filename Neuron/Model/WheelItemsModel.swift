@@ -43,9 +43,10 @@ class WheelItemsModel: ObservableObject{
     }
     
     func updateLabel(withRange range: Int){
-        placements = placements.map{$0 + CGFloat(delta * CGFloat(range))}
-        rightDragMax = rightDragMax - placements[0]
-        leftDragMax = leftDragMax - placements[0]
+        let dist = CGFloat(delta * CGFloat(range))
+        placements = placements.map{$0 + dist}
+        rightDragMax = rightDragMax - dist
+        leftDragMax = leftDragMax - dist
         offset = [0.0,0.0,0.0,0.0]
     }
     

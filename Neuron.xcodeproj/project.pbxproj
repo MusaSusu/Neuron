@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E11720A9291AA63E00316FBE /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11720A8291AA63E00316FBE /* AddTaskView.swift */; };
+		E11720A9291AA63E00316FBE /* AddTaskTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11720A8291AA63E00316FBE /* AddTaskTab.swift */; };
+		E11720AB291DF46D00316FBE /* DateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11720AA291DF46D00316FBE /* DateList.swift */; };
+		E11720AF291E05B600316FBE /* DateListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11720AE291E05B600316FBE /* DateListRow.swift */; };
+		E11720B1291E06FF00316FBE /* DateListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11720B0291E06FF00316FBE /* DateListModel.swift */; };
 		E14F6E4029147939009946EB /* SymbolPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14F6E3F29147939009946EB /* SymbolPickerView.swift */; };
 		E16BB26E28E0F25F00ABD2E0 /* NeuronApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB26D28E0F25F00ABD2E0 /* NeuronApp.swift */; };
 		E16BB27328E0F25F00ABD2E0 /* Neuron.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E16BB27128E0F25F00ABD2E0 /* Neuron.xcdatamodeld */; };
@@ -16,7 +19,7 @@
 		E16BB28528E0F26000ABD2E0 /* NeuronTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB28428E0F26000ABD2E0 /* NeuronTests.swift */; };
 		E16BB28F28E0F26000ABD2E0 /* NeuronUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB28E28E0F26000ABD2E0 /* NeuronUITests.swift */; };
 		E16BB29128E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB29028E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift */; };
-		E176E14E290B279600B09604 /* AddTabSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E14D290B279600B09604 /* AddTabSelectionView.swift */; };
+		E176E14E290B279600B09604 /* AddMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E14D290B279600B09604 /* AddMainView.swift */; };
 		E176E150290B2D6900B09604 /* AddTaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E14F290B2D6900B09604 /* AddTaskModel.swift */; };
 		E176E152290B560C00B09604 /* AddTaskButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E151290B560C00B09604 /* AddTaskButtonView.swift */; };
 		E176E1542910E23C00B09604 /* TabsStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E1532910E23C00B09604 /* TabsStruct.swift */; };
@@ -49,8 +52,8 @@
 		E1B0F73428FBC65C00925858 /* TimelineRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F73228FBC65C00925858 /* TimelineRowView.swift */; };
 		E1B0F73528FBC65C00925858 /* TimelineRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F73228FBC65C00925858 /* TimelineRowView.swift */; };
 		E1BEFF2C291666D600A2DE56 /* AddRoutineTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BEFF2B291666D600A2DE56 /* AddRoutineTab.swift */; };
-		E1BEFF2E2916677700A2DE56 /* AddTabSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E14D290B279600B09604 /* AddTabSelectionView.swift */; };
-		E1BEFF2F2916677700A2DE56 /* AddTabSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E14D290B279600B09604 /* AddTabSelectionView.swift */; };
+		E1BEFF2E2916677700A2DE56 /* AddMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E14D290B279600B09604 /* AddMainView.swift */; };
+		E1BEFF2F2916677700A2DE56 /* AddMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E14D290B279600B09604 /* AddMainView.swift */; };
 		E1BEFF302916677900A2DE56 /* AddRoutineTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BEFF2B291666D600A2DE56 /* AddRoutineTab.swift */; };
 		E1BEFF312916677900A2DE56 /* AddRoutineTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BEFF2B291666D600A2DE56 /* AddRoutineTab.swift */; };
 		E1BEFF332916682F00A2DE56 /* SearchView .swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BEFF322916682F00A2DE56 /* SearchView .swift */; };
@@ -95,7 +98,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E11720A8291AA63E00316FBE /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
+		E11720A8291AA63E00316FBE /* AddTaskTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskTab.swift; sourceTree = "<group>"; };
+		E11720AA291DF46D00316FBE /* DateList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateList.swift; sourceTree = "<group>"; };
+		E11720AE291E05B600316FBE /* DateListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateListRow.swift; sourceTree = "<group>"; };
+		E11720B0291E06FF00316FBE /* DateListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateListModel.swift; sourceTree = "<group>"; };
 		E14F6E3F29147939009946EB /* SymbolPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPickerView.swift; sourceTree = "<group>"; };
 		E16BB26A28E0F25F00ABD2E0 /* Neuron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neuron.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16BB26D28E0F25F00ABD2E0 /* NeuronApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuronApp.swift; sourceTree = "<group>"; };
@@ -109,7 +115,7 @@
 		E16BB28A28E0F26000ABD2E0 /* NeuronUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeuronUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16BB28E28E0F26000ABD2E0 /* NeuronUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuronUITests.swift; sourceTree = "<group>"; };
 		E16BB29028E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuronUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		E176E14D290B279600B09604 /* AddTabSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTabSelectionView.swift; sourceTree = "<group>"; };
+		E176E14D290B279600B09604 /* AddMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMainView.swift; sourceTree = "<group>"; };
 		E176E14F290B2D6900B09604 /* AddTaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskModel.swift; sourceTree = "<group>"; };
 		E176E151290B560C00B09604 /* AddTaskButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskButtonView.swift; sourceTree = "<group>"; };
 		E176E1532910E23C00B09604 /* TabsStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsStruct.swift; sourceTree = "<group>"; };
@@ -255,13 +261,16 @@
 		E1BEFF2D2916676600A2DE56 /* AddFunctions */ = {
 			isa = PBXGroup;
 			children = (
-				E1BEFF2B291666D600A2DE56 /* AddRoutineTab.swift */,
-				E11720A8291AA63E00316FBE /* AddTaskView.swift */,
-				E176E14D290B279600B09604 /* AddTabSelectionView.swift */,
-				E176E155291103B500B09604 /* datePickerView.swift */,
-				E176E1592911F50C00B09604 /* CustomColorPickerView.swift */,
-				E176E1532910E23C00B09604 /* TabsStruct.swift */,
 				E1BEFF322916682F00A2DE56 /* SearchView .swift */,
+				E176E14D290B279600B09604 /* AddMainView.swift */,
+				E176E1532910E23C00B09604 /* TabsStruct.swift */,
+				E1BEFF2B291666D600A2DE56 /* AddRoutineTab.swift */,
+				E11720A8291AA63E00316FBE /* AddTaskTab.swift */,
+				E176E1592911F50C00B09604 /* CustomColorPickerView.swift */,
+				E176E155291103B500B09604 /* datePickerView.swift */,
+				E11720AA291DF46D00316FBE /* DateList.swift */,
+				E11720B0291E06FF00316FBE /* DateListModel.swift */,
+				E11720AE291E05B600316FBE /* DateListRow.swift */,
 			);
 			path = AddFunctions;
 			sourceTree = "<group>";
@@ -400,8 +409,10 @@
 				E16BB27328E0F25F00ABD2E0 /* Neuron.xcdatamodeld in Sources */,
 				E16BB26E28E0F25F00ABD2E0 /* NeuronApp.swift in Sources */,
 				E1BEFF35291749EC00A2DE56 /* WheelItemsModel.swift in Sources */,
-				E176E14E290B279600B09604 /* AddTabSelectionView.swift in Sources */,
+				E11720AB291DF46D00316FBE /* DateList.swift in Sources */,
+				E176E14E290B279600B09604 /* AddMainView.swift in Sources */,
 				E1B0F72628FBC65000925858 /* HeaderView.swift in Sources */,
+				E11720AF291E05B600316FBE /* DateListRow.swift in Sources */,
 				E176E1542910E23C00B09604 /* TabsStruct.swift in Sources */,
 				E1B0F72C28FBC65000925858 /* TaskDescriptionView.swift in Sources */,
 				E176E156291103B500B09604 /* datePickerView.swift in Sources */,
@@ -410,8 +421,9 @@
 				E176E150290B2D6900B09604 /* AddTaskModel.swift in Sources */,
 				E14F6E4029147939009946EB /* SymbolPickerView.swift in Sources */,
 				E176E15A2911F50C00B09604 /* CustomColorPickerView.swift in Sources */,
+				E11720B1291E06FF00316FBE /* DateListModel.swift in Sources */,
 				E19B9D7128FD1601009CC37A /* Persistence.swift in Sources */,
-				E11720A9291AA63E00316FBE /* AddTaskView.swift in Sources */,
+				E11720A9291AA63E00316FBE /* AddTaskTab.swift in Sources */,
 				E1BEFF2C291666D600A2DE56 /* AddRoutineTab.swift in Sources */,
 				E176E152290B560C00B09604 /* AddTaskButtonView.swift in Sources */,
 				E1B0F71B28FBC60800925858 /* BottomTab.swift in Sources */,
@@ -440,7 +452,7 @@
 				E176E1572911067D00B09604 /* AddTaskButtonView.swift in Sources */,
 				E1B0F72728FBC65000925858 /* HeaderView.swift in Sources */,
 				E1B0F73428FBC65C00925858 /* TimelineRowView.swift in Sources */,
-				E1BEFF2E2916677700A2DE56 /* AddTabSelectionView.swift in Sources */,
+				E1BEFF2E2916677700A2DE56 /* AddMainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,7 +461,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1C95DB528E4D50600851C4E /* OptionsModel.swift in Sources */,
-				E1BEFF2F2916677700A2DE56 /* AddTabSelectionView.swift in Sources */,
+				E1BEFF2F2916677700A2DE56 /* AddMainView.swift in Sources */,
 				E16BB28F28E0F26000ABD2E0 /* NeuronUITests.swift in Sources */,
 				E176E1582911069800B09604 /* AddTaskButtonView.swift in Sources */,
 				E1B0F72128FBC62000925858 /* ContentView.swift in Sources */,

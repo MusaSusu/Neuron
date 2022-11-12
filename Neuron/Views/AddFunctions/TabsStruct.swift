@@ -35,7 +35,7 @@ struct TabsStruct: View {
             
             HStack{
                 TabView(selection: $WheelItems.selection){
-                     AddTaskView(
+                     AddTaskTab(
                         taskDuration: $taskDuration, taskColor: $taskColor, taskNotes: $taskNotes
                      ).tabItem{Label("Add Task", systemImage: "circle")
                      }.tag(0)
