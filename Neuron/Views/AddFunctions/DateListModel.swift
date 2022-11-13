@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct dateItem: Identifiable,Equatable,Hashable {
-    var id : Int
+    var id : UUID
     var date : Date
 }
 
@@ -27,24 +27,29 @@ struct TargetPreferenceKey: PreferenceKey {
 
 
 class DateListModel: ObservableObject{
-    @Published var dates: [Date] = [] 
-    var datesQueue: [Date] = []
+    @Published var dates: [dateItem] = []
+    @Published var addDateCheck: Bool = false
+    @Published var addInboxCheck: Bool = true
+    @Published var isEditOn: Bool  = true
+    @Published var isPop: Bool = false
     
     func updateDates(){
-        datesQueue = datesQueue.sorted(by: {$0<$1})
-        dates = datesQueue
+        dates.sort(by: {$0.date < $1.date})
     }
-    
-    func updateDateQueue(index:Int,NewDate:Date){
-        self.datesQueue[index] = NewDate
+    func deleteDate(item: dateItem){
+        let index = dates.firstIndex(where: {$0 == item})
+        dates.remove(at: index!)
+        if dates.count == 0 {
+            addDateCheck = false
+        }
     }
-    
     
     func addDate(){
-        datesQueue.sort(by: {$0<$1})
-        let date = datesQueue.last?.advanced(by: 360) ?? Date()
-        datesQueue.append(date)
-        dates = []
-        dates = datesQueue
+        dates.sort(by: {$0.date < $1.date})
+        let date = dates.last?.date.advanced(by: 300) ?? Date()
+        dates.append(dateItem(id:UUID(),date:date))
+        if dates.count > 0 {
+            addDateCheck = true
+        }
     }
 }

@@ -9,39 +9,81 @@ import SwiftUI
 
 struct DateListRow: View {
     @EnvironmentObject var DateList : DateListModel
-    @State var date : Date
-    @Binding var isEdit : Bool
-    let index: Int
+    @Binding var date : dateItem
+    let index: UUID
     
-    init(date: Date,isEdit: Binding<Bool>,index:Int){
-        _date = State(initialValue: date)
-        _isEdit = isEdit
+    init(date: Binding<dateItem>,index:UUID){
+        _date = date
         self.index = index
     }
     
 
     var body: some View {
-        HStack{
-            DatePicker(
-                "Add Date",
-                selection: $date,
-                displayedComponents: [.date,.hourAndMinute]
-            )
-            .labelsHidden()
-            .disabled(!isEdit)
-            .onChange(of: date){newVal in
-                DateList.updateDateQueue(index: index, NewDate: newVal)
+        
+        Button{
+            DateList.isPop.toggle()
+            editItem()
+        }label: { Label{Text("Edit Item") } icon:
+            {
+                HStack(spacing:5){
+                    HStack{
+                        Text(date.date, format: Date.FormatStyle().weekday(.wide))
+                        Divider()
+                        Text(date.date, format: Date.FormatStyle().month().day().year().hour().minute())
+                    }
+                    .foregroundColor(.black)
+                    .frame(maxHeight:20)
+                    .font(.title3.weight(.regular))
+                }
+                .padding(5)
             }
-            Text("\(index)")
-            Text("\(date.formatted())")
-
-            Spacer()
         }
+        .labelStyle(.iconOnly)
+        .disabled(!DateList.isEditOn)
+    }
+        
+    private struct ContainerView<Content:View>: View{
+        @ViewBuilder var content: Content
+        
+        var body: some View{
+            content
+        }
+    }
+    private func editItem(){
+        
     }
 }
 
 struct DateListRow_Previews: PreviewProvider {
     static var previews: some View {
-        DateListRow(date: Date(),isEdit: .constant(true),index: 0).environmentObject(DateListModel())
+        DateListRow(date: .constant(dateItem(id: UUID(), date: Date())),index: UUID()).environmentObject(DateListModel())
     }
 }
+
+extension Rectangle{
+}
+
+/*
+ .coordinateSpace(name: index)
+ .border(isBorder ? .red : .white)
+ .gesture(
+ DragGesture(minimumDistance: 10,coordinateSpace: .named(index))
+ .onEnded({ value in
+ if value.translation.width < 0 && value.translation.height > -5 && value.translation.height < geometry.size.height {
+ isBorder.toggle()
+ }
+ else if value.translation.width > 0 && value.translation.height > -5 && value.translation.height < geometry.size.height {
+ }
+ })
+ )
+ 
+ Button{
+ DateList.deleteDate(item: date)
+ } label: {
+ Label("Delete Date", systemImage: "minus.circle.fill")
+ }
+ .imageScale(.large)
+ .foregroundColor(.red)
+ .labelStyle(.iconOnly)
+ 
+ */

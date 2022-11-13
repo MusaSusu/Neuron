@@ -13,8 +13,9 @@ struct CustomColorPickerView: View {
     @Binding var selectedColor: Color
    
     var colorsCount: Int {colors.count}
-    var midIndex: Int{ if colorsCount % 2 == 0{
-        return colorsCount/2
+    var midIndex: Int{
+        if colorsCount % 2 == 0 {
+            return colorsCount/2
         }
         return (colorsCount/2) + 1
     }
@@ -24,12 +25,13 @@ struct CustomColorPickerView: View {
             Divider().frame(height:1).background(userColor).padding(10)
             HStack{
                 Spacer()
-                
                 VStack(spacing: 0){
                     HStack{
                         Text("Saved").bold()
                     }.frame(height:20)
+                    
                     Divider().background(.red).padding(.horizontal)
+                    
                     ScrollView(.vertical,showsIndicators:false){
                         HStack(spacing:0){
                             ContainerView(selectedColor: $selectedColor, items: colors[..<midIndex])
@@ -38,7 +40,6 @@ struct CustomColorPickerView: View {
                 }.frame(height:110)
                 
                 VStack(spacing:0){
-                    
                     HStack{
                         Text("Pastel").bold()
                     }.frame(height:20)
@@ -56,18 +57,35 @@ struct CustomColorPickerView: View {
                     HStack{
                         Text("New Color").font(.callout).bold()
                     }
+                    
                     ZStack{
-                        ColorPicker("Select New Color", selection: $selectedColor,supportsOpacity: false).labelsHidden().opacity(0.15)
+                        ColorPicker("Select New Color",
+                                    selection: $selectedColor,
+                                    supportsOpacity: false
+                        )
+                        .labelsHidden()
+                        .opacity(0.15)
+                        
                         Circle()
-                            .fill(AngularGradient(colors: hueColors, center: .center, startAngle: .zero, endAngle: .degrees(360))).allowsHitTesting(false)
+                            .fill(
+                                AngularGradient(
+                                    colors: hueColors,
+                                    center: .center,
+                                    startAngle: .zero,
+                                    endAngle: .degrees(360))
+                            )
+                            .allowsHitTesting(false)
                     }.frame(width: 30)
+                    
                     Spacer()
+                    
                     HStack{
                         Spacer()
+                        
                         Button{
                             Edit()
-                        }label:{
-                            Label{ Text("Edit").font(.footnote)} icon:{
+                        } label:{
+                            Label { Text("Edit").font(.footnote)} icon:{
                                 Image(systemName: "pencil").imageScale(.small)
                             }
                         }
