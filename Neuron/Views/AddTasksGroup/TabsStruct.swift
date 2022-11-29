@@ -10,47 +10,37 @@ import UIKit
 
 struct TabsStruct: View {
     @StateObject var WheelItems : WheelItemsModel
-
-        
-    @Binding var taskDuration : CGFloat
-    @Binding var taskColor: Color
-    @Binding var taskNotes: String
+    @EnvironmentObject var NewItem: NewItemModel
     
-    init(width : CGFloat,taskDuration: Binding<CGFloat>, taskColor: Binding<Color>, taskNotes: Binding<String>){
+    init(width : CGFloat){
         _WheelItems = StateObject(wrappedValue: WheelItemsModel(width: width) )
-        _taskNotes = taskNotes
-        _taskDuration = taskDuration
-        _taskColor = taskColor
     }
     
     var body: some View {
         VStack{
             GeometryReader{ geometry in
                 HStack(spacing:0){
-                    WheelView(hcenter: geometry.size.height)
-                    .environmentObject(WheelItems)
+                    WheelView(hcenter: geometry.size.height).environmentObject(WheelItems)
                 }
             }.frame(minHeight: 40,maxHeight:50)
             
             
             HStack{
                 TabView(selection: $WheelItems.selection){
-                     AddTaskTab(
-                        taskDuration: $taskDuration, taskColor: $taskColor, taskNotes: $taskNotes
-                     ).tabItem{Label("Add Task", systemImage: "circle")
-                     }.tag(0)
-                    AddRoutineTab(taskDuration: $taskDuration, taskColor: $taskColor, taskNotes: $taskNotes)
+                    AddTaskTab().tabItem{Label("Add Task", systemImage: "circle")}.tag(0).environmentObject(NewItem)
+                    AddRoutineTab()
                         .tabItem{Label("Add Routine", systemImage: "circle")}.tag(1)
-                    AddRoutineTab(taskDuration: $taskDuration, taskColor: $taskColor, taskNotes: $taskNotes)
+                    AddRoutineTab()
                         .tabItem{Label("Add Habit", systemImage: "circle")}.tag(2)
-                    AddRoutineTab(taskDuration: $taskDuration, taskColor: $taskColor, taskNotes: $taskNotes)
+                    AddRoutineTab()
                         .tabItem{Label("Add Inbox", systemImage: "circle")}.tag(3)
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                .animation(.easeIn.speed(0.1),value: WheelItems.selection)
-                
-            } 
-
+                .animation(.easeInOut, value: WheelItems.selection)
+                .onChange(of: WheelItems.selection){value in
+                    NewItem.selection = value
+                }
+            }
         }.background(
             Color(white : 0.95)
         )
@@ -59,7 +49,9 @@ struct TabsStruct: View {
 
 struct TabsStruct_Previews: PreviewProvider {
     static var previews: some View {
-        TabsStruct(width: 390,taskDuration: .constant(30),taskColor: .constant(.red), taskNotes: .constant("Notes"))
+        TabsStruct(width: 430)
+            .environmentObject(DateListModel())
+            .environmentObject(NewItemModel())
     }
 }
 
@@ -72,7 +64,7 @@ private struct WheelItem: View {
         VStack{
             Text("\(WheelItems.options[index])").font(.title).bold()
         }
-        .frame(width: WheelItems.delta)
+        .frame(width: WheelItems.delta,height: height)
         .position(x:WheelItems.placements[index],y:height/2)
         .offset(x:WheelItems.offset[index])
     }

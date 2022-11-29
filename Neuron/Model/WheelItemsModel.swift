@@ -24,6 +24,7 @@ class WheelItemsModel: ObservableObject{
     var rightDragMax: CGFloat
     
     init(width: CGFloat){
+        
         let wDim = min(width/10, 80)
         let delta = wDim*3
         let firstEle = wDim * 5
@@ -39,7 +40,7 @@ class WheelItemsModel: ObservableObject{
         self.placements = {
             return [firstEle,firstEle + delta, firstEle + (2*delta),firstEle + (3*delta)]
         }()
-        self.width = width
+        self.width = wDim * 10
     }
     
     func updateLabel(withRange range: Int){
@@ -53,12 +54,12 @@ class WheelItemsModel: ObservableObject{
     func computeSelection(dist: CGFloat){
         var shift = Int(dist) / Int(delta * 0.65)
         if shift <= 0 {
-           shift = max(self.selection-3,shift)
+           shift = max(selection-3,shift)
         }
         else if shift > 0{
-            shift = min(self.selection,shift)
+            shift = min(selection,shift)
         }
-        self.selection = self.selection - shift
+        self.selection = selection - shift
         offset = [0.0,0.0,0.0,0.0]
     }
     
@@ -68,7 +69,7 @@ class WheelItemsModel: ObservableObject{
         if dist < 0 {
             off = max(dist,leftDragMax)
         }
-        else{
+        else if dist > 0{
             off = min(dist,rightDragMax)
         }        
         for index in 0..<4{

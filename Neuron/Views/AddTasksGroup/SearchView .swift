@@ -71,6 +71,6 @@ extension Shape {
             .stroke(strokeStyle, lineWidth: lineWidth)
             .background(
                 self.fill(fillStyle)
-            )
+            ).padding(1)
     }
 }

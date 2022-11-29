@@ -8,29 +8,14 @@
 import SwiftUI
 
 struct AddRoutineTab: View {
-    @Binding var taskDuration: CGFloat
-    @Binding var taskColor: Color
-    @Binding var taskNotes: String
+    @EnvironmentObject var NewItem : NewItemModel
     
     var body: some View {
         VStack{
             ScrollView(.vertical,showsIndicators: false){
                 //COLOR PICKER
-                HStack{
-                    DisclosureGroup{
-                        CustomColorPickerView(selectedColor: $taskColor)
-                    } label: {
-                        HStack{
-                            Text("Color").titleFont()
-                            Spacer()
-                            Image(systemName: "circle.fill")
-                                .resizable()
-                                .aspectRatio(1, contentMode: .fill)
-                                .foregroundColor(taskColor)
-                                .frame(width: 40).offset(x:-5)
-                        }
-                    }
-                }
+                
+                ColorPickerView(color: $NewItem.color)
                 
                 Divider().format()
                 
@@ -39,7 +24,7 @@ struct AddRoutineTab: View {
                         DisclosureGroup{
                             HStack{
                                 Slider(
-                                    value:$taskDuration,
+                                    value:$NewItem.duration,
                                     in: 0...120,
                                     step: 5
                                 )
@@ -58,7 +43,7 @@ struct AddRoutineTab: View {
                             HStack(spacing:0){
                                 Text("Duration").titleFont()
                                 Spacer()
-                                Text("\(createDateString(duration:taskDuration))").titleFont()
+                                Text("\(createDateString(duration:NewItem.duration))").titleFont()
                             }
                             .alignmentGuide(VerticalAlignment.center) {_ in 30}
                             .background(.white).padding(.trailing,25)
@@ -72,7 +57,7 @@ struct AddRoutineTab: View {
                 HStack{ Text("Notes").titleFont(); Spacer()}
                 
                 HStack(alignment:.top){
-                    TextField("", text: $taskNotes,axis: .vertical)
+                    TextField("", text: $NewItem.notes,axis: .vertical)
                         .multilineTextAlignment(.leading)
                         .padding()
                         .lineLimit(10)
@@ -98,6 +83,7 @@ struct AddRoutineTab: View {
 
 struct AddRoutineTab_Previews: PreviewProvider {
     static var previews: some View {
-        AddRoutineTab(taskDuration: .constant(10), taskColor: .constant(.blue),taskNotes: .constant("Notes"))
+        AddRoutineTab()
+            .environmentObject(NewItemModel())
     }
 }

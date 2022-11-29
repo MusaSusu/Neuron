@@ -22,7 +22,7 @@ struct DateListRow: View {
         
         Button{
             DateList.isPop.toggle()
-            editItem()
+            DateList.editItem(date)
         }label: { Label{Text("Edit Item") } icon:
             {
                 HStack(spacing:5){
@@ -40,17 +40,6 @@ struct DateListRow: View {
         }
         .labelStyle(.iconOnly)
         .disabled(!DateList.isEditOn)
-    }
-        
-    private struct ContainerView<Content:View>: View{
-        @ViewBuilder var content: Content
-        
-        var body: some View{
-            content
-        }
-    }
-    private func editItem(){
-        
     }
 }
 

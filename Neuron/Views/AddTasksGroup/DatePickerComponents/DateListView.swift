@@ -10,8 +10,7 @@ import SwiftUI
 struct DateListView: View {
     @EnvironmentObject var DateList : DateListModel
     @State var isEditOn: Bool = false
-    @State var DateListItems: [dateItem] = []
-    
+                                                     
     var body: some View {
             VStack(spacing: 20){
                 ForEach($DateList.dates,id:\.self.id){ item in
@@ -27,7 +26,7 @@ struct DateListView: View {
                     Spacer()
                     Button{
                         DateList.addDate()
-                    }label: {
+                    } label: {
                         Label{Text("Add Date")} icon: {
                             Image(systemName: "plus.circle.fill")
                                 .imageScale(.large)

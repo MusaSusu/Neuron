@@ -22,7 +22,7 @@ struct CustomColorPickerView: View {
     
     var body: some View {
         VStack(spacing:0){
-            Divider().frame(height:1).background(userColor).padding(10)
+            Divider().frame(height:1).background(userColor).padding(.bottom,10)
             HStack{
                 Spacer()
                 VStack(spacing: 0){
@@ -59,9 +59,10 @@ struct CustomColorPickerView: View {
                     }
                     
                     ZStack{
-                        ColorPicker("Select New Color",
-                                    selection: $selectedColor,
-                                    supportsOpacity: false
+                        ColorPicker(
+                            "Select New Color",
+                            selection: $selectedColor,
+                            supportsOpacity: false
                         )
                         .labelsHidden()
                         .opacity(0.15)
