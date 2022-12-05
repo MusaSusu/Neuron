@@ -12,6 +12,7 @@
 		E11720AF291E05B600316FBE /* DateListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11720AE291E05B600316FBE /* DateListRow.swift */; };
 		E11720B1291E06FF00316FBE /* DateListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11720B0291E06FF00316FBE /* DateListModel.swift */; };
 		E11720B32920677900316FBE /* DatePickerModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11720B22920677900316FBE /* DatePickerModal.swift */; };
+		E13F3946293D2FE800769255 /* RoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13F3945293D2FE800769255 /* RoutineView.swift */; };
 		E14F6E4029147939009946EB /* SymbolPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14F6E3F29147939009946EB /* SymbolPickerView.swift */; };
 		E16BB26E28E0F25F00ABD2E0 /* NeuronApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB26D28E0F25F00ABD2E0 /* NeuronApp.swift */; };
 		E16BB27328E0F25F00ABD2E0 /* Neuron.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E16BB27128E0F25F00ABD2E0 /* Neuron.xcdatamodeld */; };
@@ -37,6 +38,9 @@
 		E1A4DB7D292C4EFD00FB6BDE /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A4DB7C292C4EFD00FB6BDE /* NotesView.swift */; };
 		E1A4DB7F292C5F0F00FB6BDE /* AddProjectTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A4DB7E292C5F0F00FB6BDE /* AddProjectTab.swift */; };
 		E1A4DB82292CE1E300FB6BDE /* css.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A4DB81292CE1E300FB6BDE /* css.swift */; };
+		E1A4DB842935AF7900FB6BDE /* SubTaskAdder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A4DB832935AF7900FB6BDE /* SubTaskAdder.swift */; };
+		E1A4DB872935B88E00FB6BDE /* SubTaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A4DB862935B88E00FB6BDE /* SubTaskModel.swift */; };
+		E1A4DB892935BDF400FB6BDE /* SubTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A4DB882935BDF400FB6BDE /* SubTaskView.swift */; };
 		E1B0F71B28FBC60800925858 /* BottomTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F71A28FBC60800925858 /* BottomTab.swift */; };
 		E1B0F71C28FBC60800925858 /* BottomTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F71A28FBC60800925858 /* BottomTab.swift */; };
 		E1B0F71D28FBC60800925858 /* BottomTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F71A28FBC60800925858 /* BottomTab.swift */; };
@@ -109,6 +113,7 @@
 		E11720AE291E05B600316FBE /* DateListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateListRow.swift; sourceTree = "<group>"; };
 		E11720B0291E06FF00316FBE /* DateListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateListModel.swift; sourceTree = "<group>"; };
 		E11720B22920677900316FBE /* DatePickerModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerModal.swift; sourceTree = "<group>"; };
+		E13F3945293D2FE800769255 /* RoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineView.swift; sourceTree = "<group>"; };
 		E14F6E3F29147939009946EB /* SymbolPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPickerView.swift; sourceTree = "<group>"; };
 		E16BB26A28E0F25F00ABD2E0 /* Neuron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neuron.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16BB26D28E0F25F00ABD2E0 /* NeuronApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuronApp.swift; sourceTree = "<group>"; };
@@ -133,6 +138,9 @@
 		E1A4DB7C292C4EFD00FB6BDE /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		E1A4DB7E292C5F0F00FB6BDE /* AddProjectTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectTab.swift; sourceTree = "<group>"; };
 		E1A4DB81292CE1E300FB6BDE /* css.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = css.swift; sourceTree = "<group>"; };
+		E1A4DB832935AF7900FB6BDE /* SubTaskAdder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTaskAdder.swift; sourceTree = "<group>"; };
+		E1A4DB862935B88E00FB6BDE /* SubTaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTaskModel.swift; sourceTree = "<group>"; };
+		E1A4DB882935BDF400FB6BDE /* SubTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTaskView.swift; sourceTree = "<group>"; };
 		E1B0F71A28FBC60800925858 /* BottomTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomTab.swift; sourceTree = "<group>"; };
 		E1B0F71E28FBC61F00925858 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E1B0F72228FBC65000925858 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -268,6 +276,16 @@
 			path = DatePickerComponents;
 			sourceTree = "<group>";
 		};
+		E1A4DB852935B85A00FB6BDE /* SubTaskAdderComponents */ = {
+			isa = PBXGroup;
+			children = (
+				E1A4DB832935AF7900FB6BDE /* SubTaskAdder.swift */,
+				E1A4DB862935B88E00FB6BDE /* SubTaskModel.swift */,
+				E1A4DB882935BDF400FB6BDE /* SubTaskView.swift */,
+			);
+			path = SubTaskAdderComponents;
+			sourceTree = "<group>";
+		};
 		E1B0F73628FBC69800925858 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,11 +309,13 @@
 				E176E14D290B279600B09604 /* AddMainView.swift */,
 				E176E1532910E23C00B09604 /* TabsStruct.swift */,
 				E1BEFF2B291666D600A2DE56 /* AddRoutineTab.swift */,
+				E13F3945293D2FE800769255 /* RoutineView.swift */,
 				E1A4DB7E292C5F0F00FB6BDE /* AddProjectTab.swift */,
 				E11720A8291AA63E00316FBE /* AddTaskTab.swift */,
 				E1A4DB7C292C4EFD00FB6BDE /* NotesView.swift */,
 				E1CA7DF22921B88800A41A14 /* ColorPickerView.swift */,
 				E176E1592911F50C00B09604 /* CustomColorPickerView.swift */,
+				E1A4DB852935B85A00FB6BDE /* SubTaskAdderComponents */,
 				E1A4DB80292C5F2600FB6BDE /* DatePickerComponents */,
 			);
 			path = AddTasksGroup;
@@ -441,6 +461,7 @@
 				E1B0F72628FBC65000925858 /* HeaderView.swift in Sources */,
 				E11720AF291E05B600316FBE /* DateListRow.swift in Sources */,
 				E1A4DB7F292C5F0F00FB6BDE /* AddProjectTab.swift in Sources */,
+				E13F3946293D2FE800769255 /* RoutineView.swift in Sources */,
 				E176E1542910E23C00B09604 /* TabsStruct.swift in Sources */,
 				E1B0F72C28FBC65000925858 /* TaskDescriptionView.swift in Sources */,
 				E176E156291103B500B09604 /* DatePickerView.swift in Sources */,
@@ -449,6 +470,7 @@
 				E1CA7DF12921B42E00A41A14 /* NewItemModel.swift in Sources */,
 				E1C95DB328E4D50600851C4E /* OptionsModel.swift in Sources */,
 				E176E150290B2D6900B09604 /* AddTaskConfig.swift in Sources */,
+				E1A4DB842935AF7900FB6BDE /* SubTaskAdder.swift in Sources */,
 				E14F6E4029147939009946EB /* SymbolPickerView.swift in Sources */,
 				E1A4DB82292CE1E300FB6BDE /* css.swift in Sources */,
 				E176E15A2911F50C00B09604 /* CustomColorPickerView.swift in Sources */,
@@ -456,12 +478,14 @@
 				E19B9D7128FD1601009CC37A /* Persistence.swift in Sources */,
 				E11720A9291AA63E00316FBE /* AddTaskTab.swift in Sources */,
 				E1BEFF2C291666D600A2DE56 /* AddRoutineTab.swift in Sources */,
+				E1A4DB872935B88E00FB6BDE /* SubTaskModel.swift in Sources */,
 				E176E152290B560C00B09604 /* AddTaskButtonView.swift in Sources */,
 				E1B0F71B28FBC60800925858 /* BottomTab.swift in Sources */,
 				E1C95DAF28E4D26700851C4E /* TaskModel.swift in Sources */,
 				E11720B32920677900316FBE /* DatePickerModal.swift in Sources */,
 				E1BEFF332916682F00A2DE56 /* SearchView .swift in Sources */,
 				E1B0F73328FBC65C00925858 /* TimelineRowView.swift in Sources */,
+				E1A4DB892935BDF400FB6BDE /* SubTaskView.swift in Sources */,
 				E1B0F72F28FBC65000925858 /* FullTimelineView.swift in Sources */,
 				E176E15E2913302900B09604 /* Symbol Picker Model.swift in Sources */,
 			);
@@ -576,7 +600,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -630,7 +654,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

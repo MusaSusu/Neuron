@@ -66,7 +66,7 @@ struct SearchView__Previews: PreviewProvider {
 }
 
 extension Shape {
-    func fill<Fill: ShapeStyle, Stroke: ShapeStyle>(_ fillStyle: Fill, strokeBorder strokeStyle: Stroke, lineWidth: Double = 2) -> some View {
+    func fill<Fill: ShapeStyle, Stroke: ShapeStyle>(_ fillStyle: Fill, strokeBorder strokeStyle: Stroke, lineWidth: Double = 3) -> some View {
         self
             .stroke(strokeStyle, lineWidth: lineWidth)
             .background(

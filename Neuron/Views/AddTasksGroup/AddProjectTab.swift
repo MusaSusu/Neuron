@@ -11,6 +11,8 @@ struct AddProjectTab: View {
     @EnvironmentObject var DateList : DateListModel
     @EnvironmentObject var NewItem : NewItemModel
     
+    @State var date : Date = Date()
+    
     var body: some View {
         ScrollView(.vertical,showsIndicators: false){
             VStack(spacing:10){
@@ -20,15 +22,34 @@ struct AddProjectTab: View {
                 Divider().format()
                 
                 HStack{
-                    Text("Timeframe").titleFont()
+                    Text("End Date").titleFont()
+                    // Select 2 weeks,month,3 months, 6 months etc. or custom due date.
                     Spacer()
+                    DatePicker(
+                        "Add Date",
+                        selection: $date,
+                        displayedComponents: [.date]
+                    ).labelsHidden()
                 }
                 
                 Divider().format()
-                
                 HStack{
-                    Text("Timeframe").titleFont()
-                    Spacer()
+                    DisclosureGroup{
+                        SubTaskAdder()
+                    } label:{
+                        Text("Subtasks").titleFont()
+                    }
+                }
+                
+                
+                Divider().format()
+                //NOTES
+                Group{
+                    HStack{
+                        Text("Schedule").titleFont()
+                            //Button to auto assign tasks for completion?
+                        Spacer()
+                    }
                 }
                 
                 Divider().format()
@@ -36,6 +57,7 @@ struct AddProjectTab: View {
                 Group{
                     NotesView().environmentObject(NewItem)
                 }
+                
              // End of ScrollView
             }
             .padding(EdgeInsets(top: 15, leading: 15, bottom: 20, trailing: 15))
@@ -52,6 +74,8 @@ struct AddProjectTab: View {
 
 struct AddProjectTab_Previews: PreviewProvider {
     static var previews: some View {
-        AddProjectTab().environmentObject(NewItemModel())
+        AddProjectTab()
+            .environmentObject(NewItemModel())
+            .environmentObject(SubTaskModel())
     }
 }

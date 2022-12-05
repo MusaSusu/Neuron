@@ -19,7 +19,7 @@ struct NotesView: View {
                         .scrollContentBackground(.hidden)
                         .keyboardType(.default)
                         .scrollDismissesKeyboard(.immediately)
-                        .frame(minHeight: 175,maxHeight: 250)
+                        .frame(minHeight: 200,maxHeight: 250)
                         .padding(5)
                         .background(
                             RoundedRectangle(cornerRadius: 10)

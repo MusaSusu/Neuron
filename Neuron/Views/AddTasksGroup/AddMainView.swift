@@ -15,6 +15,7 @@ struct AddMainView: View {
     
     @StateObject var DateList = DateListModel()
     @StateObject var NewItem = NewItemModel()
+    @StateObject var SubTasks = SubTaskModel()
 
     @State var errorMessage: String?
     @State private var isFocused: Bool = false
@@ -79,6 +80,7 @@ struct AddMainView: View {
                         TabsStruct(width:geometry.size.width)
                             .environmentObject(DateList)
                             .environmentObject(NewItem)
+                            .environmentObject(SubTasks)
                         
                     }.padding(.horizontal,-5)
                     

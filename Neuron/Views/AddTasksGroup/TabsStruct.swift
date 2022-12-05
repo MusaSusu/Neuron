@@ -10,7 +10,7 @@ import UIKit
 
 struct TabsStruct: View {
     @StateObject var WheelItems : WheelItemsModel
-    @EnvironmentObject var NewItem: NewItemModel
+    @EnvironmentObject var NewItem : NewItemModel
     
     init(width : CGFloat){
         _WheelItems = StateObject(wrappedValue: WheelItemsModel(width: width) )
@@ -28,7 +28,7 @@ struct TabsStruct: View {
             HStack{
                 TabView(selection: $WheelItems.selection){
                     AddTaskTab().tabItem{Label("Add Task", systemImage: "circle")}.tag(0).environmentObject(NewItem)
-                    AddRoutineTab()
+                    AddProjectTab().tag(1)
                         .tabItem{Label("Add Routine", systemImage: "circle")}.tag(1)
                     AddRoutineTab()
                         .tabItem{Label("Add Habit", systemImage: "circle")}.tag(2)
@@ -52,6 +52,7 @@ struct TabsStruct_Previews: PreviewProvider {
         TabsStruct(width: 430)
             .environmentObject(DateListModel())
             .environmentObject(NewItemModel())
+            .environmentObject(SubTaskModel())
     }
 }
 
