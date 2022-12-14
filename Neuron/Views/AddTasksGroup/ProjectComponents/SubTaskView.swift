@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SubTaskView: View {
-    @EnvironmentObject var SubTaskModel : SubTaskModel
+    @EnvironmentObject var Project : ProjectModel
     @State var item : SubTask = SubTask(title: "", notes: "")
     @State private var isFocused: Bool = true
     @Environment(\.dismiss) var dismiss
@@ -16,7 +16,7 @@ struct SubTaskView: View {
         if item.title.trimmingCharacters(in: .whitespacesAndNewlines).count == 0{
             item.title = "Subtask"
         }
-        SubTaskModel.subTaskCollection.append(item)
+        Project.subTaskCollection.append(item)
         dismiss()
     }
     var body: some View {
@@ -86,6 +86,6 @@ struct SubTaskView: View {
 
 struct SubTaskView_Previews: PreviewProvider {
     static var previews: some View {
-        SubTaskView().environmentObject(SubTaskModel())
+        SubTaskView().environmentObject(ProjectModel())
     }
 }

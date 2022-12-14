@@ -12,28 +12,31 @@ struct AddRoutineTab: View {
     
     var body: some View {
         ScrollView(.vertical,showsIndicators: false){
-            VStack{
+            VStack(spacing:10){
                 //COLOR PICKER
                 
                 ColorPickerView(color: $NewItem.color)
                 
                 Divider().format()
                 
-                HStack{
-                    DisclosureGroup{
-                        
-                    }label:{
-                        Text("Routine").titleFont()
-                    }
-                    //need better name. basically like parts of the routine.
-                    Spacer()
+                DurationPickerView()
+                
+                Divider().format()
+                
+                DisclosureGroup{
+                    RoutineMakerView()
+                } label: {
+                    Text("Sub-Routine").titleFont()
                 }
                 
                 Divider().format()
                 
                 HStack{
-                    Text("Schedule").titleFont()
-                    Spacer()
+                    DisclosureGroup{
+                        RoutineSchedDiscView().padding(.vertical)
+                    } label: {
+                        Text("Schedule").titleFont()
+                    }
                 }
                 
                 Divider().format()
@@ -54,5 +57,6 @@ struct AddRoutineTab_Previews: PreviewProvider {
     static var previews: some View {
         AddRoutineTab()
             .environmentObject(NewItemModel())
+            .environmentObject(RoutineViewModel())
     }
 }

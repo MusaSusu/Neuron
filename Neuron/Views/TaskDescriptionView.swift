@@ -17,7 +17,7 @@ struct TaskDescriptionView: View {
     let setColor: Color
         
     var interval: String {
-        createDateString(duration: task.duration * 60)
+        (task.duration * 60).toHourMin()
     }
     
     var body: some View {
@@ -49,7 +49,6 @@ struct TaskDescriptionView: View {
                         .imageScale(.large)
                 }
             }.labelStyle(.iconOnly)
-                .buttonStyle(PlainButtonStyle())
         }
         HStack{
             Text("\(task.taskInfo ?? "nothing")")

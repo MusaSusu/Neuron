@@ -11,6 +11,8 @@ import UIKit
 struct TabsStruct: View {
     @StateObject var WheelItems : WheelItemsModel
     @EnvironmentObject var NewItem : NewItemModel
+    @State var transitionHelper: Bool = false
+    let viewSelection: [[widgets]] = [TaskWidgets,ProjectWidgets,[.ColorPicker,.DurationPicker,.Notes],RoutineWidgets]
     
     init(width : CGFloat){
         _WheelItems = StateObject(wrappedValue: WheelItemsModel(width: width) )
@@ -18,29 +20,32 @@ struct TabsStruct: View {
     
     var body: some View {
         VStack{
+            
             GeometryReader{ geometry in
                 HStack(spacing:0){
                     WheelView(hcenter: geometry.size.height).environmentObject(WheelItems)
                 }
             }.frame(minHeight: 40,maxHeight:50)
-            
+
             
             HStack{
-                TabView(selection: $WheelItems.selection){
-                    AddTaskTab().tabItem{Label("Add Task", systemImage: "circle")}.tag(0).environmentObject(NewItem)
-                    AddProjectTab().tag(1)
-                        .tabItem{Label("Add Routine", systemImage: "circle")}.tag(1)
-                    AddRoutineTab()
-                        .tabItem{Label("Add Habit", systemImage: "circle")}.tag(2)
-                    AddRoutineTab()
-                        .tabItem{Label("Add Inbox", systemImage: "circle")}.tag(3)
+                if transitionHelper{
+                    
+                    GenericTabView(widgetsToLoad: viewSelection[WheelItems.selection])
+                        .transition(.asymmetric(insertion: .push(from: .leading), removal: .push(from: .trailing)))
                 }
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                .animation(.easeInOut, value: WheelItems.selection)
-                .onChange(of: WheelItems.selection){value in
-                    NewItem.selection = value
+                else{
+                    
+                    GenericTabView(widgetsToLoad: viewSelection[WheelItems.selection])
+                        .transition(.asymmetric(insertion: .push(from: .leading), removal: .push(from: .trailing)))
                 }
             }
+            .animation(.easeInOut, value: transitionHelper)
+            .onChange(of: WheelItems.selection){ value in
+                    NewItem.selection = value
+                transitionHelper.toggle()
+            }
+
         }.background(
             Color(white : 0.95)
         )
@@ -52,7 +57,8 @@ struct TabsStruct_Previews: PreviewProvider {
         TabsStruct(width: 430)
             .environmentObject(DateListModel())
             .environmentObject(NewItemModel())
-            .environmentObject(SubTaskModel())
+            .environmentObject(ProjectModel())
+            .environmentObject(RoutineViewModel())
     }
 }
 

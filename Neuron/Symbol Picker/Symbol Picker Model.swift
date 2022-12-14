@@ -37,5 +37,5 @@ public enum Category: String, CaseIterable, Identifiable {
 }
 
 let symbols : [String: [String]] = [
-    "Food" : ["wineglass.fill", "birthday.cake.fill","carrot.fill","gift.fill"]
+    Category.food.id : ["wineglass.fill", "birthday.cake.fill","carrot.fill","gift.fill"]
 ]

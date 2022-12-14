@@ -47,7 +47,6 @@ struct ContentView: View {
                         .foregroundColor(UserOptions.isSelected(date: day) ? .black : Color(white:0.7)  )
                         .background(
                             ZStack{
-                                
                                 RoundedRectangle(cornerRadius: 10)
                                     .fill(Color.white)
                                     .aspectRatio(1.0, contentMode: .fill)

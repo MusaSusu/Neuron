@@ -63,6 +63,16 @@ func createDateString(duration:TimeInterval)-> String{
     return df.string(from: interval)!
 }
 
+extension TimeInterval{
+    func toHourMin()-> String{
+        let df = DateComponentsFormatter()
+        var interval : TimeInterval{self * 60}
+        df.allowedUnits = [.hour,.minute]
+        df.unitsStyle = .short
+        return df.string(from: interval)!
+    }
+}
+
 extension View {
     func print(_ value: Any) -> Self {
         Swift.print(value)

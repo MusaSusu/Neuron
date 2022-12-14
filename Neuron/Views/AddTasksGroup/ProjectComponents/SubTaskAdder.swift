@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SubTaskAdder: View {
-    @EnvironmentObject var SubTasks : SubTaskModel
+    @EnvironmentObject var Project : ProjectModel
     @State var showSheet : Bool = false
     @State var selectedSubTask : SubTask?
     
@@ -16,12 +16,12 @@ struct SubTaskAdder: View {
         VStack{
             
             Group{
-                if SubTasks.subTaskCollection.count == 0{
+                if Project.subTaskCollection.count == 0{
                     Text("No subtasks saved")
                         .foregroundColor(.gray)
                 }
                 List(
-                    $SubTasks.subTaskCollection,
+                    $Project.subTaskCollection,
                     editActions: [.delete,.move],
                     selection: $selectedSubTask
                 ){ $item in
@@ -58,7 +58,7 @@ struct SubTaskAdder: View {
 
 struct SubTaskAdder_Previews: PreviewProvider {
     static var previews: some View {
-        SubTaskAdder().environmentObject(SubTaskModel())
+        SubTaskAdder().environmentObject(ProjectModel())
     }
 }
 
@@ -70,3 +70,15 @@ private extension RoundedRectangle{
     }
 }
 
+/*
+ Button {
+ item.completed.toggle()
+ } label: {
+ Label {Text("Task Complete")} icon: {
+ Image(systemName: item.completed ? "circle.inset.filled" : "circle")
+ .foregroundColor(item.completed ? .gray : .red)
+ .accessibility(label: Text(item.completed ? "Checked" : "Unchecked"))
+ .imageScale(.large)
+ }
+ }.labelStyle(.iconOnly)
+ */

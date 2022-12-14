@@ -17,18 +17,21 @@ class DateListModel: ObservableObject{
     @Published var dates: [dateItem] = [dateItem(id: UUID(), date: Date())]
     @Published var addDateCheck: Bool = false
     @Published var addInboxCheck: Bool = true
+    
     @Published var isEditOn: Bool  = true
     @Published var isPop: Bool = false
+    
     var currentEdit: Int = 0
     
     func editItem(_ id: dateItem){
         let index = dates.firstIndex(where: {$0 == id})!
         currentEdit = index
-
     }
+    
     func updateDates(){
         dates.sort(by: {$0.date < $1.date})
     }
+    
     func deleteDate(item: dateItem){
         let index = dates.firstIndex(where: {$0 == item})
         dates.remove(at: index!)

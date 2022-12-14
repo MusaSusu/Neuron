@@ -20,39 +20,8 @@ struct AddTaskTab: View {
                 Divider().format()
                 
                 //Duration
-                Group{
-                    HStack{
-                        DisclosureGroup{
-                            HStack{
-                                Slider(
-                                    value:$NewItem.duration,
-                                    in: 0...120,
-                                    step: 5
-                                )
-                            }.padding(.top,10)
-                            HStack{
-                                Spacer()
-                                Button("Custom Time") {
-                                    
-                                }
-                            }
-                        } label: {
-                            Text("Duration").hidden()
-                        }
-                        .padding(.top,3)
-                        .alignmentGuide(VerticalAlignment.center) {_ in 30}
-                        .background{
-                            HStack(spacing:0){
-                                Text("Duration").titleFont()
-                                Spacer()
-                                Text("\(createDateString(duration:NewItem.duration))")
-                                    .titleFont()
-                            }
-                            .alignmentGuide(VerticalAlignment.center) {_ in 30}
-                            .background(.white).padding(.trailing,25)
-                        }
-                    }
-                }
+                
+                DurationPickerView()
                 
                 Divider().format()
                 

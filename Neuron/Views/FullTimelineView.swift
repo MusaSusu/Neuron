@@ -9,7 +9,6 @@ import SwiftUI
 
 struct FullTimelineView: View {
     
-    
     @FetchRequest var items: FetchedResults<Tasks>
     
     init(date: String) {

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct AddProjectTab: View {
-    @EnvironmentObject var DateList : DateListModel
     @EnvironmentObject var NewItem : NewItemModel
     
     @State var date : Date = Date()
@@ -21,23 +20,14 @@ struct AddProjectTab: View {
                 
                 Divider().format()
                 
-                HStack{
-                    Text("End Date").titleFont()
-                    // Select 2 weeks,month,3 months, 6 months etc. or custom due date.
-                    Spacer()
-                    DatePicker(
-                        "Add Date",
-                        selection: $date,
-                        displayedComponents: [.date]
-                    ).labelsHidden()
-                }
+                ProjectEndDateDisc()
                 
                 Divider().format()
                 HStack{
                     DisclosureGroup{
                         SubTaskAdder()
                     } label:{
-                        Text("Subtasks").titleFont()
+                        Text("Sub-Tasks").titleFont()
                     }
                 }
                 
@@ -55,7 +45,7 @@ struct AddProjectTab: View {
                 Divider().format()
                 //NOTES
                 Group{
-                    NotesView().environmentObject(NewItem)
+                    NotesView()
                 }
                 
              // End of ScrollView
@@ -76,6 +66,6 @@ struct AddProjectTab_Previews: PreviewProvider {
     static var previews: some View {
         AddProjectTab()
             .environmentObject(NewItemModel())
-            .environmentObject(SubTaskModel())
+            .environmentObject(ProjectModel())
     }
 }

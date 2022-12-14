@@ -18,7 +18,6 @@ struct NotesView: View {
                     TextEditor(text: $NewItem.notes)
                         .scrollContentBackground(.hidden)
                         .keyboardType(.default)
-                        .scrollDismissesKeyboard(.immediately)
                         .frame(minHeight: 200,maxHeight: 250)
                         .padding(5)
                         .background(

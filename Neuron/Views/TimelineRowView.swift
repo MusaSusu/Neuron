@@ -246,8 +246,7 @@ private struct createCapsule: View {
 private extension View{
     func timeFont() -> some View{
         self
-            .font(.system(size:14))
-            .fontWeight(.light)
+            .font(.system(size:14).weight(.light))
     }
 }
 
