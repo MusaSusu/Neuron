@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ColorPickerView: View {
+struct ColorPickerDisc: View {
     @Binding var color: Color
     var body: some View {
             HStack{
@@ -30,6 +30,6 @@ struct ColorPickerView: View {
 
 struct ColorPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        ColorPickerView(color: .constant(.blue))
+        ColorPickerDisc(color: .constant(.blue))
     }
 }

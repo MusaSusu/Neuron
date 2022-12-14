@@ -36,21 +36,21 @@ struct GenericTabView: View {
     func addWidgetView(of tab: widgets) -> some View{
         switch tab {
         case .DatePicker:
-            DatePickerView()
+            DatePickerDisc()
         case .ProjectEndDateSelect:
             ProjectEndDateDisc()
         case .ProjectSubTasks:
             SubTaskAdderDisc()
         case .Routine_SubRoutines:
-            RoutineDiscGroupView()
+            SubRoutineAdderDisc()
         case .Routine_Schedule:
-            RoutineSchedDiscView()
+            RoutineSchedPickerDisc()
         case .Notes:
-            NotesView()
+            NotesDisc()
         case .ColorPicker:
-            ColorPickerView(color: $NewItem.color)
+            ColorPickerDisc(color: $NewItem.color)
         case .DurationPicker:
-            DurationPickerView()
+            DurationPickerDisc()
         }
     }
 }

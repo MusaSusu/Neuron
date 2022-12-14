@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RoutineSchedDiscView: View {
+struct RoutineSchedPickerDisc: View {
     @EnvironmentObject var RoutineModel : RoutineViewModel
     
     
@@ -48,8 +48,8 @@ struct RoutineSchedDiscView: View {
     }
 }
 
-struct RoutineSchedDiscView_Previews: PreviewProvider {
+struct RoutineSchedPickerDisc_Previews: PreviewProvider {
     static var previews: some View {
-        RoutineSchedDiscView().environmentObject(RoutineViewModel())
+        RoutineSchedPickerDisc().environmentObject(RoutineViewModel())
     }
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DurationPickerView: View {
+struct DurationPickerDisc: View {
     @EnvironmentObject var NewItem : NewItemModel
     
     var body: some View {
@@ -42,6 +42,6 @@ struct DurationPickerView: View {
 
 struct DurationPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        DurationPickerView().environmentObject(NewItemModel())
+        DurationPickerDisc().environmentObject(NewItemModel())
     }
 }

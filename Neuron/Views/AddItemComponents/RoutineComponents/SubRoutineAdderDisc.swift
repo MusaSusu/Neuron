@@ -7,19 +7,19 @@
 
 import SwiftUI
 
-struct RoutineDiscGroupView: View {
+struct SubRoutineAdderDisc: View {
     var body: some View {
         DisclosureGroup{
-            RoutineMakerView()
+            SubRoutineListView()
         } label: {
             Text("Sub-Routine").titleFont()
         }
     }
 }
 
-struct RoutineDiscGroupView_Previews: PreviewProvider {
+struct RoutineSchedAdderDisc_Previews: PreviewProvider {
     static var previews: some View {
-        RoutineDiscGroupView()
+        SubRoutineAdderDisc()
             .environmentObject(RoutineViewModel())
     }
 }

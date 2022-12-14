@@ -26,6 +26,7 @@ class RoutineViewModel: ObservableObject{
     
     init(){
         let weekDays : [String] = ["Sun","Mon","Tue","Wed","Thu", "Fri", "Sat"]
+        //MARK: Test values
         var tempBool : Bool = false
         for item in weekDays{
             let temp = scheduleByDay(id: item, check:tempBool)
@@ -35,13 +36,8 @@ class RoutineViewModel: ObservableObject{
         
         self.list = [testRoutine]
     }
-    
-    
-    
     func addRow(){
         let newRoutine = Routine(title: "title", duration: 0)
         self.list.append(newRoutine)
     }
-    
-    
 }

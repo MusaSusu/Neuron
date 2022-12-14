@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RoutineMakerView: View {
+struct SubRoutineListView: View {
     @EnvironmentObject var RoutineModel : RoutineViewModel
     
     @State private var selectedRoutine : Routine?
@@ -78,9 +78,9 @@ struct RoutineMakerView: View {
 
 
 
-struct RoutineMakerView_Previews: PreviewProvider {
+struct SubRoutineListView_Previews: PreviewProvider {
     static var previews: some View {
-        RoutineMakerView()
+        SubRoutineListView()
             .environmentObject(RoutineViewModel())
     }
 }

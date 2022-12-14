@@ -7,7 +7,17 @@
 
 import SwiftUI
 
-struct SubTaskAdder: View {
+struct SubTaskAdderDisc: View {
+    var body: some View {
+        HStack{
+            DisclosureGroup(content: {SubTaskAdderView()},
+                            label: {Text("SubTasks").titleFont() }
+            )
+        }
+    }
+}
+
+struct SubTaskAdderView: View {
     @EnvironmentObject var Project : ProjectModel
     @State var showSheet : Bool = false
     @State var selectedSubTask : SubTask?
@@ -49,16 +59,16 @@ struct SubTaskAdder: View {
                         .imageScale(.large)
                 }
             }.sheet(isPresented: $showSheet){
-                SubTaskView()
+                SubTaskSheetView()
                     .presentationDetents([.large])
             }
         }
     }
 }
 
-struct SubTaskAdder_Previews: PreviewProvider {
+struct SubTaskAdderDisc_Previews: PreviewProvider {
     static var previews: some View {
-        SubTaskAdder().environmentObject(ProjectModel())
+        SubTaskAdderDisc().environmentObject(ProjectModel())
     }
 }
 

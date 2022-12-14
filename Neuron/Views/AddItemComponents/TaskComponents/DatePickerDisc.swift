@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DatePickerView: View {
+struct DatePickerDisc: View {
     @EnvironmentObject var DateList : DateListModel
     
     var body: some View {
@@ -88,8 +88,8 @@ struct DatePickerView: View {
     }
 }
 
-struct DatePickerView_Previews: PreviewProvider {
+struct DatePickerDisc_Previews: PreviewProvider {
     static var previews: some View {
-        DatePickerView().environmentObject(DateListModel())
+        DatePickerDisc().environmentObject(DateListModel())
     }
 }

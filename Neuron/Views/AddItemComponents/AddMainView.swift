@@ -96,7 +96,7 @@ struct AddMainView: View {
             VStack{
                 if DateList.isPop{
                     
-                    DatePickerModal().environmentObject(DateList)
+                    DatePickerDisc().environmentObject(DateList)
                         .transition(.asymmetric(insertion: .scale, removal: .scale))
                 }
             }.animation(.default.speed(1), value: DateList.isPop)

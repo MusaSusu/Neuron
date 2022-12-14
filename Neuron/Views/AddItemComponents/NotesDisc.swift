@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NotesView: View {
+struct NotesDisc: View {
     @EnvironmentObject var NewItem : NewItemModel
     
     var body: some View {
@@ -34,8 +34,8 @@ struct NotesView: View {
     }
 }
 
-struct NotesView_Previews: PreviewProvider {
+struct NotesDisc_Previews: PreviewProvider {
     static var previews: some View {
-        NotesView().environmentObject(NewItemModel())
+        NotesDisc().environmentObject(NewItemModel())
     }
 }

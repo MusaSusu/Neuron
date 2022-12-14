@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DatePickerModal: View {
+struct DatePickerSheet: View {
     @EnvironmentObject var DateList : DateListModel
     
     var body: some View {
@@ -35,8 +35,8 @@ struct DatePickerModal: View {
     }
 }
 
-struct DatePickerModal_Previews: PreviewProvider {
+struct DatePickerSheet_Previews: PreviewProvider {
     static var previews: some View {
-        DatePickerModal().environmentObject(DateListModel())
+        DatePickerSheet().environmentObject(DateListModel())
     }
 }
