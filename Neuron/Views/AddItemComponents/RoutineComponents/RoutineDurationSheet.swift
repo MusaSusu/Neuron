@@ -16,7 +16,7 @@ struct RoutineDurationSheet: View {
             HStack{
                 Text("Duration").titleFont()
                 Spacer()
-                Text(subRoutineDuration.duration.toHourMin()).font(.title2)
+                Text(subRoutineDuration.duration.toHourMin(from: .minutes)).font(.title2)
                 Spacer()
             }
             HStack{

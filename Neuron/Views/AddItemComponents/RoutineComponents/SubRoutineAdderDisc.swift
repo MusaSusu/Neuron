@@ -20,6 +20,6 @@ struct SubRoutineAdderDisc: View {
 struct RoutineSchedAdderDisc_Previews: PreviewProvider {
     static var previews: some View {
         SubRoutineAdderDisc()
-            .environmentObject(RoutineViewModel())
+            .environmentObject(RoutineModel())
     }
 }

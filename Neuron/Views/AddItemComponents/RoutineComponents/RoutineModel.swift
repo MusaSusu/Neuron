@@ -20,7 +20,7 @@ struct scheduleByDay : Hashable {
 
 let testRoutine = Routine(title: "Start", duration: 0)
 
-class RoutineViewModel: ObservableObject{
+class RoutineModel: ObservableObject{
     @Published var list : [Routine] = []
     @Published var scheduleList : [scheduleByDay] = []
     

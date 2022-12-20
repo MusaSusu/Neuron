@@ -11,11 +11,14 @@ struct FullTimelineView: View {
     
     @FetchRequest var items: FetchedResults<Tasks>
     
-    init(date: String) {
-        _items = FetchRequest<Tasks>(
-            sortDescriptors: [NSSortDescriptor(keyPath: \Tasks.dateStart, ascending: true)],
-            predicate: NSPredicate(format: "taskDay == %@", date )
-        )
+    @State private var draggedSelection: Task?
+    
+    var datesList : [DateInterval] {
+        var temp : [DateInterval] = []
+        for item in Array(items){
+            temp.append(item.date)
+        }
+        return temp
     }
 
     var durationArray: [TimeInterval]{
@@ -29,21 +32,44 @@ struct FullTimelineView: View {
         array.append(-10)
         return array
     }
+    
+    init(date: String) {
+        _items = FetchRequest<Tasks>(
+            sortDescriptors: [NSSortDescriptor(keyPath: \Tasks.dateStart, ascending: true)],
+            predicate: NSPredicate(format: "taskDay == %@", date )
+        )
+    }
+    
 
     var body: some View {
-        
-        ScrollView(.vertical,showsIndicators: false){
-            
-            VStack(spacing:0){
-                ForEach( Array(items.enumerated()) , id: \.element) { index,item in
-                    TimelineRowView(task: item,prevDuration: index == 0 ? -5 : durationArray[index-1]/2, nextDuration: durationArray[index]/2)
-                }
+        VStack{
+            ScrollView(.vertical,showsIndicators: false){
+                VStack(spacing:0){
+                    ForEach( Array(items.enumerated()) , id: \.element) { index,item in
+                        testTimelineRowView(task: item, nextDuration: durationArray[index]/2)
+                            .onDrag {
+                                return NSItemProvider()
+                            } preview: {
+                                VStack{
+                                    Circle()
+                                        .frame(width: 45,height: 45)
+                                        .mask{
+                                            Image(systemName: item.icon!)
+                                                .frame(width: 45,height:45)
+                                        }
+                                }
+                                .frame(width: 45,height: 45)
+                                .contentShape(.dragPreview, Circle())
+                            }
+                    }
+                }.padding(.top,20)
+                
+                VStack{
+                }.frame(height:300)
+                
             }
-            
-            VStack{
-            }.frame(height:300)
-            
-        }.cornerRadius(20)
+        }
+        .cornerRadius(20)
             .background(
                 Color(white : 0.995)
                     .cornerRadius(20)
@@ -54,7 +80,7 @@ struct FullTimelineView: View {
 
 struct FullTimelineView_Previews: PreviewProvider {
     static var previews: some View {
-        FullTimelineView( date:"10-31-2022")
+        FullTimelineView( date:"12-21-2022")
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

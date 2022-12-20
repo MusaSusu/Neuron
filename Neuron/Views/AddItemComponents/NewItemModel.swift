@@ -66,7 +66,7 @@ class NewItemModel: ObservableObject{
 
     @Published var dateStart: Date = Date.now
     @Published var dateEnd: Date = Date.now.advanced(by: 300)
-    @Published var duration: CGFloat = 30
+    @Published var duration: TimeInterval = 30
 
     @Published var notes: String = ""
     

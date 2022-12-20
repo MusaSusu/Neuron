@@ -37,36 +37,36 @@ func extractDate(date: Date, format: String) -> String{
     return formatter.string(from:date)
 }
 
-func convertDate(data: String) -> Date{
+func convertDate(data: String,format : String = "MM-dd-yyyy HH:mm") -> Date{
     let formatter4 = DateFormatter()
-    formatter4.dateFormat = "MM-dd-yyyy HH:mm"
+    formatter4.dateFormat = format
     return formatter4.date(from: data) ?? Date.now
 }
 
-func convertDate1(data: String) -> Date{
-    let formatter4 = DateFormatter()
-    formatter4.dateFormat = "MM-dd-yyyy"
-    return formatter4.date(from: data) ?? Date.now
-}
 
-func extractDate(date: Date) -> String{
-    let formatter = DateFormatter()
-    formatter.dateFormat = "MM-dd-yyyy HH:mm"
-    return formatter.string(from:date)
-}
-
-func createDateString(duration:TimeInterval)-> String{
-    let df = DateComponentsFormatter()
-    var interval: TimeInterval{(duration * 60)}
-    df.allowedUnits = [.hour,.minute]
-    df.unitsStyle = .short
-    return df.string(from: interval)!
+enum dateType : String, Identifiable {
+    
+    case seconds
+    case minutes
+    case hours
+    
+    var id: Self{self}
+    
 }
 
 extension TimeInterval{
-    func toHourMin()-> String{
+    func toHourMin(from type: dateType)-> String{
+        var interval = self
+        
+        switch type {
+        case .seconds:
+            break
+        case .minutes:
+            interval = interval * 60
+        case .hours:
+            interval = interval * 3600
+        }
         let df = DateComponentsFormatter()
-        var interval : TimeInterval{self * 60}
         df.allowedUnits = [.hour,.minute]
         df.unitsStyle = .short
         return df.string(from: interval)!
@@ -99,6 +99,7 @@ extension Array<Double>{
         return Color(red: self[0], green: self[1], blue: self[2])
     }
 }
+
 
 extension Color{
     func toDouble() -> [Double]{

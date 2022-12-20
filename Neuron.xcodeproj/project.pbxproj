@@ -11,8 +11,9 @@
 		E11720AF291E05B600316FBE /* DateListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11720AE291E05B600316FBE /* DateListRow.swift */; };
 		E11720B1291E06FF00316FBE /* DateListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11720B0291E06FF00316FBE /* DateListModel.swift */; };
 		E11720B32920677900316FBE /* DatePickerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11720B22920677900316FBE /* DatePickerSheet.swift */; };
+		E1340FFA2952725C0074100B /* TimeLineTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1340FF92952725C0074100B /* TimeLineTitleView.swift */; };
 		E13F3946293D2FE800769255 /* SubRoutineListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13F3945293D2FE800769255 /* SubRoutineListView.swift */; };
-		E13F3949293E782E00769255 /* RoutineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13F3948293E782E00769255 /* RoutineViewModel.swift */; };
+		E13F3949293E782E00769255 /* RoutineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13F3948293E782E00769255 /* RoutineModel.swift */; };
 		E13F394B293EB08E00769255 /* DurationPickerDisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13F394A293EB08E00769255 /* DurationPickerDisc.swift */; };
 		E13F394D293F0BC800769255 /* RoutineAdderVie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13F394C293F0BC800769255 /* RoutineAdderVie.swift */; };
 		E13F394F2945624F00769255 /* RoutineDurationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13F394E2945624F00769255 /* RoutineDurationSheet.swift */; };
@@ -21,6 +22,8 @@
 		E13F3955294942F700769255 /* GenericTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13F3954294942F700769255 /* GenericTabView.swift */; };
 		E13F395729495B6A00769255 /* SubRoutineAdderDisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13F395629495B6A00769255 /* SubRoutineAdderDisc.swift */; };
 		E13F3959294975AF00769255 /* ProjectEndDateDisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13F3958294975AF00769255 /* ProjectEndDateDisc.swift */; };
+		E13F395D294AA8D900769255 /* HabitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13F395C294AA8D900769255 /* HabitModel.swift */; };
+		E13F3960294AABB900769255 /* FrequencyPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13F395F294AABB900769255 /* FrequencyPicker.swift */; };
 		E14F6E4029147939009946EB /* SymbolPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14F6E3F29147939009946EB /* SymbolPickerView.swift */; };
 		E16BB26E28E0F25F00ABD2E0 /* NeuronApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB26D28E0F25F00ABD2E0 /* NeuronApp.swift */; };
 		E16BB27328E0F25F00ABD2E0 /* Neuron.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E16BB27128E0F25F00ABD2E0 /* Neuron.xcdatamodeld */; };
@@ -64,20 +67,24 @@
 		E1B0F73028FBC65000925858 /* FullTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F72528FBC65000925858 /* FullTimelineView.swift */; };
 		E1B0F73128FBC65000925858 /* FullTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F72528FBC65000925858 /* FullTimelineView.swift */; };
 		E1B0F73328FBC65C00925858 /* TimelineRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F73228FBC65C00925858 /* TimelineRowView.swift */; };
-		E1B0F73428FBC65C00925858 /* TimelineRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F73228FBC65C00925858 /* TimelineRowView.swift */; };
-		E1B0F73528FBC65C00925858 /* TimelineRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F73228FBC65C00925858 /* TimelineRowView.swift */; };
 		E1BEFF2E2916677700A2DE56 /* AddMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E14D290B279600B09604 /* AddMainView.swift */; };
 		E1BEFF2F2916677700A2DE56 /* AddMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E14D290B279600B09604 /* AddMainView.swift */; };
 		E1BEFF332916682F00A2DE56 /* SearchView .swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BEFF322916682F00A2DE56 /* SearchView .swift */; };
 		E1BEFF35291749EC00A2DE56 /* WheelItemsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BEFF34291749EC00A2DE56 /* WheelItemsModel.swift */; };
-		E1C95DAF28E4D26700851C4E /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DAE28E4D26700851C4E /* TaskModel.swift */; };
-		E1C95DB028E4D26700851C4E /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DAE28E4D26700851C4E /* TaskModel.swift */; };
-		E1C95DB128E4D26700851C4E /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DAE28E4D26700851C4E /* TaskModel.swift */; };
+		E1C95DAF28E4D26700851C4E /* MainCSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DAE28E4D26700851C4E /* MainCSS.swift */; };
+		E1C95DB028E4D26700851C4E /* MainCSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DAE28E4D26700851C4E /* MainCSS.swift */; };
+		E1C95DB128E4D26700851C4E /* MainCSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DAE28E4D26700851C4E /* MainCSS.swift */; };
 		E1C95DB328E4D50600851C4E /* OptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DB228E4D50600851C4E /* OptionsModel.swift */; };
 		E1C95DB428E4D50600851C4E /* OptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DB228E4D50600851C4E /* OptionsModel.swift */; };
 		E1C95DB528E4D50600851C4E /* OptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C95DB228E4D50600851C4E /* OptionsModel.swift */; };
 		E1CA7DF12921B42E00A41A14 /* NewItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CA7DF02921B42E00A41A14 /* NewItemModel.swift */; };
 		E1CA7DF32921B88800A41A14 /* ColorPickerDisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CA7DF22921B88800A41A14 /* ColorPickerDisc.swift */; };
+		E1EEC757294B0CDD005A88D1 /* TimeLineMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EEC756294B0CDD005A88D1 /* TimeLineMenu.swift */; };
+		E1EEC759294BE392005A88D1 /* testTimeLineRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EEC758294BE392005A88D1 /* testTimeLineRowView.swift */; };
+		E1EEC75B294BF5FF005A88D1 /* testingFULLTIMELINE.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EEC75A294BF5FF005A88D1 /* testingFULLTIMELINE.swift */; };
+		E1EEC75D294C780D005A88D1 /* TimeLineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EEC75C294C780D005A88D1 /* TimeLineModel.swift */; };
+		E1EEC75F294C7839005A88D1 /* TimeLineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EEC75E294C7839005A88D1 /* TimeLineItemView.swift */; };
+		E1EEC761294C8B49005A88D1 /* TimeLinesomething.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EEC760294C8B49005A88D1 /* TimeLinesomething.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -116,8 +123,9 @@
 		E11720AE291E05B600316FBE /* DateListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateListRow.swift; sourceTree = "<group>"; };
 		E11720B0291E06FF00316FBE /* DateListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateListModel.swift; sourceTree = "<group>"; };
 		E11720B22920677900316FBE /* DatePickerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerSheet.swift; sourceTree = "<group>"; };
+		E1340FF92952725C0074100B /* TimeLineTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineTitleView.swift; sourceTree = "<group>"; };
 		E13F3945293D2FE800769255 /* SubRoutineListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubRoutineListView.swift; sourceTree = "<group>"; };
-		E13F3948293E782E00769255 /* RoutineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineViewModel.swift; sourceTree = "<group>"; };
+		E13F3948293E782E00769255 /* RoutineModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineModel.swift; sourceTree = "<group>"; };
 		E13F394A293EB08E00769255 /* DurationPickerDisc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationPickerDisc.swift; sourceTree = "<group>"; };
 		E13F394C293F0BC800769255 /* RoutineAdderVie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineAdderVie.swift; sourceTree = "<group>"; };
 		E13F394E2945624F00769255 /* RoutineDurationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineDurationSheet.swift; sourceTree = "<group>"; };
@@ -126,6 +134,8 @@
 		E13F3954294942F700769255 /* GenericTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTabView.swift; sourceTree = "<group>"; };
 		E13F395629495B6A00769255 /* SubRoutineAdderDisc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubRoutineAdderDisc.swift; sourceTree = "<group>"; };
 		E13F3958294975AF00769255 /* ProjectEndDateDisc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEndDateDisc.swift; sourceTree = "<group>"; };
+		E13F395C294AA8D900769255 /* HabitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitModel.swift; sourceTree = "<group>"; };
+		E13F395F294AABB900769255 /* FrequencyPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequencyPicker.swift; sourceTree = "<group>"; };
 		E14F6E3F29147939009946EB /* SymbolPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPickerView.swift; sourceTree = "<group>"; };
 		E16BB26A28E0F25F00ABD2E0 /* Neuron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neuron.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16BB26D28E0F25F00ABD2E0 /* NeuronApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuronApp.swift; sourceTree = "<group>"; };
@@ -160,10 +170,16 @@
 		E1B0F73228FBC65C00925858 /* TimelineRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineRowView.swift; sourceTree = "<group>"; };
 		E1BEFF322916682F00A2DE56 /* SearchView .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchView .swift"; sourceTree = "<group>"; };
 		E1BEFF34291749EC00A2DE56 /* WheelItemsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelItemsModel.swift; sourceTree = "<group>"; };
-		E1C95DAE28E4D26700851C4E /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
+		E1C95DAE28E4D26700851C4E /* MainCSS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCSS.swift; sourceTree = "<group>"; };
 		E1C95DB228E4D50600851C4E /* OptionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsModel.swift; sourceTree = "<group>"; };
 		E1CA7DF02921B42E00A41A14 /* NewItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemModel.swift; sourceTree = "<group>"; };
 		E1CA7DF22921B88800A41A14 /* ColorPickerDisc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerDisc.swift; sourceTree = "<group>"; };
+		E1EEC756294B0CDD005A88D1 /* TimeLineMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineMenu.swift; sourceTree = "<group>"; };
+		E1EEC758294BE392005A88D1 /* testTimeLineRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testTimeLineRowView.swift; sourceTree = "<group>"; };
+		E1EEC75A294BF5FF005A88D1 /* testingFULLTIMELINE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testingFULLTIMELINE.swift; sourceTree = "<group>"; };
+		E1EEC75C294C780D005A88D1 /* TimeLineModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineModel.swift; sourceTree = "<group>"; };
+		E1EEC75E294C7839005A88D1 /* TimeLineItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineItemView.swift; sourceTree = "<group>"; };
+		E1EEC760294C8B49005A88D1 /* TimeLinesomething.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLinesomething.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,10 +214,19 @@
 				E13F3945293D2FE800769255 /* SubRoutineListView.swift */,
 				E13F39502945CC7A00769255 /* RoutineSchedPickerDisc.swift */,
 				E13F394E2945624F00769255 /* RoutineDurationSheet.swift */,
-				E13F3948293E782E00769255 /* RoutineViewModel.swift */,
+				E13F3948293E782E00769255 /* RoutineModel.swift */,
 				E13F394C293F0BC800769255 /* RoutineAdderVie.swift */,
 			);
 			path = RoutineComponents;
+			sourceTree = "<group>";
+		};
+		E13F395E294AAB0B00769255 /* HabitComponents */ = {
+			isa = PBXGroup;
+			children = (
+				E13F395C294AA8D900769255 /* HabitModel.swift */,
+				E13F395F294AABB900769255 /* FrequencyPicker.swift */,
+			);
+			path = HabitComponents;
 			sourceTree = "<group>";
 		};
 		E16BB26128E0F25F00ABD2E0 = {
@@ -268,7 +293,7 @@
 		E16BB2A628E4D1E400ABD2E0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E1C95DAE28E4D26700851C4E /* TaskModel.swift */,
+				E1C95DAE28E4D26700851C4E /* MainCSS.swift */,
 				E1C95DB228E4D50600851C4E /* OptionsModel.swift */,
 				E18F4FA128F0299400351835 /* testdata.swift */,
 				E176E14F290B2D6900B09604 /* AddTaskConfig.swift */,
@@ -311,13 +336,17 @@
 		E1B0F73628FBC69800925858 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E1B0F72228FBC65000925858 /* HeaderView.swift */,
 				E1B0F71E28FBC61F00925858 /* ContentView.swift */,
-				E1B0F72528FBC65000925858 /* FullTimelineView.swift */,
+				E1B0F72228FBC65000925858 /* HeaderView.swift */,
 				E1B0F71A28FBC60800925858 /* BottomTab.swift */,
 				E176E151290B560C00B09604 /* AddTaskButtonView.swift */,
-				E1B0F73228FBC65C00925858 /* TimelineRowView.swift */,
+				E1B0F72528FBC65000925858 /* FullTimelineView.swift */,
+				E1EEC758294BE392005A88D1 /* testTimeLineRowView.swift */,
+				E1EEC756294B0CDD005A88D1 /* TimeLineMenu.swift */,
 				E1B0F72428FBC65000925858 /* TaskDescriptionView.swift */,
+				E1340FF92952725C0074100B /* TimeLineTitleView.swift */,
+				E1EEC75C294C780D005A88D1 /* TimeLineModel.swift */,
+				E1EEC762294F54BA005A88D1 /* TestingItems */,
 				E1BEFF2D2916676600A2DE56 /* AddItemComponents */,
 			);
 			path = Views;
@@ -334,6 +363,7 @@
 				E176E14D290B279600B09604 /* AddMainView.swift */,
 				E13F3954294942F700769255 /* GenericTabView.swift */,
 				E176E1532910E23C00B09604 /* TabsStruct.swift */,
+				E13F395E294AAB0B00769255 /* HabitComponents */,
 				E13F3947293E76E100769255 /* RoutineComponents */,
 				E1A4DB852935B85A00FB6BDE /* ProjectComponents */,
 				E1A4DB80292C5F2600FB6BDE /* TaskComponents */,
@@ -343,6 +373,17 @@
 				E176E1592911F50C00B09604 /* CustomColorPickerView.swift */,
 			);
 			path = AddItemComponents;
+			sourceTree = "<group>";
+		};
+		E1EEC762294F54BA005A88D1 /* TestingItems */ = {
+			isa = PBXGroup;
+			children = (
+				E1B0F73228FBC65C00925858 /* TimelineRowView.swift */,
+				E1EEC75E294C7839005A88D1 /* TimeLineItemView.swift */,
+				E1EEC75A294BF5FF005A88D1 /* testingFULLTIMELINE.swift */,
+				E1EEC760294C8B49005A88D1 /* TimeLinesomething.swift */,
+			);
+			path = TestingItems;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -483,23 +524,28 @@
 				E11720AB291DF46D00316FBE /* DateListView.swift in Sources */,
 				E176E14E290B279600B09604 /* AddMainView.swift in Sources */,
 				E13F394B293EB08E00769255 /* DurationPickerDisc.swift in Sources */,
+				E1340FFA2952725C0074100B /* TimeLineTitleView.swift in Sources */,
 				E1B0F72628FBC65000925858 /* HeaderView.swift in Sources */,
 				E11720AF291E05B600316FBE /* DateListRow.swift in Sources */,
 				E13F3946293D2FE800769255 /* SubRoutineListView.swift in Sources */,
 				E176E1542910E23C00B09604 /* TabsStruct.swift in Sources */,
 				E1B0F72C28FBC65000925858 /* TaskDescriptionView.swift in Sources */,
 				E176E156291103B500B09604 /* DatePickerDisc.swift in Sources */,
+				E1EEC75B294BF5FF005A88D1 /* testingFULLTIMELINE.swift in Sources */,
 				E13F395729495B6A00769255 /* SubRoutineAdderDisc.swift in Sources */,
 				E1B0F71F28FBC62000925858 /* ContentView.swift in Sources */,
 				E1CA7DF32921B88800A41A14 /* ColorPickerDisc.swift in Sources */,
 				E1CA7DF12921B42E00A41A14 /* NewItemModel.swift in Sources */,
 				E1C95DB328E4D50600851C4E /* OptionsModel.swift in Sources */,
+				E13F395D294AA8D900769255 /* HabitModel.swift in Sources */,
 				E13F394F2945624F00769255 /* RoutineDurationSheet.swift in Sources */,
 				E176E150290B2D6900B09604 /* AddTaskConfig.swift in Sources */,
+				E1EEC75D294C780D005A88D1 /* TimeLineModel.swift in Sources */,
+				E1EEC761294C8B49005A88D1 /* TimeLinesomething.swift in Sources */,
 				E1A4DB842935AF7900FB6BDE /* SubTaskAdderDisc.swift in Sources */,
 				E14F6E4029147939009946EB /* SymbolPickerView.swift in Sources */,
 				E13F3953294806A500769255 /* enumWidgets.swift in Sources */,
-				E13F3949293E782E00769255 /* RoutineViewModel.swift in Sources */,
+				E13F3949293E782E00769255 /* RoutineModel.swift in Sources */,
 				E13F39512945CC7A00769255 /* RoutineSchedPickerDisc.swift in Sources */,
 				E1A4DB82292CE1E300FB6BDE /* css.swift in Sources */,
 				E176E15A2911F50C00B09604 /* CustomColorPickerView.swift in Sources */,
@@ -507,13 +553,17 @@
 				E19B9D7128FD1601009CC37A /* Persistence.swift in Sources */,
 				E13F3959294975AF00769255 /* ProjectEndDateDisc.swift in Sources */,
 				E1A4DB872935B88E00FB6BDE /* ProjectModel.swift in Sources */,
+				E13F3960294AABB900769255 /* FrequencyPicker.swift in Sources */,
 				E176E152290B560C00B09604 /* AddTaskButtonView.swift in Sources */,
+				E1EEC75F294C7839005A88D1 /* TimeLineItemView.swift in Sources */,
 				E13F3955294942F700769255 /* GenericTabView.swift in Sources */,
 				E1B0F71B28FBC60800925858 /* BottomTab.swift in Sources */,
-				E1C95DAF28E4D26700851C4E /* TaskModel.swift in Sources */,
+				E1C95DAF28E4D26700851C4E /* MainCSS.swift in Sources */,
 				E11720B32920677900316FBE /* DatePickerSheet.swift in Sources */,
+				E1EEC759294BE392005A88D1 /* testTimeLineRowView.swift in Sources */,
 				E1BEFF332916682F00A2DE56 /* SearchView .swift in Sources */,
 				E13F394D293F0BC800769255 /* RoutineAdderVie.swift in Sources */,
+				E1EEC757294B0CDD005A88D1 /* TimeLineMenu.swift in Sources */,
 				E1B0F73328FBC65C00925858 /* TimelineRowView.swift in Sources */,
 				E1A4DB892935BDF400FB6BDE /* SubTaskSheetView.swift in Sources */,
 				E1B0F72F28FBC65000925858 /* FullTimelineView.swift in Sources */,
@@ -525,7 +575,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1C95DB028E4D26700851C4E /* TaskModel.swift in Sources */,
+				E1C95DB028E4D26700851C4E /* MainCSS.swift in Sources */,
 				E1B0F72028FBC62000925858 /* ContentView.swift in Sources */,
 				E1B0F71C28FBC60800925858 /* BottomTab.swift in Sources */,
 				E1B0F73028FBC65000925858 /* FullTimelineView.swift in Sources */,
@@ -536,7 +586,6 @@
 				E1B0F72D28FBC65000925858 /* TaskDescriptionView.swift in Sources */,
 				E176E1572911067D00B09604 /* AddTaskButtonView.swift in Sources */,
 				E1B0F72728FBC65000925858 /* HeaderView.swift in Sources */,
-				E1B0F73428FBC65C00925858 /* TimelineRowView.swift in Sources */,
 				E1BEFF2E2916677700A2DE56 /* AddMainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -552,12 +601,11 @@
 				E1B0F72128FBC62000925858 /* ContentView.swift in Sources */,
 				E1B0F71D28FBC60800925858 /* BottomTab.swift in Sources */,
 				E1B0F73128FBC65000925858 /* FullTimelineView.swift in Sources */,
-				E1B0F73528FBC65C00925858 /* TimelineRowView.swift in Sources */,
 				E19B9D7028FD11C2009CC37A /* Neuron.xcdatamodeld in Sources */,
 				E16BB29128E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift in Sources */,
 				E1B0F72E28FBC65000925858 /* TaskDescriptionView.swift in Sources */,
 				E19B9D7328FD1602009CC37A /* Persistence.swift in Sources */,
-				E1C95DB128E4D26700851C4E /* TaskModel.swift in Sources */,
+				E1C95DB128E4D26700851C4E /* MainCSS.swift in Sources */,
 				E1B0F72828FBC65000925858 /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

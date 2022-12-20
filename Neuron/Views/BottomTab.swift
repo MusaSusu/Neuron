@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct BottomTabView: View {
+    @State var isSheet : Bool = false
+    
     var body: some View {
         VStack{
             
             HStack {
                 
-                Button(action: openInbox) {
+                Button(action: {isSheet.toggle()}) {
                     VStack{
                         Image(systemName: "house.fill")
                             .font(.title)
@@ -22,6 +24,10 @@ struct BottomTabView: View {
                             .foregroundColor(Color(white:0.5))
                     }
                 }.frame(maxWidth: .infinity)
+                    .sheet(isPresented: $isSheet){
+                        TimeLinesomething(items: [])
+                    }
+
                 
                 Button(action: openInbox) {
                     VStack{
@@ -64,7 +70,6 @@ struct BottomTabView: View {
 }
 
 func openInbox(){
-    
 }
 
 struct BottomTabView_Previews: PreviewProvider {

@@ -13,51 +13,37 @@ struct TaskDescriptionView: View {
     
     @ObservedObject var task: Tasks
     
-    let duration: Double
-    let setColor: Color
+    var setColor: Color{
+        return task.color?.fromDouble() ?? Color.red
+    }
+    
+    let capsuleHeight: Double
         
     var interval: String {
-        (task.duration * 60).toHourMin()
+        (task.duration).toHourMin(from:.seconds )
     }
     
     var body: some View {
-        HStack(alignment:.center,spacing:0){
+        VStack(alignment: .leading, spacing: 5){
+            TimeLineTitleView(task: task)
             
-            HStack(spacing:0) {
-                Text("\(task.title!)")
-                    .font(.system(.title3,design: .default,weight:.semibold))
-                
-                Text("  (\(interval))")
-                    .italic()
-                    .font(.system(.subheadline,weight: .light))
+            HStack{
+                Text("\(task.taskInfo ?? "nothing...")")
             }
-            .overlay(
-                strikethroughs()
-                    .stroke(style: StrokeStyle(lineWidth: 2))
-                    .fill(task.taskChecker ? .red : .clear)
-            )
             
-            Spacer()
-            
-            Button {
-                task.taskChecker.toggle()
-            } label: {
-                Label {Text("Task Complete")} icon: {
-                    Image(systemName: task.taskChecker ? "circle.inset.filled" : "circle")
-                        .foregroundColor(task.taskChecker ? setColor.opacity(1) : .secondary)
-                        .accessibility(label: Text(task.taskChecker ? "Checked" : "Unchecked"))
-                        .imageScale(.large)
-                }
-            }.labelStyle(.iconOnly)
         }
-        HStack{
-            Text("\(task.taskInfo ?? "nothing")")
-        }
+        .frame(height: (capsuleHeight), alignment: .topLeading)
+        .padding(10)
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(setColor).opacity(0.2) //white: 0.995
+                .shadow(radius: 5)
+        )
     }
 }
-    
 
-private struct strikethroughs: Shape{
+
+struct strikethroughs: Shape{
     func path(in rect: CGRect) -> Path {
         var path = Path()
         path.move(to: CGPoint(x: (rect.minX-5), y: (rect.midY)  ))
@@ -69,7 +55,7 @@ private struct strikethroughs: Shape{
 
 struct TaskDescription_Previews: PreviewProvider {
     static var previews: some View {
-        TaskDescriptionView(task: previewscontainer, duration: 0.5, setColor: .orange)
+        TaskDescriptionView(task: previewscontainer,capsuleHeight: 120)
             .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
     }
 }

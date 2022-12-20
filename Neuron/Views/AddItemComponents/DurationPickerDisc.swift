@@ -31,7 +31,7 @@ struct DurationPickerDisc: View {
                     HStack(spacing:0){
                         Text("Duration").titleFont()
                         Spacer()
-                        Text("\(createDateString(duration:NewItem.duration))")
+                        Text("\(NewItem.duration.toHourMin(from: .minutes))")
                             .titleFont()
                     }
                 }

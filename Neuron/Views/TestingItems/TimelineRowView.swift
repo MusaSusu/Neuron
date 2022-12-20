@@ -15,6 +15,8 @@ struct TimelineRowView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
+    @State var selectionMenu : MainWidgets = .none
+    
     @ObservedObject var task: Tasks
     let id: UUID
     let icon: String
@@ -38,7 +40,7 @@ struct TimelineRowView: View {
         else {
             return duration * 40.0
         }
-    }   
+    }
     
     var formattedStartDate: String { formatDate(data:dateStart)}
     var formattedEndDate: String {formatDate(data: dateEnd)}
@@ -47,7 +49,7 @@ struct TimelineRowView: View {
         self.task = task
         self.id = task.id!
         self.icon = task.icon!
-        self.duration = CGFloat(task.duration)
+        self.duration = CGFloat(task.duration) 
         self.taskTitle = task.title!
         self.dateStart = task.dateStart!
         self.dateEnd = task.dateEnd!
@@ -62,6 +64,7 @@ struct TimelineRowView: View {
         HStack(spacing:0){
             
             HStack(spacing:0){
+                Spacer()
                 
                 VStack{
                     Text(formattedStartDate)
@@ -83,11 +86,18 @@ struct TimelineRowView: View {
                         }
                     }.frame(height:45)
                     VStack{
-                        let tempDate = dateStart
-                        let tempDuration = (duration * 3600)
-                        createCapsule(color: setColor, date: tempDate, duration: tempDuration, height: capsuleHeight,icon:icon)
-                        
-                    }
+                        drawCapsule(date: dateStart, duration: duration * 3600)
+                            .onTapGesture {
+                                if selectionMenu == .menu{
+                                    selectionMenu = .none
+                                }
+                                else{
+                                    selectionMenu = .menu
+                                }
+                                
+                            }
+                    }.coordinateSpace(name: "Capsule")
+                    
                     VStack{
                         if nextDuration != -5{
                             setTimeLineGradient(color: setColor, date: endDate, duration: nextDuration, height: capsuleHeight, condition: "bot")
@@ -100,25 +110,49 @@ struct TimelineRowView: View {
                 
             }.frame(width: 120).padding(5)
             
-            HStack(spacing: 0){
-                VStack(alignment: .leading,spacing: 0){
-                    TaskDescriptionView(task: task, duration: duration,setColor: setColor)
+            VStack{
+                switch selectionMenu {
+                case .description:
+                    TaskDescriptionView(task: task,capsuleHeight: capsuleHeight + 60.0)
+                        .transition(.scale)
+                case .menu:
+                    TimeLineMenu(selectedMenu: $selectionMenu)
+                        .transition(.scale(scale: 0,anchor: UnitPoint(x: 0 , y: 0.5)))
+                case .none:
+                    EmptyView()
                 }
-                Spacer()
             }
-            .frame(height: (capsuleHeight + 60.0), alignment: .topLeading)
-            .padding(10)
-            .background(
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(setColor).opacity(0.2) //white: 0.995
-                    .shadow(radius: 5)
-            )
-            
+            .animation(.easeInOut(duration: 0.2), value: selectionMenu)
             Spacer()
             
         }.frame(height:capsuleHeight+90)
     }
+    
+    func drawCapsule(date:Date,duration:TimeInterval) -> some View{
+        TimelineView(.periodic(from: date, by: 30)){context in
+            let value = max(0,context.date.timeIntervalSince(date) / duration)
+            let gradient = Gradient(stops: [
+                .init(color: setColor, location: 0),
+                .init(color: Color(white: 0.95), location: value),
+            ])
+            ZStack{
+                Capsule()
+                    .fill(LinearGradient(gradient: gradient, startPoint: .top, endPoint: UnitPoint(x: 0.5, y: 1.25) ) )
+                    .frame(width: 45.0, height: capsuleHeight)
+                let gradient = Gradient(stops: [
+                    .init(color: .white, location: 0),
+                    .init(color: setColor, location: value),
+                ])
+                LinearGradient(gradient: gradient, startPoint: .top, endPoint: UnitPoint(x: 0.5, y: 2))
+                    .mask(Image(systemName:icon)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                    ).frame(width: 30.0, height: 30.0)
+            }
+        }
+    }
 }
+
 
 
 private func formatDate(data: Date) -> String{
@@ -142,7 +176,7 @@ private struct setTimeLineGradient: View{
                 .init(color: color, location: 0),
                 .init(color: Color(white: 0.95), location: value),
             ])
-            ContainerView{
+            Group{
                 switch condition {
                 case "top":
                     VStack{
@@ -195,50 +229,6 @@ private struct setTimeLineGradient: View{
             path.addLine(to: CGPoint(x:(rect.midX), y: (rect.minY+45) ))
             
             return path
-        }
-    }
-    
-    private struct ContainerView<Content: View>: View {
-        @ViewBuilder var content: Content
-        
-        var body: some View {
-            VStack{
-                content
-            }
-        }
-    }
-}
-
-private struct createCapsule: View {
-    let color: Color
-    let date: Date
-    let duration: TimeInterval
-    let height: CGFloat
-    let icon: String
-    
-    var body: some View{
-        VStack{
-            TimelineView(.periodic(from: date, by: 30)){context in
-                let value = max(0,context.date.timeIntervalSince(date) / duration)
-                let gradient = Gradient(stops: [
-                    .init(color: color, location: 0),
-                    .init(color: Color(white: 0.95), location: value),
-                ])
-                ZStack{
-                    Capsule()
-                        .fill(LinearGradient(gradient: gradient, startPoint: .top, endPoint: UnitPoint(x: 0.5, y: 1.25) ) )
-                        .frame(width: 45.0, height: height)
-                    let gradient = Gradient(stops: [
-                        .init(color: .white, location: 0),
-                        .init(color: color, location: value),
-                    ])
-                    LinearGradient(gradient: gradient, startPoint: .top, endPoint: UnitPoint(x: 0.5, y: 2))
-                        .mask(Image(systemName:icon)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                        ).frame(width: 30.0, height: 30.0)
-                }
-            }
         }
     }
 }

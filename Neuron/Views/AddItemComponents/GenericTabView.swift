@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GenericTabView: View {
     @EnvironmentObject var NewItem : NewItemModel
-    var widgetsToLoad : [widgets]
+    var widgetsToLoad : [AddWidgets]
     
     var body: some View {
         ScrollView(.vertical,showsIndicators: false){
@@ -33,8 +33,10 @@ struct GenericTabView: View {
     }
     
     @ViewBuilder
-    func addWidgetView(of tab: widgets) -> some View{
+    func addWidgetView(of tab: AddWidgets) -> some View{
         switch tab {
+        case .FrequencyPicker:
+            FrequencyPickerDisc()
         case .DatePicker:
             DatePickerDisc()
         case .ProjectEndDateSelect:
@@ -59,6 +61,6 @@ struct GenericTabView_Previews: PreviewProvider {
     static var previews: some View {
         GenericTabView(widgetsToLoad: RoutineWidgets)
             .environmentObject(NewItemModel())
-            .environmentObject(RoutineViewModel())
+            .environmentObject(RoutineModel())
     }
 }

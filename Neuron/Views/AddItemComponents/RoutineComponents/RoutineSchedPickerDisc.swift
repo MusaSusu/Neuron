@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RoutineSchedPickerDisc: View {
-    @EnvironmentObject var RoutineModel : RoutineViewModel
+    @EnvironmentObject var Routine : RoutineModel
     
     
     var body: some View {
@@ -16,7 +16,7 @@ struct RoutineSchedPickerDisc: View {
             DisclosureGroup{
                 HStack{
                     Spacer()
-                    ForEach($RoutineModel.scheduleList, id: \.self){ $item in
+                    ForEach($Routine.scheduleList, id: \.self){ $item in
                         VStack{
                             Button(action: {item.check.toggle()}){
                                 Text(item.id)
@@ -50,6 +50,6 @@ struct RoutineSchedPickerDisc: View {
 
 struct RoutineSchedPickerDisc_Previews: PreviewProvider {
     static var previews: some View {
-        RoutineSchedPickerDisc().environmentObject(RoutineViewModel())
+        RoutineSchedPickerDisc().environmentObject(RoutineModel())
     }
 }

@@ -16,7 +16,7 @@ struct AddMainView: View {
     @StateObject var DateList = DateListModel()
     @StateObject var NewItem = NewItemModel()
     @StateObject var Project = ProjectModel()
-    @StateObject var RoutineModel = RoutineViewModel()
+    @StateObject var Routine = RoutineModel()
 
     @State var errorMessage: String?
     @State private var isFocused: Bool = false
@@ -24,7 +24,7 @@ struct AddMainView: View {
     var body: some View {
         ZStack{
             
-            ShowModal(isOn: DateList.isPop){
+            ModalContainer{
                 VStack{
                     //Header
                     HStack{
@@ -81,7 +81,7 @@ struct AddMainView: View {
                         TabsStruct(width:geometry.size.width)
                             .environmentObject(DateList)
                             .environmentObject(NewItem)
-                            .environmentObject(RoutineModel)
+                            .environmentObject(Routine)
                             .environmentObject(Project)
                         
                     }.padding(.horizontal,-5)
@@ -96,10 +96,10 @@ struct AddMainView: View {
             VStack{
                 if DateList.isPop{
                     
-                    DatePickerDisc().environmentObject(DateList)
+                    DatePickerSheet().environmentObject(DateList)
                         .transition(.asymmetric(insertion: .scale, removal: .scale))
                 }
-            }.animation(.default.speed(1), value: DateList.isPop)
+            }.animation(.easeInOut(duration: 0.15), value: DateList.isPop )
             
         }
     }
@@ -117,24 +117,17 @@ struct AddMainView: View {
         item.taskDay = extractDate(date: NewItem.dateStart, format: "MM-dd-yyyy")
     }
     
-    struct ShowModal<Content:View>: View{
-        var isOn : Bool
-
-        @ViewBuilder var content : Content
-        
-        var body: some View {
-            VStack{
-                content
-                    .opacity(isOn ? 0.5 : 1)
-                    .disabled(isOn)
-            }
-        }
+    @ViewBuilder
+    func ModalContainer<Content:View>(@ViewBuilder content: ()->Content ) -> some View{
+        content()
+            .opacity(DateList.isPop ? 0.5 : 1)
+            .disabled(DateList.isPop)
     }
 }
 
 struct AddMainView_Previews: PreviewProvider {
     static var previews: some View {
-        AddMainView( item: .init(entity: Tasks.entity(), insertInto: PersistenceController.preview.container.viewContext))
+        AddMainView( item: .init(entity: Tasks.entity(),insertInto: PersistenceController.preview.container.viewContext))
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 
     }

@@ -54,16 +54,13 @@ struct ContentView: View {
                                     .opacity(UserOptions.isSelected(date: day) ? 1 : 0.5)
                             }
                         )
-                        
                         Spacer()
-                        
                     }
                 }.padding()
             }
             
             // MARK: vertical time line view
             FullTimelineView( date: UserOptions.extractDate(date: UserOptions.selectedDay, format:"MM-dd-yyyy"))
-            
             
             BottomTabView()
                 .offset(y:-10)

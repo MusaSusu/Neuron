@@ -12,7 +12,7 @@ struct TabsStruct: View {
     @StateObject var WheelItems : WheelItemsModel
     @EnvironmentObject var NewItem : NewItemModel
     @State var transitionHelper: Bool = false
-    let viewSelection: [[widgets]] = [TaskWidgets,ProjectWidgets,[.ColorPicker,.DurationPicker,.Notes],RoutineWidgets]
+    let viewSelection: [[AddWidgets]] = [TaskWidgets,ProjectWidgets,HabitWidgets,RoutineWidgets]
     
     init(width : CGFloat){
         _WheelItems = StateObject(wrappedValue: WheelItemsModel(width: width) )
@@ -27,18 +27,9 @@ struct TabsStruct: View {
                 }
             }.frame(minHeight: 40,maxHeight:50)
 
-            
-            HStack{
-                if transitionHelper{
-                    
-                    GenericTabView(widgetsToLoad: viewSelection[WheelItems.selection])
-                        .transition(.asymmetric(insertion: .push(from: .leading), removal: .push(from: .trailing)))
-                }
-                else{
-                    
-                    GenericTabView(widgetsToLoad: viewSelection[WheelItems.selection])
-                        .transition(.asymmetric(insertion: .push(from: .leading), removal: .push(from: .trailing)))
-                }
+            transitionContainer{
+                GenericTabView(widgetsToLoad: viewSelection[WheelItems.selection])
+                    .transition(.asymmetric(insertion: .push(from: .leading), removal: .push(from: .trailing)))
             }
             .animation(.easeInOut, value: transitionHelper)
             .onChange(of: WheelItems.selection){ value in
@@ -50,6 +41,17 @@ struct TabsStruct: View {
             Color(white : 0.95)
         )
     }
+    
+    @ViewBuilder
+    func transitionContainer<Content:View>(@ViewBuilder content: ()->Content) -> some View{
+        if transitionHelper{
+            content()
+        }
+        else{
+            content()
+        }
+    }
+    
 }
 
 struct TabsStruct_Previews: PreviewProvider {
@@ -58,7 +60,7 @@ struct TabsStruct_Previews: PreviewProvider {
             .environmentObject(DateListModel())
             .environmentObject(NewItemModel())
             .environmentObject(ProjectModel())
-            .environmentObject(RoutineViewModel())
+            .environmentObject(RoutineModel())
     }
 }
 
@@ -90,7 +92,7 @@ private struct WheelView: View {
     var body: some View {
         ZStack{
             HStack(spacing: 0){
-                ContainerView(width: WheelItems.delta){
+                addScreen{
                     Rectangle()
                         .fill(isDrag ? .gray : .clear)
                         .animation(.easeIn.speed(isDrag ? 1.5 : 0.5), value: WheelItems.selection)
@@ -118,17 +120,13 @@ private struct WheelView: View {
                 }
         )
     }
-    private struct ContainerView<Content: View>: View{
-        let width: CGFloat
-        @ViewBuilder var content: Content
-
-        var body: some View{
-            content
-                Rectangle()
-                .fill(userColor)
-                .frame(width: width)
-            content
-        }
+    @ViewBuilder
+    func addScreen<Content: View>(@ViewBuilder content: ()->Content) -> some View{
+        content()
+        Rectangle()
+            .fill(userColor)
+            .frame(width: WheelItems.delta)
+        content()
     }
 }
 
