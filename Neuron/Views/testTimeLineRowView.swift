@@ -19,7 +19,7 @@ struct testTimelineRowView: View {
     
     @State var selectionMenu : MainWidgets = .menu
     
-    @ObservedObject var task: Tasks
+    @ObservedObject var task: Time
     
     let id: UUID
     let icon: String
@@ -33,7 +33,7 @@ struct testTimelineRowView: View {
     let setColor: Color
     
     var capsuleHeight: CGFloat{
-        let duration = abs((duration * 2))
+        let duration = abs((duration / 1800))
         if duration <= 1 {
             return 45
         }
@@ -48,16 +48,16 @@ struct testTimelineRowView: View {
     var formattedStartDate: String { formatDate(data:dateStart)}
     var formattedEndDate: String {formatDate(data: dateEnd)}
     
-    init(task: Tasks,nextDuration: TimeInterval){
+    init(task: Time,nextDuration: TimeInterval){
         self.task = task
         self.id = task.id!
         self.icon = task.icon!
         self.duration = CGFloat(task.duration)
         self.taskTitle = task.title!
-        self.dateStart = task.dateStart!
-        self.dateEnd = task.dateEnd!
+        self.dateStart = task.startTime!
+        self.dateEnd = task.date.end
         self.setColor = task.color!.fromDouble()
-        self.text = task.taskInfo!
+        self.text = task.notes!
         self.nextDuration = {
             if nextDuration < 1 {
                 return 0
@@ -94,7 +94,7 @@ struct testTimelineRowView: View {
                     }.frame(width:15,height: capsuleHeight*2)
                     VStack{
                         Spacer()
-                        drawCapsule(date: dateStart, duration: duration * 3600)
+                        drawCapsule(date: dateStart, duration: duration )
                             .onTapGesture {
                                 if selectionMenu == .menu{
                                     selectionMenu = .none

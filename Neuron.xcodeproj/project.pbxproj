@@ -66,7 +66,6 @@
 		E1B0F72F28FBC65000925858 /* FullTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F72528FBC65000925858 /* FullTimelineView.swift */; };
 		E1B0F73028FBC65000925858 /* FullTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F72528FBC65000925858 /* FullTimelineView.swift */; };
 		E1B0F73128FBC65000925858 /* FullTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F72528FBC65000925858 /* FullTimelineView.swift */; };
-		E1B0F73328FBC65C00925858 /* TimelineRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F73228FBC65C00925858 /* TimelineRowView.swift */; };
 		E1BEFF2E2916677700A2DE56 /* AddMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E14D290B279600B09604 /* AddMainView.swift */; };
 		E1BEFF2F2916677700A2DE56 /* AddMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E14D290B279600B09604 /* AddMainView.swift */; };
 		E1BEFF332916682F00A2DE56 /* SearchView .swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BEFF322916682F00A2DE56 /* SearchView .swift */; };
@@ -81,7 +80,6 @@
 		E1CA7DF32921B88800A41A14 /* ColorPickerDisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CA7DF22921B88800A41A14 /* ColorPickerDisc.swift */; };
 		E1EEC757294B0CDD005A88D1 /* TimeLineMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EEC756294B0CDD005A88D1 /* TimeLineMenu.swift */; };
 		E1EEC759294BE392005A88D1 /* testTimeLineRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EEC758294BE392005A88D1 /* testTimeLineRowView.swift */; };
-		E1EEC75B294BF5FF005A88D1 /* testingFULLTIMELINE.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EEC75A294BF5FF005A88D1 /* testingFULLTIMELINE.swift */; };
 		E1EEC75D294C780D005A88D1 /* TimeLineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EEC75C294C780D005A88D1 /* TimeLineModel.swift */; };
 		E1EEC75F294C7839005A88D1 /* TimeLineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EEC75E294C7839005A88D1 /* TimeLineItemView.swift */; };
 		E1EEC761294C8B49005A88D1 /* TimeLinesomething.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EEC760294C8B49005A88D1 /* TimeLinesomething.swift */; };
@@ -167,7 +165,6 @@
 		E1B0F72228FBC65000925858 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		E1B0F72428FBC65000925858 /* TaskDescriptionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDescriptionView.swift; sourceTree = "<group>"; };
 		E1B0F72528FBC65000925858 /* FullTimelineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullTimelineView.swift; sourceTree = "<group>"; };
-		E1B0F73228FBC65C00925858 /* TimelineRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineRowView.swift; sourceTree = "<group>"; };
 		E1BEFF322916682F00A2DE56 /* SearchView .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchView .swift"; sourceTree = "<group>"; };
 		E1BEFF34291749EC00A2DE56 /* WheelItemsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelItemsModel.swift; sourceTree = "<group>"; };
 		E1C95DAE28E4D26700851C4E /* MainCSS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCSS.swift; sourceTree = "<group>"; };
@@ -176,7 +173,6 @@
 		E1CA7DF22921B88800A41A14 /* ColorPickerDisc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerDisc.swift; sourceTree = "<group>"; };
 		E1EEC756294B0CDD005A88D1 /* TimeLineMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineMenu.swift; sourceTree = "<group>"; };
 		E1EEC758294BE392005A88D1 /* testTimeLineRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testTimeLineRowView.swift; sourceTree = "<group>"; };
-		E1EEC75A294BF5FF005A88D1 /* testingFULLTIMELINE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testingFULLTIMELINE.swift; sourceTree = "<group>"; };
 		E1EEC75C294C780D005A88D1 /* TimeLineModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineModel.swift; sourceTree = "<group>"; };
 		E1EEC75E294C7839005A88D1 /* TimeLineItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineItemView.swift; sourceTree = "<group>"; };
 		E1EEC760294C8B49005A88D1 /* TimeLinesomething.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLinesomething.swift; sourceTree = "<group>"; };
@@ -378,9 +374,7 @@
 		E1EEC762294F54BA005A88D1 /* TestingItems */ = {
 			isa = PBXGroup;
 			children = (
-				E1B0F73228FBC65C00925858 /* TimelineRowView.swift */,
 				E1EEC75E294C7839005A88D1 /* TimeLineItemView.swift */,
-				E1EEC75A294BF5FF005A88D1 /* testingFULLTIMELINE.swift */,
 				E1EEC760294C8B49005A88D1 /* TimeLinesomething.swift */,
 			);
 			path = TestingItems;
@@ -531,7 +525,6 @@
 				E176E1542910E23C00B09604 /* TabsStruct.swift in Sources */,
 				E1B0F72C28FBC65000925858 /* TaskDescriptionView.swift in Sources */,
 				E176E156291103B500B09604 /* DatePickerDisc.swift in Sources */,
-				E1EEC75B294BF5FF005A88D1 /* testingFULLTIMELINE.swift in Sources */,
 				E13F395729495B6A00769255 /* SubRoutineAdderDisc.swift in Sources */,
 				E1B0F71F28FBC62000925858 /* ContentView.swift in Sources */,
 				E1CA7DF32921B88800A41A14 /* ColorPickerDisc.swift in Sources */,
@@ -564,7 +557,6 @@
 				E1BEFF332916682F00A2DE56 /* SearchView .swift in Sources */,
 				E13F394D293F0BC800769255 /* RoutineAdderVie.swift in Sources */,
 				E1EEC757294B0CDD005A88D1 /* TimeLineMenu.swift in Sources */,
-				E1B0F73328FBC65C00925858 /* TimelineRowView.swift in Sources */,
 				E1A4DB892935BDF400FB6BDE /* SubTaskSheetView.swift in Sources */,
 				E1B0F72F28FBC65000925858 /* FullTimelineView.swift in Sources */,
 				E176E15E2913302900B09604 /* Symbol Picker Model.swift in Sources */,

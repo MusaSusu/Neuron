@@ -8,60 +8,50 @@
 import SwiftUI
 
 struct SearchView_: View {
-    @State private var taskName: String = ""
-    @State private var isFocused: Bool = false
-
+    @EnvironmentObject var NewItem : NewItemModel
+    @State private var isFocused = false
+    
     var body: some View {
-        VStack{
-            //TITLE / SEARCH
-            HStack{
-                Spacer()
-                Text("Add Task").font(.title.bold())
-                    .foregroundColor(userColor)
-                Spacer()
-            }.padding(.vertical)
+        
+        HStack{
             
-            Divider()
-                .background(.blue)
-                .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
-            
-            //MARK: Search Bar / Title Input
-            HStack{
-                TextField(
-                    "Something to do...",
-                    text: $taskName,
-                    onEditingChanged: {_ in isFocused.toggle()}
-                )
-                .customStyle()
-                .background{
-                    ZStack{
-                        RoundedRectangle(cornerRadius: 25,style: .continuous)
-                            .fill(Color(white:0.99))
-                        RoundedRectangle(cornerRadius: 25,style: .continuous)
-                            .strokeBorder(
-                                userColor,
-                                lineWidth: isFocused ? 4 : 2
-                            )
+            ZStack{
+                Circle()
+                    .fill(NewItem.color)
+                    .frame(width: 40)
+                Rectangle()
+                    .fill(.white)
+                    .mask{
+                        Image(systemName:NewItem.icon)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 25.0, height: 25.0)
                     }
-                }
-            }
-            ScrollView(.vertical,showsIndicators: true){
-                VStack{
-                    //Show tasks that have the same title. Also right below have 3 selections to pick what kind of task you want to add.
-                }
-            }
+            }.frame(width: 40).offset(x:10)
+            
+            TextField(
+                "Something to do...",
+                text: $NewItem.name,
+                onEditingChanged: {_ in isFocused.toggle()}
+            ).customStyle()
         }
-        .padding(10)
-        .ignoresSafeArea(edges:.bottom)
-        .background(
-            Color(white : 0.95)
-        )
+        .background{
+            ZStack{
+                RoundedRectangle(cornerRadius: 25,style: .continuous)
+                    .fill(Color(white:0.99))
+                RoundedRectangle(cornerRadius: 25,style: .continuous)
+                    .strokeBorder(
+                        userColor,
+                        lineWidth: isFocused ? 4 : 2
+                    )
+            }.frame(height: 60)
+        }.frame(height: 80)
     }
 }
 
 struct SearchView__Previews: PreviewProvider {
     static var previews: some View {
-        SearchView_()
+        SearchView_().environmentObject(NewItemModel())
     }
 }
 

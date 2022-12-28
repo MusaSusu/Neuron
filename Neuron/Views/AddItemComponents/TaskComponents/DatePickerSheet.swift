@@ -9,10 +9,9 @@ import SwiftUI
 
 struct DatePickerSheet: View {
     @EnvironmentObject var DateList : DateListModel
-    
+    var dismiss: ()-> Void
     var body: some View {
         VStack{
-            
             HStack{
                 DatePicker(
                     "Add Date",
@@ -22,7 +21,7 @@ struct DatePickerSheet: View {
             }.padding()
             
             Button{
-                DateList.isPop.toggle()
+                dismiss()
             }label: {
                 Text("Finished")
             }
@@ -37,6 +36,7 @@ struct DatePickerSheet: View {
 
 struct DatePickerSheet_Previews: PreviewProvider {
     static var previews: some View {
-        DatePickerSheet().environmentObject(DateListModel())
+        DatePickerSheet(dismiss: {})
+            .environmentObject(DateListModel())
     }
 }

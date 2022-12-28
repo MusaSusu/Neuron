@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DateListRow: View {
     @EnvironmentObject var DateList : DateListModel
+    @EnvironmentObject var NewItem : NewItemModel
     @Binding var date : dateItem
     let index: UUID
     
@@ -21,7 +22,7 @@ struct DateListRow: View {
     var body: some View {
         
         Button{
-            DateList.isPop.toggle()
+            NewItem.isPop = .DatePop
             DateList.editItem(date)
         }label: { Label{Text("Edit Item") } icon:
             {
@@ -45,7 +46,9 @@ struct DateListRow: View {
 
 struct DateListRow_Previews: PreviewProvider {
     static var previews: some View {
-        DateListRow(date: .constant(dateItem(id: UUID(), date: Date())),index: UUID()).environmentObject(DateListModel())
+        DateListRow(date: .constant(dateItem(id: UUID(), date: Date())),index: UUID())
+            .environmentObject(DateListModel())
+            .environmentObject(NewItemModel())
     }
 }
 

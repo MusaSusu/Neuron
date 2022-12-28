@@ -84,20 +84,23 @@ class TimeLineModel : ObservableObject {
     
 }
 
-extension Tasks{
-    var date : DateInterval{
-        set (newValue) {
-            self.dateStart = newValue.start
-            self.dateEnd = newValue.end
-            self.duration = newValue.duration
-        }
-        get {
-            DateInterval(start: self.dateStart ?? Date(), end: self.dateEnd ?? Date())
-        }
-    }
+extension SubTasks{
     
     func getColor() -> Color {
         self.color?.fromDouble() ?? .red
     }
+}
+
+extension Time{
+    var date : DateInterval{
+        set (newValue) {
+            self.startTime = newValue.start
+            self.subTask?.duration = newValue.duration
+        }
+        get {
+            DateInterval(start: self.startTime ?? Date(), duration: self.duration )
+        }
+    }
+    
 }
 

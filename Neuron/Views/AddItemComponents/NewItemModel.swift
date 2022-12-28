@@ -57,8 +57,20 @@ enum taskDate{
     case frequency
 }
 
+enum PopUp_Adder : String, Identifiable{
+    case DatePop
+    case RoutinePop
+    case none
+    
+    var id: Self{self}
+}
+
+
 class NewItemModel: ObservableObject{
     var selection: Int = 0
+    
+    @Published var isPop : PopUp_Adder = .none
+    
     
     @Published var name: String = ""
     @Published var icon: String = "gift.fill"
@@ -71,4 +83,13 @@ class NewItemModel: ObservableObject{
     @Published var notes: String = ""
     
     let testingnode = Node(anyTask(name: "eat lunch", icon: "dsd", color: Color.red))
+    
+    func saveItem(item: SubTasks ,dates : [Date]){
+        let timeCD = Time(context: item.managedObjectContext!)
+        item.id = UUID()
+        item.title = name
+        item.icon = icon
+        item.duration = duration
+        item.color = color.toDouble()
+    }
 }

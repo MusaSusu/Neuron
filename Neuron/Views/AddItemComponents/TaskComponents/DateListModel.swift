@@ -19,9 +19,12 @@ class DateListModel: ObservableObject{
     @Published var addInboxCheck: Bool = true
     
     @Published var isEditOn: Bool  = true
-    @Published var isPop: Bool = false
     
     var currentEdit: Int = 0
+    
+    func returnDates() -> [Date]{
+        return dates.map{ $0.date }
+    }
     
     func editItem(_ id: dateItem){
         let index = dates.firstIndex(where: {$0 == id})!
