@@ -84,8 +84,8 @@ class NewItemModel: ObservableObject{
     
     let testingnode = Node(anyTask(name: "eat lunch", icon: "dsd", color: Color.red))
     
-    func saveItem(item: SubTasks ,dates : [Date]){
-        let timeCD = Time(context: item.managedObjectContext!)
+    func saveItem(item: Tasks ,dates : [Date]){
+        //let timeCD = Time(context: item.managedObjectContext!)
         item.id = UUID()
         item.title = name
         item.icon = icon

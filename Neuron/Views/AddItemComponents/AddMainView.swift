@@ -9,7 +9,7 @@ import SwiftUI
 import CoreData
 
 struct AddMainView: View {
-    @ObservedObject var item: SubTasks // task object in child context
+    @ObservedObject var item: Tasks // task object in child context
     @Environment(\.managedObjectContext) private var context
     @Environment(\.dismiss) private var dismiss // causes body to run
     

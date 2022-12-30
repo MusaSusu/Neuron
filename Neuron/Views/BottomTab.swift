@@ -25,7 +25,6 @@ struct BottomTabView: View {
                     }
                 }.frame(maxWidth: .infinity)
                     .sheet(isPresented: $isSheet){
-                        TimeLinesomething(items: [])
                     }
 
                 

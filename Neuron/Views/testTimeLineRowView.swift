@@ -19,7 +19,7 @@ struct testTimelineRowView: View {
     
     @State var selectionMenu : MainWidgets = .menu
     
-    @ObservedObject var task: Time
+    @ObservedObject var task: Tasks
     
     let id: UUID
     let icon: String
@@ -48,13 +48,13 @@ struct testTimelineRowView: View {
     var formattedStartDate: String { formatDate(data:dateStart)}
     var formattedEndDate: String {formatDate(data: dateEnd)}
     
-    init(task: Time,nextDuration: TimeInterval){
+    init(task: Tasks,nextDuration: TimeInterval){
         self.task = task
         self.id = task.id!
         self.icon = task.icon!
         self.duration = CGFloat(task.duration)
         self.taskTitle = task.title!
-        self.dateStart = task.startTime!
+        self.dateStart = task.dateStart ?? Date()
         self.dateEnd = task.date.end
         self.setColor = task.color!.fromDouble()
         self.text = task.notes!

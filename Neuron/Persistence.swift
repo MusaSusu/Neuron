@@ -19,13 +19,13 @@ private let temp1 = [
 ]
 
 private let temp = [
-    Task1(taskTitle: "Wake up", taskDescription: "Wakey time 10-08",taskIcon: "sun.max.fill", taskDateStart: convertDate(data: "12-17-2022 01:00"),taskDateEnd:convertDate(data: "12-17-2022 01:30"),taskDuration: 0.5, taskColor:[0.949,  0.522,  0.1], taskChecker: false),
-    Task1(taskTitle: "Do work", taskDescription: "math",taskIcon: "pencil", taskDateStart:  convertDate(data: "12-17-2022 02:00"),taskDateEnd: convertDate(data: "12-17-2022 03:00"),taskDuration: 1,taskColor:[0.9098, 0.6039,  0.6039], taskChecker: false),
-    Task1(taskTitle: "Play games", taskDescription: "Play League",taskIcon: "gamecontroller.fill", taskDateStart: convertDate(data: "12-17-2022 12:20"),taskDateEnd:convertDate(data: "12-17-2022 13:20"),taskDuration: 1,taskColor: [0.32, 0.62,  0.81],taskChecker: false),
-    Task1(taskTitle: "Go for a jog", taskDescription: "Light jog at central park",taskIcon: "figure.walk", taskDateStart: convertDate(data: "12-17-2022 13:20"),taskDateEnd: convertDate(data: "12-17-2022 13:50"),taskDuration: 0.5,taskColor: [0.467,  0.867, 0.467],taskChecker: false),
-    Task1(taskTitle: "Make dinner", taskDescription: "Fried chicken with legumes",taskIcon: "cooktop.fill", taskDateStart: convertDate(data: "12-17-2022 14:50"),taskDateEnd: convertDate(data: "12-17-2022 15:50"),taskDuration: 1, taskColor: [0.9098, 0.6039,  0.6039],taskChecker: false),
-    Task1(taskTitle: "Do laundry", taskDescription: "Remeber to do your laundy",taskIcon: "tshirt.fill", taskDateStart: convertDate(data: "12-17-2022 23:00"),taskDateEnd: convertDate(data: "12-17-2022 23:20"),taskDuration: (1/3), taskColor: [0.9098, 0.6039,  0.6039],taskChecker: false),
-    Task1(taskTitle: "Sleep", taskDescription: "Sleepytime",taskIcon: "moon.fill", taskDateStart:convertDate(data: "12-17-2022 23:20"),taskDateEnd: convertDate(data: "12-17-2022 23:50"),taskDuration: 0.5, taskColor: [0.9098, 0.6039,  0.6039],taskChecker: false)
+    Task1(taskTitle: "Wake up", taskDescription: "Wakey time 10-08",taskIcon: "sun.max.fill", taskDateStart: convertDate(data: "12-27-2022 01:00"),taskDateEnd:convertDate(data: "12-27-2022 01:30"),taskDuration: 0.5, taskColor:[0.949,  0.522,  0.1], taskChecker: false),
+    Task1(taskTitle: "Do work", taskDescription: "math",taskIcon: "pencil", taskDateStart:  convertDate(data: "12-27-2022 02:00"),taskDateEnd: convertDate(data: "12-27-2022 03:00"),taskDuration: 1,taskColor:[0.9098, 0.6039,  0.6039], taskChecker: false),
+    Task1(taskTitle: "Play games", taskDescription: "Play League",taskIcon: "gamecontroller.fill", taskDateStart: convertDate(data: "12-27-2022 12:20"),taskDateEnd:convertDate(data: "12-27-2022 13:20"),taskDuration: 1,taskColor: [0.32, 0.62,  0.81],taskChecker: false),
+    Task1(taskTitle: "Go for a jog", taskDescription: "Light jog at central park",taskIcon: "figure.walk", taskDateStart: convertDate(data: "12-27-2022 13:20"),taskDateEnd: convertDate(data: "12-27-2022 13:50"),taskDuration: 0.5,taskColor: [0.467,  0.867, 0.467],taskChecker: false),
+    Task1(taskTitle: "Make dinner", taskDescription: "Fried chicken with legumes",taskIcon: "cooktop.fill", taskDateStart: convertDate(data: "12-27-2022 14:50"),taskDateEnd: convertDate(data: "12-27-2022 15:50"),taskDuration: 1, taskColor: [0.9098, 0.6039,  0.6039],taskChecker: false),
+    Task1(taskTitle: "Do laundry", taskDescription: "Remeber to do your laundy",taskIcon: "tshirt.fill", taskDateStart: convertDate(data: "12-27-2022 23:00"),taskDateEnd: convertDate(data: "12-27-2022 23:20"),taskDuration: (1/3), taskColor: [0.9098, 0.6039,  0.6039],taskChecker: false),
+    Task1(taskTitle: "Sleep", taskDescription: "Sleepytime",taskIcon: "moon.fill", taskDateStart:convertDate(data: "12-27-2022 23:20"),taskDateEnd: convertDate(data: "12-27-2022 23:50"),taskDuration: 0.5, taskColor: [0.9098, 0.6039,  0.6039],taskChecker: false)
 ]
 
 
@@ -35,34 +35,58 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        let Date = "12-17-2022"
+        
+        let Date = "12-27-2022"
+        let DateObj = convertDate(data: Date, format: "MM-dd-yyyy").startOfDay()
+        let newItemDate = DateEntity(context: viewContext)
+        newItemDate.dateGroup = DateObj
+        
+        
         for i in 0..<7 {
             let newItem = Tasks(context: viewContext)
+            let dateEntity = TaskDate(context: viewContext)
+            
+            dateEntity.date = temp[i].taskDateStart
+            newItem.addToDates(dateEntity)
+
+            newItemDate.addToTaskDates(dateEntity)
+
             newItem.id = UUID()
             newItem.title = temp[i].taskTitle
             newItem.dateStart = temp[i].taskDateStart
             newItem.dateEnd = temp[i].taskDateEnd
-            newItem.taskInfo = temp[i].taskDescription
+            newItem.notes = temp[i].taskDescription
             newItem.icon = temp[i].taskIcon
-            newItem.duration = temp[i].taskDuration
+            newItem.duration = temp[i].taskDuration * 3600
             newItem.color = temp[i].taskColor
             newItem.taskChecker = false
-            newItem.taskDay = Date
+            newItem.addToHasDate(newItemDate)
         }
+        
         let Date1 = "12-21-2022"
+        let DateObj1 = convertDate(data: Date1, format: "MM-dd-yyyy").startOfDay()
+        let newItemDate1 = DateEntity(context: viewContext)
+        newItemDate1.dateGroup = DateObj1
+
 
         for i in 0..<7 {
             let newItem = Tasks(context: viewContext)
+            let dateEntity = TaskDate(context: viewContext)
+            dateEntity.date = temp1[i].taskDateStart
+            newItem.addToDates(dateEntity)
+            
+            newItemDate1.addToTaskDates(dateEntity)
+
             newItem.id = UUID()
             newItem.title = temp1[i].taskTitle
             newItem.dateStart = temp1[i].taskDateStart
             newItem.dateEnd = temp1[i].taskDateEnd
-            newItem.taskInfo = temp1[i].taskDescription
+            newItem.notes = temp1[i].taskDescription
             newItem.icon = temp1[i].taskIcon
-            newItem.duration = temp1[i].taskDuration
+            newItem.duration = temp1[i].taskDuration * 3600
             newItem.color = temp1[i].taskColor
             newItem.taskChecker = false
-            newItem.taskDay = Date1
+            newItem.addToHasDate(newItemDate1)
         }
         do {
             try viewContext.save()

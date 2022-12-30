@@ -7,17 +7,9 @@
 import Foundation
 import SwiftUI// I need one view model for each view but I should have a dictionary of the tasks at the highest view hierarchy. When the app starts it, should then partition all the tasks into new view models, that are generated from the views.
 
-struct Task: Identifiable{
-    var id = UUID().uuidString
-    var taskTitle: String
-    var taskDescription: String
-    var taskIcon: String
-    var taskDateStart: String
-    var taskDateEnd: String
-    var taskDuration: CGFloat
-    var taskColor: Color
-    var taskChecker : Bool
-}
+
+//MARK: TASK FUNCTIONS -----------------------------------------------
+
 struct Task1: Identifiable{
     var id = UUID().uuidString
     var taskTitle: String
@@ -30,12 +22,49 @@ struct Task1: Identifiable{
     var taskChecker : Bool
 }
 
-func extractDate(date: Date, format: String) -> String{
-    let formatter = DateFormatter()
-    
-    formatter.dateFormat = format
-    return formatter.string(from:date)
+let userColor = Color(red: 0.5, green: 0.6039,  blue:0.8039)
+let hueColors = stride(from: 0, to: 1, by: 0.01).map {
+    Color(hue: $0, saturation: 1, brightness: 1)
 }
+
+
+extension Tasks{
+    
+    func getColor() -> Color {
+        self.color?.fromDouble() ?? .red
+    }
+}
+
+extension Tasks{
+    var date : DateInterval{
+        set (newValue) {
+            self.dateStart = newValue.start
+            self.duration = newValue.duration
+        }
+        get {
+            DateInterval(start: self.dateStart ?? Date(), duration: self.duration )
+        }
+    }
+    
+}
+
+extension Array<Double>{
+    func fromDouble() -> Color {
+        return Color(red: self[0], green: self[1], blue: self[2])
+    }
+}
+
+
+extension Color{
+    func toDouble() -> [Double]{
+        let comps = UIColor(self).cgColor.components
+        let returnColors = comps?.map{Double($0)}
+        return returnColors!
+    }
+}
+
+
+//MARK: DATE LOGIC--------------------------------------------
 
 func convertDate(data: String,format : String = "MM-dd-yyyy HH:mm") -> Date{
     let formatter4 = DateFormatter()
@@ -43,6 +72,17 @@ func convertDate(data: String,format : String = "MM-dd-yyyy HH:mm") -> Date{
     return formatter4.date(from: data) ?? Date.now
 }
 
+extension Date{
+    func startOfDay() -> Date{
+        let calendar = Calendar.current
+        return calendar.startOfDay(for: self)
+    }
+    func endOfDay() -> Date{
+        let calendar = Calendar.current
+        let temp = calendar.startOfDay(for: self) - 1
+        return calendar.date(byAdding: .day, value: 1, to: temp) ?? Date()
+    }
+}
 
 enum dateType : String, Identifiable {
     
@@ -73,6 +113,8 @@ extension TimeInterval{
     }
 }
 
+//MARK: OTHER STUFF ------------
+
 extension View {
     func print(_ value: Any) -> Self {
         Swift.print(value)
@@ -86,33 +128,11 @@ var previewscontainer: Tasks{
     newItem.title = "Wake up"
     newItem.dateStart = convertDate(data: "10-17-2022 01:00")
     newItem.dateEnd = convertDate(data: "10-17-2022 01:30")
-    newItem.taskInfo = "Wakey time 10-08"
+    newItem.notes = "Wakey time 10-08"
     newItem.icon = "sun.max.fill"
-    newItem.duration = 0.5
+    newItem.duration = 0.5 * 3600
     newItem.color = [0.949,  0.522,  0.1]
     newItem.taskChecker = false
     return newItem
 }
-
-extension Array<Double>{
-    func fromDouble() -> Color {
-        return Color(red: self[0], green: self[1], blue: self[2])
-    }
-}
-
-
-extension Color{
-    func toDouble() -> [Double]{
-        let comps = UIColor(self).cgColor.components
-        let returnColors = comps?.map{Double($0)}
-        return returnColors!
-    }
-}
-
-let userColor = Color(red: 0.5, green: 0.6039,  blue:0.8039)
-let hueColors = stride(from: 0, to: 1, by: 0.01).map {
-    Color(hue: $0, saturation: 1, brightness: 1)
-}
-
-
     

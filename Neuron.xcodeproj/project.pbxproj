@@ -81,8 +81,6 @@
 		E1EEC757294B0CDD005A88D1 /* TimeLineMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EEC756294B0CDD005A88D1 /* TimeLineMenu.swift */; };
 		E1EEC759294BE392005A88D1 /* testTimeLineRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EEC758294BE392005A88D1 /* testTimeLineRowView.swift */; };
 		E1EEC75D294C780D005A88D1 /* TimeLineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EEC75C294C780D005A88D1 /* TimeLineModel.swift */; };
-		E1EEC75F294C7839005A88D1 /* TimeLineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EEC75E294C7839005A88D1 /* TimeLineItemView.swift */; };
-		E1EEC761294C8B49005A88D1 /* TimeLinesomething.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EEC760294C8B49005A88D1 /* TimeLinesomething.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -174,8 +172,6 @@
 		E1EEC756294B0CDD005A88D1 /* TimeLineMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineMenu.swift; sourceTree = "<group>"; };
 		E1EEC758294BE392005A88D1 /* testTimeLineRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testTimeLineRowView.swift; sourceTree = "<group>"; };
 		E1EEC75C294C780D005A88D1 /* TimeLineModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineModel.swift; sourceTree = "<group>"; };
-		E1EEC75E294C7839005A88D1 /* TimeLineItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineItemView.swift; sourceTree = "<group>"; };
-		E1EEC760294C8B49005A88D1 /* TimeLinesomething.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLinesomething.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				E1C95DAE28E4D26700851C4E /* MainCSS.swift */,
+				E1EEC75C294C780D005A88D1 /* TimeLineModel.swift */,
 				E1C95DB228E4D50600851C4E /* OptionsModel.swift */,
 				E18F4FA128F0299400351835 /* testdata.swift */,
 				E176E14F290B2D6900B09604 /* AddTaskConfig.swift */,
@@ -341,7 +338,6 @@
 				E1EEC756294B0CDD005A88D1 /* TimeLineMenu.swift */,
 				E1B0F72428FBC65000925858 /* TaskDescriptionView.swift */,
 				E1340FF92952725C0074100B /* TimeLineTitleView.swift */,
-				E1EEC75C294C780D005A88D1 /* TimeLineModel.swift */,
 				E1EEC762294F54BA005A88D1 /* TestingItems */,
 				E1BEFF2D2916676600A2DE56 /* AddItemComponents */,
 			);
@@ -374,8 +370,6 @@
 		E1EEC762294F54BA005A88D1 /* TestingItems */ = {
 			isa = PBXGroup;
 			children = (
-				E1EEC75E294C7839005A88D1 /* TimeLineItemView.swift */,
-				E1EEC760294C8B49005A88D1 /* TimeLinesomething.swift */,
 			);
 			path = TestingItems;
 			sourceTree = "<group>";
@@ -534,7 +528,6 @@
 				E13F394F2945624F00769255 /* RoutineDurationSheet.swift in Sources */,
 				E176E150290B2D6900B09604 /* AddTaskConfig.swift in Sources */,
 				E1EEC75D294C780D005A88D1 /* TimeLineModel.swift in Sources */,
-				E1EEC761294C8B49005A88D1 /* TimeLinesomething.swift in Sources */,
 				E1A4DB842935AF7900FB6BDE /* SubTaskAdderDisc.swift in Sources */,
 				E14F6E4029147939009946EB /* SymbolPickerView.swift in Sources */,
 				E13F3953294806A500769255 /* enumWidgets.swift in Sources */,
@@ -548,7 +541,6 @@
 				E1A4DB872935B88E00FB6BDE /* ProjectModel.swift in Sources */,
 				E13F3960294AABB900769255 /* FrequencyPicker.swift in Sources */,
 				E176E152290B560C00B09604 /* AddTaskButtonView.swift in Sources */,
-				E1EEC75F294C7839005A88D1 /* TimeLineItemView.swift in Sources */,
 				E13F3955294942F700769255 /* GenericTabView.swift in Sources */,
 				E1B0F71B28FBC60800925858 /* BottomTab.swift in Sources */,
 				E1C95DAF28E4D26700851C4E /* MainCSS.swift in Sources */,

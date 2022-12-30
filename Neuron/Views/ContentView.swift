@@ -60,7 +60,7 @@ struct ContentView: View {
             }
             
             // MARK: vertical time line view
-            FullTimelineView( date: UserOptions.selectedDay.startOfDay)
+            FullTimelineView( date: UserOptions.selectedDay.startOfDay())
             
             BottomTabView()
                 .offset(y:-10)

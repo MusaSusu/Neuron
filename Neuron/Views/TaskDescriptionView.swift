@@ -11,7 +11,7 @@ struct TaskDescriptionView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
-    @ObservedObject var task: Time
+    @ObservedObject var task: Tasks
     
     var setColor: Color{
         return task.color?.fromDouble() ?? Color.red
@@ -28,7 +28,7 @@ struct TaskDescriptionView: View {
             TimeLineTitleView(task: task)
             
             HStack{
-                Text("\(task.notes ?? "nothing...")")
+                Text(task.notes ?? "")
             }
             
         }

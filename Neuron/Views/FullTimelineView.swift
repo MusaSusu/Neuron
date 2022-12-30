@@ -9,9 +9,13 @@ import SwiftUI
 
 struct FullTimelineView: View {
     
-    @FetchRequest var items: FetchedResults<Tasks>
+    @FetchRequest var dates: FetchedResults<DateEntity>
     
-    @State private var draggedSelection: Task?
+    var items : [Tasks]{
+        return dates.first?.taskDates?.sortedArray(using: [NSSortDescriptor(keyPath: \TaskDate.date, ascending: true)] ).compactMap({($0 as! TaskDate).task}) ?? []
+    }
+    
+    @State private var draggedSelection: Tasks?
     
     var datesList : [DateInterval] {
         var temp : [DateInterval] = []
@@ -33,10 +37,10 @@ struct FullTimelineView: View {
         return array
     }
     
-    init(date: String) {
-        _items = FetchRequest<Tasks>(
-            sortDescriptors: [NSSortDescriptor(keyPath: \Tasks.dateStart, ascending: true)],
-            predicate: NSPredicate(format: "taskDay == %@", date )
+    init(date: Date) {
+        _dates = FetchRequest<DateEntity>(
+            sortDescriptors: [],
+            predicate: NSPredicate(format: "dateGroup >= %@ AND dateGroup <= %@", date as CVarArg, date.endOfDay() as CVarArg )
         )
     }
     
@@ -80,7 +84,7 @@ struct FullTimelineView: View {
 
 struct FullTimelineView_Previews: PreviewProvider {
     static var previews: some View {
-        FullTimelineView( date:"12-21-2022")
+        FullTimelineView( date: convertDate(data: "12-21-2022",format: "MM-dd-yyyy").startOfDay())
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

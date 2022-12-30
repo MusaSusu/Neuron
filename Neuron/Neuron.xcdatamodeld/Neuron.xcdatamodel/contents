@@ -1,15 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
-    <entity name="Tasks" representedClassName=".Tasks" syncable="YES" codeGenerationType="class">
+    <entity name="DateEntity" representedClassName="DateEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="dateGroup" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="hasTask" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tasks" inverseName="hasDate" inverseEntity="Tasks"/>
+        <relationship name="taskDates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskDate" inverseName="dateGroup" inverseEntity="TaskDate"/>
+    </entity>
+    <entity name="Habit" representedClassName="Habit" parentEntity="Main" syncable="YES" codeGenerationType="class">
+        <attribute name="schedule" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="Main" representedClassName="Main" isAbstract="YES" syncable="YES" codeGenerationType="class">
         <attribute name="color" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Double]"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Project" representedClassName="Project" parentEntity="Main" syncable="YES" codeGenerationType="class">
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="TaskDate" representedClassName="TaskDate" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="dateGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DateEntity" inverseName="taskDates" inverseEntity="DateEntity"/>
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tasks" inverseName="dates" inverseEntity="Tasks"/>
+    </entity>
+    <entity name="Tasks" representedClassName=".Tasks" parentEntity="Main" syncable="YES" codeGenerationType="class">
         <attribute name="dateEnd" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="dateStart" optional="YES" attributeType="Date" defaultDateTimeInterval="688016100" usesScalarValueType="NO"/>
         <attribute name="duration" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="icon" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="YES"/>
         <attribute name="taskChecker" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="taskDay" optional="YES" attributeType="String"/>
-        <attribute name="taskInfo" optional="YES" attributeType="String"/>
-        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="tempDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="dates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskDate" inverseName="task" inverseEntity="TaskDate"/>
+        <relationship name="hasDate" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DateEntity" inverseName="hasTask" inverseEntity="DateEntity"/>
     </entity>
 </model>
