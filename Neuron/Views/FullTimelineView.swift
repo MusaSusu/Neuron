@@ -60,7 +60,7 @@ struct FullTimelineView: View {
             ScrollView(.vertical,showsIndicators: false){
                 VStack(spacing:0){
                     ForEach( Array(items.enumerated()) , id: \.element) { index,item in
-                        testTimelineRowView(task: item, nextDuration: durationArray[index]/2)
+                        TimelineRowView(task: item, nextDuration: durationArray[index]/2)
                             .onDrag {
                                 return NSItemProvider()
                             } preview: {

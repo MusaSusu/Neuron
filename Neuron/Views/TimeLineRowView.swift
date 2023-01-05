@@ -13,7 +13,7 @@ import SwiftUI
 //MARK: Use a function to calculate length of the task in order to set the frame height.
 
 
-struct testTimelineRowView: View {
+struct TimelineRowView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
@@ -225,10 +225,10 @@ private extension View{
 }
 
 
-struct testTimelineRowView_Previews: PreviewProvider {
+struct TimelineRowView_Previews: PreviewProvider {
     
     static var previews: some View {
-        testTimelineRowView(task: previewscontainer,nextDuration: 1200)
+        TimelineRowView(task: previewscontainer,nextDuration: 1200)
             .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
     }
 }
