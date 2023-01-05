@@ -17,7 +17,7 @@ struct DurationPickerDisc: View {
                     HStack{
                         Slider(
                             value:$NewItem.duration,
-                            in: 0...120,
+                            in: 0...120*60,
                             step: 5
                         )
                     }.padding(.top,10)
@@ -31,7 +31,7 @@ struct DurationPickerDisc: View {
                     HStack(spacing:0){
                         Text("Duration").titleFont()
                         Spacer()
-                        Text("\(NewItem.duration.toHourMin(from: .minutes))")
+                        Text("\(NewItem.duration.toHourMin(from: .seconds))")
                             .titleFont()
                     }
                 }

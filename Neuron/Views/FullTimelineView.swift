@@ -10,13 +10,23 @@ import SwiftUI
 struct FullTimelineView: View {
     
     @FetchRequest var dates: FetchedResults<DateEntity>
-    
-    var items : [Tasks]{
-        return dates.first?.taskDates?.sortedArray(using: [NSSortDescriptor(keyPath: \TaskDate.date, ascending: true)] ).compactMap({($0 as! TaskDate).task}) ?? []
-    }
-    
     @State private var draggedSelection: Tasks?
     
+    var taskDates : [TaskDate]{
+        return dates.first?.taskDates?.sortedArray(using: [NSSortDescriptor(keyPath: \TaskDate.date, ascending: true)]) as? [TaskDate] ?? []
+    }
+    
+    var items : [Tasks] {
+        var array : [Tasks] = []
+        for item in taskDates{
+            if (item.task != nil){
+                item.task!.dateStart = item.date
+                array.append(item.task!)
+            }
+        }
+        return array
+    }
+        
     var datesList : [DateInterval] {
         var temp : [DateInterval] = []
         for item in Array(items){
@@ -28,8 +38,8 @@ struct FullTimelineView: View {
     var durationArray: [TimeInterval]{
         var array = [TimeInterval]()
         let temp = Array(items)
-        let first = temp[0..<items.endIndex].map{$0.dateEnd!}
-        let second = temp[1...].map{$0.dateStart!}
+        let first = temp[0..<items.endIndex].map{$0.date.end}
+        let second = temp[1...].map{$0.date.start}
         for (endTime,startTime) in zip(first,second){
             array.append(startTime.timeIntervalSince(endTime))
         }

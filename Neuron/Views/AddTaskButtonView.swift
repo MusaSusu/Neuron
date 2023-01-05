@@ -24,7 +24,7 @@ struct AddTaskButtonView: View {
                 }
             }
             .labelStyle(.iconOnly)
-            .sheet(item: $configuration, onDismiss: cleanContext) {config in
+            .sheet(item: $configuration,onDismiss: cleanContext) {config in
                 AddMainView(item: config.task)
                     .environment(\.managedObjectContext,config.childContext)
             }
@@ -36,6 +36,7 @@ struct AddTaskButtonView: View {
     }
     func cleanContext(){
         try? viewContext.save()
+        configuration = nil
     }
 }
 

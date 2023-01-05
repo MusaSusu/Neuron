@@ -8,6 +8,7 @@
 //MARK: Generic structure for all tasks? Task -> Subtask -> more subtasks like a tree. Assign a date to each subtask, or frequency per week, or repeat on certain times. 
 
 import Foundation
+import CoreData
 import SwiftUI
 
 protocol TaskProtocol{
@@ -78,18 +79,9 @@ class NewItemModel: ObservableObject{
 
     @Published var dateStart: Date = Date.now
     @Published var dateEnd: Date = Date.now.advanced(by: 300)
-    @Published var duration: TimeInterval = 30
+    @Published var duration: Double = 3600
 
     @Published var notes: String = ""
     
     let testingnode = Node(anyTask(name: "eat lunch", icon: "dsd", color: Color.red))
-    
-    func saveItem(item: Tasks ,dates : [Date]){
-        //let timeCD = Time(context: item.managedObjectContext!)
-        item.id = UUID()
-        item.title = name
-        item.icon = icon
-        item.duration = duration
-        item.color = color.toDouble()
-    }
 }

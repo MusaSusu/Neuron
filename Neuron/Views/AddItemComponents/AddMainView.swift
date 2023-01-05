@@ -36,6 +36,8 @@ struct AddMainView: View {
                     Spacer()
                     Button{
                         addObject()
+                        try? context.save()
+                        dismiss()
                     } label: {
                         Text("Save")
                             .font(.title3.bold())
@@ -71,15 +73,15 @@ struct AddMainView: View {
         }
     }
     
-    private func addObject(){
+    
+    func addObject(){
         
         switch NewItem.selection{
         case 0:
-            NewItem.saveItem(item: item,dates: DateList.returnDates())            
+            saveItem(dates: DateList.returnDates())
         default:
-            dismiss()
+            saveItem(dates: DateList.returnDates())
         }
-
     }
     
     @ViewBuilder
@@ -95,6 +97,27 @@ struct AddMainView: View {
             EmptyView()
         }
     }
+    
+    func saveItem(dates : [Date]){
+        item.id = UUID()
+        item.title = NewItem.name
+        item.icon = NewItem.icon
+        item.duration = NewItem.duration
+        item.color = NewItem.color.toDouble()
+        item.taskChecker = false
+        for date in dates {
+            let taskGroup = DateEntity(context: context)
+            let taskDate = TaskDate(context: context)
+            
+            taskGroup.dateGroup = date.startOfDay()
+            taskGroup.addToHasTask(item)
+            
+            taskDate.task = item
+            taskDate.date = date
+            taskDate.dateGroup = taskGroup
+        }
+    }
+    
 }
 
 struct AddMainView_Previews: PreviewProvider {

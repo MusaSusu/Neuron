@@ -37,10 +37,6 @@ extension Tasks{
 
 extension Tasks{
     var date : DateInterval{
-        set (newValue) {
-            self.dateStart = newValue.start
-            self.duration = newValue.duration
-        }
         get {
             DateInterval(start: self.dateStart ?? Date(), duration: self.duration )
         }
@@ -127,7 +123,6 @@ var previewscontainer: Tasks{
     newItem.id = UUID()
     newItem.title = "Wake up"
     newItem.dateStart = convertDate(data: "10-17-2022 01:00")
-    newItem.dateEnd = convertDate(data: "10-17-2022 01:30")
     newItem.notes = "Wakey time 10-08"
     newItem.icon = "sun.max.fill"
     newItem.duration = 0.5 * 3600
