@@ -36,7 +36,7 @@ struct TimeLineMenu: View {
             
             Spacer()
         }
-        .frame(width:.infinity,height: 50)
+        .frame(height: 50)
         .padding(.horizontal)
         .background(
             RoundedRectangle(cornerRadius: 10)

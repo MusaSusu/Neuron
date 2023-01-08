@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProjectEndDateDisc: View {
-    @EnvironmentObject var Project : ProjectModel
+    @EnvironmentObject var Project : ProjectModel_Add
     
     var body: some View {
         HStack{
@@ -27,6 +27,6 @@ struct ProjectEndDateDisc: View {
 struct ProjectEndDateDisc_Previews: PreviewProvider {
     static var previews: some View {
         ProjectEndDateDisc()
-            .environmentObject(ProjectModel())
+            .environmentObject(ProjectModel_Add())
     }
 }

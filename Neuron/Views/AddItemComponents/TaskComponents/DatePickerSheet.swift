@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DatePickerSheet: View {
-    @EnvironmentObject var DateList : DateListModel
+    @EnvironmentObject var DateList : TaskModel_Add
     var dismiss: ()-> Void
     var body: some View {
         VStack{
@@ -37,6 +37,6 @@ struct DatePickerSheet: View {
 struct DatePickerSheet_Previews: PreviewProvider {
     static var previews: some View {
         DatePickerSheet(dismiss: {})
-            .environmentObject(DateListModel())
+            .environmentObject(TaskModel_Add())
     }
 }

@@ -14,7 +14,7 @@ struct SubTask: Identifiable,Hashable{
     var completed : Bool = false
 }
 
-class ProjectModel: ObservableObject{
+class ProjectModel_Add: ObservableObject{
     @Published var subTaskCollection: [SubTask] = []
     @Published var date: Date = Date()
     

@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct SubRoutineListView: View {
-    @EnvironmentObject var Routine : RoutineModel
+    @EnvironmentObject var Routine : RoutineModel_Add
     
-    @State private var selectedRoutine : Routine?
+    @State private var selectedRoutine : Routine_Add?
     @FocusState private var isFocus : isRowFocus?
     @State private var isSheet : Bool = false
     @Environment(\.editMode) private var isEdit
@@ -81,6 +81,6 @@ struct SubRoutineListView: View {
 struct SubRoutineListView_Previews: PreviewProvider {
     static var previews: some View {
         SubRoutineListView()
-            .environmentObject(RoutineModel())
+            .environmentObject(RoutineModel_Add())
     }
 }

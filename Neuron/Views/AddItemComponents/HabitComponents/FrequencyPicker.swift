@@ -22,12 +22,7 @@ struct FrequencyPickerDisc : View {
 }
 
 struct FrequencyPicker: View {
-    enum timeFrame : String,CaseIterable,Identifiable {
-        case Daily,Weekly,Monthly
-        var id: Self {self}
-    }
-    @State private var selectedTimeFrame : timeFrame = .Daily
-    @State private var selectedFreq : CGFloat = 1
+    @EnvironmentObject var Habit_Add : HabitModel_Add
     @State private var isEditing = false
     @State private var isSheet = false
     
@@ -36,14 +31,14 @@ struct FrequencyPicker: View {
             HStack{
                     Button(
                         action: {isSheet.toggle()},
-                        label: {Text("\(Int(selectedFreq))").font(.title2)}
+                        label: {Text("\(Int(Habit_Add.selectedFreq))").font(.title2)}
                     )
                     .sheet(isPresented: $isSheet){
                         freqSlider()
                             .presentationDetents([.fraction(1/4)])
                     }
                 Text(" times").titleFont()
-                Picker("timeFrame", selection: $selectedTimeFrame){
+                Picker("timeFrame", selection: $Habit_Add.timeFrame){
                     ForEach(timeFrame.allCases) { item in
                         Text(item.rawValue).font(.title2)
                     }
@@ -52,7 +47,7 @@ struct FrequencyPicker: View {
         }
     }
     func freqSlider() -> some View {
-        Slider(value: $selectedFreq,
+        Slider(value: $Habit_Add.selectedFreq,
                in: 0...10,
                step: 1,
                onEditingChanged: {editing in
@@ -64,7 +59,7 @@ struct FrequencyPicker: View {
 
 struct FrequencyPicker_Previews: PreviewProvider {
     static var previews: some View {
-        FrequencyPicker()
+        FrequencyPicker().environmentObject(HabitModel_Add())
     }
 }
 

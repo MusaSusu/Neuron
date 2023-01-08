@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Routine: Identifiable,Hashable{
+struct Routine_Add: Identifiable,Hashable{
     let id = UUID()
     var title : String
     var duration : TimeInterval
@@ -18,10 +18,10 @@ struct scheduleByDay : Hashable {
     var check : Bool
 }
 
-let testRoutine = Routine(title: "Start", duration: 0)
+let testRoutine = Routine_Add(title: "Start", duration: 0)
 
-class RoutineModel: ObservableObject{
-    @Published var list : [Routine] = []
+class RoutineModel_Add: ObservableObject{
+    @Published var list : [Routine_Add] = []
     @Published var scheduleList : [scheduleByDay] = []
     
     init(){
@@ -37,7 +37,7 @@ class RoutineModel: ObservableObject{
         self.list = [testRoutine]
     }
     func addRow(){
-        let newRoutine = Routine(title: "title", duration: 0)
+        let newRoutine = Routine_Add(title: "title", duration: 0)
         self.list.append(newRoutine)
     }
 }

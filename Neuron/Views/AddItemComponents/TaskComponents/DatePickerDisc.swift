@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DatePickerDisc: View {
-    @EnvironmentObject var DateList : DateListModel
+    @EnvironmentObject var DateList : TaskModel_Add
     
     var body: some View {
         HStack{
@@ -90,6 +90,6 @@ struct DatePickerDisc: View {
 
 struct DatePickerDisc_Previews: PreviewProvider {
     static var previews: some View {
-        DatePickerDisc().environmentObject(DateListModel())
+        DatePickerDisc().environmentObject(TaskModel_Add())
     }
 }

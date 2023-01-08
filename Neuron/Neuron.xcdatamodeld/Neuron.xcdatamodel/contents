@@ -11,16 +11,24 @@
         </uniquenessConstraints>
     </entity>
     <entity name="Habit" representedClassName="Habit" parentEntity="Main" syncable="YES" codeGenerationType="class">
-        <attribute name="schedule" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="completed" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="duration" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="frequency" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="timeFrame" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Main" representedClassName="Main" isAbstract="YES" syncable="YES" codeGenerationType="class">
         <attribute name="color" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Double]"/>
+        <attribute name="icon" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="notes" attributeType="String" defaultValueString=""/>
         <attribute name="title" attributeType="String" defaultValueString=""/>
     </entity>
     <entity name="Project" representedClassName="Project" parentEntity="Main" syncable="YES" codeGenerationType="class">
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="subTasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tasks" inverseName="ofProject" inverseEntity="Tasks"/>
+    </entity>
+    <entity name="Routine" representedClassName="Routine" parentEntity="Main" syncable="YES" codeGenerationType="class">
+        <attribute name="schedule" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Int]"/>
     </entity>
     <entity name="TaskDate" representedClassName="TaskDate" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -30,10 +38,10 @@
     <entity name="Tasks" representedClassName=".Tasks" parentEntity="Main" syncable="YES" codeGenerationType="class">
         <attribute name="dateStart" optional="YES" transient="YES" attributeType="Date" defaultDateTimeInterval="694391400" usesScalarValueType="NO"/>
         <attribute name="duration" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="icon" attributeType="String" defaultValueString="&quot;circle&quot;"/>
         <attribute name="taskChecker" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="tempDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="dates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskDate" inverseName="task" inverseEntity="TaskDate"/>
         <relationship name="hasDate" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DateEntity" inverseName="hasTask" inverseEntity="DateEntity"/>
+        <relationship name="ofProject" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="subTasks" inverseEntity="Project"/>
     </entity>
 </model>

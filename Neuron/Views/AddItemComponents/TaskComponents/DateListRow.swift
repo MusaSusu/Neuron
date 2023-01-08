@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DateListRow: View {
-    @EnvironmentObject var DateList : DateListModel
+    @EnvironmentObject var DateList : TaskModel_Add
     @EnvironmentObject var NewItem : NewItemModel
     @Binding var date : dateItem
     let index: UUID
@@ -47,7 +47,7 @@ struct DateListRow: View {
 struct DateListRow_Previews: PreviewProvider {
     static var previews: some View {
         DateListRow(date: .constant(dateItem(id: UUID(), date: Date())),index: UUID())
-            .environmentObject(DateListModel())
+            .environmentObject(TaskModel_Add())
             .environmentObject(NewItemModel())
     }
 }

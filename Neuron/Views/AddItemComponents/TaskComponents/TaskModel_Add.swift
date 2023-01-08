@@ -13,7 +13,7 @@ struct dateItem: Identifiable,Equatable,Hashable {
     var date : Date
 }
 
-class DateListModel: ObservableObject{
+class TaskModel_Add: ObservableObject{
     @Published var dates: [dateItem] = [dateItem(id: UUID(), date: Date())]
     @Published var addDateCheck: Bool = false
     @Published var addInboxCheck: Bool = true

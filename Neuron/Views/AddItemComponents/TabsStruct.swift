@@ -57,10 +57,10 @@ struct TabsStruct: View {
 struct TabsStruct_Previews: PreviewProvider {
     static var previews: some View {
         TabsStruct(width: 430)
-            .environmentObject(DateListModel())
+            .environmentObject(TaskModel_Add())
             .environmentObject(NewItemModel())
-            .environmentObject(ProjectModel())
-            .environmentObject(RoutineModel())
+            .environmentObject(ProjectModel_Add())
+            .environmentObject(RoutineModel_Add())
     }
 }
 

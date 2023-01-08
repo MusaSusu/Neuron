@@ -84,6 +84,22 @@ struct PersistenceController {
             newItem.taskChecker = false
             newItem.addToHasDate(newItemDate1)
         }
+        
+        let newHabit = Habit(context: viewContext)
+        newHabit.completed = 5
+        newHabit.frequency = 10
+        newHabit.id = UUID()
+        newHabit.title = "Drink Water"
+        newHabit.color = [0.9098, 0.6039,  0.6039]
+        newHabit.timeFrame = timeFrame.Weekly.rawValue
+        let newHabit1 = Habit(context: viewContext)
+        newHabit1.completed = 7
+        newHabit1.frequency = 10
+        newHabit1.id = UUID()
+        newHabit1.title = "Drink Water"
+        newHabit1.color = [0.9098, 0.4039,  0.4039]
+        newHabit1.timeFrame = timeFrame.Weekly.rawValue
+        
         do {
             try viewContext.save()
         } catch {

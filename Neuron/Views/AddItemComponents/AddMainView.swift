@@ -13,11 +13,12 @@ struct AddMainView: View {
     @Environment(\.managedObjectContext) private var context
     @Environment(\.dismiss) private var dismiss // causes body to run
     
-    @StateObject var DateList = DateListModel()
-    @StateObject var NewItem = NewItemModel()
-    @StateObject var Project = ProjectModel()
-    @StateObject var Routine = RoutineModel()
-        
+    @StateObject var Task_Add = TaskModel_Add()
+    @StateObject var NewItem_Add = NewItemModel()
+    @StateObject var Project_Add = ProjectModel_Add()
+    @StateObject var Routine_Add = RoutineModel_Add()
+    @StateObject var Habit_Add = HabitModel_Add()
+    
     @State var errorMessage: String?
     @State private var isFocused: Bool = false
     
@@ -50,15 +51,16 @@ struct AddMainView: View {
                     .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
                 
                 // NewItemTitle
-                SearchView_().environmentObject(NewItem)
+                SearchView_().environmentObject(NewItem_Add)
                 
                 //TABSView
                 GeometryReader{geometry in
                     TabsStruct(width:geometry.size.width)
-                        .environmentObject(DateList)
-                        .environmentObject(NewItem)
-                        .environmentObject(Routine)
-                        .environmentObject(Project)
+                        .environmentObject(Task_Add)
+                        .environmentObject(NewItem_Add)
+                        .environmentObject(Routine_Add)
+                        .environmentObject(Project_Add)
+                        .environmentObject(Habit_Add)
                 }.padding(.horizontal,-5)
                 
             }
@@ -66,30 +68,19 @@ struct AddMainView: View {
             .background(
                 Color(white : 0.95)
             )
-            .opacity(NewItem.isPop != .none ? 0.5 : 1)
-            .disabled(NewItem.isPop != .none)
+            .opacity(NewItem_Add.isPop != .none ? 0.5 : 1)
+            .disabled(NewItem_Add.isPop != .none)
             
             showPop()
         }
     }
     
-    
-    func addObject(){
-        
-        switch NewItem.selection{
-        case 0:
-            saveItem(dates: DateList.returnDates())
-        default:
-            saveItem(dates: DateList.returnDates())
-        }
-    }
-    
     @ViewBuilder
     func showPop()-> some View{
-        switch NewItem.isPop{
+        switch NewItem_Add.isPop{
         case .DatePop:
-            DatePickerSheet(){NewItem.isPop = .none}
-                .environmentObject(DateList)
+            DatePickerSheet(){NewItem_Add.isPop = .none}
+                .environmentObject(Task_Add)
                 .transition(.asymmetric(insertion: .scale, removal: .scale))
         case .RoutinePop:
             EmptyView()
@@ -98,12 +89,37 @@ struct AddMainView: View {
         }
     }
     
-    func saveItem(dates : [Date]){
+    func addObject(){
+        
+        switch NewItem_Add.selection{
+        case 0:
+            saveTask(dates: Task_Add.returnDates())
+        case 2:
+            saveHabit()
+        default:
+            saveTask(dates: Task_Add.returnDates())
+        }
+    }
+    
+    func saveHabit(){
+        let newHabit = Habit(context: context)
+        newHabit.id = UUID()
+        newHabit.title = NewItem_Add.name
+        newHabit.icon = NewItem_Add.icon
+        newHabit.duration = NewItem_Add.duration
+        newHabit.color = NewItem_Add.color.toDouble()
+        newHabit.timeFrame = Habit_Add.timeFrame.rawValue
+        newHabit.completed = 0
+        newHabit.frequency = Int16(Habit_Add.selectedFreq)
+        newHabit.notes = NewItem_Add.notes
+    }
+    
+    func saveTask(dates: [Date]){
         item.id = UUID()
-        item.title = NewItem.name
-        item.icon = NewItem.icon
-        item.duration = NewItem.duration
-        item.color = NewItem.color.toDouble()
+        item.title = NewItem_Add.name
+        item.icon = NewItem_Add.icon
+        item.duration = NewItem_Add.duration
+        item.color = NewItem_Add.color.toDouble()
         item.taskChecker = false
         for date in dates {
             let taskGroup = DateEntity(context: context)
@@ -117,7 +133,6 @@ struct AddMainView: View {
             taskDate.dateGroup = taskGroup
         }
     }
-    
 }
 
 struct AddMainView_Previews: PreviewProvider {

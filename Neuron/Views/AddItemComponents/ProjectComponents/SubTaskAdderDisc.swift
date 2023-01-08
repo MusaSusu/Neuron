@@ -18,7 +18,7 @@ struct SubTaskAdderDisc: View {
 }
 
 struct SubTaskAdderView: View {
-    @EnvironmentObject var Project : ProjectModel
+    @EnvironmentObject var Project : ProjectModel_Add
     @State var showSheet : Bool = false
     @State var selectedSubTask : SubTask?
     
@@ -68,7 +68,7 @@ struct SubTaskAdderView: View {
 
 struct SubTaskAdderDisc_Previews: PreviewProvider {
     static var previews: some View {
-        SubTaskAdderDisc().environmentObject(ProjectModel())
+        SubTaskAdderDisc().environmentObject(ProjectModel_Add())
     }
 }
 

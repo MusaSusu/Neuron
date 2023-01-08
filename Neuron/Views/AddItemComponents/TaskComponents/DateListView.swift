@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DateListView: View {
-    @EnvironmentObject var DateList : DateListModel
+    @EnvironmentObject var DateList : TaskModel_Add
     @State var isEditOn: Bool = false
                                                      
     var body: some View {
@@ -43,6 +43,6 @@ struct DateListView: View {
 
 struct DateListView_Previews: PreviewProvider {
     static var previews: some View {
-        DateListView().environmentObject(DateListModel())
+        DateListView().environmentObject(TaskModel_Add())
     }
 }

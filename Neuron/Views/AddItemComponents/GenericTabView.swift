@@ -61,6 +61,6 @@ struct GenericTabView_Previews: PreviewProvider {
     static var previews: some View {
         GenericTabView(widgetsToLoad: RoutineWidgets)
             .environmentObject(NewItemModel())
-            .environmentObject(RoutineModel())
+            .environmentObject(RoutineModel_Add())
     }
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SubTaskSheetView: View {
-    @EnvironmentObject var Project : ProjectModel
+    @EnvironmentObject var Project : ProjectModel_Add
     @State var item : SubTask = SubTask(title: "", notes: "")
     @State private var isFocused: Bool = true
     @Environment(\.dismiss) var dismiss
@@ -86,6 +86,6 @@ struct SubTaskSheetView: View {
 
 struct SubTaskSheetView_Previews: PreviewProvider {
     static var previews: some View {
-        SubTaskSheetView().environmentObject(ProjectModel())
+        SubTaskSheetView().environmentObject(ProjectModel_Add())
     }
 }

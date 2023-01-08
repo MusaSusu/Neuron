@@ -8,21 +8,19 @@
 import SwiftUI
 
 struct RoutineSchedPickerDisc: View {
-    @EnvironmentObject var Routine : RoutineModel
+    @EnvironmentObject var Routine : RoutineModel_Add
     
     
     var body: some View {
         HStack{
             DisclosureGroup{
                 HStack{
-                    Spacer()
                     ForEach($Routine.scheduleList, id: \.self){ $item in
                         VStack{
                             Button(action: {item.check.toggle()}){
                                 Text(item.id)
                                     .underline(item.check, color: .red)
                                     .bold(item.check)
-                                
                             }
                         }
                         .foregroundColor(item.check ? .black : Color(white: 0.5))
@@ -35,12 +33,12 @@ struct RoutineSchedPickerDisc: View {
                                     .shadow(radius: item.check ? 3 : 1)
                                     .frame(width: 40,height: 40)
                             }
-                            
                         )
                         .frame(width:40)
-                        Spacer()
                     }
-                }.padding(.vertical)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical)
             } label: {
                 Text("Schedule").titleFont()
             }
@@ -50,6 +48,6 @@ struct RoutineSchedPickerDisc: View {
 
 struct RoutineSchedPickerDisc_Previews: PreviewProvider {
     static var previews: some View {
-        RoutineSchedPickerDisc().environmentObject(RoutineModel())
+        RoutineSchedPickerDisc().environmentObject(RoutineModel_Add())
     }
 }

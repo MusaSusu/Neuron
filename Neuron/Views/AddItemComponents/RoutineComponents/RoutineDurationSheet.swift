@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RoutineDurationSheet: View {
-    @Binding var subRoutineDuration : Routine
+    @Binding var subRoutineDuration : Routine_Add
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
