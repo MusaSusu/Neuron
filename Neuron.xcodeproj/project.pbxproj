@@ -14,6 +14,7 @@
 		E1340FFA2952725C0074100B /* TimeLineTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1340FF92952725C0074100B /* TimeLineTitleView.swift */; };
 		E13410082967CD120074100B /* Header_DayOfWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13410072967CD120074100B /* Header_DayOfWeekView.swift */; };
 		E134100A2967CE870074100B /* Header_HabitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13410092967CE870074100B /* Header_HabitsView.swift */; };
+		E134100C296D06DB0074100B /* Header_ScrollTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E134100B296D06DB0074100B /* Header_ScrollTabView.swift */; };
 		E13F3946293D2FE800769255 /* SubRoutineListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13F3945293D2FE800769255 /* SubRoutineListView.swift */; };
 		E13F3949293E782E00769255 /* RoutineModel_Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13F3948293E782E00769255 /* RoutineModel_Add.swift */; };
 		E13F394B293EB08E00769255 /* DurationPickerDisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13F394A293EB08E00769255 /* DurationPickerDisc.swift */; };
@@ -124,6 +125,7 @@
 		E1340FF92952725C0074100B /* TimeLineTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineTitleView.swift; sourceTree = "<group>"; };
 		E13410072967CD120074100B /* Header_DayOfWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header_DayOfWeekView.swift; sourceTree = "<group>"; };
 		E13410092967CE870074100B /* Header_HabitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header_HabitsView.swift; sourceTree = "<group>"; };
+		E134100B296D06DB0074100B /* Header_ScrollTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header_ScrollTabView.swift; sourceTree = "<group>"; };
 		E13F3945293D2FE800769255 /* SubRoutineListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubRoutineListView.swift; sourceTree = "<group>"; };
 		E13F3948293E782E00769255 /* RoutineModel_Add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineModel_Add.swift; sourceTree = "<group>"; };
 		E13F394A293EB08E00769255 /* DurationPickerDisc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationPickerDisc.swift; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 				E1B0F71E28FBC61F00925858 /* ContentView.swift */,
 				E13410092967CE870074100B /* Header_HabitsView.swift */,
 				E13410072967CD120074100B /* Header_DayOfWeekView.swift */,
+				E134100B296D06DB0074100B /* Header_ScrollTabView.swift */,
 				E1B0F72228FBC65000925858 /* Header_TitleView.swift */,
 				E1B0F71A28FBC60800925858 /* BottomTab.swift */,
 				E176E151290B560C00B09604 /* AddTaskButtonView.swift */,
@@ -541,6 +544,7 @@
 				E1B0F71B28FBC60800925858 /* BottomTab.swift in Sources */,
 				E1C95DAF28E4D26700851C4E /* MainCSS.swift in Sources */,
 				E11720B32920677900316FBE /* DatePickerSheet.swift in Sources */,
+				E134100C296D06DB0074100B /* Header_ScrollTabView.swift in Sources */,
 				E134100A2967CE870074100B /* Header_HabitsView.swift in Sources */,
 				E13410082967CD120074100B /* Header_DayOfWeekView.swift in Sources */,
 				E1EEC759294BE392005A88D1 /* TimeLineRowView.swift in Sources */,

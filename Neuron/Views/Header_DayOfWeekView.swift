@@ -10,12 +10,14 @@ import SwiftUI
 struct Header_DayOfWeekView: View {
     
     @EnvironmentObject var UserOptions : OptionsModel
+    
+    let week : [Date]
+    
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false){
             
-            HStack(spacing:11){
-                
-                ForEach(UserOptions.currentWeek, id: \.self) { day in
+            HStack(){
+                Spacer()
+                ForEach(week, id: \.self) { day in
                     
                     VStack(spacing:1){
                         
@@ -48,13 +50,13 @@ struct Header_DayOfWeekView: View {
                     )
                     Spacer()
                 }
-            }.padding()
-        }
+            }
     }
 }
 
 struct Header_DayOfWeekView_Previews: PreviewProvider {
     static var previews: some View {
-        Header_DayOfWeekView().environmentObject(OptionsModel())
+        Header_DayOfWeekView(week: [])
+            .environmentObject(OptionsModel())
     }
 }

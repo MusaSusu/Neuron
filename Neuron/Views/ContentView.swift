@@ -28,7 +28,7 @@ struct ContentView: View {
             
             Group{
                 if selectedHeader{
-                    Header_DayOfWeekView()
+                    Header_ScrollTabView()
                 }
                 else{
                     Header_HabitsView()

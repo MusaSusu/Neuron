@@ -31,9 +31,8 @@ struct TaskDescriptionView: View {
                 Text(task.notes ?? "")
             }
             
-        }
+        }.padding(10)
         .frame(height: (capsuleHeight), alignment: .topLeading)
-        .padding(10)
         .background(
             RoundedRectangle(cornerRadius: 10)
                 .fill(setColor).opacity(0.2) //white: 0.995

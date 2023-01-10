@@ -11,7 +11,16 @@ import SwiftUI
 class OptionsModel: ObservableObject{
     
     // MARK: Current Week Initialization
-    @Published var currentWeek: [Date] = []
+    var prevWeek : [Date] = []
+    var nextWeek : [Date] = []
+    var currentWeek: [Date] = [] {
+        didSet{
+            let calender = Calendar.current
+            nextWeek = currentWeek.map({calender.date(byAdding: .weekOfMonth,value: 1, to: $0) ?? Date()})
+            prevWeek = currentWeek.map( { calender.date(byAdding:.weekOfMonth,value: -1, to: $0) ?? Date() } )
+        }
+    }
+        
     @Published var today: Date = Date()
     @Published var selectedDay: Date = Date()
     @Published var selectedDayString: String = String()
@@ -23,7 +32,7 @@ class OptionsModel: ObservableObject{
     
     func fetchCurrentWeek(){
         
-        let today = Date()
+        let today = Date().startOfDay()
         let calendar = Calendar.current
             
         let week = calendar.dateInterval(of: .weekOfMonth, for: today)
@@ -37,6 +46,18 @@ class OptionsModel: ObservableObject{
                 currentWeek.append(weekday)
             }
         }
+    }
+    
+    func updateNextWeek(){
+        let calendar = Calendar.current
+        currentWeek = nextWeek
+        selectedDay = calendar.date(byAdding: .weekOfMonth,value: 1, to: selectedDay) ?? Date()
+    }
+    
+    func updatePrevWeek(){
+        let calendar = Calendar.current
+        currentWeek = prevWeek
+        selectedDay = calendar.date(byAdding: .weekOfMonth,value: -1, to: selectedDay) ?? Date()
     }
     
     

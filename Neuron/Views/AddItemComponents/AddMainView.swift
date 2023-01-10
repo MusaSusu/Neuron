@@ -9,7 +9,6 @@ import SwiftUI
 import CoreData
 
 struct AddMainView: View {
-    @ObservedObject var item: Tasks // task object in child context
     @Environment(\.managedObjectContext) private var context
     @Environment(\.dismiss) private var dismiss // causes body to run
     
@@ -115,20 +114,21 @@ struct AddMainView: View {
     }
     
     func saveTask(dates: [Date]){
-        item.id = UUID()
-        item.title = NewItem_Add.name
-        item.icon = NewItem_Add.icon
-        item.duration = NewItem_Add.duration
-        item.color = NewItem_Add.color.toDouble()
-        item.taskChecker = false
+        let newTask = Tasks(context: context)
+        newTask.id = UUID()
+        newTask.title = NewItem_Add.name
+        newTask.icon = NewItem_Add.icon
+        newTask.duration = NewItem_Add.duration
+        newTask.color = NewItem_Add.color.toDouble()
+        newTask.taskChecker = false
         for date in dates {
             let taskGroup = DateEntity(context: context)
             let taskDate = TaskDate(context: context)
             
             taskGroup.dateGroup = date.startOfDay()
-            taskGroup.addToHasTask(item)
+            taskGroup.addToHasTask(newTask)
             
-            taskDate.task = item
+            taskDate.task = newTask
             taskDate.date = date
             taskDate.dateGroup = taskGroup
         }
@@ -137,7 +137,7 @@ struct AddMainView: View {
 
 struct AddMainView_Previews: PreviewProvider {
     static var previews: some View {
-        AddMainView( item: .init(entity: Tasks.entity(),insertInto: PersistenceController.preview.container.viewContext))
+        AddMainView()
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 
     }

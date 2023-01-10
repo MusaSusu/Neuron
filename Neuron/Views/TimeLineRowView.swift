@@ -35,13 +35,13 @@ struct TimelineRowView: View {
     var capsuleHeight: CGFloat{
         let duration = abs((duration / 1800))
         if duration <= 1 {
-            return 45
+            return 90
         }
         else if duration >= 6 {
-            return 240
+            return 480
         }
         else {
-            return duration * 40.0
+            return duration * 80
         }
     }
     
@@ -60,7 +60,7 @@ struct TimelineRowView: View {
         self.text = task.notes!
         self.nextDuration = {
             if nextDuration < 1 {
-                return 0
+                return 5
             }
             else if nextDuration / 3600 < 0.5 {
                 return 25
@@ -85,13 +85,13 @@ struct TimelineRowView: View {
                     Text(formattedEndDate)
                         .timeFont()
                         .offset(y:2.5)
-                }.frame(width:60,height: capsuleHeight*2,alignment: .trailing)
+                }.frame(width:60,height: capsuleHeight,alignment: .trailing)
 
                 
                 ZStack{
                     VStack(spacing: 0){
                         setTimeLineGradient(color: setColor, date: dateStart, duration: nextDuration, height: capsuleHeight)
-                    }.frame(width:15,height: capsuleHeight*2)
+                    }.frame(width:15,height: capsuleHeight)
                     VStack{
                         Spacer()
                         drawCapsule(date: dateStart, duration: duration )
@@ -114,7 +114,7 @@ struct TimelineRowView: View {
                 Spacer()
                 switch selectionMenu {
                 case .description:
-                    TaskDescriptionView(task: task,capsuleHeight: capsuleHeight * 1.75 )
+                    TaskDescriptionView(task: task,capsuleHeight: capsuleHeight )
                         .transition(.scale)
                 case .none:
                         TimeLineTitleView(task: task)
@@ -131,7 +131,7 @@ struct TimelineRowView: View {
             
             Spacer()
         }
-        .frame(height: (capsuleHeight*2))
+        .frame(height: (capsuleHeight))
         .padding(.leading,10)
         
         HStack(spacing: 0){
