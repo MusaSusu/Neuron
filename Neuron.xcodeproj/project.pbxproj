@@ -18,7 +18,6 @@
 		E13F3946293D2FE800769255 /* SubRoutineListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13F3945293D2FE800769255 /* SubRoutineListView.swift */; };
 		E13F3949293E782E00769255 /* RoutineModel_Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13F3948293E782E00769255 /* RoutineModel_Add.swift */; };
 		E13F394B293EB08E00769255 /* DurationPickerDisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13F394A293EB08E00769255 /* DurationPickerDisc.swift */; };
-		E13F394D293F0BC800769255 /* RoutineAdderVie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13F394C293F0BC800769255 /* RoutineAdderVie.swift */; };
 		E13F394F2945624F00769255 /* RoutineDurationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13F394E2945624F00769255 /* RoutineDurationSheet.swift */; };
 		E13F39512945CC7A00769255 /* RoutineSchedPickerDisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13F39502945CC7A00769255 /* RoutineSchedPickerDisc.swift */; };
 		E13F3953294806A500769255 /* enumWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13F3952294806A500769255 /* enumWidgets.swift */; };
@@ -61,8 +60,6 @@
 		E1B0F72028FBC62000925858 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F71E28FBC61F00925858 /* ContentView.swift */; };
 		E1B0F72128FBC62000925858 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F71E28FBC61F00925858 /* ContentView.swift */; };
 		E1B0F72628FBC65000925858 /* Header_TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F72228FBC65000925858 /* Header_TitleView.swift */; };
-		E1B0F72728FBC65000925858 /* Header_TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F72228FBC65000925858 /* Header_TitleView.swift */; };
-		E1B0F72828FBC65000925858 /* Header_TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F72228FBC65000925858 /* Header_TitleView.swift */; };
 		E1B0F72C28FBC65000925858 /* TaskDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F72428FBC65000925858 /* TaskDescriptionView.swift */; };
 		E1B0F72D28FBC65000925858 /* TaskDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F72428FBC65000925858 /* TaskDescriptionView.swift */; };
 		E1B0F72E28FBC65000925858 /* TaskDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B0F72428FBC65000925858 /* TaskDescriptionView.swift */; };
@@ -129,7 +126,6 @@
 		E13F3945293D2FE800769255 /* SubRoutineListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubRoutineListView.swift; sourceTree = "<group>"; };
 		E13F3948293E782E00769255 /* RoutineModel_Add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineModel_Add.swift; sourceTree = "<group>"; };
 		E13F394A293EB08E00769255 /* DurationPickerDisc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationPickerDisc.swift; sourceTree = "<group>"; };
-		E13F394C293F0BC800769255 /* RoutineAdderVie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineAdderVie.swift; sourceTree = "<group>"; };
 		E13F394E2945624F00769255 /* RoutineDurationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineDurationSheet.swift; sourceTree = "<group>"; };
 		E13F39502945CC7A00769255 /* RoutineSchedPickerDisc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineSchedPickerDisc.swift; sourceTree = "<group>"; };
 		E13F3952294806A500769255 /* enumWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enumWidgets.swift; sourceTree = "<group>"; };
@@ -204,6 +200,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E134100F296E23A50074100B /* Header_components */ = {
+			isa = PBXGroup;
+			children = (
+				E1B0F72228FBC65000925858 /* Header_TitleView.swift */,
+				E13410092967CE870074100B /* Header_HabitsView.swift */,
+				E134100B296D06DB0074100B /* Header_ScrollTabView.swift */,
+				E13410072967CD120074100B /* Header_DayOfWeekView.swift */,
+			);
+			path = Header_components;
+			sourceTree = "<group>";
+		};
 		E13F3947293E76E100769255 /* RoutineComponents */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,7 +219,6 @@
 				E13F39502945CC7A00769255 /* RoutineSchedPickerDisc.swift */,
 				E13F394E2945624F00769255 /* RoutineDurationSheet.swift */,
 				E13F3948293E782E00769255 /* RoutineModel_Add.swift */,
-				E13F394C293F0BC800769255 /* RoutineAdderVie.swift */,
 			);
 			path = RoutineComponents;
 			sourceTree = "<group>";
@@ -334,10 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				E1B0F71E28FBC61F00925858 /* ContentView.swift */,
-				E13410092967CE870074100B /* Header_HabitsView.swift */,
-				E13410072967CD120074100B /* Header_DayOfWeekView.swift */,
-				E134100B296D06DB0074100B /* Header_ScrollTabView.swift */,
-				E1B0F72228FBC65000925858 /* Header_TitleView.swift */,
+				E134100F296E23A50074100B /* Header_components */,
 				E1B0F71A28FBC60800925858 /* BottomTab.swift */,
 				E176E151290B560C00B09604 /* AddTaskButtonView.swift */,
 				E1B0F72528FBC65000925858 /* FullTimelineView.swift */,
@@ -549,7 +552,6 @@
 				E13410082967CD120074100B /* Header_DayOfWeekView.swift in Sources */,
 				E1EEC759294BE392005A88D1 /* TimeLineRowView.swift in Sources */,
 				E1BEFF332916682F00A2DE56 /* SearchView .swift in Sources */,
-				E13F394D293F0BC800769255 /* RoutineAdderVie.swift in Sources */,
 				E1EEC757294B0CDD005A88D1 /* TimeLineMenu.swift in Sources */,
 				E1A4DB892935BDF400FB6BDE /* SubTaskSheetView.swift in Sources */,
 				E1B0F72F28FBC65000925858 /* FullTimelineView.swift in Sources */,
@@ -571,7 +573,6 @@
 				E16BB28528E0F26000ABD2E0 /* NeuronTests.swift in Sources */,
 				E1B0F72D28FBC65000925858 /* TaskDescriptionView.swift in Sources */,
 				E176E1572911067D00B09604 /* AddTaskButtonView.swift in Sources */,
-				E1B0F72728FBC65000925858 /* Header_TitleView.swift in Sources */,
 				E1BEFF2E2916677700A2DE56 /* AddMainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -592,7 +593,6 @@
 				E1B0F72E28FBC65000925858 /* TaskDescriptionView.swift in Sources */,
 				E19B9D7328FD1602009CC37A /* Persistence.swift in Sources */,
 				E1C95DB128E4D26700851C4E /* MainCSS.swift in Sources */,
-				E1B0F72828FBC65000925858 /* Header_TitleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

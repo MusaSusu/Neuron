@@ -14,35 +14,59 @@ struct RoutineSchedPickerDisc: View {
     var body: some View {
         HStack{
             DisclosureGroup{
-                HStack{
-                    ForEach($Routine.scheduleList, id: \.self){ $item in
-                        VStack{
-                            Button(action: {item.check.toggle()}){
-                                Text(item.id)
-                                    .underline(item.check, color: .red)
-                                    .bold(item.check)
-                            }
-                        }
-                        .foregroundColor(item.check ? .black : Color(white: 0.5))
-                        .background(
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(.white)
-                                    .aspectRatio(1.0, contentMode: .fill)
-                                    .opacity(item.check ? 1 : 0.7)
-                                    .shadow(radius: item.check ? 3 : 1)
-                                    .frame(width: 40,height: 40)
-                            }
-                        )
-                        .frame(width:40)
-                    }
+                RoutineSchedPicker()
+                    .padding(.vertical)
+                } label: {
+                    Text("Schedule").titleFont()
                 }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical)
-            } label: {
-                Text("Schedule").titleFont()
             }
-        }
+    }
+}
+
+struct RoutineSchedPicker : View {
+    @EnvironmentObject var Routine : RoutineModel_Add
+    @State var isSheet = true
+    
+    var body: some View{
+        VStack{
+            
+            HStack{
+                VStack{Text("")}.frame(width: 80)
+                Divider().background(.black)
+                ForEach($Routine.scheduleList, id: \.self){ $item in
+                    Spacer()
+                        VStack{
+                            Text(item.name).bold()
+                            }
+                        .frame(width:15,height: 30)
+                        .foregroundColor(.black)
+                    Spacer()
+                    Divider().background(.black)
+                }
+            }.frame(alignment: .leading)
+            
+            HStack{
+                Text(Date().startOfDay().formatted(date: .omitted, time: .shortened))
+                    .frame(width: 80,height:30,alignment: .leading)
+                Divider().background(.black)
+                
+                ForEach($Routine.scheduleList, id: \.self){ $item in
+                    Spacer()
+                    VStack{
+                        Button(action: {item.check.toggle()} ){
+                            Image(systemName: item.check ? "circle.inset.filled" : "circle")
+                                .foregroundColor(.red)
+                        }
+                    }
+                    .frame(width:15,height: 30)
+                    .foregroundColor(.black)
+                    Spacer()
+                    Divider().background(.black)
+                }
+                
+            }.frame(alignment: .leading)
+            
+        }.padding(.horizontal,5)
     }
 }
 
