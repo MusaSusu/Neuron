@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 
 struct AddMainView: View {
+    
     @Environment(\.managedObjectContext) private var context
     @Environment(\.dismiss) private var dismiss // causes body to run
     
@@ -95,6 +96,8 @@ struct AddMainView: View {
             saveTask(dates: Task_Add.returnDates())
         case 2:
             saveHabit()
+        case 3:
+            saveRoutine()
         default:
             saveTask(dates: Task_Add.returnDates())
         }
@@ -102,24 +105,17 @@ struct AddMainView: View {
     
     func saveHabit(){
         let newHabit = Habit(context: context)
-        newHabit.id = UUID()
-        newHabit.title = NewItem_Add.name
-        newHabit.icon = NewItem_Add.icon
+        saveMain(item: newHabit)
         newHabit.duration = NewItem_Add.duration
-        newHabit.color = NewItem_Add.color.toDouble()
         newHabit.timeFrame = Habit_Add.timeFrame.rawValue
         newHabit.completed = 0
         newHabit.frequency = Int16(Habit_Add.selectedFreq)
-        newHabit.notes = NewItem_Add.notes
     }
     
     func saveTask(dates: [Date]){
         let newTask = Tasks(context: context)
-        newTask.id = UUID()
-        newTask.title = NewItem_Add.name
-        newTask.icon = NewItem_Add.icon
+        saveMain(item: newTask)
         newTask.duration = NewItem_Add.duration
-        newTask.color = NewItem_Add.color.toDouble()
         newTask.taskChecker = false
         for date in dates {
             let taskGroup = DateEntity(context: context)
@@ -133,12 +129,26 @@ struct AddMainView: View {
             taskDate.dateGroup = taskGroup
         }
     }
+    func saveRoutine(){
+        let newRoutine = Routine(context: context)
+        saveMain(item: newRoutine)
+        newRoutine.schedule = Routine_Add.scheduleList.first?.weekdays
+        newRoutine.duration = NewItem_Add.duration
+        
+    }
+    
+    func saveMain(item : Main){
+        item.id = UUID()
+        item.color = NewItem_Add.color.toDouble()
+        item.icon = NewItem_Add.icon
+        item.notes = NewItem_Add.notes
+        item.title = NewItem_Add.name
+    }
 }
 
 struct AddMainView_Previews: PreviewProvider {
     static var previews: some View {
         AddMainView()
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-
     }
 }

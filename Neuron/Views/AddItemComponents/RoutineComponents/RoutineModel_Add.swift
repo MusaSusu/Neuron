@@ -15,9 +15,8 @@ struct Routine_Add: Identifiable,Hashable{
 
 struct scheduleByDay : Hashable {
     let id = UUID()
-    var name : String
-    var check : Bool
-    var dates : [Date]
+    var time : Date
+    var weekdays : [Bool]
 }
 
 let testRoutine = Routine_Add(title: "Start", duration: 0)
@@ -27,16 +26,8 @@ class RoutineModel_Add: ObservableObject{
     @Published var scheduleList : [scheduleByDay] = []
     
     init(){
-        let calendar = Calendar.current
-        let weekDays = calendar.veryShortStandaloneWeekdaySymbols
-        
-        //MARK: Test values
-        var tempBool : Bool = false
-        for item in weekDays{
-            let temp = scheduleByDay(name: item, check:tempBool,dates: [Date().startOfDay()] )
-            scheduleList.append(temp)
-            tempBool.toggle()
-        }
+        let temp = scheduleByDay(time: Date(timeInterval: 10*60 + 6 * 60 * 60,since: Date().startOfDay()), weekdays: .init(repeating: true, count: 7) )
+        scheduleList.append(temp)
         self.list = [testRoutine]
     }
     

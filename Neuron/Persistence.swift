@@ -100,6 +100,14 @@ struct PersistenceController {
         newHabit1.color = [0.9098, 0.4039,  0.4039]
         newHabit1.timeFrame = timeFrame.Weekly.rawValue
         
+        let newRoutine = Routine(context: viewContext)
+        newRoutine.id = UUID()
+        newRoutine.title = "Wake Up"
+        newRoutine.color = [0.9098, 0.4039,  0.4039]
+        newRoutine.notes = ""
+        newRoutine.icon = "sun.max.fill"
+        newRoutine.duration = 0.5 * 3600
+        
         do {
             try viewContext.save()
         } catch {

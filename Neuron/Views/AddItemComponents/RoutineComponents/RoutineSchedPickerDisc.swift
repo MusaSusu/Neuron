@@ -26,6 +26,7 @@ struct RoutineSchedPickerDisc: View {
 struct RoutineSchedPicker : View {
     @EnvironmentObject var Routine : RoutineModel_Add
     @State var isSheet = true
+    let daysofweek = Calendar.current.veryShortStandaloneWeekdaySymbols
     
     var body: some View{
         VStack{
@@ -33,39 +34,39 @@ struct RoutineSchedPicker : View {
             HStack{
                 VStack{Text("")}.frame(width: 80)
                 Divider().background(.black)
-                ForEach($Routine.scheduleList, id: \.self){ $item in
-                    Spacer()
-                        VStack{
-                            Text(item.name).bold()
-                            }
-                        .frame(width:15,height: 30)
-                        .foregroundColor(.black)
-                    Spacer()
-                    Divider().background(.black)
-                }
-            }.frame(alignment: .leading)
-            
-            HStack{
-                Text(Date().startOfDay().formatted(date: .omitted, time: .shortened))
-                    .frame(width: 80,height:30,alignment: .leading)
-                Divider().background(.black)
-                
-                ForEach($Routine.scheduleList, id: \.self){ $item in
+                ForEach(daysofweek, id: \.self){ item in
                     Spacer()
                     VStack{
-                        Button(action: {item.check.toggle()} ){
-                            Image(systemName: item.check ? "circle.inset.filled" : "circle")
-                                .foregroundColor(.red)
-                        }
+                        Text(item).bold()
                     }
                     .frame(width:15,height: 30)
                     .foregroundColor(.black)
                     Spacer()
                     Divider().background(.black)
                 }
-                
             }.frame(alignment: .leading)
             
+            ForEach($Routine.scheduleList, id: \.self){ $item in
+                HStack{
+                    Text(item.time.formatted(date: .omitted, time: .shortened))
+                        .frame(width: 80,height:30,alignment: .leading)
+                    Divider().background(.black)
+                    
+                    ForEach(item.weekdays.indices, id: \.self){ index in
+                        Spacer()
+                        VStack{
+                            Button(action: {item.weekdays[index].toggle()} ){
+                                Image(systemName: item.weekdays[index] ? "circle.inset.filled" : "circle")
+                                    .foregroundColor(.red)
+                            }
+                        }
+                        .frame(width:15,height: 30)
+                        .foregroundColor(.black)
+                        Spacer()
+                        Divider().background(.black)
+                    }
+                }
+            }.frame(alignment: .leading)
         }.padding(.horizontal,5)
     }
 }

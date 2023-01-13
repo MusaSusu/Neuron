@@ -16,7 +16,7 @@ struct FullTimelineView: View {
         return dates.first?.taskDates?.sortedArray(using: [NSSortDescriptor(keyPath: \TaskDate.date, ascending: true)]) as? [TaskDate] ?? []
     }
     
-    var items : [Tasks] {
+    var taskItems : [Tasks] {
         var array : [Tasks] = []
         for item in taskDates{
             if (item.task != nil){
@@ -29,7 +29,7 @@ struct FullTimelineView: View {
         
     var datesList : [DateInterval] {
         var temp : [DateInterval] = []
-        for item in Array(items){
+        for item in Array(taskItems){
             temp.append(item.date)
         }
         return temp
@@ -37,8 +37,8 @@ struct FullTimelineView: View {
 
     var durationArray: [TimeInterval]{
         var array = [TimeInterval]()
-        let temp = Array(items)
-        let first = temp[0..<items.endIndex].map{$0.date.end}
+        let temp = Array(taskItems)
+        let first = temp[0..<temp.endIndex].map{$0.date.end}
         let second = temp[1...].map{$0.date.start}
         for (endTime,startTime) in zip(first,second){
             array.append(startTime.timeIntervalSince(endTime))
@@ -59,7 +59,7 @@ struct FullTimelineView: View {
         VStack{
             ScrollView(.vertical,showsIndicators: false){
                 VStack(spacing:0){
-                    ForEach( Array(items.enumerated()) , id: \.element) { index,item in
+                    ForEach( Array(taskItems.enumerated()) , id: \.element) { index,item in
                         TimelineRowView(task: item, nextDuration: durationArray[index]/2)
                             .onDrag {
                                 return NSItemProvider()

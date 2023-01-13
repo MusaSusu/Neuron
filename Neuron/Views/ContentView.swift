@@ -17,14 +17,32 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing:0){
             
-            HStack(){
+            HStack(alignment: .lastTextBaseline){
                 HeaderView().padding(.horizontal)
+                
                 Button{
-                    selectedHeader.toggle()
+                    selectedHeader = true
                 } label: {
-                    Text("header")
+                    Image(systemName: "brain.head.profile")
+                        .resizable()
+                        .aspectRatio(1, contentMode: .fill)
+                        .frame(width: 25,height: 25)
+                        .foregroundColor(selectedHeader ? .red : .gray)
                 }
-            }
+                Divider().frame(height: 40)
+                Button{
+                    selectedHeader  = false
+                } label: {
+                    Image(systemName: "calendar")
+                        .resizable()
+                        .aspectRatio(1, contentMode: .fill)
+                        .frame(width: 25,height: 25)
+                        .foregroundColor(selectedHeader ? .gray : .red)
+
+
+                }
+                Spacer()
+            }.padding(.trailing)
             
             Group{
                 if selectedHeader{
