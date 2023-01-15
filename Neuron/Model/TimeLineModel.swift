@@ -75,12 +75,3 @@ struct DropViewDelegate: DropDelegate {
     
 }
 
-class TimeLineModel : ObservableObject {
-    @Published var items : [TimeLineItemModel]
-    
-    init(items: [TimeLineItemModel]) {
-        self.items = items
-    }
-    
-}
-

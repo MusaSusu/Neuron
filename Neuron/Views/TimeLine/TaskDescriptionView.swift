@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import CoreData
 
-struct TaskDescriptionView: View {
+struct TaskDescriptionView<T: NSManagedObject & isTimelineItem> : View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
-    @ObservedObject var task: Tasks
+    @ObservedObject var task: T
     
     var setColor: Color{
         return task.color?.fromDouble() ?? Color.red
@@ -25,7 +26,7 @@ struct TaskDescriptionView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5){
-            TimeLineTitleView(task: task)
+            TimeLineTitleView(task: task )
             
             HStack{
                 Text(task.notes ?? "")
@@ -54,7 +55,7 @@ struct strikethroughs: Shape{
 
 struct TaskDescription_Previews: PreviewProvider {
     static var previews: some View {
-        TaskDescriptionView(task: previewscontainer,capsuleHeight: 120)
+        TaskDescriptionView<Tasks>(task: previewscontainer,capsuleHeight: 120)
             .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
     }
 }

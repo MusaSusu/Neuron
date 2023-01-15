@@ -21,6 +21,7 @@
         <attribute name="icon" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="notes" attributeType="String" defaultValueString=""/>
+        <attribute name="taskChecker" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="title" attributeType="String" defaultValueString=""/>
     </entity>
     <entity name="Project" representedClassName="Project" parentEntity="Main" syncable="YES" codeGenerationType="class">
@@ -28,6 +29,7 @@
         <relationship name="subTasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tasks" inverseName="ofProject" inverseEntity="Tasks"/>
     </entity>
     <entity name="Routine" representedClassName="Routine" parentEntity="Main" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" transient="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="duration" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="schedule" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Bool]"/>
     </entity>
@@ -39,7 +41,6 @@
     <entity name="Tasks" representedClassName=".Tasks" parentEntity="Main" syncable="YES" codeGenerationType="class">
         <attribute name="dateStart" optional="YES" transient="YES" attributeType="Date" defaultDateTimeInterval="694391400" usesScalarValueType="NO"/>
         <attribute name="duration" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="taskChecker" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="tempDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="dates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskDate" inverseName="task" inverseEntity="TaskDate"/>
         <relationship name="hasDate" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DateEntity" inverseName="hasTask" inverseEntity="DateEntity"/>

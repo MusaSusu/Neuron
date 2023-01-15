@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum MainWidgets: String,Identifiable,CaseIterable{
+enum MenuWidgets: String,Identifiable,CaseIterable{
     case description
     case menu
     case none
@@ -16,7 +16,7 @@ enum MainWidgets: String,Identifiable,CaseIterable{
 
 
 struct TimeLineMenu: View {
-    @Binding var selectedMenu : MainWidgets
+    @Binding var selectedMenu : MenuWidgets
     var body: some View {
         HStack{
             Button{

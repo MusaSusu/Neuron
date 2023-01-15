@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import CoreData
 
-struct TimeLineTitleView: View {
-    @ObservedObject var task : Tasks
+struct TimeLineTitleView<T:NSManagedObject & isTimelineItem>: View {
+    @ObservedObject var task : T
     var body: some View {
         HStack(alignment:.center,spacing:0){
             
@@ -16,7 +17,7 @@ struct TimeLineTitleView: View {
                 Text("\(task.title!)")
                     .font(.system(.title3,design: .default,weight:.semibold))
                 
-                Text("  (\( task.date.duration.toHourMin(from: .seconds) ))")
+                Text("  (\( task.dateInterval.duration.toHourMin(from: .seconds) ))")
                     .italic()
                     .font(.system(.subheadline,weight: .light))
             }
@@ -44,6 +45,6 @@ struct TimeLineTitleView: View {
 
 struct TimeLineTitleView_Previews: PreviewProvider {
     static var previews: some View {
-        TimeLineTitleView(task: previewscontainer)
+        TimeLineTitleView<Tasks>(task: previewscontainer)
     }
 }

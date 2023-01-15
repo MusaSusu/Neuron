@@ -33,15 +33,23 @@ extension Tasks{
     func getColor() -> Color {
         self.color?.fromDouble() ?? .red
     }
-}
-
-extension Tasks{
-    var date : DateInterval{
+    var dateInterval : DateInterval{
         get {
             DateInterval(start: self.dateStart ?? Date(), duration: self.duration )
         }
+        set{
+            self.dateStart = newValue.start
+            self.duration = newValue.duration
+        }
     }
-    
+}
+
+extension Routine{
+    var dateInterval: DateInterval{
+        get{
+            DateInterval(start: Date().startOfDay(), duration: self.duration)
+        }
+    }
 }
 
 extension Array<Double>{
@@ -130,4 +138,3 @@ var previewscontainer: Tasks{
     newItem.taskChecker = false
     return newItem
 }
-    

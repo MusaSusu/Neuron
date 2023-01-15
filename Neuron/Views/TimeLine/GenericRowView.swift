@@ -1,5 +1,4 @@
 
-
 //
 //  SwiftUIView.swift
 //  Neuron
@@ -8,56 +7,44 @@
 //
 
 import SwiftUI
-
+import CoreData
 
 //MARK: Use a function to calculate length of the task in order to set the frame height.
 
 
-struct TimelineRowView: View {
+struct GenericTimelineRowView<T : NSManagedObject & isTimelineItem> : View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
-    @State var selectionMenu : MainWidgets = .menu
+    @State var selectionMenu : MenuWidgets = .menu
     
-    @ObservedObject var task: Tasks
+    @ObservedObject var task : T
     
-    let id: UUID
-    let icon: String
-    let duration: CGFloat
-    let taskTitle: String
-    let text: String
     let dateStart : Date
     let dateEnd : Date
     let nextDuration: TimeInterval
-    
     let setColor: Color
+    let capsuleHeight: CGFloat
     
-    var capsuleHeight: CGFloat{
-        let duration = abs((duration / 1800))
-        if duration <= 1 {
-            return 90
-        }
-        else if duration >= 6 {
-            return 480
-        }
-        else {
-            return duration * 80
-        }
-    }
+    var formattedStartDate: String { dateStart.formatted(date: .omitted, time: .shortened)}
+    var formattedEndDate: String {dateEnd.formatted(date: .omitted, time: .shortened)}
     
-    var formattedStartDate: String { formatDate(data:dateStart)}
-    var formattedEndDate: String {formatDate(data: dateEnd)}
-    
-    init(task: Tasks,nextDuration: TimeInterval){
-        self.task = task
-        self.id = task.id!
-        self.icon = task.icon!
-        self.duration = CGFloat(task.duration)
-        self.taskTitle = task.title!
-        self.dateStart = task.dateStart ?? Date()
-        self.dateEnd = task.date.end
+    init(task: T,nextDuration: TimeInterval){
+        self.capsuleHeight = {
+            let duration = abs((CGFloat(task.duration) / 1800))
+            if duration <= 1 {
+                return 90
+            }
+            else if duration >= 6 {
+                return 480
+            }
+            else {
+                return duration * 80
+            }
+        }()
+        self.dateStart = task.dateInterval.start
+        self.dateEnd = task.dateInterval.end
         self.setColor = task.color!.fromDouble()
-        self.text = task.notes!
         self.nextDuration = {
             if nextDuration < 1 {
                 return 5
@@ -70,6 +57,7 @@ struct TimelineRowView: View {
             }
             return 75
         }()
+        self.task = task
     }
     
     var body: some View {
@@ -86,7 +74,7 @@ struct TimelineRowView: View {
                         .timeFont()
                         .offset(y:2.5)
                 }.frame(width:60,height: capsuleHeight,alignment: .trailing)
-
+                
                 
                 ZStack{
                     VStack(spacing: 0){
@@ -94,7 +82,7 @@ struct TimelineRowView: View {
                     }.frame(width:15,height: capsuleHeight)
                     VStack{
                         Spacer()
-                        drawCapsule(date: dateStart, duration: duration )
+                        drawCapsule(date: dateStart, duration: task.duration )
                             .onTapGesture {
                                 if selectionMenu == .menu{
                                     selectionMenu = .none
@@ -110,32 +98,15 @@ struct TimelineRowView: View {
                 
             }.frame(width:80)
             
-            VStack{
-                Spacer()
-                switch selectionMenu {
-                case .description:
-                    TaskDescriptionView(task: task,capsuleHeight: capsuleHeight )
-                        .transition(.scale)
-                case .none:
-                        TimeLineTitleView(task: task)
-                case .menu:
-                    TimeLineTitleView(task: task)
-                    TimeLineMenu(selectedMenu: $selectionMenu)
-                        .transition(.scale(scale: 0,anchor: UnitPoint(x: 0 , y: 0.5)))
-                    
-                }
-                Spacer()
-            }
-            .animation(.easeInOut(duration: 0.2), value: selectionMenu)
-            .padding(.leading,5)
+            SelectionMenuBuilderView(task: task, selectionMenu: $selectionMenu,capsuleHeight: capsuleHeight)
             
             Spacer()
         }
-        .frame(height: (capsuleHeight))
+        .frame(height: capsuleHeight)
         .padding(.leading,10)
         
         HStack(spacing: 0){
-
+            
         }.frame(height: nextDuration)
     }
     
@@ -155,22 +126,13 @@ struct TimelineRowView: View {
                     .init(color: setColor, location: value),
                 ])
                 LinearGradient(gradient: gradient, startPoint: .top, endPoint: UnitPoint(x: 0.5, y: 2))
-                    .mask(Image(systemName:icon)
+                    .mask(Image(systemName:task.icon ?? "")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                     ).frame(width: 30.0, height: 30.0)
             }
         }
     }
-}
-
-
-
-private func formatDate(data: Date) -> String{
-    let formatter4 = DateFormatter()
-    formatter4.dateFormat = "MM-dd-yyyy HH:mm"
-    formatter4.timeStyle = .short
-    return formatter4.string(from:data)
 }
 
 private struct setTimeLineGradient: View{
@@ -180,7 +142,7 @@ private struct setTimeLineGradient: View{
     let height: CGFloat
     
     var body: some View {
-        TimelineView(.periodic(from: date, by: 30)){context in
+        TimelineView(.periodic(from: date, by: 30)){ context in
             let value = max(context.date.timeIntervalSince(date) / duration, 0)
             let gradient = Gradient(stops: [
                 .init(color: color, location: 0),
@@ -225,10 +187,10 @@ private extension View{
 }
 
 
-struct TimelineRowView_Previews: PreviewProvider {
+struct GenericTimelineRowView_Previews: PreviewProvider {
     
     static var previews: some View {
-        TimelineRowView(task: previewscontainer,nextDuration: 1200)
+        GenericTimelineRowView<Tasks>(task: previewscontainer,nextDuration: 1200)
             .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
     }
 }
