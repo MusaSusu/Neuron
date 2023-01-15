@@ -17,6 +17,16 @@ struct scheduleByDay : Hashable {
     let id = UUID()
     var time : Date
     var weekdays : [Bool]
+    var weekdaysCD : [String]{
+        let array = Calendar.current.standaloneWeekdaySymbols
+        var result : [String] = []
+        for (index,item) in array.enumerated(){
+            if weekdays[index] == true {
+                result.append(item)
+            }
+        }
+        return result
+    }
 }
 
 let testRoutine = Routine_Add(title: "Start", duration: 0)

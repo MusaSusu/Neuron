@@ -132,7 +132,15 @@ struct AddMainView: View {
     func saveRoutine(){
         let newRoutine = Routine(context: context)
         saveMain(item: newRoutine)
-        newRoutine.schedule = Routine_Add.scheduleList.first?.weekdays
+        for item in Routine_Add.scheduleList{
+            let timeCDObj = Routine_Schedule(context: context)
+            timeCDObj.time = item.time
+            for dayofweek in item.weekdaysCD{
+                let weekdayCDobj = DaysOfWeek(context: context)
+                weekdayCDobj.weekday = dayofweek
+                timeCDObj.addToDaysofweek(weekdayCDobj)
+            }
+        }
         newRoutine.duration = NewItem_Add.duration
         
     }

@@ -316,10 +316,10 @@
 		E17E714629736E7B0034B4BC /* TimeLine */ = {
 			isa = PBXGroup;
 			children = (
+				E17E714329736D450034B4BC /* TimeLineRowItemModel.swift */,
 				E1EEC756294B0CDD005A88D1 /* TimeLineMenu.swift */,
 				E17E713D297243CE0034B4BC /* GenericRowView.swift */,
 				E1340FF92952725C0074100B /* TimeLineTitleView.swift */,
-				E17E714329736D450034B4BC /* TimeLineRowItemModel.swift */,
 				E1B0F72428FBC65000925858 /* TaskDescriptionView.swift */,
 				E17E714129736BAE0034B4BC /* SelectionMenuBuilderView.swift */,
 				E17E713F297269A10034B4BC /* GenericTimeLineBuilderView.swift */,
@@ -354,9 +354,9 @@
 			isa = PBXGroup;
 			children = (
 				E1B0F71E28FBC61F00925858 /* ContentView.swift */,
-				E134100F296E23A50074100B /* Header_components */,
 				E1B0F71A28FBC60800925858 /* BottomTab.swift */,
 				E176E151290B560C00B09604 /* AddTaskButtonView.swift */,
+				E134100F296E23A50074100B /* Header_components */,
 				E17E714629736E7B0034B4BC /* TimeLine */,
 				E1BEFF2D2916676600A2DE56 /* AddItemComponents */,
 			);

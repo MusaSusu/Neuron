@@ -36,8 +36,8 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         
-        let Date = "01-07-2023"
-        let DateObj = convertDate(data: Date, format: "MM-dd-yyyy").startOfDay()
+        let Dateobj = "01-07-2023"
+        let DateObj = convertDate(data: Dateobj, format: "MM-dd-yyyy").startOfDay()
         let newItemDate = DateEntity(context: viewContext)
         newItemDate.dateGroup = DateObj
         
@@ -107,6 +107,34 @@ struct PersistenceController {
         newRoutine.notes = ""
         newRoutine.icon = "sun.max.fill"
         newRoutine.duration = 0.5 * 3600
+        
+        let sched = Routine_Schedule(context: viewContext)
+        sched.time = Date().startOfDay().addingTimeInterval(60*60*8)
+        let sched1 = Routine_Schedule(context: viewContext)
+        sched1.time = Date().startOfDay().addingTimeInterval(60*60*6)
+        let daysofweek = Calendar.current.standaloneWeekdaySymbols
+        for (count,item) in daysofweek.enumerated() {
+            let temp = DaysOfWeek(context: viewContext)
+            temp.weekday = item
+            if count % 2 == 0{
+                sched.addToDaysofweek(temp)
+            }
+            else{
+                sched1.addToDaysofweek(temp)
+            }
+        }
+        
+        /*
+        for i in 0..<7{
+            if i%2 == 0 {
+                times.append((true,[Date().startOfDay().addingTimeInterval(60*60*8)]))
+            }
+            else{
+                times.append((false,[]))
+            }
+        }
+        newRoutine.time = times
+        */
         
         do {
             try viewContext.save()

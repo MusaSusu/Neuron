@@ -10,6 +10,15 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
+    <entity name="DaysOfWeek" representedClassName="DaysOfWeek" syncable="YES" codeGenerationType="class">
+        <attribute name="weekday" optional="YES" attributeType="String"/>
+        <relationship name="schedules" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Routine_Schedule" inverseName="daysofweek" inverseEntity="Routine_Schedule"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="weekday"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
     <entity name="Habit" representedClassName="Habit" parentEntity="Main" syncable="YES" codeGenerationType="class">
         <attribute name="completed" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="duration" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -31,7 +40,12 @@
     <entity name="Routine" representedClassName="Routine" parentEntity="Main" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" transient="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="duration" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="schedule" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Bool]"/>
+        <relationship name="schedule" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Routine_Schedule" inverseName="ofRoutine" inverseEntity="Routine_Schedule"/>
+    </entity>
+    <entity name="Routine_Schedule" representedClassName="Routine_Schedule" syncable="YES" codeGenerationType="class">
+        <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="daysofweek" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DaysOfWeek" inverseName="schedules" inverseEntity="DaysOfWeek"/>
+        <relationship name="ofRoutine" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Routine" inverseName="schedule" inverseEntity="Routine"/>
     </entity>
     <entity name="TaskDate" representedClassName="TaskDate" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
