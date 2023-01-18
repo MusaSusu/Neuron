@@ -7,13 +7,6 @@
 
 import SwiftUI
 
-enum MenuWidgets: String,Identifiable,CaseIterable{
-    case description
-    case menu
-    case none
-    var id: Self{self}
-}
-
 
 struct TimeLineMenu: View {
     @Binding var selectedMenu : MenuWidgets

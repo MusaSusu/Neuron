@@ -11,25 +11,17 @@ import CoreData
 struct GenericTimeLineBuilderView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
-    
-    
+    @FetchRequest var routines : FetchedResults<Routine_Schedule>
     @FetchRequest var dates: FetchedResults<DateEntity>
     @State private var draggedSelection: Tasks?
-    @FetchRequest<Routine>(sortDescriptors: []) var routineItems
     
     let date : Date
     
     var taskDates : [TaskDate]{
         return dates.first?.taskDates?.allObjects as? [TaskDate] ?? []
-    }
-    
-    var routineDates : [(NSManagedObjectID,DateInterval,Int)] {
-        var array : [(NSManagedObjectID,DateInterval,Int)] = []
-        for item in Array(routineItems){
-            array.append( (item.objectID, item.dateInterval,1))
-        }
-        return array
-    }
+    }//update taskdates for multiple ents
+        
+    var routineDates: [(NSManagedObjectID,DateInterval,Int)]{routines.compactMap({ ($0.ofRoutine?.objectID,$0.dateInterval(date: date),1) as? (NSManagedObjectID, DateInterval,Int)})}
     
     var taskItems : [(NSManagedObjectID,DateInterval,Int)] {
         var array : [(NSManagedObjectID,DateInterval,Int)] = []
@@ -65,6 +57,7 @@ struct GenericTimeLineBuilderView: View {
             sortDescriptors: [],
             predicate: NSPredicate(format: "dateGroup >= %@ AND dateGroup <= %@", date as CVarArg, date.endOfDay() as CVarArg )
         )
+        _routines = fetchRoutinesByWeekday(date: date)
         self.date = date
     }
     
@@ -74,7 +67,7 @@ struct GenericTimeLineBuilderView: View {
             ScrollView(.vertical,showsIndicators: false){
                 VStack(spacing:0){
                     ForEach( Array(sortedArray.enumerated()) , id: \.element.0) { index,item in
-                        checkType(item.2, item: viewContext.object(with: item.0), index: index)
+                        checkType(item.2, item: viewContext.object(with: item.0), index: index, date: item.1)
                     }
                 }.padding(.top,20)
                 
@@ -91,12 +84,12 @@ struct GenericTimeLineBuilderView: View {
         )
     }
     @ViewBuilder
-    func checkType(_ num : Int, item : NSManagedObject, index : Int) ->  some View{
+    func checkType(_ num : Int, item : NSManagedObject, index : Int,date:DateInterval) ->  some View{
         if num == 0{
-            GenericTimelineRowView<Tasks>(task: item as! Tasks, nextDuration: durationArray[index]/2)
+            GenericTimelineRowView<Tasks>(task: item as! Tasks, nextDuration: durationArray[index]/2,date:date,widgetsArray: [.menu,.description] )
         }
         else{
-            GenericTimelineRowView<Routine>(task: item as! Routine, nextDuration: durationArray[index]/2)
+            GenericTimelineRowView<Routine>(task: item as! Routine, nextDuration: durationArray[index]/2,date: date,widgetsArray: [.menu,.description])
         }
     }
 }
@@ -106,4 +99,11 @@ struct GenericTimeLineBuilderView_Previews: PreviewProvider {
     GenericTimeLineBuilderView( date: convertDate(data: "12-21-2022",format: "MM-dd-yyyy").startOfDay())
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
+}
+
+func fetchRoutinesByWeekday(date:Date) -> FetchRequest<Routine_Schedule>{
+    FetchRequest<Routine_Schedule>(
+        sortDescriptors: [],
+        predicate: NSPredicate(format:"SUBQUERY(daysofweek, $x, $x.weekday == %i).@count>0 ", date.weekdayAsInt())
+    )
 }

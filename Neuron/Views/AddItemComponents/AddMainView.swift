@@ -140,9 +140,10 @@ struct AddMainView: View {
                 weekdayCDobj.weekday = dayofweek
                 timeCDObj.addToDaysofweek(weekdayCDobj)
             }
+            newRoutine.addToSchedule(timeCDObj)
         }
         newRoutine.duration = NewItem_Add.duration
-        
+        newRoutine.date = Date()
     }
     
     func saveMain(item : Main){

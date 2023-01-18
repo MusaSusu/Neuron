@@ -28,6 +28,12 @@ private let temp = [
     Task1(taskTitle: "Sleep", taskDescription: "Sleepytime",taskIcon: "moon.fill", taskDateStart:convertDate(data: "01-07-2023 23:20"),taskDateEnd: convertDate(data: "01-07-2023 23:50"),taskDuration: 0.5, taskColor: [0.9098, 0.6039,  0.6039],taskChecker: false)
 ]
 
+private let temproutines = [
+    Task1(taskTitle: "Wake up", taskDescription: "Wakey time 10-08",taskIcon: "sun.max.fill", taskDateStart: convertDate(data: "12-21-2022 01:00"),taskDateEnd:convertDate(data: "12-21-2022 01:30"),taskDuration: 0.5, taskColor:[0.949,  0.522,  0.1], taskChecker: false),
+    Task1(taskTitle: "Sleep", taskDescription: "Sleepytime",taskIcon: "moon.fill", taskDateStart:convertDate(data: "12-21-2022 23:20"),taskDateEnd: convertDate(data: "12-21-2022 23:50"),taskDuration: 0.5, taskColor: [0.9098, 0.6039,  0.6039],taskChecker: false)
+]
+                            
+
 
 struct PersistenceController {
     static let shared = PersistenceController()
@@ -100,30 +106,28 @@ struct PersistenceController {
         newHabit1.color = [0.9098, 0.4039,  0.4039]
         newHabit1.timeFrame = timeFrame.Weekly.rawValue
         
-        let newRoutine = Routine(context: viewContext)
-        newRoutine.id = UUID()
-        newRoutine.title = "Wake Up"
-        newRoutine.color = [0.9098, 0.4039,  0.4039]
-        newRoutine.notes = ""
-        newRoutine.icon = "sun.max.fill"
-        newRoutine.duration = 0.5 * 3600
-        
         let sched = Routine_Schedule(context: viewContext)
-        sched.time = Date().startOfDay().addingTimeInterval(60*60*8)
         let sched1 = Routine_Schedule(context: viewContext)
-        sched1.time = Date().startOfDay().addingTimeInterval(60*60*6)
-        let daysofweek = Calendar.current.standaloneWeekdaySymbols
-        for (count,item) in daysofweek.enumerated() {
-            let temp = DaysOfWeek(context: viewContext)
-            temp.weekday = item
-            if count % 2 == 0{
-                sched.addToDaysofweek(temp)
-            }
-            else{
-                sched1.addToDaysofweek(temp)
+        sched.time = Date().startOfDay().addingTimeInterval(60*60*2)
+        sched1.time = Date().startOfDay().addingTimeInterval(60*60*10)
+
+        let array = [sched,sched1]
+        
+        for i in 0..<2{
+            let newRoutine = Routine(context: viewContext)
+            newRoutine.id = UUID()
+            newRoutine.title = temproutines[i].taskTitle
+            newRoutine.color = temproutines[i].taskColor
+            newRoutine.notes = temproutines[i].taskDescription
+            newRoutine.icon = temproutines[i].taskIcon
+            newRoutine.duration = temproutines[i].taskDuration * 3600
+            newRoutine.addToSchedule(array[i])
+            for index in 1..<8 {
+                let temp = DaysOfWeek(context: viewContext)
+                temp.weekday = Int16(index)
+                array[i].addToDaysofweek(temp)
             }
         }
-        
         /*
         for i in 0..<7{
             if i%2 == 0 {
@@ -149,7 +153,7 @@ struct PersistenceController {
 
     let container: NSPersistentCloudKitContainer
 
-    init(inMemory: Bool = false) {
+    init(inMemory: Bool = true) {
         container = NSPersistentCloudKitContainer(name: "Neuron")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
@@ -171,7 +175,8 @@ struct PersistenceController {
             }
         })
         container.viewContext.automaticallyMergesChangesFromParent = true
-        container.viewContext.mergePolicy = NSMergePolicy(merge: .mergeByPropertyObjectTrumpMergePolicyType)
+        container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
     }
+    
 }
 

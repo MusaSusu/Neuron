@@ -38,8 +38,6 @@ struct ContentView: View {
                         .aspectRatio(1, contentMode: .fill)
                         .frame(width: 25,height: 25)
                         .foregroundColor(selectedHeader ? .gray : .red)
-
-
                 }
                 Spacer()
             }.padding(.trailing)

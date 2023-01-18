@@ -17,7 +17,6 @@ struct GenericTimelineRowView<T : NSManagedObject & isTimelineItem> : View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @State var selectionMenu : MenuWidgets = .menu
-    
     @ObservedObject var task : T
     
     let dateStart : Date
@@ -25,11 +24,12 @@ struct GenericTimelineRowView<T : NSManagedObject & isTimelineItem> : View {
     let nextDuration: TimeInterval
     let setColor: Color
     let capsuleHeight: CGFloat
+    let widgetsArray : [MenuWidgets]
     
     var formattedStartDate: String { dateStart.formatted(date: .omitted, time: .shortened)}
     var formattedEndDate: String {dateEnd.formatted(date: .omitted, time: .shortened)}
     
-    init(task: T,nextDuration: TimeInterval){
+    init(task: T,nextDuration: TimeInterval,date:DateInterval?,widgetsArray : [MenuWidgets]){
         self.capsuleHeight = {
             let duration = abs((CGFloat(task.duration) / 1800))
             if duration <= 1 {
@@ -42,8 +42,8 @@ struct GenericTimelineRowView<T : NSManagedObject & isTimelineItem> : View {
                 return duration * 80
             }
         }()
-        self.dateStart = task.dateInterval.start
-        self.dateEnd = task.dateInterval.end
+        self.dateStart = date?.start ?? task.dateInterval.start
+        self.dateEnd = date?.end ?? task.dateInterval.end
         self.setColor = task.color!.fromDouble()
         self.nextDuration = {
             if nextDuration < 1 {
@@ -58,6 +58,7 @@ struct GenericTimelineRowView<T : NSManagedObject & isTimelineItem> : View {
             return 75
         }()
         self.task = task
+        self.widgetsArray = widgetsArray
     }
     
     var body: some View {
@@ -68,13 +69,14 @@ struct GenericTimelineRowView<T : NSManagedObject & isTimelineItem> : View {
                 VStack(alignment:.trailing,spacing:0){
                     Text(formattedStartDate)
                         .timeFont()
+                        .lineLimit(1)
                         .offset(y:-2.5)
                     Spacer()
                     Text(formattedEndDate)
                         .timeFont()
                         .offset(y:2.5)
+                        .lineLimit(1)
                 }.frame(width:60,height: capsuleHeight,alignment: .trailing)
-                
                 
                 ZStack{
                     VStack(spacing: 0){
@@ -190,7 +192,7 @@ private extension View{
 struct GenericTimelineRowView_Previews: PreviewProvider {
     
     static var previews: some View {
-        GenericTimelineRowView<Tasks>(task: previewscontainer,nextDuration: 1200)
+        GenericTimelineRowView<Tasks>(task: previewscontainer,nextDuration: 1200,date: previewscontainer.dateInterval,widgetsArray: [.menu,.description])
             .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
     }
 }

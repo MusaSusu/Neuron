@@ -26,6 +26,7 @@ struct RoutineSchedPickerDisc: View {
 struct RoutineSchedPicker : View {
     @EnvironmentObject var Routine : RoutineModel_Add
     @State var isSheet = true
+    @State var dateSelect = Date()
     let daysofweek = Calendar.current.veryShortStandaloneWeekdaySymbols
     
     var body: some View{
@@ -48,8 +49,10 @@ struct RoutineSchedPicker : View {
             
             ForEach($Routine.scheduleList, id: \.self){ $item in
                 HStack{
-                    Text(item.time.formatted(date: .omitted, time: .shortened))
-                        .frame(width: 80,height:30,alignment: .leading)
+                    DatePicker(selection: $dateSelect,displayedComponents: [.hourAndMinute]){
+                    }
+                    .frame(width: 80,height:30)
+                        .buttonBorderShape(.roundedRectangle(radius: 10))
                     Divider().background(.black)
                     
                     ForEach(item.weekdays.indices, id: \.self){ index in
@@ -67,7 +70,10 @@ struct RoutineSchedPicker : View {
                     }
                 }
             }.frame(alignment: .leading)
-        }.padding(.horizontal,5)
+            HStack{
+                Text(Routine.scheduleList[0].weekdaysCD.debugDescription)
+            }
+        }.padding(.trailing,5)
     }
 }
 

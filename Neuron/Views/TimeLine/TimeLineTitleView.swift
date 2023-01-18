@@ -8,8 +8,15 @@
 import SwiftUI
 import CoreData
 
-struct TimeLineTitleView<T:NSManagedObject & isTimelineItem>: View {
+struct TimeLineTitleView<T:NSManagedObject & isTimelineItem, Content:View>: View {
     @ObservedObject var task : T
+    let content : () -> Content
+    
+    init(task:T,@ViewBuilder content: @escaping () -> Content){
+        self.task = task
+        self.content = content
+    }
+    
     var body: some View {
         HStack(alignment:.center,spacing:0){
             
@@ -28,23 +35,13 @@ struct TimeLineTitleView<T:NSManagedObject & isTimelineItem>: View {
             )
             
             Spacer()
-            
-            Button {
-                task.taskChecker.toggle()
-            } label: {
-                Label {Text("Task Complete")} icon: {
-                    Image(systemName: task.taskChecker ? "circle.inset.filled" : "circle")
-                        .foregroundColor(task.taskChecker ? task.color?.fromDouble().opacity(1) : .secondary)
-                        .accessibility(label: Text(task.taskChecker ? "Checked" : "Unchecked"))
-                        .imageScale(.large)
-                }
-            }.labelStyle(.iconOnly)
+            content()
         }
     }
 }
 
 struct TimeLineTitleView_Previews: PreviewProvider {
     static var previews: some View {
-        TimeLineTitleView<Tasks>(task: previewscontainer)
+        TimeLineTitleView<Tasks,EmptyView>(task: previewscontainer,content: {EmptyView()})
     }
 }

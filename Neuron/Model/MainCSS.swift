@@ -44,6 +44,13 @@ extension Tasks{
     }
 }
 
+extension Routine_Schedule{
+    func dateInterval(date:Date) -> DateInterval{
+        let temp =  (self.time?.timeIntervalSince(self.time?.startOfDay() ?? Date())) ?? 0
+        return DateInterval(start: date.addingTimeInterval(temp), duration: self.ofRoutine!.duration)
+    }
+}
+
 extension Routine{
     var dateInterval: DateInterval{
         get{
@@ -85,6 +92,13 @@ extension Date{
         let calendar = Calendar.current
         let temp = calendar.startOfDay(for: self) - 1
         return calendar.date(byAdding: .day, value: 1, to: temp) ?? Date()
+    }
+    func weekday() -> String{
+        let weekdays = Calendar.current.weekdaySymbols
+        return weekdays[Calendar.current.component(.weekday, from: self)-1]
+    }
+    func weekdayAsInt() -> Int16{
+        Int16(Calendar.current.component(.weekday, from: self))
     }
 }
 
@@ -137,4 +151,11 @@ var previewscontainer: Tasks{
     newItem.color = [0.949,  0.522,  0.1]
     newItem.taskChecker = false
     return newItem
+}
+
+func timeElapsedInSecondsWhenRunningCode(operation: ()->()) -> Double {
+    let startTime = CFAbsoluteTimeGetCurrent()
+    operation()
+    let timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
+    return Double(timeElapsed)
 }

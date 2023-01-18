@@ -317,12 +317,12 @@
 			isa = PBXGroup;
 			children = (
 				E17E714329736D450034B4BC /* TimeLineRowItemModel.swift */,
-				E1EEC756294B0CDD005A88D1 /* TimeLineMenu.swift */,
+				E17E713F297269A10034B4BC /* GenericTimeLineBuilderView.swift */,
 				E17E713D297243CE0034B4BC /* GenericRowView.swift */,
+				E17E714129736BAE0034B4BC /* SelectionMenuBuilderView.swift */,
+				E1EEC756294B0CDD005A88D1 /* TimeLineMenu.swift */,
 				E1340FF92952725C0074100B /* TimeLineTitleView.swift */,
 				E1B0F72428FBC65000925858 /* TaskDescriptionView.swift */,
-				E17E714129736BAE0034B4BC /* SelectionMenuBuilderView.swift */,
-				E17E713F297269A10034B4BC /* GenericTimeLineBuilderView.swift */,
 			);
 			path = TimeLine;
 			sourceTree = "<group>";
