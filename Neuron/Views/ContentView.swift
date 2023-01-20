@@ -14,6 +14,7 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var UserOptions: OptionsModel
     @State private var selectedHeader = true
+    
     var body: some View {
         VStack(spacing:0){
             
@@ -21,23 +22,23 @@ struct ContentView: View {
                 HeaderView().padding(.horizontal)
                 
                 Button{
-                    selectedHeader = true
+                    selectedHeader = false
                 } label: {
                     Image(systemName: "brain.head.profile")
                         .resizable()
                         .aspectRatio(1, contentMode: .fill)
                         .frame(width: 25,height: 25)
-                        .foregroundColor(selectedHeader ? .red : .gray)
+                        .foregroundColor(selectedHeader ? .gray : .red)
                 }
                 Divider().frame(height: 40)
                 Button{
-                    selectedHeader  = false
+                    selectedHeader  = true
                 } label: {
                     Image(systemName: "calendar")
                         .resizable()
                         .aspectRatio(1, contentMode: .fill)
                         .frame(width: 25,height: 25)
-                        .foregroundColor(selectedHeader ? .gray : .red)
+                        .foregroundColor(selectedHeader ? .red : .gray)
                 }
                 Spacer()
             }.padding(.trailing)

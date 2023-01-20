@@ -57,6 +57,19 @@ extension Routine{
             DateInterval(start: Date().startOfDay(), duration: self.duration)
         }
     }
+    
+    var tempsched: [(Date, [Int16])] {
+        get{
+            let schedules = self.schedule?.allObjects as? [Routine_Schedule]
+            let days : [(Date,[Int16])] = schedules?.compactMap(
+                {
+                    ($0.time,($0.daysofweek?.allObjects as? [DaysOfWeek])?.compactMap({$0.weekday})) as? (Date, [Int16])
+                    
+                }
+            ) ?? []
+            return days
+        }
+    }
 }
 
 extension Array<Double>{
@@ -98,7 +111,7 @@ extension Date{
         return weekdays[Calendar.current.component(.weekday, from: self)-1]
     }
     func weekdayAsInt() -> Int16{
-        Int16(Calendar.current.component(.weekday, from: self))
+        Int16(Calendar.current.component(.weekday, from: self)-1)
     }
 }
 

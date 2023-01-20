@@ -7,6 +7,8 @@
 
 import SwiftUI
 import CoreData
+import Combine
+
 
 struct GenericTimeLineBuilderView: View {
     
@@ -14,21 +16,24 @@ struct GenericTimeLineBuilderView: View {
     @FetchRequest var routines : FetchedResults<Routine_Schedule>
     @FetchRequest var dates: FetchedResults<DateEntity>
     @State private var draggedSelection: Tasks?
-    
+
     let date : Date
+    var dateofweek : Int {
+        Int(date.weekdayAsInt())
+    }
     
     var taskDates : [TaskDate]{
         return dates.first?.taskDates?.allObjects as? [TaskDate] ?? []
-    }//update taskdates for multiple ents
+    } //update taskdates for multiple ents if needed later
         
-    var routineDates: [(NSManagedObjectID,DateInterval,Int)]{routines.compactMap({ ($0.ofRoutine?.objectID,$0.dateInterval(date: date),1) as? (NSManagedObjectID, DateInterval,Int)})}
+    var routineDates: [(NSManagedObjectID,DateInterval,Int)]{
+        routines.compactMap({ ($0.objectID,$0.dateInterval(date: date),1) as? (NSManagedObjectID, DateInterval,Int)})}
     
     var taskItems : [(NSManagedObjectID,DateInterval,Int)] {
         var array : [(NSManagedObjectID,DateInterval,Int)] = []
         for item in taskDates{
-            if (item.task != nil){
-                item.task!.dateStart = item.date
-                let temp = item.task!
+            if let temp = item.task{
+                temp.dateStart = item.date
                 array.append((temp.objectID,temp.dateInterval,0))
             }
         }
@@ -86,10 +91,31 @@ struct GenericTimeLineBuilderView: View {
     @ViewBuilder
     func checkType(_ num : Int, item : NSManagedObject, index : Int,date:DateInterval) ->  some View{
         if num == 0{
-            GenericTimelineRowView<Tasks>(task: item as! Tasks, nextDuration: durationArray[index]/2,date:date,widgetsArray: [.menu,.description] )
+            let item = item as! Tasks
+            GenericTimelineRowView<Tasks>(
+                task: item,
+                nextDuration: durationArray[index]/2,
+                date:date,widgetsArray: [.menu,.description],
+                taskCheck: .init(
+                    get: {item.taskChecker},
+                    set: {newValue in item.taskChecker = newValue})
+            )
         }
         else{
-            GenericTimelineRowView<Routine>(task: item as! Routine, nextDuration: durationArray[index]/2,date: date,widgetsArray: [.menu,.description])
+            let item = (item as! Routine_Schedule)
+            let routine = item.ofRoutine!
+            GenericTimelineRowView<Routine>(
+                task: routine,
+                nextDuration: durationArray[index]/2,
+                date: date,widgetsArray: [.menu,.description],
+                taskCheck: .init(
+                    get: {
+                        item.weekTracker![self.dateofweek]
+                        
+                    },
+                    set: {newValue in item.weekTracker![self.dateofweek] = newValue
+                    })
+            )
         }
     }
 }
@@ -107,3 +133,4 @@ func fetchRoutinesByWeekday(date:Date) -> FetchRequest<Routine_Schedule>{
         predicate: NSPredicate(format:"SUBQUERY(daysofweek, $x, $x.weekday == %i).@count>0 ", date.weekdayAsInt())
     )
 }
+

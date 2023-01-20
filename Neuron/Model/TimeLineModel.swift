@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import CoreData
 
 struct TimeLineItemModel: Identifiable,Equatable,Comparable{
     static func < (lhs: TimeLineItemModel, rhs: TimeLineItemModel) -> Bool {
@@ -74,4 +75,3 @@ struct DropViewDelegate: DropDelegate {
     }
     
 }
-

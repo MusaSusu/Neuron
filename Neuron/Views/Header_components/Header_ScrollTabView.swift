@@ -17,7 +17,7 @@ struct Header_ScrollTabView: View {
                 ZStack{
                     Header_DayOfWeekView(week: UserOptions.prevWeek)
                         .frame(width: geometry.size.width)
-                        .position(x: geometry.size.width * -0.5,y: 75/2)
+                        .position(x: geometry.size.width * -0.5,y: 75/2) //x position based on center of view
                     Header_DayOfWeekView(week: UserOptions.currentWeek)
                         .frame(width: geometry.size.width)
                         .position(x: geometry.size.width / 2,y: 75/2)

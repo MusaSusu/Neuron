@@ -47,17 +47,6 @@ struct TaskDescriptionView<T: NSManagedObject & isTimelineItem,Content:View> : V
     }
 }
 
-
-struct strikethroughs: Shape{
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        path.move(to: CGPoint(x: (rect.minX-5), y: (rect.midY)  ))
-        path.addLine(to: CGPoint(x:(rect.maxX+5), y: (rect.midY) ))
-        
-        return path
-    }
-}
-
 struct TaskDescription_Previews: PreviewProvider {
     static var previews: some View {
         TaskDescriptionView<Tasks,EmptyView>(task: previewscontainer,capsuleHeight: 120,content: {EmptyView()})

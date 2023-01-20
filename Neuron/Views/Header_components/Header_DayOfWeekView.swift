@@ -56,7 +56,7 @@ struct Header_DayOfWeekView: View {
 
 struct Header_DayOfWeekView_Previews: PreviewProvider {
     static var previews: some View {
-        Header_DayOfWeekView(week: [])
+        Header_DayOfWeekView(week: OptionsModel().currentWeek)
             .environmentObject(OptionsModel())
     }
 }

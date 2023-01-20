@@ -7,6 +7,7 @@
 
 import CoreData
 import SwiftUI
+import Foundation
 
 private let temp1 = [
     Task1(taskTitle: "Wake up", taskDescription: "Wakey time 10-08",taskIcon: "sun.max.fill", taskDateStart: convertDate(data: "12-21-2022 01:00"),taskDateEnd:convertDate(data: "12-21-2022 01:30"),taskDuration: 0.5, taskColor:[0.949,  0.522,  0.1], taskChecker: false),
@@ -122,10 +123,11 @@ struct PersistenceController {
             newRoutine.icon = temproutines[i].taskIcon
             newRoutine.duration = temproutines[i].taskDuration * 3600
             newRoutine.addToSchedule(array[i])
-            for index in 1..<8 {
+            for index in 0..<7 {
                 let temp = DaysOfWeek(context: viewContext)
                 temp.weekday = Int16(index)
                 array[i].addToDaysofweek(temp)
+                array[i].weekTracker = .init(repeating: false, count: 7)
             }
         }
         /*
@@ -179,4 +181,18 @@ struct PersistenceController {
     }
     
 }
+
+class PersistentContainer: NSPersistentContainer {
+    
+    func saveContext(backgroundContext: NSManagedObjectContext? = nil) {
+        let context = backgroundContext ?? viewContext
+        guard context.hasChanges else { return }
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print("Error: \(error), \(error.userInfo)")
+        }
+    }
+}
+
 

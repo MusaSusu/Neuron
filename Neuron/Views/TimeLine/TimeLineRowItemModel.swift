@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import Combine
 
 class TimeLineRowItemModel<T:NSManagedObject & isTimelineItem> : ObservableObject {
     @Published var NSobj : T
@@ -37,3 +38,25 @@ extension Tasks : isTimelineItem{
 
 extension Routine : isTimelineItem {
 }
+
+public let boolPublisher = PassthroughSubject<Bool, Never>()
+
+
+class MyObserver: NSObject {
+    @objc var objectToObserve: Routine_Schedule
+    var observation: NSKeyValueObservation?
+    
+    init(object: Routine_Schedule) {
+        objectToObserve = object
+        super.init()
+        
+        observation = observe(
+            \.objectToObserve.weekTracker,
+             options: [.old, .new]
+        ) { object, change in
+            print("myDate changed from: \(change.oldValue!), updated to: \(change.newValue!)")
+        }
+    }
+}
+
+

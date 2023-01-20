@@ -17,8 +17,11 @@ struct scheduleByDay : Hashable {
     let id = UUID()
     var time : Date
     var weekdays : [Bool]
+    var schedWeekChecker : [Bool] {
+        weekdays.compactMap({$0 ? false : true})
+    }
     var weekdaysCD : [Int16]{
-        let result : [Int16] = weekdays.enumerated().compactMap({$0.element==true ? Int16($0.offset + 1) : nil})
+        let result : [Int16] = weekdays.enumerated().compactMap({$0.element==true ? Int16($0.offset) : nil})
         return result
     }
 }
@@ -30,7 +33,7 @@ class RoutineModel_Add: ObservableObject{
     @Published var scheduleList : [scheduleByDay] = []
     
     init(){
-        var temp = scheduleByDay(time: Date(timeInterval: 10 * 60 + 6 * 60 * 60,since: Date().startOfDay()), weekdays: .init(repeating: true, count: 7) )
+        let temp = scheduleByDay(time: Date(timeInterval: 10 * 60 + 6 * 60 * 60,since: Date().startOfDay()), weekdays: .init(repeating: true, count: 7) )
         scheduleList.append(temp)
         list.append(testRoutine)
     }
@@ -40,22 +43,7 @@ class RoutineModel_Add: ObservableObject{
         self.list.append(newRoutine)
     }
 }
+// most efficient way to store schedule and taskchecker is to only store the uncompleted dates plus convert the completed dates to a data that tracks the completion rate.
 
-func createRoutineScedChecker(start: Date, end: Date, sched : Int) -> UInt64{
-    let calender = Calendar.current
-    let interval = calender.dateComponents([.weekOfYear], from: start, to: end)
-    let bitSched : UInt64 = 0
-    return bitSched
-}
-
-func flipBitBitSched(pos: Int, bitSched: UInt64) -> UInt64 {
-    let bitIndex : UInt64 = 1 << pos
-    return bitSched ^ bitIndex
-}
-
-func checkBitBitSched(pos: Int, bitSched: UInt64) -> Bool {
-    let bitIndex : UInt64 = 1 << pos
-    return ((bitSched & bitIndex) != 0)
-}
 
 

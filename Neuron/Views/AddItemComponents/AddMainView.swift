@@ -133,14 +133,15 @@ struct AddMainView: View {
         let newRoutine = Routine(context: context)
         saveMain(item: newRoutine)
         for item in Routine_Add.scheduleList{
-            let timeCDObj = Routine_Schedule(context: context)
-            timeCDObj.time = item.time
+            let SchedCDObj = Routine_Schedule(context: context)
+            SchedCDObj.time = item.time
+            SchedCDObj.weekTracker = item.schedWeekChecker
             for dayofweek in item.weekdaysCD{
                 let weekdayCDobj = DaysOfWeek(context: context)
                 weekdayCDobj.weekday = dayofweek
-                timeCDObj.addToDaysofweek(weekdayCDobj)
+                SchedCDObj.addToDaysofweek(weekdayCDobj)
             }
-            newRoutine.addToSchedule(timeCDObj)
+            newRoutine.addToSchedule(SchedCDObj)
         }
         newRoutine.duration = NewItem_Add.duration
         newRoutine.date = Date()
