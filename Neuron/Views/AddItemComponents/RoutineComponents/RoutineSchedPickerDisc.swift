@@ -27,7 +27,7 @@ struct RoutineSchedPicker : View {
     @EnvironmentObject var Routine : RoutineModel_Add
     @State var isSheet = true
     @State var dateSelect = Date()
-    let daysofweek = Calendar.current.veryShortStandaloneWeekdaySymbols
+    let daysofweek = Calendar.current.shortStandaloneWeekdaySymbols
     
     var body: some View{
         VStack{
@@ -38,7 +38,7 @@ struct RoutineSchedPicker : View {
                 ForEach(daysofweek, id: \.self){ item in
                     Spacer()
                     VStack{
-                        Text(item).bold()
+                        Text(item.prefix(1)).bold()
                     }
                     .frame(width:15,height: 30)
                     .foregroundColor(.black)

@@ -9,27 +9,46 @@ import Foundation
 import CoreData
 import SwiftUI
 
-class TimeLineRowItemModel<T:NSManagedObject & isTimelineItem> : ObservableObject {
-    @Published var NSobj : T
-    let type : Int
-    var capsuleHeight : CGFloat
+struct DropViewDelegate: DropDelegate {
     
-    init(NSobj: T,type: Int,height : CGFloat) {
-        self.NSobj = NSobj
-        self.type = type
-        self.capsuleHeight = height
+    var destinationItem: Int
+    @ObservedObject var items: timelineitemsarray
+    @Binding var draggedItem: Int?
+    
+    func dropUpdated(info: DropInfo) -> DropProposal? {
+        return DropProposal(operation: .move)
+    }
+    
+    func performDrop(info: DropInfo) -> Bool {
+        draggedItem = nil
+        items.sortArray()
+        return true
+    }
+    
+    func dropEntered(info: DropInfo) {
+        if let draggedItem {
+            let fromIndex = draggedItem
+            let toIndex = destinationItem
+            if fromIndex != toIndex {
+                withAnimation(.easeInOut(duration: 0.3)) {
+                    
+                    self.items.array.swapAt(fromIndex, toIndex)
+                    items.swapItems(start: fromIndex, dest: toIndex)
+                    
+                }
+            }
+        }
     }
     
 }
 
-
-struct timelineItemWrapper : Hashable{
+struct timelineItemWrapper : Hashable,Identifiable,Equatable{
     
     let id : NSManagedObjectID
     let title : String
     let color : Color
     let icon : String
-    let dateInterval : DateInterval
+    var dateInterval : DateInterval
     let duration : Double
     var index : Int = 0
     var type : taskType
@@ -48,12 +67,11 @@ struct timelineItemWrapper : Hashable{
     mutating func updateIndex(_ newVal:Int){
         self.index = newVal
     }
-    
-    
 }
 
 class timelineitemsarray : ObservableObject{
     @Published var array : [(timelineItemWrapper,Binding<Bool>)]
+    
     var nextDurationArray: [TimeInterval]{
         var array = [TimeInterval]()
         let temp = self.array
@@ -78,6 +96,15 @@ class timelineitemsarray : ObservableObject{
     
     func sortArray(){
         self.array = array.sorted(by: {$0.0.dateInterval.start < $1.0.dateInterval.start})
+        initIndexes()
+    }
+    
+    func swapItems(start: Int,dest: Int){
+        let draggedStart = array[start].0.dateInterval
+        let destStart = array[dest].0.dateInterval
+        
+        array[start].0.dateInterval = DateInterval(start: destStart.start, duration: draggedStart.duration)
+        array[dest].0.dateInterval = DateInterval(start: draggedStart.start, duration: destStart.duration)
     }
     
     func getNextDuration(index: Int)-> TimeInterval{

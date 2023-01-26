@@ -37,7 +37,7 @@ struct TaskDescriptionView<T: NSManagedObject & isTimelineItem,Content:View> : V
                 Text(task.notes ?? "")
             }
         }.padding(10)
-        .frame(height: (capsuleHeight), alignment: .topLeading)
+            .frame(height: capsuleHeight, alignment: .topLeading)
         .background(
             RoundedRectangle(cornerRadius: 10)
                 .fill(setColor).opacity(0.2) //white: 0.995

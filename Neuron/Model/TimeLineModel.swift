@@ -40,38 +40,3 @@ struct TimeLineItemModel: Identifiable,Equatable,Comparable{
         self.start =  amount
     }
 }
-
-struct DropViewDelegate: DropDelegate {
-    
-    var destinationItem: TimeLineItemModel
-    @Binding var items: [TimeLineItemModel]
-    @Binding var draggedItem: TimeLineItemModel?
-    
-    func dropUpdated(info: DropInfo) -> DropProposal? {
-        return DropProposal(operation: .move)
-    }
-    
-    func performDrop(info: DropInfo) -> Bool {
-        draggedItem = nil
-        self.items = items.sorted(by: <)
-        return true
-    }
-    
-    func dropEntered(info: DropInfo) {
-        if let draggedItem {
-            let fromIndex = items.firstIndex(of: draggedItem)
-            if let fromIndex {
-                let fromStart = items[fromIndex].start
-                let toIndex = items.firstIndex(of: destinationItem)
-                if let toIndex,fromIndex != toIndex {
-                    withAnimation(.default) {
-                        let toStart = items[toIndex].start
-                        self.items[fromIndex].newStart(at: toStart)
-                        self.items[toIndex].newStart(at: fromStart)
-                    }
-                }
-            }
-        }
-    }
-    
-}

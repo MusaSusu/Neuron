@@ -21,12 +21,17 @@ let testItems : timelineitemsarray = .init(array:[
 struct TimeLineListBuilderView: View {
         
     @ObservedObject var arrayobjects : timelineitemsarray
-    @State var selection : timelineItemWrapper?
+    @State var selection : Int?
     
     var body: some View {
         VStack(spacing: 0){
             ForEach($arrayobjects.array,id:\.self.0, editActions: [.move]){$item in
                 CheckTypeContainer(item: item.0, taskChecker: item.1, nextDuration: arrayobjects.getNextDuration(index: (item.0.index)/2 ))
+                    .onDrag({
+                        selection = item.0.index
+                        return NSItemProvider()
+                    })
+                    .onDrop(of: [.item], delegate: DropViewDelegate(destinationItem: item.0.index, items: arrayobjects, draggedItem: $selection))
             }
         }
     }
@@ -65,14 +70,22 @@ struct TimeLineListBuilderView: View {
                 return 75
         }
         
+        var nextDurationText : String{
+            if nextDuration < 1{
+                return ""
+            }
+            return nextDuration.toHourMin(from: .seconds)
+        }
+        
         
         var body: some View{
-            HStack(spacing: 0){
+                HStack(spacing: 0){
                     CapsuleRowView(task: item, nextDuration: nextDurationHeight , date: item.dateInterval, widgetsArray: [.menu],capsuleHeight: capsuleHeight, selectionMenu: $selectionMenu)
                     selectTypeForSelectionMenuView(type: item.type)
                 }.frame(height: capsuleHeight)
                 
                 HStack{
+                    Text(nextDurationText)
                 }.frame(height: nextDurationHeight)
             
         }

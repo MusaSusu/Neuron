@@ -69,14 +69,15 @@ struct TimeLineBuilderView: View {
             ScrollView(.vertical,showsIndicators: false){
                     TimeLineListBuilderView(arrayobjects: combinedArray)
                     .padding(.top,10)
+                    .padding(.horizontal,5)
                 VStack{
                 }.frame(height:300)
             }
         }
-        .cornerRadius(20)
+        .cornerRadius(10)
         .background(
             Color(white : 0.995)
-                .cornerRadius(20)
+                .cornerRadius(10)
                 .shadow(radius: 5)
         )
     }
