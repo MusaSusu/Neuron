@@ -8,7 +8,6 @@
 import SwiftUI
 import CoreData
 
-
 struct ContentView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
@@ -53,14 +52,13 @@ struct ContentView: View {
             }.frame(height: 75)
             
             // MARK: vertical time line view
-            GenericTimeLineBuilderView( date: UserOptions.selectedDay.startOfDay())
+            TimeLineBuilderView( date: UserOptions.selectedDay.startOfDay())
             
             BottomTabView()
                 .offset(y:-10)
             
         }.ignoresSafeArea(edges:.bottom)
     }
-        
 }
 
 struct ContentView_Previews: PreviewProvider {

@@ -72,6 +72,16 @@ extension Routine{
     }
 }
 
+
+enum taskType{
+    case task
+    case routine
+    case habit
+    case project
+    case custom
+}
+
+
 extension Array<Double>{
     func fromDouble() -> Color {
         return Color(red: self[0], green: self[1], blue: self[2])

@@ -15,5 +15,7 @@ enum timeFrame : String,CaseIterable,Identifiable {
 class HabitModel_Add : ObservableObject {
     @Published var selectedFreq : CGFloat = 1
     @Published var timeFrame : timeFrame = .Daily
+    
+    
 
 }

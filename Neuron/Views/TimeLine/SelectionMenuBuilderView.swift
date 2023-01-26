@@ -17,7 +17,6 @@ struct MenuWidgets: OptionSet{
 }
 
 struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem>: View {
-    @Environment(\.managedObjectContext) private var viewContext
 
     @ObservedObject var task : T
     @Binding var selectionMenu : MenuWidgets
@@ -25,13 +24,14 @@ struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem>: View {
     @State var helperChecker : Bool = true
     let capsuleHeight : CGFloat
     var menuItems : [MenuWidgets] = [.menu]
+    let dateInterval : DateInterval
     
-    init(task: T, selectionMenu: Binding<MenuWidgets>, taskChecker: Binding<Bool>, capsuleHeight: CGFloat, initState :Bool ) {
-        self.task = task
+    init(task:T, selectionMenu: Binding<MenuWidgets>, taskChecker: Binding<Bool>, capsuleHeight: CGFloat,dateInterval : DateInterval ) {
         _selectionMenu = selectionMenu
         _taskChecker = taskChecker
         self.capsuleHeight = capsuleHeight
-        _helperChecker = .init(initialValue: initState)
+        self.dateInterval = dateInterval
+        self.task = task
     }
     
     
@@ -55,7 +55,6 @@ struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem>: View {
         }
         .animation(.easeInOut(duration: 0.2), value: selectionMenu)
         .padding(.leading,5)
-        
     }
 
     @ViewBuilder
@@ -66,7 +65,7 @@ struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem>: View {
                 Text("\(task.title!)")
                     .font(.system(.title3,design: .default,weight:.semibold))
                 
-                Text("  (\( task.dateInterval.duration.toHourMin(from: .seconds) ))")
+                Text("  (\( dateInterval.duration.toHourMin(from: .seconds) ))")
                     .italic()
                     .font(.system(.subheadline,weight: .light))
             }
@@ -107,6 +106,6 @@ struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem>: View {
 
 struct SelectionMenuBuilderView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectionMenuBuilderView<Tasks>(task: previewscontainer, selectionMenu: .constant(.menu), taskChecker: .init(get: {previewscontainer.taskChecker}, set: {newValue in previewscontainer.taskChecker = newValue}),capsuleHeight: 100,initState: true)
+        SelectionMenuBuilderView<Tasks>( task: previewscontainer, selectionMenu: .constant(.menu), taskChecker: .init(get: {previewscontainer.taskChecker}, set: {newValue in previewscontainer.taskChecker = newValue}),capsuleHeight: 100, dateInterval: previewscontainer.dateInterval)
     }
 }

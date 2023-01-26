@@ -24,7 +24,6 @@ struct DurationPickerDisc: View {
                     HStack{
                         Spacer()
                         Button("Custom Time") {
-                            
                         }
                     }
                 } label: {

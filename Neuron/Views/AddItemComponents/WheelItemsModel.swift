@@ -26,7 +26,7 @@ class WheelItemsModel: ObservableObject{
     
     init(width: CGFloat){
         
-        let wDim = min(width/10, 80)
+        let wDim = min(width/10, 80) //width of each tab in scrollwheel
         let delta = wDim*3
         let firstEle = wDim * 5
 
@@ -39,7 +39,11 @@ class WheelItemsModel: ObservableObject{
         }()
         
         self.placements = {
-            return [firstEle,firstEle + delta, firstEle + (2*delta),firstEle + (3*delta)]
+            var array : [CGFloat] = []
+            for i in 0..<4{
+                array.append(firstEle + (delta * CGFloat(i)) )
+            }
+            return array
         }()
         self.width = wDim * 10
     }

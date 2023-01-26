@@ -10,7 +10,7 @@ import SwiftUI
 struct AddTaskButtonView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
-    @State var configuration: AddTaskConfig<Tasks>?
+    @State var configuration: AddTaskConfig?
 
     var body: some View {
         HStack{

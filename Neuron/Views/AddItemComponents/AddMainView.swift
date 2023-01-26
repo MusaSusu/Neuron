@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct AddMainView: View {
     
@@ -118,15 +117,15 @@ struct AddMainView: View {
         newTask.duration = NewItem_Add.duration
         newTask.taskChecker = false
         for date in dates {
-            let taskGroup = DateEntity(context: context)
+            let dateGroup = DateEntity(context: context)
             let taskDate = TaskDate(context: context)
             
-            taskGroup.dateGroup = date.startOfDay()
-            taskGroup.addToHasTask(newTask)
+            dateGroup.dateGroup = date.startOfDay()
+            dateGroup.addToHasTask(newTask)
             
             taskDate.task = newTask
             taskDate.date = date
-            taskDate.dateGroup = taskGroup
+            taskDate.dateGroup = dateGroup
         }
     }
     func saveRoutine(){

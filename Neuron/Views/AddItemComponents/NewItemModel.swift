@@ -8,7 +8,6 @@
 //MARK: Generic structure for all tasks? Task -> Subtask -> more subtasks like a tree. Assign a date to each subtask, or frequency per week, or repeat on certain times. 
 
 import Foundation
-import CoreData
 import SwiftUI
 
 protocol TaskProtocol{
@@ -42,14 +41,6 @@ class Node<anyTask:TaskProtocol>{
         child.parent = self
         children.append(child)
     }
-}
-
-enum taskType{
-    case task
-    case routine
-    case habit
-    case project
-    case custom
 }
 
 enum taskDate{

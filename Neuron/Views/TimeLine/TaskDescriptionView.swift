@@ -36,7 +36,6 @@ struct TaskDescriptionView<T: NSManagedObject & isTimelineItem,Content:View> : V
             HStack{
                 Text(task.notes ?? "")
             }
-            
         }.padding(10)
         .frame(height: (capsuleHeight), alignment: .topLeading)
         .background(

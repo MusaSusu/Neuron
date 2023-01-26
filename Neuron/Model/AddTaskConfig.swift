@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-struct AddTaskConfig<Tasks: NSManagedObject>: Identifiable {
+struct AddTaskConfig: Identifiable {
     let id = UUID()
     let childContext: NSManagedObjectContext
         

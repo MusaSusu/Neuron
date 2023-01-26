@@ -54,7 +54,7 @@
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tasks" inverseName="dates" inverseEntity="Tasks"/>
     </entity>
     <entity name="Tasks" representedClassName="Tasks" parentEntity="Main" syncable="YES" codeGenerationType="class">
-        <attribute name="dateStart" optional="YES" transient="YES" attributeType="Date" defaultDateTimeInterval="694391400" usesScalarValueType="NO"/>
+        <attribute name="dateStart" optional="YES" transient="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="duration" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="dates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskDate" inverseName="task" inverseEntity="TaskDate"/>
         <relationship name="hasDate" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DateEntity" inverseName="hasTask" inverseEntity="DateEntity"/>
