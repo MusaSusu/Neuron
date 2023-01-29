@@ -15,26 +15,23 @@ struct CapsuleRowView : View {
         
     @Binding var selectionMenu : MenuWidgets
         
-    let task : timelineItemWrapper
-    let dateStart : Date
-    let dateEnd : Date
+    @Binding var task : TimelineItemWrapper
+    var dateEnd : Date{ task.dateInterval.end}
     let nextDurationHeight: TimeInterval
     var setColor: Color{task.color}
     let widgetsArray : [MenuWidgets]
     let capsuleHeight: CGFloat
     
     
-    var formattedStartDate: String { dateStart.formatted(date: .omitted, time: .shortened)}
+    var formattedStartDate: String { task.dateInterval.start.formatted(date: .omitted, time: .shortened)}
     var formattedEndDate: String {dateEnd.formatted(date: .omitted, time: .shortened)}
     
-    init(task: timelineItemWrapper,nextDuration: TimeInterval,date:DateInterval,widgetsArray:[MenuWidgets],capsuleHeight:CGFloat,selectionMenu: Binding<MenuWidgets>){
-        self.dateStart = date.start
-        self.dateEnd = date.end
+    init(task: Binding<TimelineItemWrapper>,nextDuration: TimeInterval,widgetsArray:[MenuWidgets],capsuleHeight:CGFloat,selectionMenu: Binding<MenuWidgets>){
         self.nextDurationHeight = nextDuration
-        self.task = task
         self.widgetsArray = widgetsArray
         self.capsuleHeight = capsuleHeight
         _selectionMenu = selectionMenu
+        _task = task
     }
     
     var body: some View {
@@ -53,7 +50,7 @@ struct CapsuleRowView : View {
             
                 VStack{
                     Spacer()
-                    drawCapsule(date: dateStart, duration: nextDurationHeight)
+                    drawCapsule(date: task.dateInterval.start, duration: nextDurationHeight)
                         .onTapGesture {
                             if selectionMenu == .menu{
                                 selectionMenu = .none
@@ -138,7 +135,11 @@ private extension View{
 
 struct GenericTimelineRowView_Previews: PreviewProvider {
     static var previews: some View {
-        CapsuleRowView(task: .init(previewscontainer,date:previewscontainer.dateInterval, type: .task),nextDuration: 50,date: previewscontainer.dateInterval,widgetsArray: [.menu,.description], capsuleHeight: 100, selectionMenu: .constant(.menu))
+        CapsuleRowView(
+            task: .constant(.init(previewscontainer,date:DateInterval(start: Date(), end: Date.distantFuture) ,type:.task)),
+            
+            nextDuration: 50,
+            widgetsArray: [.menu,.description], capsuleHeight: 100, selectionMenu: .constant(.menu))
         .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
     }
 }

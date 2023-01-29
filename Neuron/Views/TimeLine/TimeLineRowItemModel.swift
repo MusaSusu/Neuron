@@ -11,38 +11,61 @@ import SwiftUI
 
 struct DropViewDelegate: DropDelegate {
     
-    var destinationItem: Int
-    @ObservedObject var items: timelineitemsarray
-    @Binding var draggedItem: Int?
+    var destinationItem: TimelineItemWrapper
+    @ObservedObject var itemsArray: TimelineItemsArray
+    @Binding var draggedItem: TimelineItemWrapper?
+    var helper = DropViewHelper.shared
     
     func dropUpdated(info: DropInfo) -> DropProposal? {
         return DropProposal(operation: .move)
     }
+    func validateDrop(info: DropInfo) -> Bool {
+        return info.hasItemsConforming(to: [.plainText])
+    }
     
     func performDrop(info: DropInfo) -> Bool {
-        draggedItem = nil
-        items.sortArray()
-        return true
+        if draggedItem != nil {
+            let item = helper.dragged!
+            print(item.dateInterval)
+            itemsArray.swapItems(start: item)
+            itemsArray.initIndexes()
+            itemsArray.updateDurationArray()
+            helper.dragged = nil
+            draggedItem = nil
+            return true
+        }
+        else{
+            DispatchQueue.main.async {
+                itemsArray.array = itemsArray.copyforDrop
+            }
+            helper.dragged = nil
+            draggedItem = nil
+            return false
+        }
     }
     
     func dropEntered(info: DropInfo) {
         if let draggedItem {
-            let fromIndex = draggedItem
-            let toIndex = destinationItem
-            if fromIndex != toIndex {
-                withAnimation(.easeInOut(duration: 0.3)) {
-                    
-                    self.items.array.swapAt(fromIndex, toIndex)
-                    items.swapItems(start: fromIndex, dest: toIndex)
-                    
+            if let fromIndex = itemsArray.array.firstIndex(of:  draggedItem){
+                if let toIndex = itemsArray.array.firstIndex(of:  destinationItem){
+                    if fromIndex != toIndex{
+                        withAnimation(.easeInOut(duration: 0.4)) {
+                                itemsArray.array.swapAt(fromIndex,toIndex)
+                        }
+                    }
                 }
             }
         }
     }
-    
 }
 
-struct timelineItemWrapper : Hashable,Identifiable,Equatable{
+class DropViewHelper : ObservableObject {
+    static let shared = DropViewHelper()
+    
+    var dragged: TimelineItemWrapper?
+}
+
+struct TimelineItemWrapper : Hashable,Identifiable{
     
     let id : NSManagedObjectID
     let title : String
@@ -69,14 +92,20 @@ struct timelineItemWrapper : Hashable,Identifiable,Equatable{
     }
 }
 
-class timelineitemsarray : ObservableObject{
-    @Published var array : [(timelineItemWrapper,Binding<Bool>)]
+class TimelineItemsArray : ObservableObject{
+    @Published var array : [TimelineItemWrapper]  = []
+    @Published var nextDurationArray : [TimeInterval] = []
+    var copyforDrop : [TimelineItemWrapper]  = [] //for undoing changes for drag and drop
+    var taskCheckerDict : [TimelineItemWrapper.ID : Binding<Bool>] = [:]
     
-    var nextDurationArray: [TimeInterval]{
+
+    func calcNextDurationArray(temp: [TimelineItemWrapper]) -> [TimeInterval]{
         var array = [TimeInterval]()
-        let temp = self.array
-        let first = temp[0..<temp.endIndex].map{$0.0.dateInterval.end}
-        let second = temp[1...].map{$0.0.dateInterval.start}
+        if temp.count <= 1{
+            return [-10] // -10 is to indicate no tasks preceding or following
+        }
+        let first = temp[0..<temp.endIndex].map{$0.dateInterval.end}
+        let second = temp[1...].map{$0.dateInterval.start}
         for (endTime,startTime) in zip(first,second){
             array.append(startTime.timeIntervalSince(endTime))
         }
@@ -84,30 +113,51 @@ class timelineitemsarray : ObservableObject{
         return array
     }
     
-    init( array: [(timelineItemWrapper,Binding<Bool>)]) {
-        self.array = array
+    func updateDurationArray(){
+        let temp = array
+        self.nextDurationArray = calcNextDurationArray(temp: temp)
+    }
+    
+    init(combinedarray: [(TimelineItemWrapper,Binding<Bool>)] ) {
+        var resultarray : [TimelineItemWrapper] = []
+        for item in combinedarray{
+            resultarray.append(item.0)
+            self.taskCheckerDict[item.0.id] = item.1
+        }
+        resultarray = resultarray.sorted(by: {$0.dateInterval.start < $1.dateInterval.start})
+        self.nextDurationArray =  calcNextDurationArray(temp: resultarray)
+        self.array = resultarray
     }
     
     func initIndexes(){
         for i in array.indices{
-            array[i].0.updateIndex(i)
+            array[i].updateIndex(i)
         }
     }
     
     func sortArray(){
-        self.array = array.sorted(by: {$0.0.dateInterval.start < $1.0.dateInterval.start})
+        array = array.sorted(by: {$0.dateInterval.start < $1.dateInterval.start})
         initIndexes()
     }
     
-    func swapItems(start: Int,dest: Int){
-        let draggedStart = array[start].0.dateInterval
-        let destStart = array[dest].0.dateInterval
+    func swapItems(start: TimelineItemWrapper){
         
-        array[start].0.dateInterval = DateInterval(start: destStart.start, duration: draggedStart.duration)
-        array[dest].0.dateInterval = DateInterval(start: draggedStart.start, duration: destStart.duration)
+        let draggedStart = start.dateInterval.start
+        let dest = copyforDrop[array.firstIndex(of: start)!] //the original location of the dragged item. The current array has the dragged item index updated to where the user has dragged it to.
+        let destStart =  dest.dateInterval.start
+        
+        let first = (DateInterval(start: destStart, duration: start.duration))
+        let second = (DateInterval(start: draggedStart, duration: dest.duration))
+        
+        print( self.array[array.firstIndex(of: start)!], self.array[array.firstIndex(of: dest)!])
+        
+        self.array[array.firstIndex(of: start)!].dateInterval = first
+        self.array[array.firstIndex(of: dest)!].dateInterval = second
+        print(first,second)
+        
     }
-    
-    func getNextDuration(index: Int)-> TimeInterval{
+
+    func getNextDuration(at index: Int)-> TimeInterval{
         return nextDurationArray[index]
     }
 }

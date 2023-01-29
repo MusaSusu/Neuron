@@ -7,13 +7,11 @@
 
 import SwiftUI
 
-
 struct TimeLineBuilderView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest var routineDates : FetchedResults<Routine_Schedule>
     @FetchRequest var dates: FetchedResults<DateEntity>
-    @State private var draggedSelection: Tasks?
     
     let date : Date
     var dateofweek : Int {
@@ -31,7 +29,9 @@ struct TimeLineBuilderView: View {
              taskType.routine,
              $0.getBinding(date: dateofweek)
             )
-            as? ( any timelineItems, DateInterval,taskType,Binding<Bool>)})}
+            as? ( any timelineItems, DateInterval,taskType,Binding<Bool>)
+        })
+    }
     
     var taskItems : [(any timelineItems,DateInterval,taskType,Binding<Bool>)] {
         var array : [(any timelineItems,DateInterval,taskType,Binding<Bool>)] = []
@@ -42,16 +42,19 @@ struct TimeLineBuilderView: View {
                     (temp,
                      temp.dateInterval,
                      .task,
-                     Binding<Bool>.init(get: {temp.taskChecker}, set: {newval in temp.taskChecker = newval}))
+                     Binding<Bool>.init(get: {temp.taskChecker}, set: {newval in temp.taskChecker = newval})
+                    )
                 )
             }
         }
         return array as [(any timelineItems,DateInterval,taskType,Binding<Bool>)]
     }
     
-    var combinedArray : [( timelineItemWrapper, Binding<Bool> )] {
+    //wrap items into a value struct to allow for other types of classes to be displayed in future
+    
+    var combinedArray : [( TimelineItemWrapper, Binding<Bool> )] {
         let temp = routineItems + taskItems
-        return temp.compactMap({ (timelineItemWrapper($0.0, date: $0.1, type: $0.2),$0.3) } )
+        return temp.compactMap({ (TimelineItemWrapper($0.0, date: $0.1, type: $0.2),$0.3) } )
     }
     
     init(date: Date) {
@@ -67,7 +70,7 @@ struct TimeLineBuilderView: View {
     var body: some View {
         VStack{
             ScrollView(.vertical,showsIndicators: false){
-                    TimeLineListBuilderView(arrayobjects: combinedArray)
+                TimeLineListBuilderView(arrayobjects: combinedArray)
                     .padding(.top,10)
                     .padding(.horizontal,5)
                 VStack{

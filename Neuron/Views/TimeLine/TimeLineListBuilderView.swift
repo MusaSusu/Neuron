@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
-let testItems : timelineitemsarray = .init(array:[
-    (timelineItemWrapper(previewscontainer, date: previewscontainer.dateInterval, type: .task),
+let testItems : TimelineItemsArray = .init(combinedarray:[
+    (TimelineItemWrapper(previewscontainer, date: previewscontainer.dateInterval, type: .task),
      .init(get: {previewscontainer.taskChecker}, set: {newVal in previewscontainer.taskChecker = newVal})
      ),
-    (timelineItemWrapper(previewscontainer, date: previewscontainer.dateInterval, type: .task),
+    (TimelineItemWrapper(previewscontainer, date: previewscontainer.dateInterval, type: .task),
      .init(get: {previewscontainer.taskChecker}, set: {newVal in previewscontainer.taskChecker = newVal})
     )
     ]
@@ -20,18 +21,31 @@ let testItems : timelineitemsarray = .init(array:[
 
 struct TimeLineListBuilderView: View {
         
-    @ObservedObject var arrayobjects : timelineitemsarray
-    @State var selection : Int?
+    @ObservedObject var arrayobjects : TimelineItemsArray
+    @ObservedObject var dragged = DropViewHelper.shared
+    @State var selection : TimelineItemWrapper?
     
     var body: some View {
         VStack(spacing: 0){
-            ForEach($arrayobjects.array,id:\.self.0, editActions: [.move]){$item in
-                CheckTypeContainer(item: item.0, taskChecker: item.1, nextDuration: arrayobjects.getNextDuration(index: (item.0.index)/2 ))
-                    .onDrag({
-                        selection = item.0.index
-                        return NSItemProvider()
+            ForEach($arrayobjects.array, id:\.hashValue){$item in
+                CheckTypeContainer(
+                    item: $item,
+                    taskChecker: arrayobjects.taskCheckerDict[item.id]!,
+                    nextDuration: arrayobjects.getNextDuration(at:(item.index)/2)
+                )
+                .onDrag({
+                    selection = item
+                    dragged.dragged = item
+                    arrayobjects.copyforDrop = arrayobjects.array
+                    return NSItemProvider(object: NSString())
                     })
-                    .onDrop(of: [.item], delegate: DropViewDelegate(destinationItem: item.0.index, items: arrayobjects, draggedItem: $selection))
+                .onDrop(
+                    of: [.plainText],
+                    delegate: DropViewDelegate(
+                        destinationItem: item,
+                        itemsArray: arrayobjects,
+                        draggedItem: $selection)
+                )
             }
         }
     }
@@ -39,7 +53,7 @@ struct TimeLineListBuilderView: View {
     struct CheckTypeContainer : View{
         @Environment(\.managedObjectContext) private var viewContext
         @State var selectionMenu : MenuWidgets = .menu
-        let item : timelineItemWrapper
+        @Binding var item : TimelineItemWrapper
         @Binding var taskChecker : Bool
 
         let nextDuration : TimeInterval
@@ -79,25 +93,29 @@ struct TimeLineListBuilderView: View {
         
         
         var body: some View{
+            HStack{
                 HStack(spacing: 0){
-                    CapsuleRowView(task: item, nextDuration: nextDurationHeight , date: item.dateInterval, widgetsArray: [.menu],capsuleHeight: capsuleHeight, selectionMenu: $selectionMenu)
+                    CapsuleRowView(task: $item, nextDuration: nextDurationHeight, widgetsArray: [.menu],capsuleHeight: capsuleHeight, selectionMenu: $selectionMenu)
                     selectTypeForSelectionMenuView(type: item.type)
                 }.frame(height: capsuleHeight)
                 
                 HStack{
                     Text(nextDurationText)
                 }.frame(height: nextDurationHeight)
+            }
+            .background(Color(white: 0.99))
+            //background to allow hittest on white background
             
         }
         @ViewBuilder
         func selectTypeForSelectionMenuView(type: taskType) -> some View{
             if type == .task{
                 let Task = viewContext.object(with: item.id) as! Tasks
-                SelectionMenuBuilderView(task: Task,selectionMenu: $selectionMenu, taskChecker: $taskChecker, capsuleHeight: capsuleHeight, dateInterval: item.dateInterval)
+                SelectionMenuBuilderView(task: Task,selectionMenu: $selectionMenu, taskChecker: $taskChecker, capsuleHeight: capsuleHeight, dateInterval: item.dateInterval as DateInterval)
             }
             else{
                 let Routine = viewContext.object(with: item.id) as! Routine
-                SelectionMenuBuilderView(task: Routine ,selectionMenu: $selectionMenu, taskChecker: $taskChecker, capsuleHeight: capsuleHeight, dateInterval: item.dateInterval)
+                SelectionMenuBuilderView(task: Routine ,selectionMenu: $selectionMenu, taskChecker: $taskChecker, capsuleHeight: capsuleHeight, dateInterval: item.dateInterval as DateInterval)
             }
         }
     }
@@ -114,8 +132,8 @@ struct TimeLineListBuilder_Previews: PreviewProvider {
 }
 
 extension TimeLineListBuilderView{
-    init(arrayobjects:  [ (timelineItemWrapper, Binding<Bool> ) ]) {
-        let array : timelineitemsarray = .init(array: arrayobjects)
+    init(arrayobjects:  [ (TimelineItemWrapper, Binding<Bool> ) ]) {
+        var array : TimelineItemsArray = .init(combinedarray: arrayobjects)
         array.initIndexes()
         array.sortArray()
         _arrayobjects = .init(initialValue: array)
