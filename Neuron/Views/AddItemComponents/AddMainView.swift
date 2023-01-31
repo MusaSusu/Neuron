@@ -143,7 +143,7 @@ struct AddMainView: View {
             newRoutine.addToSchedule(SchedCDObj)
         }
         newRoutine.duration = NewItem_Add.duration
-        newRoutine.date = Date()
+        newRoutine.creationDate = Date()
     }
     
     func saveMain(item : Main){

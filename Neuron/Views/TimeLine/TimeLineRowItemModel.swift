@@ -97,6 +97,7 @@ class TimelineItemsArray : ObservableObject{
     @Published var nextDurationArray : [TimeInterval] = []
     var copyforDrop : [TimelineItemWrapper]  = [] //for undoing changes for drag and drop
     var taskCheckerDict : [TimelineItemWrapper.ID : Binding<Bool>] = [:]
+    @Published var isEdit : Bool = false
     
 
     func calcNextDurationArray(temp: [TimelineItemWrapper]) -> [TimeInterval]{
@@ -178,6 +179,13 @@ extension Tasks : isTimelineItem{
 }
 
 extension Routine : isTimelineItem {
+    var completionRate: Double{
+        get{
+            let completed = self.completed
+            let notCompleted = self.notCompleted?.count ?? 0
+            return completed / (completed + Double(notCompleted))
+        }
+    }
 }
 
 extension Routine_Schedule {

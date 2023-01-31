@@ -57,6 +57,13 @@ struct TimeLineBuilderView: View {
         return temp.compactMap({ (TimelineItemWrapper($0.0, date: $0.1, type: $0.2),$0.3) } )
     }
     
+    var fillerText : String {
+        if combinedArray.isEmpty{
+            return "Nothing to see here... Let's add some things to do"
+        }
+        return ""
+    }
+    
     init(date: Date) {
         _dates = FetchRequest<DateEntity>(
             sortDescriptors: [],
@@ -72,15 +79,18 @@ struct TimeLineBuilderView: View {
             ScrollView(.vertical,showsIndicators: false){
                 TimeLineListBuilderView(arrayobjects: combinedArray)
                     .padding(.top,10)
-                    .padding(.horizontal,5)
-                VStack{
+                    .padding(.horizontal,6)
+                HStack{
+                    Spacer()
+                    Text(fillerText)
+                    Spacer()
                 }.frame(height:300)
             }
         }
-        .cornerRadius(10)
+        .cornerRadius(15)
         .background(
             Color(white : 0.995)
-                .cornerRadius(10)
+                .cornerRadius(15)
                 .shadow(radius: 5)
         )
     }

@@ -8,30 +8,37 @@
 import SwiftUI
 import CoreData
 
-struct MenuWidgets: OptionSet{
-    let rawValue: Int
+enum MenuWidgets: Int,Hashable,Identifiable{
     
-    static let none = MenuWidgets(rawValue: 1 << 0)
-    static let menu = MenuWidgets(rawValue: 1 << 1)
-    static let description = MenuWidgets(rawValue: 1 << 2)
+    var id : Int{return rawValue}
+    
+    case none = 0,
+         menu,
+         description,
+         Routine_Completion
+
 }
 
 struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem>: View {
 
     @ObservedObject var task : T
     @Binding var selectionMenu : MenuWidgets
+    var menuItems : [MenuWidgets]
+
+    
     @Binding var taskChecker : Bool
     @State var helperChecker : Bool = true
+    
     let capsuleHeight : CGFloat
-    var menuItems : [MenuWidgets] = [.menu]
     let dateInterval : DateInterval
     
-    init(task:T, selectionMenu: Binding<MenuWidgets>, taskChecker: Binding<Bool>, capsuleHeight: CGFloat,dateInterval : DateInterval ) {
+    init(task:T, selectionMenu: Binding<MenuWidgets>,menuItems: [MenuWidgets], taskChecker: Binding<Bool>, capsuleHeight: CGFloat,dateInterval : DateInterval ) {
         _selectionMenu = selectionMenu
         _taskChecker = taskChecker
         self.capsuleHeight = capsuleHeight
         self.dateInterval = dateInterval
         self.task = task
+        self.menuItems = menuItems
     }
     
     
@@ -46,8 +53,10 @@ struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem>: View {
                 TitleView()
             case .menu:
                 TitleView()
-                TimeLineMenu(selectedMenu: $selectionMenu)
+                TimeLineMenu(selectedMenu: $selectionMenu, menuItems: menuItems)
                     .transition(.scale(scale: 0,anchor: UnitPoint(x: 0 , y: 0.5)))
+            case .Routine_Completion:
+                Menu_Routine_CompletetionView(Item: task as! Routine)
             default:
                 EmptyView()
             }
@@ -106,6 +115,6 @@ struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem>: View {
 
 struct SelectionMenuBuilderView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectionMenuBuilderView<Tasks>( task: previewscontainer, selectionMenu: .constant(.menu), taskChecker: .init(get: {previewscontainer.taskChecker}, set: {newValue in previewscontainer.taskChecker = newValue}),capsuleHeight: 100, dateInterval: previewscontainer.dateInterval)
+        SelectionMenuBuilderView<Tasks>( task: previewscontainer, selectionMenu: .constant(.menu), menuItems: [.menu,.description,.none], taskChecker: .init(get: {previewscontainer.taskChecker}, set: {newValue in previewscontainer.taskChecker = newValue}),capsuleHeight: 100, dateInterval: previewscontainer.dateInterval)
     }
 }

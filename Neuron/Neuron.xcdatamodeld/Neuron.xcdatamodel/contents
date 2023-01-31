@@ -38,8 +38,10 @@
         <relationship name="subTasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tasks" inverseName="ofProject" inverseEntity="Tasks"/>
     </entity>
     <entity name="Routine" representedClassName="Routine" parentEntity="Main" syncable="YES" codeGenerationType="class">
-        <attribute name="date" optional="YES" transient="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="completed" attributeType="Double" defaultValueString="1" allowsCloudEncryption="YES" usesScalarValueType="YES"/>
+        <attribute name="creationDate" optional="YES" transient="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="duration" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="notCompleted" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Date]"/>
         <relationship name="schedule" optional="YES" toMany="YES" minCount="1" maxCount="5" deletionRule="Nullify" destinationEntity="Routine_Schedule" inverseName="ofRoutine" inverseEntity="Routine_Schedule"/>
     </entity>
     <entity name="Routine_Schedule" representedClassName="Routine_Schedule" syncable="YES" codeGenerationType="class">

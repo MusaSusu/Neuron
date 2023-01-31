@@ -26,9 +26,7 @@ struct RoutineSchedPickerDisc: View {
 struct RoutineSchedPicker : View {
     @EnvironmentObject var Routine : RoutineModel_Add
     @State var isSheet = true
-    @State var dateSelect = Date()
-    let daysofweek = Calendar.current.shortStandaloneWeekdaySymbols
-    
+    @State var dateSelect = Date()    
     var body: some View{
         VStack{
             

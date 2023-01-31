@@ -8,53 +8,64 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
+#if targetEnvironment(simulator)
 let testItems : TimelineItemsArray = .init(combinedarray:[
     (TimelineItemWrapper(previewscontainer, date: previewscontainer.dateInterval, type: .task),
      .init(get: {previewscontainer.taskChecker}, set: {newVal in previewscontainer.taskChecker = newVal})
-     ),
+    ),
     (TimelineItemWrapper(previewscontainer, date: previewscontainer.dateInterval, type: .task),
      .init(get: {previewscontainer.taskChecker}, set: {newVal in previewscontainer.taskChecker = newVal})
     )
-    ]
-                                           )
+]
+)
+#endif
+
                                            
 
 struct TimeLineListBuilderView: View {
-        
+    @Environment(\.editMode) private var editMode
     @ObservedObject var arrayobjects : TimelineItemsArray
     @ObservedObject var dragged = DropViewHelper.shared
     @State var selection : TimelineItemWrapper?
-    
+
     var body: some View {
         VStack(spacing: 0){
+            
             ForEach($arrayobjects.array, id:\.hashValue){$item in
                 CheckTypeContainer(
                     item: $item,
                     taskChecker: arrayobjects.taskCheckerDict[item.id]!,
                     nextDuration: arrayobjects.getNextDuration(at:(item.index)/2)
                 )
-                .onDrag({
-                    selection = item
-                    dragged.dragged = item
-                    arrayobjects.copyforDrop = arrayobjects.array
-                    return NSItemProvider(object: NSString())
+                .if(editMode?.wrappedValue.isEditing == true){view in
+                    view
+                    .onDrag({
+                        selection = item
+                        dragged.dragged = item
+                        arrayobjects.copyforDrop = arrayobjects.array
+                        return NSItemProvider(object: NSString())
                     })
-                .onDrop(
-                    of: [.plainText],
-                    delegate: DropViewDelegate(
-                        destinationItem: item,
-                        itemsArray: arrayobjects,
-                        draggedItem: $selection)
-                )
+                    .onDrop(
+                        of: [.plainText],
+                        delegate: DropViewDelegate(
+                            destinationItem: item,
+                            itemsArray: arrayobjects,
+                            draggedItem: $selection)
+                    )
+                }
             }
         }
     }
     
     struct CheckTypeContainer : View{
         @Environment(\.managedObjectContext) private var viewContext
+        @Environment(\.editMode) private var editMode
+        
         @State var selectionMenu : MenuWidgets = .menu
         @Binding var item : TimelineItemWrapper
         @Binding var taskChecker : Bool
+        @State var offsetAmt : CGFloat = 0
+
 
         let nextDuration : TimeInterval
         
@@ -93,14 +104,35 @@ struct TimeLineListBuilderView: View {
         
         
         var body: some View{
-            HStack{
+            VStack(spacing: 0){
                 HStack(spacing: 0){
-                    CapsuleRowView(task: $item, nextDuration: nextDurationHeight, widgetsArray: [.menu],capsuleHeight: capsuleHeight, selectionMenu: $selectionMenu)
-                    selectTypeForSelectionMenuView(type: item.type)
-                }.frame(height: capsuleHeight)
+                        CapsuleRowView(
+                            task: $item,
+                            nextDuration: nextDurationHeight,
+                            capsuleHeight: capsuleHeight,
+                            selectionMenu: $selectionMenu
+                        )
+                        .modifier(ShakeEffect(shakeNumber: offsetAmt)) //Shake effect when `editmode` is `true`.
+                        .onAppear{
+                            withAnimation(.linear(duration: 0.1).repeatForever(autoreverses:true)) {
+                                if (editMode?.wrappedValue.isEditing == true){
+                                    offsetAmt = 0.5
+                                }
+                            }
+                        }
+                        .if(editMode?.wrappedValue.isEditing == false){view in
+                            view    
+                                .onLongPressGesture(minimumDuration: 2){
+                                    editMode?.wrappedValue = .active
+                                }
+                        }
+
+                    SelectTypeForSelectionMenuView(type: item.type)
+                }
+                .frame(height: capsuleHeight)
+                
                 
                 HStack{
-                    Text(nextDurationText)
                 }.frame(height: nextDurationHeight)
             }
             .background(Color(white: 0.99))
@@ -108,15 +140,43 @@ struct TimeLineListBuilderView: View {
             
         }
         @ViewBuilder
-        func selectTypeForSelectionMenuView(type: taskType) -> some View{
+        func SelectTypeForSelectionMenuView(type: taskType) -> some View{
             if type == .task{
                 let Task = viewContext.object(with: item.id) as! Tasks
-                SelectionMenuBuilderView(task: Task,selectionMenu: $selectionMenu, taskChecker: $taskChecker, capsuleHeight: capsuleHeight, dateInterval: item.dateInterval as DateInterval)
+                SelectionMenuBuilderView(
+                    task: Task,
+                    selectionMenu: $selectionMenu,
+                    menuItems: [.description],
+                    taskChecker: $taskChecker,
+                    capsuleHeight: capsuleHeight,
+                    dateInterval: item.dateInterval as DateInterval)
             }
             else{
                 let Routine = viewContext.object(with: item.id) as! Routine
-                SelectionMenuBuilderView(task: Routine ,selectionMenu: $selectionMenu, taskChecker: $taskChecker, capsuleHeight: capsuleHeight, dateInterval: item.dateInterval as DateInterval)
+                SelectionMenuBuilderView(
+                    task: Routine,
+                    selectionMenu: $selectionMenu,
+                    menuItems: [.Routine_Completion,.description],
+                    taskChecker: $taskChecker,
+                    capsuleHeight: capsuleHeight,
+                    dateInterval: item.dateInterval as DateInterval)
             }
+        }
+    }
+    struct ShakeEffect: AnimatableModifier {
+        var shakeNumber: CGFloat = 0
+        
+        var animatableData: CGFloat {
+            get {
+                shakeNumber
+            } set {
+                shakeNumber = newValue
+            }
+        }
+        
+        func body(content: Content) -> some View {
+            content
+                .offset(x:shakeNumber,y: shakeNumber)
         }
     }
 }

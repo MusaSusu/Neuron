@@ -122,6 +122,9 @@ struct PersistenceController {
             newRoutine.notes = temproutines[i].taskDescription
             newRoutine.icon = temproutines[i].taskIcon
             newRoutine.duration = temproutines[i].taskDuration * 3600
+            newRoutine.creationDate = (convertDate(data: Date1, format: "MM-dd-yyyy") )
+            newRoutine.completed = 20
+            newRoutine.notCompleted = .init(repeating: Date.now, count: 13)
             newRoutine.addToSchedule(array[i])
             for index in 0..<7 {
                 let temp = DaysOfWeek(context: viewContext)

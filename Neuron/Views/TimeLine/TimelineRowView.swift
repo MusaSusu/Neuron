@@ -19,16 +19,14 @@ struct CapsuleRowView : View {
     var dateEnd : Date{ task.dateInterval.end}
     let nextDurationHeight: TimeInterval
     var setColor: Color{task.color}
-    let widgetsArray : [MenuWidgets]
     let capsuleHeight: CGFloat
     
     
     var formattedStartDate: String { task.dateInterval.start.formatted(date: .omitted, time: .shortened)}
     var formattedEndDate: String {dateEnd.formatted(date: .omitted, time: .shortened)}
     
-    init(task: Binding<TimelineItemWrapper>,nextDuration: TimeInterval,widgetsArray:[MenuWidgets],capsuleHeight:CGFloat,selectionMenu: Binding<MenuWidgets>){
+    init(task: Binding<TimelineItemWrapper>,nextDuration: TimeInterval,capsuleHeight:CGFloat,selectionMenu: Binding<MenuWidgets>){
         self.nextDurationHeight = nextDuration
-        self.widgetsArray = widgetsArray
         self.capsuleHeight = capsuleHeight
         _selectionMenu = selectionMenu
         _task = task
@@ -62,6 +60,7 @@ struct CapsuleRowView : View {
                     Spacer()
                 }
                 .offset(x:-15)
+            Spacer()
         }
         .frame(width:80, height:capsuleHeight)
         .padding(.horizontal,5)
@@ -138,8 +137,7 @@ struct GenericTimelineRowView_Previews: PreviewProvider {
         CapsuleRowView(
             task: .constant(.init(previewscontainer,date:DateInterval(start: Date(), end: Date.distantFuture) ,type:.task)),
             
-            nextDuration: 50,
-            widgetsArray: [.menu,.description], capsuleHeight: 100, selectionMenu: .constant(.menu))
+            nextDuration: 50, capsuleHeight: 100, selectionMenu: .constant(.menu))
         .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
     }
 }
