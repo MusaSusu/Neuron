@@ -53,12 +53,10 @@ struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem>: View {
                 TitleView()
             case .menu:
                 TitleView()
-                TimeLineMenu(selectedMenu: $selectionMenu, menuItems: menuItems)
+                TimeLineMenu(selectedMenu: $selectionMenu, menuItems: menuItems, taskButtonView: TaskButtonView)
                     .transition(.scale(scale: 0,anchor: UnitPoint(x: 0 , y: 0.5)))
             case .Routine_Completion:
                 Menu_Routine_CompletetionView(Item: task as! Routine)
-            default:
-                EmptyView()
             }
             Spacer()
         }
@@ -99,8 +97,8 @@ struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem>: View {
     }
     
     @ViewBuilder
-    func buildView() -> some View{
-        
+    func TaskButtonView() -> some View{
+        Menu_TaskCard_View(Task: task)
     }
     struct strikethroughs: Shape{
         func path(in rect: CGRect) -> Path {
@@ -115,6 +113,16 @@ struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem>: View {
 
 struct SelectionMenuBuilderView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectionMenuBuilderView<Tasks>( task: previewscontainer, selectionMenu: .constant(.menu), menuItems: [.menu,.description,.none], taskChecker: .init(get: {previewscontainer.taskChecker}, set: {newValue in previewscontainer.taskChecker = newValue}),capsuleHeight: 100, dateInterval: previewscontainer.dateInterval)
+        SelectionMenuBuilderView<Tasks>(
+            task: previewsTasks,
+            selectionMenu: .constant(.menu),
+            menuItems: [.menu,.description,.none],
+            taskChecker: .init(get: {previewsTasks.taskChecker},
+                               set: {newValue in
+                                   previewsTasks.taskChecker = newValue}
+                              ),
+            capsuleHeight: 100,
+            dateInterval: previewsTasks.dateInterval
+        )
     }
 }

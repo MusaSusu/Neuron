@@ -14,7 +14,6 @@ struct Menu_Routine_CompletetionView: View {
         Item.getDataForTimeLineMenu()
     }
 
-    
     var body: some View {
         VStack(spacing:5){
             HStack{
@@ -28,7 +27,9 @@ struct Menu_Routine_CompletetionView: View {
                 ForEach(schedData.indices, id:\.self){item in
                     let sched =  schedData[item]
                     let week = createWeekRange(date: sched.0.end)
+                    
                     ForEach(daysofweek.indices, id:\.self){day in
+                        
                         VStack{
                             Text(daysofweek[day].prefix(1))
                             Image(systemName: Date.now > week[day] ?  "circle.inset.filled" : "circle")

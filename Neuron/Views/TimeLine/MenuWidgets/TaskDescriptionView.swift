@@ -48,7 +48,7 @@ struct TaskDescriptionView<T: NSManagedObject & isTimelineItem,Content:View> : V
 
 struct TaskDescription_Previews: PreviewProvider {
     static var previews: some View {
-        TaskDescriptionView<Tasks,EmptyView>(task: previewscontainer,capsuleHeight: 120,content: {EmptyView()})
+        TaskDescriptionView<Tasks,EmptyView>(task: previewsTasks,capsuleHeight: 120,content: {EmptyView()})
             .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
     }
 }

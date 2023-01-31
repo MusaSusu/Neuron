@@ -10,11 +10,11 @@ import UniformTypeIdentifiers
 
 #if targetEnvironment(simulator)
 let testItems : TimelineItemsArray = .init(combinedarray:[
-    (TimelineItemWrapper(previewscontainer, date: previewscontainer.dateInterval, type: .task),
-     .init(get: {previewscontainer.taskChecker}, set: {newVal in previewscontainer.taskChecker = newVal})
+    (TimelineItemWrapper(previewsTasks, date: previewsTasks.dateInterval, type: .task),
+     .init(get: {previewsTasks.taskChecker}, set: {newVal in previewsTasks.taskChecker = newVal})
     ),
-    (TimelineItemWrapper(previewscontainer, date: previewscontainer.dateInterval, type: .task),
-     .init(get: {previewscontainer.taskChecker}, set: {newVal in previewscontainer.taskChecker = newVal})
+    (TimelineItemWrapper(previewsTasks, date: previewsTasks.dateInterval, type: .task),
+     .init(get: {previewsTasks.taskChecker}, set: {newVal in previewsTasks.taskChecker = newVal})
     )
 ]
 )
@@ -111,19 +111,13 @@ struct TimeLineListBuilderView: View {
                             nextDuration: nextDurationHeight,
                             capsuleHeight: capsuleHeight,
                             selectionMenu: $selectionMenu
-                        )
-                        .modifier(ShakeEffect(shakeNumber: offsetAmt)) //Shake effect when `editmode` is `true`.
-                        .onAppear{
-                            withAnimation(.linear(duration: 0.1).repeatForever(autoreverses:true)) {
-                                if (editMode?.wrappedValue.isEditing == true){
-                                    offsetAmt = 0.5
-                                }
-                            }
-                        }
+                        ).environment(\.editMode, editMode?.projectedValue)
                         .if(editMode?.wrappedValue.isEditing == false){view in
                             view    
-                                .onLongPressGesture(minimumDuration: 2){
+                                .onLongPressGesture(minimumDuration: 1.5){
                                     editMode?.wrappedValue = .active
+                                    let impactHeavy = UIImpactFeedbackGenerator(style: .heavy)
+                                    impactHeavy.impactOccurred()
                                 }
                         }
 
@@ -163,22 +157,6 @@ struct TimeLineListBuilderView: View {
             }
         }
     }
-    struct ShakeEffect: AnimatableModifier {
-        var shakeNumber: CGFloat = 0
-        
-        var animatableData: CGFloat {
-            get {
-                shakeNumber
-            } set {
-                shakeNumber = newValue
-            }
-        }
-        
-        func body(content: Content) -> some View {
-            content
-                .offset(x:shakeNumber,y: shakeNumber)
-        }
-    }
 }
 
 
@@ -193,7 +171,7 @@ struct TimeLineListBuilder_Previews: PreviewProvider {
 
 extension TimeLineListBuilderView{
     init(arrayobjects:  [ (TimelineItemWrapper, Binding<Bool> ) ]) {
-        var array : TimelineItemsArray = .init(combinedarray: arrayobjects)
+        let array : TimelineItemsArray = .init(combinedarray: arrayobjects)
         array.initIndexes()
         array.sortArray()
         _arrayobjects = .init(initialValue: array)

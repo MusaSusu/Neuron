@@ -5,27 +5,11 @@
 //  Created by Alvin Wu on 9/28/22.
 //
 import Foundation
-import SwiftUI// I need one view model for each view but I should have a dictionary of the tasks at the highest view hierarchy. When the app starts it, should then partition all the tasks into new view models, that are generated from the views.
+import SwiftUI
+// I need one view model for each view but I should have a dictionary of the tasks at the highest view hierarchy. When the app starts it, should then partition all the tasks into new view models, that are generated from the views.
 
 
 //MARK: TASK FUNCTIONS -----------------------------------------------
-
-struct Task1: Identifiable{
-    var id = UUID().uuidString
-    var taskTitle: String
-    var taskDescription: String
-    var taskIcon: String
-    var taskDateStart: Date
-    var taskDateEnd: Date
-    var taskDuration: CGFloat
-    var taskColor: [Double]
-    var taskChecker : Bool
-}
-
-let userColor = Color(red: 0.5, green: 0.6039,  blue:0.8039)
-let hueColors = stride(from: 0, to: 1, by: 0.01).map {
-    Color(hue: $0, saturation: 1, brightness: 1)
-}
 
 
 extension Tasks{
@@ -50,19 +34,21 @@ extension Routine_Schedule{
         return DateInterval(start: date.addingTimeInterval(temp), duration: self.ofRoutine!.duration)
     }
     
+    /// - Returns: Array of ints from 1-7 corresponding to days of week
     func getDaysOfWeek() -> [Int] {
         guard let setDaysOfWeek = self.daysofweek?.allObjects as? [DaysOfWeek] else {
             return []
         }
         return setDaysOfWeek.compactMap({Int($0.weekday)})
-    } // returns array of ints from 1-7 corresponding to days of week
+    }
     
+    /// - Returns: Array of count 7 corresponding to days of week
     func getSched() -> [Bool] {
         if let sched = self.weekTracker{
             return sched
         }
         return []
-    } // returns array of count 7 corresponding to days of week
+    }
 }
 
 extension Routine{
@@ -81,7 +67,6 @@ extension Routine{
         )
         return days
     }
-    
 }
 
 
@@ -202,7 +187,17 @@ extension View {
     }
 }
 
-var previewscontainer: Tasks{
+
+#if targetEnvironment(simulator)
+
+func timeElapsedInSecondsWhenRunningCode(operation: ()->()) -> Double {
+    let startTime = CFAbsoluteTimeGetCurrent()
+    operation()
+    let timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
+    return Double(timeElapsed)
+}
+
+var previewsTasks: Tasks{
     let newItem = Tasks(context: PersistenceController.preview.container.viewContext)
     newItem.id = UUID()
     newItem.title = "Wake up"
@@ -238,10 +233,4 @@ var previewsRoutine: Routine{
     }
     return newItem
 }
-
-func timeElapsedInSecondsWhenRunningCode(operation: ()->()) -> Double {
-    let startTime = CFAbsoluteTimeGetCurrent()
-    operation()
-    let timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
-    return Double(timeElapsed)
-}
+#endif

@@ -21,11 +21,19 @@ struct Header_HabitsView: View {
         }.frame(maxWidth: .infinity).padding(.horizontal)
     }
     
+    ///Draws a circle around the icon.
+    /// - `factor` :  Percentage of habit completed per week as a decimal.
+    ///
     struct CircleBorder : Shape {
         let factor : Double
         func path(in rect: CGRect) -> Path {
             var path = Path()
-            path.addArc(center: CGPoint(x: rect.midX, y: rect.midY), radius: rect.midY, startAngle: .degrees(-90), endAngle: .degrees((factor * 360) - 90), clockwise: false)
+            path.addArc(
+                center: CGPoint(x: rect.midX, y: rect.midY),
+                radius: rect.midY, startAngle: .degrees(-90),
+                endAngle: .degrees((factor * 360) - 90),
+                clockwise: false
+            )
             path = path.strokedPath(StrokeStyle(lineWidth: 2.5,lineCap: .round))
             return path
         }
@@ -52,7 +60,8 @@ struct Header_HabitsView: View {
 
 struct Header_HabitsView_Previews: PreviewProvider {
     static var previews: some View {
-        Header_HabitsView()            .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
+        Header_HabitsView()
+            .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
 
     }
 }

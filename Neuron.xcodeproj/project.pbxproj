@@ -83,6 +83,8 @@
 		E1DDA57D297F4E7300B5EDC8 /* TimeLineBuilderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E713F297269A10034B4BC /* TimeLineBuilderView.swift */; };
 		E1EEC757294B0CDD005A88D1 /* TimeLineMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EEC756294B0CDD005A88D1 /* TimeLineMenu.swift */; };
 		E1EEC75D294C780D005A88D1 /* TimeLineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EEC75C294C780D005A88D1 /* TimeLineModel.swift */; };
+		E1FA36422988E4E4000353DD /* Menu_TaskCard_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA36412988E4E4000353DD /* Menu_TaskCard_View.swift */; };
+		E1FA36442988F119000353DD /* TaskCardSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA36432988F119000353DD /* TaskCardSheetView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -179,6 +181,8 @@
 		E1DDA57B297E085400B5EDC8 /* TimeLineListBuilderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineListBuilderView.swift; sourceTree = "<group>"; };
 		E1EEC756294B0CDD005A88D1 /* TimeLineMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineMenu.swift; sourceTree = "<group>"; };
 		E1EEC75C294C780D005A88D1 /* TimeLineModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineModel.swift; sourceTree = "<group>"; };
+		E1FA36412988E4E4000353DD /* Menu_TaskCard_View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_TaskCard_View.swift; sourceTree = "<group>"; };
+		E1FA36432988F119000353DD /* TaskCardSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCardSheetView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -339,6 +343,8 @@
 				E19B8B03298621F40029F4C6 /* Menu_Routine_CompletetionView.swift */,
 				E1B0F72428FBC65000925858 /* TaskDescriptionView.swift */,
 				E1EEC756294B0CDD005A88D1 /* TimeLineMenu.swift */,
+				E1FA36412988E4E4000353DD /* Menu_TaskCard_View.swift */,
+				E1FA36432988F119000353DD /* TaskCardSheetView.swift */,
 			);
 			path = MenuWidgets;
 			sourceTree = "<group>";
@@ -567,6 +573,7 @@
 				E13F3949293E782E00769255 /* RoutineModel_Add.swift in Sources */,
 				E13F39512945CC7A00769255 /* RoutineSchedPickerDisc.swift in Sources */,
 				E1A4DB82292CE1E300FB6BDE /* css.swift in Sources */,
+				E1FA36422988E4E4000353DD /* Menu_TaskCard_View.swift in Sources */,
 				E176E15A2911F50C00B09604 /* CustomColorPickerView.swift in Sources */,
 				E11720B1291E06FF00316FBE /* TaskModel_Add.swift in Sources */,
 				E19B9D7128FD1601009CC37A /* Persistence.swift in Sources */,
@@ -584,6 +591,7 @@
 				E13410082967CD120074100B /* Header_DayOfWeekView.swift in Sources */,
 				E1BEFF332916682F00A2DE56 /* SearchView .swift in Sources */,
 				E1EEC757294B0CDD005A88D1 /* TimeLineMenu.swift in Sources */,
+				E1FA36442988F119000353DD /* TaskCardSheetView.swift in Sources */,
 				E1A4DB892935BDF400FB6BDE /* SubTaskSheetView.swift in Sources */,
 				E176E15E2913302900B09604 /* Symbol Picker Model.swift in Sources */,
 			);

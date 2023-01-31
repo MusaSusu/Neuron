@@ -7,23 +7,25 @@
 
 import SwiftUI
 
-let ButtonOptions : [MenuWidgets:(String,Color) ] = [
-    .description : ("note.text",Color.yellow),
-    .Routine_Completion : ("checkmark.circle.fill",Color.pink),
+let ButtonOptions : [MenuWidgets:(String,Color,Bool) ] = [
+    .description : ("pencil.and.ellipsis.rectangle",Color.green,true),
+    .Routine_Completion : ("checkmark.circle.fill",Color.pink,true),
 ]
 
 
-struct TimeLineMenu: View {
+struct TimeLineMenu<content:View>: View {
     @Binding var selectedMenu : MenuWidgets
     var menuItems : [MenuWidgets]
+    var taskButtonView : () -> content
 
     var body: some View {
         HStack{
+            taskButtonView()
+                Spacer()
             ForEach(menuItems,id:\.self) { item in
                 checkInDict(for: item)
                 Spacer()
             }
-            
             Spacer()
         }
         .frame(height: 50)
@@ -51,14 +53,17 @@ struct TimeLineMenu: View {
             selectedMenu = selection
         } label: {
             Image(systemName: ButtonOptions[selection]!.0)
-                .imageScale(.large)
-                .background(
-                    Circle()
-                        .inset(by: -5)
-                        .strokeBorder()
-                        .shadow(radius: 0.1)
-                        .opacity(0.95)
-                )
+                .resizable()
+                .aspectRatio(1,contentMode: .fit)
+                .if(ButtonOptions[selection]!.2){ view in
+                    view
+                        .background(
+                            Circle()
+                                .inset(by: -7)
+                                .strokeBorder()
+                                .shadow(color: ButtonOptions[selection]!.1,radius: 1)
+                        )
+                }
         }
         .foregroundStyle(ButtonOptions[selection]!.1)
         .frame(width: 20,height: 20)
@@ -67,6 +72,6 @@ struct TimeLineMenu: View {
 
 struct TimeLineMenu_Previews: PreviewProvider {
     static var previews: some View {
-        TimeLineMenu(selectedMenu: .constant(.menu), menuItems: [.menu,.description,.none,.Routine_Completion])
+        TimeLineMenu(selectedMenu: .constant(.menu), menuItems: [.menu,.description,.none,.Routine_Completion], taskButtonView: {Menu_TaskCard_View(Task: previewsTasks)})
     }
 }

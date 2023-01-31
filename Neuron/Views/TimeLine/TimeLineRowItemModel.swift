@@ -26,7 +26,7 @@ struct DropViewDelegate: DropDelegate {
     func performDrop(info: DropInfo) -> Bool {
         if draggedItem != nil {
             let item = helper.dragged!
-            print(item.dateInterval)
+            print(item.dateInterval) /// **TEST**
             itemsArray.swapItems(start: item)
             itemsArray.initIndexes()
             itemsArray.updateDurationArray()
@@ -95,9 +95,9 @@ struct TimelineItemWrapper : Hashable,Identifiable{
 class TimelineItemsArray : ObservableObject{
     @Published var array : [TimelineItemWrapper]  = []
     @Published var nextDurationArray : [TimeInterval] = []
-    var copyforDrop : [TimelineItemWrapper]  = [] //for undoing changes for drag and drop
+    /// For undoing changes for drag and drop
+    var copyforDrop : [TimelineItemWrapper]  = []
     var taskCheckerDict : [TimelineItemWrapper.ID : Binding<Bool>] = [:]
-    @Published var isEdit : Bool = false
     
 
     func calcNextDurationArray(temp: [TimelineItemWrapper]) -> [TimeInterval]{
@@ -150,11 +150,11 @@ class TimelineItemsArray : ObservableObject{
         let first = (DateInterval(start: destStart, duration: start.duration))
         let second = (DateInterval(start: draggedStart, duration: dest.duration))
         
-        print( self.array[array.firstIndex(of: start)!], self.array[array.firstIndex(of: dest)!])
+        print( self.array[array.firstIndex(of: start)!], self.array[array.firstIndex(of: dest)!]) /// **TEST**
         
         self.array[array.firstIndex(of: start)!].dateInterval = first
         self.array[array.firstIndex(of: dest)!].dateInterval = second
-        print(first,second)
+        print(first,second) /// **TEST**
         
     }
 
@@ -190,7 +190,6 @@ extension Routine : isTimelineItem {
 
 extension Routine_Schedule {
     func getBinding(date:Int)->Binding<Bool>{
-        
         let binding : Binding<Bool> = .init(get: {self.weekTracker![date]}, set: {newVal in self.weekTracker![date] = newVal})
         return binding
     }

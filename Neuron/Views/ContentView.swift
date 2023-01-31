@@ -14,7 +14,6 @@ struct ContentView: View {
     @EnvironmentObject var UserOptions: OptionsModel
     @State private var selectedHeader = true
     
-    
     var body: some View {
         VStack(spacing:0){
             
@@ -52,7 +51,7 @@ struct ContentView: View {
                 }
             }.frame(height: 75)
             
-            // MARK: vertical time line view
+            // Vertical time line view
             TimeLineBuilderView( date: UserOptions.selectedDay.startOfDay())
             
             

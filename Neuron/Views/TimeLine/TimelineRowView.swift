@@ -12,6 +12,8 @@ import SwiftUI
 
 
 struct CapsuleRowView : View {
+    @Environment(\.editMode) var editMode
+    @State var offsetAmt : CGFloat = 0
         
     @Binding var selectionMenu : MenuWidgets
         
@@ -73,6 +75,10 @@ struct CapsuleRowView : View {
                 .init(color: setColor, location: 0),
                 .init(color: Color(white: 0.95), location: value),
             ])
+            let gradient1 = Gradient(stops: [
+                .init(color: .white, location: 0),
+                .init(color: setColor, location: value),
+            ])
             ZStack{
                 
                 VStack(spacing: 0){
@@ -80,27 +86,60 @@ struct CapsuleRowView : View {
                         drawDashes()
                             .fill(LinearGradient(gradient: gradient, startPoint: .top, endPoint: .bottom))
                         if duration != 0{
-                            drawIntervalDashes(duration: duration)
+                            drawNextDurationDashes(duration: duration)
                                 .fill(.gray)
                         }
                     }
                 }.frame(height: capsuleHeight)
                 
-                Capsule()
-                    .fill(LinearGradient(gradient: gradient, startPoint: .top, endPoint: UnitPoint(x: 0.5, y: 1.25) ) )
-                    .frame(width: 45, height: 45)
-                let gradient = Gradient(stops: [
-                    .init(color: .white, location: 0),
-                    .init(color: setColor, location: value),
-                ])
-                LinearGradient(gradient: gradient, startPoint: .top, endPoint: UnitPoint(x: 0.5, y: 2))
-                    .mask(Image(systemName:task.icon )
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                    ).frame(width: 30.0, height: 30.0)
+                Group{
+                    Capsule()
+                        .fill(LinearGradient(gradient: gradient,
+                                             startPoint: .top,
+                                             endPoint: UnitPoint(x: 0.5, y: 1.25)
+                                            )
+                        )
+                        .frame(width: 45, height: 45)
+                    
+                    LinearGradient(gradient: gradient1,
+                                   startPoint: .top,
+                                   endPoint: UnitPoint(x: 0.5, y: 2)
+                    )
+                    .mask{
+                        Image(systemName:task.icon)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    }
+                    .frame(width: 30.0, height: 30.0)
+                }
+                .modifier(ShakeEffect(shakeNumber: offsetAmt)) //Shake effect when `editmode` is `true`.
+                .onAppear{
+                    withAnimation(.linear(duration: 0.1).repeatForever(autoreverses:true)) {
+                        if (editMode?.wrappedValue.isEditing == true){
+                            offsetAmt = 1
+                        }
+                    }
+                }
                 
             }
         }
+    }
+}
+
+private struct ShakeEffect: AnimatableModifier {
+    var shakeNumber: CGFloat = 0
+    
+    var animatableData: CGFloat {
+        get {
+            shakeNumber
+        } set {
+            shakeNumber = newValue
+        }
+    }
+    
+    func body(content: Content) -> some View {
+        content
+            .offset(x:shakeNumber,y: 0)
     }
 }
 
@@ -113,7 +152,7 @@ private struct drawDashes: Shape {
         return path
     }
 }
-private struct drawIntervalDashes: Shape{
+private struct drawNextDurationDashes: Shape{
     let duration : CGFloat
     func path(in rect: CGRect) -> Path {
         var path = Path()
@@ -135,7 +174,7 @@ private extension View{
 struct GenericTimelineRowView_Previews: PreviewProvider {
     static var previews: some View {
         CapsuleRowView(
-            task: .constant(.init(previewscontainer,date:DateInterval(start: Date(), end: Date.distantFuture) ,type:.task)),
+            task: .constant(.init(previewsTasks,date:DateInterval(start: Date(), end: Date.distantFuture) ,type:.task)),
             
             nextDuration: 50, capsuleHeight: 100, selectionMenu: .constant(.menu))
         .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
