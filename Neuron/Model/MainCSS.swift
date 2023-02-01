@@ -6,17 +6,20 @@
 //
 import Foundation
 import SwiftUI
+
 // I need one view model for each view but I should have a dictionary of the tasks at the highest view hierarchy. When the app starts it, should then partition all the tasks into new view models, that are generated from the views.
 
 
 //MARK: TASK FUNCTIONS -----------------------------------------------
 
-
-extension Tasks{
-    
+extension Main{
     func getColor() -> Color {
         self.color?.fromDouble() ?? .red
     }
+}
+
+
+extension Tasks{
     var dateInterval : DateInterval{
         get {
             DateInterval(start: self.dateStart ?? Date(), duration: self.duration )
@@ -184,6 +187,16 @@ extension View {
         } else {
             self
         }
+    }
+}
+
+
+extension Image{
+    func resizeFrame(width: CGFloat,height:CGFloat)->some View{
+        self
+            .resizable()
+            .aspectRatio(1,contentMode: .fit)
+            .frame(width: width,height: height)
     }
 }
 

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UIKit
 
 struct TabsStruct: View {
     @StateObject var WheelItems : WheelItemsModel
@@ -29,14 +28,16 @@ struct TabsStruct: View {
 
             transitionContainer{
                 GenericTabView(widgetsToLoad: viewSelection[WheelItems.selection])
-                    .transition(.asymmetric(insertion: .push(from: .leading), removal: .push(from: .trailing)))
+                    .transition(.asymmetric(insertion: .push(from: .leading),
+                                            removal: .push(from: .trailing))
+                    )
             }
             .animation(.easeInOut, value: transitionHelper)
             .onChange(of: WheelItems.selection){ value in
-                    NewItem.selection = value
+                NewItem.selection = value
                 transitionHelper.toggle()
             }
-
+            
         }.background(
             Color(white : 0.95)
         )
@@ -80,8 +81,15 @@ private struct WheelItem: View {
 }
 
 private struct WheelView: View {
+    
+    @UserDefaultsBacked<[Double]>(key: .userColor) var dataColor
+    var userColor : Color{
+        dataColor?.fromDouble() ?? .black
+    }
+    
     @EnvironmentObject var WheelItems: WheelItemsModel
     @State var isDrag: Bool = false
+    
     
     let hcenter: CGFloat
     
@@ -92,7 +100,7 @@ private struct WheelView: View {
     var body: some View {
         ZStack{
             HStack(spacing: 0){
-                addScreen{
+                ScreenView{
                     Rectangle()
                         .fill(isDrag ? .gray : .clear)
                         .animation(.easeIn.speed(isDrag ? 1.5 : 0.5), value: WheelItems.selection)
@@ -121,7 +129,7 @@ private struct WheelView: View {
         )
     }
     @ViewBuilder
-    func addScreen<Content: View>(@ViewBuilder content: ()->Content) -> some View{
+    func ScreenView<Content: View>(@ViewBuilder content: ()->Content) -> some View{
         content()
         Rectangle()
             .fill(userColor)

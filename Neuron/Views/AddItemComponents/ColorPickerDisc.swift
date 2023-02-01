@@ -18,10 +18,9 @@ struct ColorPickerDisc: View {
                         Text("Color").titleFont()
                         Spacer()
                         Image(systemName: "circle.fill")
-                            .resizable()
-                            .aspectRatio(1, contentMode: .fill)
+                            .resizeFrame(width: 35, height: 35)
                             .foregroundColor(color)
-                            .frame(width: 35,height: 35).offset(x:-5)
+                            .offset(x:-5)
                     }
                 }
             }

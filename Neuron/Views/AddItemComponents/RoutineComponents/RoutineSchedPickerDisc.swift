@@ -16,17 +16,18 @@ struct RoutineSchedPickerDisc: View {
             DisclosureGroup{
                 RoutineSchedPicker()
                     .padding(.vertical)
-                } label: {
-                    Text("Schedule").titleFont()
-                }
+            } label: {
+                Text("Schedule").titleFont()
             }
+        }
     }
 }
 
 struct RoutineSchedPicker : View {
     @EnvironmentObject var Routine : RoutineModel_Add
     @State var isSheet = true
-    @State var dateSelect = Date()    
+    @State var dateSelect = Date()
+    
     var body: some View{
         VStack{
             
@@ -47,10 +48,12 @@ struct RoutineSchedPicker : View {
             
             ForEach($Routine.scheduleList, id: \.self){ $item in
                 HStack{
+                    
                     DatePicker(selection: $dateSelect,displayedComponents: [.hourAndMinute]){
                     }
                     .frame(width: 80,height:30)
-                        .buttonBorderShape(.roundedRectangle(radius: 10))
+                    .buttonBorderShape(.roundedRectangle(radius: 10))
+                    
                     Divider().background(.black)
                     
                     ForEach(item.weekdays.indices, id: \.self){ index in

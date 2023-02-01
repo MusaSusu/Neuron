@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct GenericTabView: View {
+    
+    @UserDefaultsBacked<[Double]>(key: .userColor) var dataColor
+    var userColor : Color{
+        dataColor?.fromDouble() ?? .black
+    }
     @EnvironmentObject var NewItem : NewItemModel
     var widgetsToLoad : [AddWidgets]
     

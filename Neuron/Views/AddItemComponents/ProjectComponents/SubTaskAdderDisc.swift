@@ -18,6 +18,10 @@ struct SubTaskAdderDisc: View {
 }
 
 struct SubTaskAdderView: View {
+    @UserDefaultsBacked<[Double]>(key: .userColor) var dataColor
+    var userColor : Color{
+        dataColor?.fromDouble() ?? .black
+    }
     @EnvironmentObject var Project : ProjectModel_Add
     @State var showSheet : Bool = false
     @State var selectedSubTask : SubTask?

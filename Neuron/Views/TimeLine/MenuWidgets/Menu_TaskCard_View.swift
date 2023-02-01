@@ -18,13 +18,17 @@ struct Menu_TaskCard_View<T: NSManagedObject & isTimelineItem>: View {
             showSheet()
         }label: {
             Image(systemName: "doc.text.image")
-                .resizable()
-                .aspectRatio(1, contentMode: .fit)
-                .frame(width: 30,height: 30)
+                .resizeFrame(width: 30, height: 30)
         }
         .foregroundStyle(Task.color?.fromDouble() ?? .red)
         .sheet(isPresented: $isSheet){
-            Text("HELLO")
+            GeometryReader{geometry in
+                VStack{
+                    TaskCardSheetView(Task: Task, width:geometry.size.width)
+                }
+                .frame(minWidth: 300,maxWidth: .infinity)
+            }
+            .presentationDetents([.medium,.large])
         }
     }
     

@@ -165,14 +165,19 @@ class TimelineItemsArray : ObservableObject{
 
 protocol isTimelineItem: NSManagedObject,Identifiable{
     var id : UUID?{get}
-    var color : [Double]? {get}
+    var color : [Double]? {get set}
     var icon : String? {get set}
-    var notes : String? {get}
-    var title : String? {get}
-    var duration : Double {get}
+    var notes : String? {get set}
+    var title : String? {get set}
+    var duration : Double {get set}
     var taskChecker : Bool {get set}
 }
 
+extension isTimelineItem{
+    func getColor() -> Color {
+        self.color?.fromDouble() ?? .red
+    }
+}
 
 extension Tasks : isTimelineItem{
     

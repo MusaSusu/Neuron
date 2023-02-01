@@ -70,11 +70,10 @@ struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem>: View {
             
             HStack(spacing:0) {
                 Text("\(task.title!)")
-                    .font(.system(.title3,design: .default,weight:.semibold))
+                    .font(.system(.title3,weight:.semibold))
                 
                 Text("  (\( dateInterval.duration.toHourMin(from: .seconds) ))")
-                    .italic()
-                    .font(.system(.subheadline,weight: .light))
+                    .font(.system(.subheadline,weight: .light).italic())
             }
             .overlay(
                 strikethroughs()

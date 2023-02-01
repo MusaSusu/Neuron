@@ -7,12 +7,35 @@
 
 import SwiftUI
 
+@propertyWrapper struct UserDefaultsBacked<Value> {
+    let key: UserDefaultsKeys
+    var storage: UserDefaults = .standard
+    
+    var wrappedValue: Value? {
+        get { storage.value(forKey: key.rawValue) as? Value }
+        set { storage.setValue(newValue, forKey: key.rawValue) }
+    }
+}
+
+enum UserDefaultsKeys: String{
+    case userColor
+}
+
 @main
 struct NeuronApp: App {
     
     let persistenceController = PersistenceController.shared
     @StateObject private var UserOptions = OptionsModel()
     @Environment(\.scenePhase) private var phase
+    
+    init() {
+        #if targetEnvironment(simulator)
+        UserDefaults.standard.register(defaults: [
+            UserDefaultsKeys.userColor.rawValue : testUserColor.toDouble()
+        ]
+        )
+        #endif
+    }
     
     var body: some Scene {
         WindowGroup {

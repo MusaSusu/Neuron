@@ -9,6 +9,11 @@ import SwiftUI
 
 struct AddMainView: View {
     
+    @UserDefaultsBacked<[Double]>(key: .userColor) var dataColor
+    var userColor : Color{
+        dataColor?.fromDouble() ?? .black
+    }
+
     @Environment(\.managedObjectContext) private var context
     @Environment(\.dismiss) private var dismiss // causes body to run
     
@@ -27,11 +32,10 @@ struct AddMainView: View {
             VStack{
                 //Header
                 HStack{
-                    Button{
-                        dismiss()
-                    } label: {
-                        Text("Cancel").font(.title3.bold())
-                            .foregroundColor(userColor)
+                    
+                    Button(action: {dismiss()} ){
+                        Text("Cancel")
+                            .buttonFont(color: userColor)
                     }
                     Spacer()
                     Button{
@@ -40,8 +44,7 @@ struct AddMainView: View {
                         dismiss()
                     } label: {
                         Text("Save")
-                            .font(.title3.bold())
-                            .foregroundColor(userColor)
+                            .buttonFont(color: userColor)
                     }
                 }.padding(.top)
                 
@@ -159,5 +162,13 @@ struct AddMainView_Previews: PreviewProvider {
     static var previews: some View {
         AddMainView()
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    }
+}
+
+private extension Text{
+    func buttonFont( color: Color)-> Self{
+        self
+            .font(.title3.bold())
+            .foregroundColor(color)
     }
 }

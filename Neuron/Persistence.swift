@@ -22,7 +22,7 @@ struct Task1: Identifiable{
     var taskChecker : Bool
 }
 
-let userColor = Color(red: 0.5, green: 0.6039,  blue:0.8039)
+let testUserColor = Color(red: 0.5, green: 0.6039,  blue:0.8039)
 let hueColors = stride(from: 0, to: 1, by: 0.01).map {
     Color(hue: $0, saturation: 1, brightness: 1)
 }

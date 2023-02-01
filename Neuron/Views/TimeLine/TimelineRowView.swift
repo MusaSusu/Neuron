@@ -79,6 +79,7 @@ struct CapsuleRowView : View {
                 .init(color: .white, location: 0),
                 .init(color: setColor, location: value),
             ])
+            
             ZStack{
                 
                 VStack(spacing: 0){

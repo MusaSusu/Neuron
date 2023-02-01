@@ -6,8 +6,15 @@
 //
 
 import SwiftUI
+import Foundation
+import Combine
 
 struct SearchView_: View {
+    @UserDefaultsBacked<[Double]>(key: .userColor) var dataColor
+    var userColor : Color{
+        dataColor?.fromDouble() ?? .black
+    }
+    
     @EnvironmentObject var NewItem : NewItemModel
     @State private var isFocused = false
     
@@ -23,9 +30,7 @@ struct SearchView_: View {
                     .fill(.white)
                     .mask{
                         Image(systemName:NewItem.icon)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 25.0, height: 25.0)
+                            .resizeFrame(width: 25, height: 25)
                     }
             }.frame(width: 40).offset(x:10)
             

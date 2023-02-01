@@ -50,7 +50,7 @@ struct ContentView: View {
                     Header_HabitsView()
                 }
             }.frame(height: 75)
-            
+                
             // Vertical time line view
             TimeLineBuilderView( date: UserOptions.selectedDay.startOfDay())
             

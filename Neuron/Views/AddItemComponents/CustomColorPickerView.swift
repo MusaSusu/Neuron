@@ -6,13 +6,21 @@
 //
 //MARK: ADD A NEW COLOR PICKER. SWIFT'S SUCKS AND PRECURATED PACKAGES.
 import SwiftUI
+#if targetEnvironment(simulator)
+let colors = [Color.red,Color.blue,Color.yellow,Color.orange,Color.gray,]
+#endif
+
 
 struct CustomColorPickerView: View {
-    let colors = [Color.red,Color.blue,Color.yellow,Color.orange,Color.gray,]
+    
+    @UserDefaultsBacked<[Double]>(key: .userColor) var dataColor
+    var userColor : Color{
+        dataColor?.fromDouble() ?? .black
+    }
     @State private var checker: Bool = false
     @Binding var selectedColor: Color
    
-    var colorsCount: Int {colors.count}
+    var colorsCount: Int {colors.count} //MARK: TODO: save user color presets.
     var midIndex: Int{
         if colorsCount % 2 == 0 {
             return colorsCount/2
