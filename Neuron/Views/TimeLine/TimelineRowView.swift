@@ -39,13 +39,11 @@ struct CapsuleRowView : View {
             VStack(alignment:.trailing,spacing:0){
                 Text(formattedStartDate)
                     .timeFont()
-                    .lineLimit(1)
                     .offset(y:-2.5)
                 Spacer()
                 Text(formattedEndDate)
                     .timeFont()
                     .offset(y:2.5)
-                    .lineLimit(1)
             }.frame(width:70,height: capsuleHeight,alignment: .trailing)
             
                 VStack{
@@ -108,10 +106,8 @@ struct CapsuleRowView : View {
                     )
                     .mask{
                         Image(systemName:task.icon)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
+                            .resizeFrame(width: 30.0, height: 30.0)
                     }
-                    .frame(width: 30.0, height: 30.0)
                 }
                 .modifier(ShakeEffect(shakeNumber: offsetAmt)) //Shake effect when `editmode` is `true`.
                 .onAppear{
@@ -164,10 +160,11 @@ private struct drawNextDurationDashes: Shape{
     }
 }
 
-private extension View{
+private extension Text{
     func timeFont() -> some View{
         self
             .font(.system(size:14).weight(.light))
+            .lineLimit(1)
     }
 }
 

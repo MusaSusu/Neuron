@@ -29,6 +29,13 @@ extension Tasks{
             self.duration = newValue.duration
         }
     }
+    
+    func getAllDates() -> [Date]{
+        guard let taskDates = self.dates?.allObjects else {
+            return []
+        }
+        return taskDates.compactMap({($0 as! TaskDate).date})
+    }
 }
 
 extension Routine_Schedule{
@@ -195,7 +202,7 @@ extension Image{
     func resizeFrame(width: CGFloat,height:CGFloat)->some View{
         self
             .resizable()
-            .aspectRatio(1,contentMode: .fit)
+            .aspectRatio(contentMode: .fit)
             .frame(width: width,height: height)
     }
 }
@@ -211,7 +218,8 @@ func timeElapsedInSecondsWhenRunningCode(operation: ()->()) -> Double {
 }
 
 var previewsTasks: Tasks{
-    let newItem = Tasks(context: PersistenceController.preview.container.viewContext)
+    let viewContext = PersistenceController.preview.container.viewContext
+    let newItem = Tasks(context: viewContext)
     newItem.id = UUID()
     newItem.title = "Wake up"
     newItem.dateStart = convertDate(data: "10-17-2022 01:00")
@@ -220,6 +228,9 @@ var previewsTasks: Tasks{
     newItem.duration = 0.5 * 3600
     newItem.color = [0.949,  0.522,  0.1]
     newItem.taskChecker = false
+    let taskDate = TaskDate(context: viewContext)
+    taskDate.date = convertDate(data: "10-17-2022 01:00")
+    newItem.addToDates(taskDate)
     return newItem
 }
 

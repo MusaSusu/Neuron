@@ -24,9 +24,10 @@ struct Menu_TaskCard_View<T: NSManagedObject & isTimelineItem>: View {
         .sheet(isPresented: $isSheet){
             GeometryReader{geometry in
                 VStack{
-                    TaskCardSheetView(Task: Task, width:geometry.size.width)
+                    TaskCardSheetView(Item: Task, width:geometry.size.width)
                 }
                 .frame(minWidth: 300,maxWidth: .infinity)
+                .padding(10)
             }
             .presentationDetents([.medium,.large])
         }

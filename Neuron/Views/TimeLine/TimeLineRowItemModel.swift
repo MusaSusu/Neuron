@@ -19,6 +19,7 @@ struct DropViewDelegate: DropDelegate {
     func dropUpdated(info: DropInfo) -> DropProposal? {
         return DropProposal(operation: .move)
     }
+    
     func validateDrop(info: DropInfo) -> Bool {
         return info.hasItemsConforming(to: [.plainText])
     }

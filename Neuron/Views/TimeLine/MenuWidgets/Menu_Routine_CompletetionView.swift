@@ -43,7 +43,7 @@ struct Menu_Routine_CompletetionView: View {
         .padding(10)
         .background(
             RoundedRectangle(cornerRadius: 10)
-                .fill(.gray).opacity(0.2) //white: 0.995
+                .fill(.white.opacity(0.995)) //white: 0.995
                 .shadow(radius: 5)
         )
     }

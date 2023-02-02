@@ -16,14 +16,13 @@ let testItems : TimelineItemsArray = .init(combinedarray:[
     (TimelineItemWrapper(previewsTasks, date: previewsTasks.dateInterval, type: .task),
      .init(get: {previewsTasks.taskChecker}, set: {newVal in previewsTasks.taskChecker = newVal})
     )
-]
-)
+])
 #endif
 
                                            
 
 struct TimeLineListBuilderView: View {
-    @Environment(\.editMode) private var editMode
+    @Environment(\.editMode) var editMode
     @ObservedObject var arrayobjects : TimelineItemsArray
     @ObservedObject var dragged = DropViewHelper.shared
     @State var selection : TimelineItemWrapper?
@@ -59,12 +58,11 @@ struct TimeLineListBuilderView: View {
     
     struct CheckTypeContainer : View{
         @Environment(\.managedObjectContext) private var viewContext
-        @Environment(\.editMode) private var editMode
+        @Environment(\.editMode) var editMode
         
         @State var selectionMenu : MenuWidgets = .menu
         @Binding var item : TimelineItemWrapper
         @Binding var taskChecker : Bool
-        @State var offsetAmt : CGFloat = 0
 
 
         let nextDuration : TimeInterval
@@ -111,7 +109,8 @@ struct TimeLineListBuilderView: View {
                             nextDuration: nextDurationHeight,
                             capsuleHeight: capsuleHeight,
                             selectionMenu: $selectionMenu
-                        ).environment(\.editMode, editMode?.projectedValue)
+                        )
+                        .environment(\.editMode, editMode?.projectedValue)
                         .if(editMode?.wrappedValue.isEditing == false){view in
                             view    
                                 .onLongPressGesture(minimumDuration: 1.5){

@@ -24,7 +24,6 @@ struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem>: View {
     @ObservedObject var task : T
     @Binding var selectionMenu : MenuWidgets
     var menuItems : [MenuWidgets]
-
     
     @Binding var taskChecker : Bool
     @State var helperChecker : Bool = true
@@ -32,7 +31,7 @@ struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem>: View {
     let capsuleHeight : CGFloat
     let dateInterval : DateInterval
     
-    init(task:T, selectionMenu: Binding<MenuWidgets>,menuItems: [MenuWidgets], taskChecker: Binding<Bool>, capsuleHeight: CGFloat,dateInterval : DateInterval ) {
+    init(task:T, selectionMenu: Binding<MenuWidgets>, menuItems: [MenuWidgets], taskChecker: Binding<Bool>, capsuleHeight: CGFloat, dateInterval : DateInterval ) {
         _selectionMenu = selectionMenu
         _taskChecker = taskChecker
         self.capsuleHeight = capsuleHeight
@@ -41,13 +40,12 @@ struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem>: View {
         self.menuItems = menuItems
     }
     
-    
     var body: some View {
         VStack{
             Spacer()
             switch selectionMenu {
             case .description:
-                TaskDescriptionView(task: task,capsuleHeight: capsuleHeight,content: TitleView )
+                TaskDescriptionView(task: task, capsuleHeight: capsuleHeight, content: TitleView)
                     .transition(.scale)
             case .none:
                 TitleView()
@@ -64,7 +62,6 @@ struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem>: View {
         .padding(.leading,5)
     }
 
-    @ViewBuilder
     func TitleView() -> some View {
         HStack(alignment:.center,spacing:0){
             
@@ -87,7 +84,7 @@ struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem>: View {
             } label: {
                 Label {Text("Task Complete?")} icon: {
                     Image(systemName: taskChecker ? "circle.inset.filled" : "circle")
-                        .foregroundColor(taskChecker ? task.color?.fromDouble().opacity(1) : .secondary)
+                        .foregroundColor(taskChecker ? task.color?.fromDouble() : .secondary)
                         .accessibility(label: Text(taskChecker ? "Checked" : "Unchecked"))
                         .imageScale(.large)
                 }
@@ -95,10 +92,10 @@ struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem>: View {
         }
     }
     
-    @ViewBuilder
     func TaskButtonView() -> some View{
         Menu_TaskCard_View(Task: task)
     }
+    
     struct strikethroughs: Shape{
         func path(in rect: CGRect) -> Path {
             var path = Path()

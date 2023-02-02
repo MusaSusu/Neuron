@@ -17,13 +17,6 @@ struct TaskDescriptionView<T: NSManagedObject & isTimelineItem,Content:View> : V
     
     let capsuleHeight: Double
     
-    var setColor: Color{
-        return task.color?.fromDouble() ?? Color.red
-    }
-    var interval: String {
-        (task.duration).toHourMin(from:.seconds )
-    }
-    
     init(task: T , capsuleHeight: Double,@ViewBuilder content: @escaping () -> Content) {
         self.task = task
         self.capsuleHeight = capsuleHeight
@@ -36,11 +29,12 @@ struct TaskDescriptionView<T: NSManagedObject & isTimelineItem,Content:View> : V
             HStack{
                 Text(task.notes ?? "")
             }
-        }.padding(10)
-            .frame(height: capsuleHeight, alignment: .topLeading)
+        }
+        .padding(10)
+        .frame(height: capsuleHeight, alignment: .topLeading)
         .background(
             RoundedRectangle(cornerRadius: 10)
-                .fill(setColor).opacity(0.2) //white: 0.995
+                .fill(task.getColor()).opacity(0.2) //white: 0.995
                 .shadow(radius: 5)
         )
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E10FAEA3298B1221005B297C /* Task_Dates_CardSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10FAEA2298B1221005B297C /* Task_Dates_CardSheet.swift */; };
 		E11720AB291DF46D00316FBE /* DateListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11720AA291DF46D00316FBE /* DateListView.swift */; };
 		E11720AF291E05B600316FBE /* DateListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11720AE291E05B600316FBE /* DateListRow.swift */; };
 		E11720B1291E06FF00316FBE /* TaskModel_Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11720B0291E06FF00316FBE /* TaskModel_Add.swift */; };
@@ -119,6 +120,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E10FAEA2298B1221005B297C /* Task_Dates_CardSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task_Dates_CardSheet.swift; sourceTree = "<group>"; };
 		E11720AA291DF46D00316FBE /* DateListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateListView.swift; sourceTree = "<group>"; };
 		E11720AE291E05B600316FBE /* DateListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateListRow.swift; sourceTree = "<group>"; };
 		E11720B0291E06FF00316FBE /* TaskModel_Add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel_Add.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				E1EEC756294B0CDD005A88D1 /* TimeLineMenu.swift */,
 				E1FA36412988E4E4000353DD /* Menu_TaskCard_View.swift */,
 				E1FA36432988F119000353DD /* TaskCardSheetView.swift */,
+				E10FAEA2298B1221005B297C /* Task_Dates_CardSheet.swift */,
 			);
 			path = MenuWidgets;
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 				E176E14E290B279600B09604 /* AddMainView.swift in Sources */,
 				E1DDA57C297E085400B5EDC8 /* TimeLineListBuilderView.swift in Sources */,
 				E1DDA57D297F4E7300B5EDC8 /* TimeLineBuilderView.swift in Sources */,
+				E10FAEA3298B1221005B297C /* Task_Dates_CardSheet.swift in Sources */,
 				E13F394B293EB08E00769255 /* DurationPickerDisc.swift in Sources */,
 				E1B0F72628FBC65000925858 /* Header_TitleView.swift in Sources */,
 				E17E713E297243CE0034B4BC /* TimelineRowView.swift in Sources */,
