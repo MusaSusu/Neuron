@@ -8,9 +8,13 @@
 import SwiftUI
 import CoreData
 
-struct Menu_TaskCard_View<T: NSManagedObject & isTimelineItem>: View {
+struct Menu_Card_Button<T: NSManagedObject & isTimelineItem>: View {
     @Environment(\.managedObjectContext) var viewContext
-    @ObservedObject var Task : T
+    @ObservedObject var Item : T
+    @State var menuSelection : CardItems
+    var menuItems : [ CardItems]
+    
+    
     @State var isSheet : Bool = false
     
     var body: some View {
@@ -20,11 +24,14 @@ struct Menu_TaskCard_View<T: NSManagedObject & isTimelineItem>: View {
             Image(systemName: "doc.text.image")
                 .resizeFrame(width: 30, height: 30)
         }
-        .foregroundStyle(Task.color?.fromDouble() ?? .red)
+        .foregroundStyle(Item.color?.fromDouble() ?? .red)
         .sheet(isPresented: $isSheet){
             GeometryReader{geometry in
                 VStack{
-                    TaskCardSheetView(Item: Task, width:geometry.size.width)
+                    TaskCardSheetView(Item: Item,
+                                      selection: menuSelection,
+                                      menuItems: menuItems,
+                                      width:geometry.size.width)
                 }
                 .frame(minWidth: 300,maxWidth: .infinity)
                 .padding(10)
@@ -38,9 +45,9 @@ struct Menu_TaskCard_View<T: NSManagedObject & isTimelineItem>: View {
     }
 }
 
-struct Menu_TaskCard_View_Previews: PreviewProvider {
+struct Menu_Card_Button_Previews: PreviewProvider {
     static var previews: some View {
-        Menu_TaskCard_View<Tasks>(Task: previewsTasks)
+        Menu_Card_Button<Tasks>(Item: previewsTasks,menuSelection: .Notes,menuItems: [.Notes,.DateCard(.Task)])
             .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
     }
 }

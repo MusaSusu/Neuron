@@ -15,15 +15,15 @@ enum MenuWidgets: Int,Hashable,Identifiable{
     case none = 0,
          menu,
          description,
-         Routine_Completion
-
+         routine_completion
 }
 
-struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem>: View {
+struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem,content : View>: View {
 
     @ObservedObject var task : T
     @Binding var selectionMenu : MenuWidgets
     var menuItems : [MenuWidgets]
+    @ViewBuilder var TaskButtonView : () -> content
     
     @Binding var taskChecker : Bool
     @State var helperChecker : Bool = true
@@ -31,13 +31,15 @@ struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem>: View {
     let capsuleHeight : CGFloat
     let dateInterval : DateInterval
     
-    init(task:T, selectionMenu: Binding<MenuWidgets>, menuItems: [MenuWidgets], taskChecker: Binding<Bool>, capsuleHeight: CGFloat, dateInterval : DateInterval ) {
+    init(task:T, selectionMenu: Binding<MenuWidgets>, menuItems: [MenuWidgets], taskChecker: Binding<Bool>, capsuleHeight: CGFloat, dateInterval : DateInterval,
+         TaskButtonView : @escaping () -> content  ) {
         _selectionMenu = selectionMenu
         _taskChecker = taskChecker
         self.capsuleHeight = capsuleHeight
         self.dateInterval = dateInterval
         self.task = task
         self.menuItems = menuItems
+        self.TaskButtonView = TaskButtonView
     }
     
     var body: some View {
@@ -45,7 +47,7 @@ struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem>: View {
             Spacer()
             switch selectionMenu {
             case .description:
-                TaskDescriptionView(task: task, capsuleHeight: capsuleHeight, content: TitleView)
+                DescriptionView(task: task, capsuleHeight: capsuleHeight, content: TitleView)
                     .transition(.scale)
             case .none:
                 TitleView()
@@ -53,7 +55,7 @@ struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem>: View {
                 TitleView()
                 TimeLineMenu(selectedMenu: $selectionMenu, menuItems: menuItems, taskButtonView: TaskButtonView)
                     .transition(.scale(scale: 0,anchor: UnitPoint(x: 0 , y: 0.5)))
-            case .Routine_Completion:
+            case .routine_completion:
                 Menu_Routine_CompletetionView(Item: task as! Routine)
             }
             Spacer()
@@ -69,7 +71,7 @@ struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem>: View {
                 Text("\(task.title!)")
                     .font(.system(.title3,weight:.semibold))
                 
-                Text("  (\( dateInterval.duration.toHourMin(from: .seconds) ))")
+                Text("(\( dateInterval.duration.toHourMin(from: .seconds) ))")
                     .font(.system(.subheadline,weight: .light).italic())
             }
             .overlay(
@@ -92,10 +94,6 @@ struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem>: View {
         }
     }
     
-    func TaskButtonView() -> some View{
-        Menu_TaskCard_View(Task: task)
-    }
-    
     struct strikethroughs: Shape{
         func path(in rect: CGRect) -> Path {
             var path = Path()
@@ -109,7 +107,7 @@ struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem>: View {
 
 struct SelectionMenuBuilderView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectionMenuBuilderView<Tasks>(
+        SelectionMenuBuilderView<Tasks,Menu_Card_Button>(
             task: previewsTasks,
             selectionMenu: .constant(.menu),
             menuItems: [.menu,.description,.none],
@@ -118,7 +116,12 @@ struct SelectionMenuBuilderView_Previews: PreviewProvider {
                                    previewsTasks.taskChecker = newValue}
                               ),
             capsuleHeight: 100,
-            dateInterval: previewsTasks.dateInterval
+            dateInterval: previewsTasks.dateInterval,
+            TaskButtonView: {Menu_Card_Button(Item: previewsTasks,
+                                              menuSelection: .Notes,
+                                              menuItems: [.DateCard(.Task),.Notes])
+                
+            }
         )
     }
 }

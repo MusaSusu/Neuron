@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 
-struct TaskDescriptionView<T: NSManagedObject & isTimelineItem,Content:View> : View {
+struct DescriptionView<T: NSManagedObject & isTimelineItem,Content:View> : View {
     
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var task: T
@@ -40,9 +40,9 @@ struct TaskDescriptionView<T: NSManagedObject & isTimelineItem,Content:View> : V
     }
 }
 
-struct TaskDescription_Previews: PreviewProvider {
+struct Description_Previews: PreviewProvider {
     static var previews: some View {
-        TaskDescriptionView<Tasks,EmptyView>(task: previewsTasks,capsuleHeight: 120,content: {EmptyView()})
+        DescriptionView<Tasks,EmptyView>(task: previewsTasks,capsuleHeight: 120,content: {EmptyView()})
             .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
     }
 }

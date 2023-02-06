@@ -172,7 +172,7 @@ private extension Text{
 struct GenericTimelineRowView_Previews: PreviewProvider {
     static var previews: some View {
         CapsuleRowView(
-            task: .constant(.init(previewsTasks,date:DateInterval(start: Date(), end: Date.distantFuture) ,type:.task)),
+            task: .constant(.init(previewsTasks,date:DateInterval(start: Date(), end: Date.distantFuture) ,type:.Task)),
             
             nextDuration: 50, capsuleHeight: 100, selectionMenu: .constant(.menu))
         .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)

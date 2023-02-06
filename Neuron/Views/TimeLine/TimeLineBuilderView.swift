@@ -26,8 +26,8 @@ struct TimeLineBuilderView: View {
         routineDates.compactMap({
             ($0.ofRoutine,
              $0.dateInterval(date: date),
-             taskType.routine,
-             $0.getBinding(date: dateofweek)
+             taskType.Routine,
+             $0.getBinding(for: dateofweek)
             )
             as? ( any timelineItems, DateInterval,taskType,Binding<Bool>)
         })
@@ -41,7 +41,7 @@ struct TimeLineBuilderView: View {
                 array.append(
                     (temp,
                      temp.dateInterval,
-                     .task,
+                     .Task,
                      Binding<Bool>.init(get: {temp.taskChecker}, set: {newval in temp.taskChecker = newval})
                     )
                 )

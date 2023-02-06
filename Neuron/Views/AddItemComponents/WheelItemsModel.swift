@@ -18,7 +18,6 @@ class WheelItemsModel: ObservableObject{
         }
     }
     
-    
     var width : CGFloat
     var delta : CGFloat
     var leftDragMax : CGFloat

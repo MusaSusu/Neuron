@@ -81,11 +81,11 @@ extension Routine{
 
 
 enum taskType{
-    case task
-    case routine
-    case habit
-    case project
-    case custom
+    case Task
+    case Routine
+    case Habit
+    case Project
+    case Custom
 }
 
 
@@ -174,6 +174,33 @@ extension TimeInterval{
 }
 
 //MARK: OTHER STUFF ------------
+
+
+struct IconView : View {
+    let color : Color
+    var backgroundColor : Color = .white
+    let icon : String
+    let dims : CGSize
+    
+    var body: some View{
+        ZStack{
+            Circle()
+                .fill(color)
+            Rectangle()
+                .fill(backgroundColor)
+                .mask{
+                    Image(systemName:icon)
+                        .resizeFrame(width: dims.width, height: dims.height)
+                }
+        }
+    }
+}
+
+extension View{
+    func backgroundStrokeBorder(opacity: CGFloat, lineWidth: CGFloat)-> some View{
+        modifier(StrokeBackgroundBorder(opacity: opacity, lineWidth: lineWidth))
+    }
+}
 
 extension View {
     func print(_ value: Any) -> Self {

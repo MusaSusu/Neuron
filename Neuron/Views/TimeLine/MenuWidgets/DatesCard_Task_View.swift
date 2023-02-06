@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Task_Dates_CardSheet: View {
+struct DateCard_Task_View: View {
     @Environment(\.managedObjectContext) var viewContext
     @ObservedObject var Task : Tasks
     
@@ -21,6 +21,7 @@ struct Task_Dates_CardSheet: View {
     }
     
     var body: some View {
+        
         VStack{
             ForEach(taskDates.indices, id:\.self) { index in
                 HStack{
@@ -32,13 +33,14 @@ struct Task_Dates_CardSheet: View {
                 .backgroundStrokeBorder(opacity: 0.99, lineWidth: 1)
             }
         }
-        .backgroundStrokeBorder(opacity: 0.9, lineWidth: 0)
+        .background(.white.opacity(0.9))
+        .cornerRadius(10)
     }
 }
 
 struct Task_Dates_CardSheet_Previews: PreviewProvider {
     static var previews: some View {
-        Task_Dates_CardSheet(Task: previewsTasks)
+        DateCard_Task_View(Task: previewsTasks)
             .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
     }
 }

@@ -195,7 +195,7 @@ extension Routine : isTimelineItem {
 }
 
 extension Routine_Schedule {
-    func getBinding(date:Int)->Binding<Bool>{
+    func getBinding(for date:Int)->Binding<Bool>{
         let binding : Binding<Bool> = .init(get: {self.weekTracker![date]}, set: {newVal in self.weekTracker![date] = newVal})
         return binding
     }

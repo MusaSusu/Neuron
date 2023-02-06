@@ -10,10 +10,10 @@ import UniformTypeIdentifiers
 
 #if targetEnvironment(simulator)
 let testItems : TimelineItemsArray = .init(combinedarray:[
-    (TimelineItemWrapper(previewsTasks, date: previewsTasks.dateInterval, type: .task),
+    (TimelineItemWrapper(previewsTasks, date: previewsTasks.dateInterval, type: .Task),
      .init(get: {previewsTasks.taskChecker}, set: {newVal in previewsTasks.taskChecker = newVal})
     ),
-    (TimelineItemWrapper(previewsTasks, date: previewsTasks.dateInterval, type: .task),
+    (TimelineItemWrapper(previewsTasks, date: previewsTasks.dateInterval, type: .Task),
      .init(get: {previewsTasks.taskChecker}, set: {newVal in previewsTasks.taskChecker = newVal})
     )
 ])
@@ -134,7 +134,7 @@ struct TimeLineListBuilderView: View {
         }
         @ViewBuilder
         func SelectTypeForSelectionMenuView(type: taskType) -> some View{
-            if type == .task{
+            if type == .Task{
                 let Task = viewContext.object(with: item.id) as! Tasks
                 SelectionMenuBuilderView(
                     task: Task,
@@ -142,22 +142,29 @@ struct TimeLineListBuilderView: View {
                     menuItems: [.description],
                     taskChecker: $taskChecker,
                     capsuleHeight: capsuleHeight,
-                    dateInterval: item.dateInterval as DateInterval)
+                    dateInterval: item.dateInterval as DateInterval,
+                    TaskButtonView: { Menu_Card_Button(Item: Task, menuSelection: .DateCard(.Task), menuItems: [.DateCard(.Task),.Notes])
+                    }
+                )
             }
             else{
                 let Routine = viewContext.object(with: item.id) as! Routine
                 SelectionMenuBuilderView(
                     task: Routine,
                     selectionMenu: $selectionMenu,
-                    menuItems: [.Routine_Completion,.description],
+                    menuItems: [.routine_completion,.description],
                     taskChecker: $taskChecker,
                     capsuleHeight: capsuleHeight,
-                    dateInterval: item.dateInterval as DateInterval)
+                    dateInterval: item.dateInterval as DateInterval,
+                    TaskButtonView: {
+                        Menu_Card_Button(Item: Routine, menuSelection: .DateCard(.Routine), menuItems: [.DateCard(.Routine),.Notes]
+                        )
+                    }
+                )
             }
         }
     }
 }
-
 
 
 struct TimeLineListBuilder_Previews: PreviewProvider {
