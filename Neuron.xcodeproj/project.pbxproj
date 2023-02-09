@@ -216,6 +216,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E10FAEA82991744B005B297C /* CardView */ = {
+			isa = PBXGroup;
+			children = (
+				E10FAEA62990CD92005B297C /* DateCard_Routine_View.swift */,
+				E10FAEA2298B1221005B297C /* DatesCard_Task_View.swift */,
+				E10FAEA429909112005B297C /* Notes_Card_View.swift */,
+			);
+			path = CardView;
+			sourceTree = "<group>";
+		};
 		E134100F296E23A50074100B /* Header_components */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,9 +361,7 @@
 				E19B8B03298621F40029F4C6 /* Menu_Routine_CompletetionView.swift */,
 				E1FA36412988E4E4000353DD /* Menu_Card_Button.swift */,
 				E1FA36432988F119000353DD /* TaskCardSheetView.swift */,
-				E10FAEA429909112005B297C /* Notes_Card_View.swift */,
-				E10FAEA2298B1221005B297C /* DatesCard_Task_View.swift */,
-				E10FAEA62990CD92005B297C /* DateCard_Routine_View.swift */,
+				E10FAEA82991744B005B297C /* CardView */,
 			);
 			path = MenuWidgets;
 			sourceTree = "<group>";
