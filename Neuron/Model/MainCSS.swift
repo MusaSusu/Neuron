@@ -44,7 +44,7 @@ extension Routine_Schedule{
         return DateInterval(start: date.addingTimeInterval(temp), duration: self.ofRoutine!.duration)
     }
     
-    /// - Returns: Array of ints from 1-7 corresponding to days of week
+    /// - Returns: Array of ints from 0-6 corresponding to days of week
     func getDaysOfWeek() -> [Int] {
         guard let setDaysOfWeek = self.daysofweek?.allObjects as? [DaysOfWeek] else {
             return []
@@ -67,16 +67,72 @@ extension Routine{
             DateInterval(start: Date().startOfDay(), duration: self.duration)
         }
     }
-        
-    func getDataForTimeLineMenu() -> [(DateInterval,[Int],[Bool])] {
+    
+    func getDataForTimeLineMenu() -> [(DateInterval,[Int])] {
         guard let schedules = self.schedule?.allObjects as? [Routine_Schedule] else {return []}
-        let days : [(DateInterval,[Int],[Bool])] = schedules.compactMap(
+        let days : [(DateInterval,[Int])] = schedules.compactMap(
             {
-                ($0.dateInterval(date: Date.now.startOfDay()),$0.getDaysOfWeek(),$0.getSched())
+                let tracker = $0.getSched()
+                let daysofweek = $0.getDaysOfWeek()
+                var result : [Int] = .init(repeating: 0, count: 7)
+                for index in daysofweek{
+                    if tracker[index]{
+                        result[index] = 2 //true
+                    }
+                    else{
+                        result[index] = 1 //false
+                    }
+                }
+                
+            return ($0.dateInterval(date: Date.now.startOfDay()),result)
             }
         )
         return days
     }
+    
+    func initSchedforMonth(firstDayInMonth : Date) -> [Date]{
+        let days : [(DateInterval,[Int])] = self.getDataForTimeLineMenu()
+        var result : [Date]  = []
+
+        let calendar = Calendar.current
+        let iterStart = calendar.nextDate(after: firstDayInMonth, matching: .init(weekday: 1), matchingPolicy: .strict,direction: .backward)!
+        
+        let monthRange = DateInterval(start: iterStart, end: calendar.date(byAdding: .day, value: 34, to: iterStart)!)
+        var notcompleted = self.notCompleted ?? []
+        notcompleted = notcompleted.filter({monthRange.contains($0)})
+
+        for i in 0..<7{
+            for (_,daysofweek) in days{
+                if daysofweek[i] != 0{
+                    var val = 0
+                    while( (i + (val*7)) <  35  ){
+                        let nextdate =  calendar.date(byAdding: .day, value: (i + (val*7)) , to: iterStart)!
+                        result.append(nextdate)
+                        val = (val + 1)
+                    }
+                }
+            }
+        }
+        return result
+    }
+}
+
+func createWeekRange(date:Date)-> [Date] {
+    let calendar = Calendar.current
+    let week = calendar.dateInterval(of: .weekOfMonth, for: date)
+    
+    guard let firstWeekDay = week?.start else {
+        return []
+    }
+    
+    var currentWeek : [Date] = []
+    
+    (0...6).forEach { day in
+        if let weekday = calendar.date(byAdding: .day, value:day, to:firstWeekDay){
+            currentWeek.append(weekday)
+        }
+    }
+    return currentWeek
 }
 
 
@@ -276,7 +332,7 @@ var previewsRoutine: Routine{
     let sched = Routine_Schedule(context: viewContext)
     sched.time = Date().startOfDay().addingTimeInterval(60*60*2)
     newItem.addToSchedule(sched)
-    for index in 0..<6 {
+    for index in 0..<7 {
         let temp = DaysOfWeek(context: viewContext)
         temp.weekday = Int16(index)
         sched.addToDaysofweek(temp)

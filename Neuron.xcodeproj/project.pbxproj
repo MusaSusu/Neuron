@@ -14,6 +14,8 @@
 		E11720AF291E05B600316FBE /* DateListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11720AE291E05B600316FBE /* DateListRow.swift */; };
 		E11720B1291E06FF00316FBE /* TaskModel_Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11720B0291E06FF00316FBE /* TaskModel_Add.swift */; };
 		E11720B32920677900316FBE /* DatePickerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11720B22920677900316FBE /* DatePickerSheet.swift */; };
+		E132A98F2995B8D00093A4CD /* Calendar_Card_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E132A98E2995B8D00093A4CD /* Calendar_Card_View.swift */; };
+		E132A9962995BED60093A4CD /* AWCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = E132A9952995BED60093A4CD /* AWCalendar */; };
 		E13410082967CD120074100B /* Header_DayOfWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13410072967CD120074100B /* Header_DayOfWeekView.swift */; };
 		E134100A2967CE870074100B /* Header_HabitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13410092967CE870074100B /* Header_HabitsView.swift */; };
 		E134100C296D06DB0074100B /* Header_ScrollTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E134100B296D06DB0074100B /* Header_ScrollTabView.swift */; };
@@ -129,6 +131,8 @@
 		E11720AE291E05B600316FBE /* DateListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateListRow.swift; sourceTree = "<group>"; };
 		E11720B0291E06FF00316FBE /* TaskModel_Add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel_Add.swift; sourceTree = "<group>"; };
 		E11720B22920677900316FBE /* DatePickerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerSheet.swift; sourceTree = "<group>"; };
+		E132A98E2995B8D00093A4CD /* Calendar_Card_View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar_Card_View.swift; sourceTree = "<group>"; };
+		E132A9912995BA780093A4CD /* Calendar 18-33-17-876 */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "Calendar 18-33-17-876"; path = "../Calendar 18-33-17-876"; sourceTree = "<group>"; };
 		E13410072967CD120074100B /* Header_DayOfWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header_DayOfWeekView.swift; sourceTree = "<group>"; };
 		E13410092967CE870074100B /* Header_HabitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header_HabitsView.swift; sourceTree = "<group>"; };
 		E134100B296D06DB0074100B /* Header_ScrollTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header_ScrollTabView.swift; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E132A9962995BED60093A4CD /* AWCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,8 +227,16 @@
 				E10FAEA62990CD92005B297C /* DateCard_Routine_View.swift */,
 				E10FAEA2298B1221005B297C /* DatesCard_Task_View.swift */,
 				E10FAEA429909112005B297C /* Notes_Card_View.swift */,
+				E132A98E2995B8D00093A4CD /* Calendar_Card_View.swift */,
 			);
 			path = CardView;
+			sourceTree = "<group>";
+		};
+		E132A9922995BBC80093A4CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		E134100F296E23A50074100B /* Header_components */ = {
@@ -261,10 +274,12 @@
 		E16BB26128E0F25F00ABD2E0 = {
 			isa = PBXGroup;
 			children = (
+				E1D280942995B8210060B955 /* Packages */,
 				E16BB26C28E0F25F00ABD2E0 /* Neuron */,
 				E16BB28328E0F26000ABD2E0 /* NeuronTests */,
 				E16BB28D28E0F26000ABD2E0 /* NeuronUITests */,
 				E16BB26B28E0F25F00ABD2E0 /* Products */,
+				E132A9922995BBC80093A4CD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -425,6 +440,14 @@
 			path = AddItemComponents;
 			sourceTree = "<group>";
 		};
+		E1D280942995B8210060B955 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				E132A9912995BA780093A4CD /* Calendar 18-33-17-876 */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -442,6 +465,9 @@
 			dependencies = (
 			);
 			name = Neuron;
+			packageProductDependencies = (
+				E132A9952995BED60093A4CD /* AWCalendar */,
+			);
 			productName = Neuron;
 			productReference = E16BB26A28E0F25F00ABD2E0 /* Neuron.app */;
 			productType = "com.apple.product-type.application";
@@ -574,6 +600,7 @@
 				E11720AF291E05B600316FBE /* DateListRow.swift in Sources */,
 				E13F3946293D2FE800769255 /* SubRoutineListView.swift in Sources */,
 				E176E1542910E23C00B09604 /* TabsStruct.swift in Sources */,
+				E132A98F2995B8D00093A4CD /* Calendar_Card_View.swift in Sources */,
 				E1B0F72C28FBC65000925858 /* DescriptionView.swift in Sources */,
 				E176E156291103B500B09604 /* DatePickerDisc.swift in Sources */,
 				E13F395729495B6A00769255 /* SubRoutineAdderDisc.swift in Sources */,
@@ -1003,6 +1030,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E132A9952995BED60093A4CD /* AWCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AWCalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		E16BB27128E0F25F00ABD2E0 /* Neuron.xcdatamodeld */ = {

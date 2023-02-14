@@ -30,7 +30,7 @@ enum CardItems : Identifiable,Comparable,Hashable{
     
     var color : Color{
         switch self{
-        case .DateCard : return .red
+        case .DateCard : return .black
         case .Notes : return .yellow
         }
     }
@@ -121,6 +121,8 @@ struct TaskCardSheetView<T: isTimelineItem>: View {
             switch typeCard{
             case .Task:
                 DateCard_Task_View(Task: Item as! Tasks)
+            case .Routine:
+                DateCardRoutineView(Routine: Item as! Routine)
             default:
                 EmptyView()
             }

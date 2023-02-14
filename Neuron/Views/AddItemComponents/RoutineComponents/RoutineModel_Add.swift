@@ -26,7 +26,9 @@ struct scheduleByDay : Hashable {
     }
 }
 
+#if targetEnvironment(simulator)
 let testRoutine = Routine_Add(title: "Start", duration: 0)
+#endif
 
 class RoutineModel_Add: ObservableObject{
     @Published var list : [Routine_Add] = []
