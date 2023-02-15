@@ -73,7 +73,6 @@ struct TimeLineBuilderView: View {
         self.date = date
     }
     
-    
     var body: some View {
         VStack{
             ScrollView(.vertical,showsIndicators: false){

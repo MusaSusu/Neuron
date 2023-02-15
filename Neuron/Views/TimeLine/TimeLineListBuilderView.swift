@@ -126,6 +126,7 @@ struct TimeLineListBuilderView: View {
                 
                 
                 HStack{
+                    
                 }.frame(height: nextDurationHeight)
             }
             .background(Color(white: 0.99))

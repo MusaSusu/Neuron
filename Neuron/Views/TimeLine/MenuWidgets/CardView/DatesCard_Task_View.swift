@@ -27,14 +27,15 @@ struct DateCard_Task_View: View {
                 HStack{
                     Spacer()
                     Text(taskDates[index].formatted(date: .long, time: .shortened))
-                        .padding(10)
                     Spacer()
                 }
-                .backgroundStrokeBorder(opacity: 0.99, lineWidth: 1)
+                .padding(10)
+
             }
         }
-        .background(.white.opacity(0.9))
-        .cornerRadius(10)
+        .background(.white.opacity(1))
+        .cornerRadius(20)
+
     }
 }
 

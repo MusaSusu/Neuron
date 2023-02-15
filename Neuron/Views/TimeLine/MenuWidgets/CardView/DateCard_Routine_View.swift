@@ -9,21 +9,27 @@ import SwiftUI
 
 class CalendarDelegate : ObservableObject {
     @Published var calendars : [Int:CustomCalendar] = [:]
-    var currentMonth : Int
-    var currentYear : Int
+    @Published var currentMonth : Int
+    @Published var currentYear : Int
+    @Published var selectedCal : CustomCalendar
+    
     var initDate : Date
     var notCompleted : [Date]
     
-    init(notCompleted : [Date],initDate : Date,month: Int,year : Int) {
+    init(notCompleted : [Date],initDate : Date,month: Int,year : Int,routine : Routine) {
         self.currentMonth = month
         self.currentYear = year
         self.initDate = initDate
-        self.notCompleted = []
+        self.notCompleted = routine.notCompleted ?? []
+        let routine_dates = routine.initSchedforMonth(firstDayInMonth: initDate)
+        let returnCal = (CustomCalendar(isHighlighted: routine_dates, notCompleted: notCompleted, month: month, year: year))
+        selectedCal = returnCal
+        calendars[year * month] = returnCal
     }
     
-    func initCal(for month: Int, year: Int,routine : Routine)-> CustomCalendar{
+    func initCal(for month: Int, year: Int,routine : Routine){
         let dist = month - self.currentMonth
-        let newinitdate = Calendar.autoupdatingCurrent.date(byAdding: .day, value: 35*dist, to: initDate)!
+        let newinitdate = Calendar.autoupdatingCurrent.date(byAdding: .month, value: dist, to: initDate)!
         let routine_dates = routine.initSchedforMonth(firstDayInMonth: newinitdate)
         
         calendars[month * year] = (CustomCalendar(isHighlighted: routine_dates, notCompleted: notCompleted, month: month, year: year))
@@ -33,15 +39,15 @@ class CalendarDelegate : ObservableObject {
         self.currentYear = year
         self.currentMonth = month
         
-        return calendars[month * year]!
+        selectedCal = calendars[month * year]!
     }
     
-    func returnCalForView(routine : Routine,month: Int,year: Int) -> CustomCalendar {
-        if let returnCal = calendars[currentYear * currentMonth] {
-            return returnCal
+    func returnCalForView(routine : Routine,month: Int,year: Int) {
+        if let returnCal = calendars[month * year] {
+            self.selectedCal = returnCal
         }
         else{
-            return initCal(for: month, year: year, routine: routine)
+            initCal(for: month, year: year, routine: routine)
         }
     }
 }
@@ -51,13 +57,18 @@ struct DateCardRoutineView: View {
     @ObservedObject var Routine : Routine
     @StateObject var CalDelegate : CalendarDelegate
     
-    @State var month : Int
-    @State var year : Int
+    @State var date  : Date = Date()
     
-    var initDate : Date {calendar.nextDate(after: .now, matching: .init(day: 1), matchingPolicy: .strict,direction: .backward)!}
-
-    var routine_dates : [Date] {
-        return Routine.initSchedforMonth(firstDayInMonth: initDate)
+    var month : Int {
+        calendar.component(.month, from: date)
+    }
+    var year : Int {
+        calendar.component(.year, from: date)
+    }
+    
+    var titleMonth : String{
+        let months = Calendar.current.monthSymbols
+        return months[month-1]
     }
     
     init(Routine : Routine){
@@ -66,25 +77,45 @@ struct DateCardRoutineView: View {
         let calendar = Calendar.current
         let year = calendar.component(.year, from: .now)
         let month = calendar.component(.month, from: .now)
-        _year = .init(initialValue: year)
-        _month = .init(initialValue: month)
         let initDate = calendar.nextDate(after: .now, matching: .init(day: 1), matchingPolicy: .strict,direction: .backward)!
         let notCompleted = Routine.notCompleted ?? []
         
-        _CalDelegate = .init(wrappedValue: CalendarDelegate(notCompleted: notCompleted,initDate: initDate, month: month, year: year))
+        _CalDelegate = .init(wrappedValue: CalendarDelegate(notCompleted: notCompleted,initDate: initDate, month: month, year: year, routine: Routine))
     }
-
-
     
     var body: some View {
-        showViewForDate()
+        VStack{
+            HStack{
+                Button{
+                    updateDate(left: true)
+                } label: {
+                    Image(systemName: "arrow.left")
+                }
+                Spacer()
+                Text(titleMonth)
+                    .font(.system(.headline,design: .monospaced,weight: .semibold))
+                Spacer()
+                Button{
+                    updateDate(left: false)
+                }label: {
+                    Image(systemName: "arrow.right")
+                }
+            }
+            .padding(.bottom,5)
+            
+            Calendar_Card_View(delegate: CalDelegate)
+        }
     }
+
     
-    @ViewBuilder
-    func showViewForDate() -> some View{
-        Calendar_Card_View(
-            cal:CalDelegate.returnCalForView(routine: Routine, month: month, year: year),
-            month: month)
+    func updateDate(left: Bool){
+        if left{
+            self.date = calendar.date(byAdding: .month, value: -1, to: date)!
+        }
+        else{
+            self.date = calendar.date(byAdding: .month, value: 1, to: date)!
+        }
+        CalDelegate.returnCalForView(routine: Routine, month: month, year: year)
     }
 }
 

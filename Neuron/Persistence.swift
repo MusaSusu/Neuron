@@ -112,6 +112,7 @@ struct PersistenceController {
         }
         
         let newHabit = Habit(context: viewContext)
+        newHabit.icon = "tray.fill"
         newHabit.completed = 5
         newHabit.frequency = 10
         newHabit.id = UUID()
@@ -119,6 +120,7 @@ struct PersistenceController {
         newHabit.color = [0.9098, 0.6039,  0.6039]
         newHabit.timeFrame = timeFrame.Weekly.rawValue
         let newHabit1 = Habit(context: viewContext)
+        newHabit1.icon = "gamecontroller.fill"
         newHabit1.completed = 7
         newHabit1.frequency = 10
         newHabit1.id = UUID()
@@ -152,6 +154,11 @@ struct PersistenceController {
                 array[i].weekTracker = .init(repeating: false, count: 7)
             }
         }
+        
+        
+        let projectItem = Project(context: viewContext)
+        projectItem.subTasks = []
+        projectItem.endDate = Date().addingTimeInterval(60*60*24*4)
         /*
         for i in 0..<7{
             if i%2 == 0 {

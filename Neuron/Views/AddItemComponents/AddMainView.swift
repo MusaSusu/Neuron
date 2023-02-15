@@ -63,7 +63,7 @@ struct AddMainView: View {
                         .environmentObject(Routine_Add)
                         .environmentObject(Project_Add)
                         .environmentObject(Habit_Add)
-                }.padding(.horizontal,-5)
+                }
                 
             }
             .padding(10)

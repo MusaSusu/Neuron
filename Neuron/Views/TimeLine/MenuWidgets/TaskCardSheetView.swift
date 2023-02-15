@@ -63,7 +63,6 @@ struct TaskCardSheetView<T: isTimelineItem>: View {
     @State var selection : CardItems
     @State var menuItems : [CardItems]
 
-    let width : CGFloat
 
     var body: some View {
         VStack(spacing:10){
@@ -93,12 +92,12 @@ struct TaskCardSheetView<T: isTimelineItem>: View {
             HStack{
                 
             }
+            Spacer()
         }
-        .frame(width: width * 0.75,alignment: .leading)
         .padding(20)
         .background{
             RoundedRectangle(cornerRadius: 10)
-                .fill(Color(white: 0.9), strokeBorder: userColor,lineWidth: 2)
+                .fill(Color(white: 0.9), strokeBorder: userColor,lineWidth: 3)
         }
         .edgesIgnoringSafeArea(.bottom)
     }
@@ -115,8 +114,9 @@ struct TaskCardSheetView<T: isTimelineItem>: View {
                 Spacer()
                 Text(Item.duration.toHourMin(from: .seconds))
             }
-            .padding(10)
+            .padding(EdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15))
             .backgroundStrokeBorder(opacity: 1, lineWidth: 0)
+            
             
             switch typeCard{
             case .Task:
@@ -157,26 +157,7 @@ struct TaskCardSheetView_Previews: PreviewProvider {
     static var previews: some View {
         TaskCardSheetView<Tasks>(Item: previewsTasks,
                                  selection: .DateCard(.Task),
-                                 menuItems: [CardItems.DateCard(.Task),.Notes],
-                                 width: 400)
+                                 menuItems: [CardItems.DateCard(.Task),.Notes])
         .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
-    }
-}
-
-
-struct StrokeBackgroundBorder : ViewModifier{
-    @UserDefaultsBacked<[Double]>(key: .userColor) var dataColor
-    var userColor : Color{
-        dataColor?.fromDouble() ?? .black
-    }
-    let opacity : CGFloat
-    let lineWidth : CGFloat
-    
-    func body(content: Content) -> some View {
-        content
-            .background{
-                RoundedRectangle(cornerRadius: 10,style: .circular)
-                    .fill(Color(white: opacity), strokeBorder: userColor,lineWidth: lineWidth)
-            }
     }
 }

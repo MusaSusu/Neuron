@@ -29,12 +29,8 @@ struct GenericTabView: View {
                 
             }
             .padding(EdgeInsets(top: 15, leading: 15, bottom: 20, trailing: 15))
-            .background(
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(.white, strokeBorder: userColor)
-                    .padding(.horizontal,1)
-            )
-        }.padding(.horizontal,5)
+            .backgroundStrokeBorder(opacity: 1, lineWidth: 2)
+        }
     }
     
     @ViewBuilder

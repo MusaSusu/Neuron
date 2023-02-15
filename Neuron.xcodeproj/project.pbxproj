@@ -38,6 +38,7 @@
 		E16BB28528E0F26000ABD2E0 /* NeuronTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB28428E0F26000ABD2E0 /* NeuronTests.swift */; };
 		E16BB28F28E0F26000ABD2E0 /* NeuronUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB28E28E0F26000ABD2E0 /* NeuronUITests.swift */; };
 		E16BB29128E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB29028E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift */; };
+		E1733100299C506800CD1805 /* InboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17330FF299C506800CD1805 /* InboxView.swift */; };
 		E176E14E290B279600B09604 /* AddMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E14D290B279600B09604 /* AddMainView.swift */; };
 		E176E150290B2D6900B09604 /* AddTaskConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E14F290B2D6900B09604 /* AddTaskConfig.swift */; };
 		E176E152290B560C00B09604 /* AddTaskButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E151290B560C00B09604 /* AddTaskButtonView.swift */; };
@@ -160,6 +161,7 @@
 		E16BB28A28E0F26000ABD2E0 /* NeuronUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeuronUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16BB28E28E0F26000ABD2E0 /* NeuronUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuronUITests.swift; sourceTree = "<group>"; };
 		E16BB29028E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuronUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E17330FF299C506800CD1805 /* InboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxView.swift; sourceTree = "<group>"; };
 		E176E14D290B279600B09604 /* AddMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMainView.swift; sourceTree = "<group>"; };
 		E176E14F290B2D6900B09604 /* AddTaskConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskConfig.swift; sourceTree = "<group>"; };
 		E176E151290B560C00B09604 /* AddTaskButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskButtonView.swift; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 			isa = PBXGroup;
 			children = (
 				E1B0F71E28FBC61F00925858 /* ContentView.swift */,
+				E17330FF299C506800CD1805 /* InboxView.swift */,
 				E1B0F71A28FBC60800925858 /* BottomTab.swift */,
 				E176E151290B560C00B09604 /* AddTaskButtonView.swift */,
 				E134100F296E23A50074100B /* Header_components */,
@@ -619,6 +622,7 @@
 				E13F3953294806A500769255 /* enumWidgets.swift in Sources */,
 				E13F3949293E782E00769255 /* RoutineModel_Add.swift in Sources */,
 				E13F39512945CC7A00769255 /* RoutineSchedPickerDisc.swift in Sources */,
+				E1733100299C506800CD1805 /* InboxView.swift in Sources */,
 				E1A4DB82292CE1E300FB6BDE /* css.swift in Sources */,
 				E1FA36422988E4E4000353DD /* Menu_Card_Button.swift in Sources */,
 				E176E15A2911F50C00B09604 /* CustomColorPickerView.swift in Sources */,

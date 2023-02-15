@@ -21,7 +21,7 @@ struct DatePickerDisc: View {
                     
                     HStack{
                         HStack{
-                            Text("Add to Inbox?  ").bold().foregroundColor(.black)
+                            Text("Add to Storage?  ").bold().foregroundColor(.black)
                             Image(systemName: "tray")
                                 .resizable()
                                 .aspectRatio(contentMode: ContentMode.fill)

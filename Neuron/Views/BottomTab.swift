@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BottomTabView: View {
     @State var isSheet : Bool = false
+    @State var inboxSheet : Bool = false
     
     var body: some View {
         VStack{
@@ -23,12 +24,13 @@ struct BottomTabView: View {
                         Text("Today")
                             .foregroundColor(Color(white:0.5))
                     }
-                }.frame(maxWidth: .infinity)
-                    .sheet(isPresented: $isSheet){
-                    }
+                }
+                .sheet(isPresented: $isSheet){
+                    
+                }
 
-                
-                Button(action: openInbox) {
+                Spacer()
+                Button(action: {inboxSheet = true}) {
                     VStack{
                         Image(systemName: "tray")
                             .font(.title)
@@ -36,11 +38,20 @@ struct BottomTabView: View {
                         Text("Inbox")   
                             .foregroundColor(Color(white:0.5))
                     }
-                }.frame(maxWidth: .infinity)
+                }
+                .sheet(isPresented: $inboxSheet){
+                    InboxView()
+                }
+                
+                Spacer()
                 
 
                 AddTaskButtonView().offset(y: -20)
+                    .shadow(radius: 1)
+                    .blendMode(.sourceAtop)
 
+                Spacer()
+                
                 Button(action: openInbox) {
                     VStack{
                         Image(systemName: "brain")
@@ -49,7 +60,9 @@ struct BottomTabView: View {
                         Text("Inbox")
                             .foregroundColor(Color(white:0.5))
                     }
-                }.frame(maxWidth: .infinity)
+                }
+                
+                Spacer()
                 
                 Button(action: openInbox) {
                     VStack{
@@ -59,11 +72,13 @@ struct BottomTabView: View {
                         Text("Inbox")
                             .foregroundColor(Color(white:0.5))
                     }
-                }.frame(maxWidth: .infinity)
+                }
+                
             }
-            .padding(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 10))
-            .frame(maxWidth: .infinity, minHeight: 30, maxHeight:70)
+            .padding(EdgeInsets(top: 10, leading:15, bottom: 0, trailing: 15))
             .background(Color(white:0.95))
+            .frame(maxWidth: .infinity, minHeight: 30, maxHeight:70)
+
         }
     }
 }

@@ -93,19 +93,28 @@ extension Routine{
     func initSchedforMonth(firstDayInMonth : Date) -> [Date]{
         let days : [(DateInterval,[Int])] = self.getDataForTimeLineMenu()
         var result : [Date]  = []
-
-        let calendar = Calendar.current
-        let iterStart = calendar.nextDate(after: firstDayInMonth, matching: .init(weekday: 1), matchingPolicy: .strict,direction: .backward)!
         
-        let monthRange = DateInterval(start: iterStart, end: calendar.date(byAdding: .day, value: 34, to: iterStart)!)
-        var notcompleted = self.notCompleted ?? []
-        notcompleted = notcompleted.filter({monthRange.contains($0)})
-
+        let calendar = Calendar.current
+        
+        var iterStart = firstDayInMonth
+        
+        if firstDayInMonth.weekdayAsInt() + 1 != 1 {
+            iterStart = calendar.nextDate(after: firstDayInMonth, matching: .init(weekday: 1), matchingPolicy: .previousTimePreservingSmallerComponents,direction: .backward)!
+        }
+        
+        var lastDayofCal = calendar.dateInterval(of: .month, for: firstDayInMonth)!.end
+        
+        if lastDayofCal.weekdayAsInt() + 1 != 7{
+            lastDayofCal = calendar.nextDate(after: lastDayofCal, matching: .init(weekday: 7), matchingPolicy: .nextTimePreservingSmallerComponents)!
+        }
+        
+        let interval = calendar.dateComponents([.day], from: iterStart, to: lastDayofCal).day!
+        
         for i in 0..<7{
             for (_,daysofweek) in days{
                 if daysofweek[i] != 0{
                     var val = 0
-                    while( (i + (val*7)) <  35  ){
+                        while( (i + (val*7)) <=  interval  ){
                         let nextdate =  calendar.date(byAdding: .day, value: (i + (val*7)) , to: iterStart)!
                         result.append(nextdate)
                         val = (val + 1)
@@ -249,6 +258,23 @@ struct IconView : View {
                         .resizeFrame(width: dims.width, height: dims.height)
                 }
         }
+    }
+}
+
+struct StrokeBackgroundBorder : ViewModifier{
+    @UserDefaultsBacked<[Double]>(key: .userColor) var dataColor
+    var userColor : Color{
+        dataColor?.fromDouble() ?? .black
+    }
+    let opacity : CGFloat
+    let lineWidth : CGFloat
+    
+    func body(content: Content) -> some View {
+        content
+            .background{
+                RoundedRectangle(cornerRadius: 20,style: .circular)
+                    .fill(Color(white: opacity), strokeBorder: userColor,lineWidth: lineWidth)
+            }
     }
 }
 

@@ -26,18 +26,13 @@ struct Menu_Card_Button<T: NSManagedObject & isTimelineItem>: View {
         }
         .foregroundStyle(Item.color?.fromDouble() ?? .red)
         .sheet(isPresented: $isSheet){
-            GeometryReader{geometry in
-                VStack{
-                    TaskCardSheetView(Item: Item,
-                                      selection: menuSelection,
-                                      menuItems: menuItems,
-                                      width:geometry.size.width)
-                }
-                .frame(minWidth: 300,maxWidth: .infinity)
-                .padding(10)
-            }
+            TaskCardSheetView(Item: Item,
+                              selection: menuSelection,
+                              menuItems: menuItems)
             .presentationDetents([.medium,.large])
         }
+
+        
     }
     
     func showSheet(){

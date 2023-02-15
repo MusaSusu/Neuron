@@ -9,6 +9,7 @@ import SwiftUI
 import AWCalendar
 
 class CustomCalendar : CalendarController {
+    
     @Published var completed : [Date]
     @Published var notCompleted : [Date] = []
     
@@ -33,31 +34,15 @@ class CustomCalendar : CalendarController {
 }
 
 struct Calendar_Card_View: View {
-    @ObservedObject var cal : CustomCalendar
-    let month : Int
+    @ObservedObject var delegate : CalendarDelegate
     
     var notCompleted : [Date]{
-        let interval = DateInterval(start: cal.firstday, end: cal.lastDay)
-        return cal.notCompleted.filter({interval.contains($0)})
-    }
-    
-    
-    var titleMonth : String{
-        let months = Calendar.current.monthSymbols
-        return months[month-1]
-    }
-    
-    init(cal : CustomCalendar,month : Int ){
-        _cal = .init(wrappedValue: cal)
-        self.month = month
+        let interval = DateInterval(start: delegate.selectedCal.firstday, end: delegate.selectedCal.lastDay)
+        return delegate.notCompleted.filter({interval.contains($0)})
     }
     
     var body: some View {
         VStack(spacing: 10){
-            HStack{
-                Text(titleMonth)
-                    .font(.system(.headline,design: .monospaced,weight: .semibold))
-            }
             HStack(spacing: 0){
                 ForEach(daysofweek.indices,id:\.self){index in
                     Text(daysofweek[index])
@@ -66,7 +51,7 @@ struct Calendar_Card_View: View {
                     
                 }
             }
-            AWCalendarView(cal: cal){ item in
+            AWCalendarView(cal: delegate.selectedCal){ item in
                 CalendarCell(item: item)
                     .fontWeight(.semibold)
                     .frame(width: 40,height: 40)
@@ -77,11 +62,12 @@ struct Calendar_Card_View: View {
                     }
             }
             .disabled(true)
+
         }
     }
     
     @ViewBuilder func highlightCirc(date:Date)->some View{
-        if cal.isSameDay(date: date){
+        if delegate.selectedCal.isSameDay(date: date){
             if date > Date(){
                 Circle()
                     .fill(.blue.opacity(0.2))
@@ -107,7 +93,7 @@ struct Calendar_Card_View: View {
 
 struct Calendar_Card_View_Previews: PreviewProvider {
     static var previews: some View {
-        Calendar_Card_View(cal: CustomCalendar(isHighlighted: [], notCompleted: [], month: 2, year: 2023), month: 2)
+        Calendar_Card_View(delegate: CalendarDelegate(notCompleted: [], initDate: Date(), month: 10, year: 2023, routine: previewsRoutine))
     }
 }
 
