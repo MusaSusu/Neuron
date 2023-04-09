@@ -5,6 +5,8 @@
 //  Created by Alvin Wu on 2/6/23.
 //
 
+// Days are not being correctly filled in. Checkmark for completee. X for not compeleted and circle for upcoming days. Idea seems to be too overloaded.Uneccessary to show upcoming days like that since user can simply look at their routine schedule.
+
 import SwiftUI
 
 class CalendarDelegate : ObservableObject {
@@ -12,34 +14,35 @@ class CalendarDelegate : ObservableObject {
     @Published var currentMonth : Int
     @Published var currentYear : Int
     @Published var selectedCal : CustomCalendar
-    
-    var initDate : Date
     var notCompleted : [Date]
     
     init(notCompleted : [Date],initDate : Date,month: Int,year : Int,routine : Routine) {
         self.currentMonth = month
         self.currentYear = year
-        self.initDate = initDate
         self.notCompleted = routine.notCompleted ?? []
-        let routine_dates = routine.initSchedforMonth(firstDayInMonth: initDate)
-        let returnCal = (CustomCalendar(isHighlighted: routine_dates, notCompleted: notCompleted, month: month, year: year))
+        // add a unit test for this feature as the manner in which not completed days are stored could be prone to bugs. Might be easier to store the dates locally rather than calculate on start from number of days not completed since routine creation date.
+        
+        let returnCal = CustomCalendar( month: month, year: year)
+        let routine_dates = routine.initSchedforMonth(firstDay: returnCal.firstDay, lastDay: returnCal.lastDay)
+        returnCal.initCompleted(completed: routine_dates)
         selectedCal = returnCal
         calendars[year * month] = returnCal
     }
     
     func initCal(for month: Int, year: Int,routine : Routine){
-        let dist = month - self.currentMonth
-        let newinitdate = Calendar.autoupdatingCurrent.date(byAdding: .month, value: dist, to: initDate)!
-        let routine_dates = routine.initSchedforMonth(firstDayInMonth: newinitdate)
         
-        calendars[month * year] = (CustomCalendar(isHighlighted: routine_dates, notCompleted: notCompleted, month: month, year: year))
+        let newCal = CustomCalendar(month: month, year: year)
         
+        let routine_dates_completed = routine.initSchedforMonth(firstDay: newCal.firstDay,lastDay: newCal.lastDay)
+    
+        newCal.initCompleted(completed: routine_dates_completed)
         
-        self.initDate = newinitdate
+        calendars[month * year] = newCal
+        
         self.currentYear = year
         self.currentMonth = month
         
-        selectedCal = calendars[month * year]!
+        self.selectedCal = calendars[month * year]!
     }
     
     func returnCalForView(routine : Routine,month: Int,year: Int) {
@@ -57,7 +60,7 @@ struct DateCardRoutineView: View {
     @ObservedObject var Routine : Routine
     @StateObject var CalDelegate : CalendarDelegate
     
-    @State var date  : Date = Date()
+    @State var date : Date = Date()
     
     var month : Int {
         calendar.component(.month, from: date)
@@ -77,7 +80,7 @@ struct DateCardRoutineView: View {
         let calendar = Calendar.current
         let year = calendar.component(.year, from: .now)
         let month = calendar.component(.month, from: .now)
-        let initDate = calendar.nextDate(after: .now, matching: .init(day: 1), matchingPolicy: .strict,direction: .backward)!
+        let initDate = calendar.nextDate(after: .now, matching: .init(day:1), matchingPolicy: .strict,direction: .backward)!
         let notCompleted = Routine.notCompleted ?? []
         
         _CalDelegate = .init(wrappedValue: CalendarDelegate(notCompleted: notCompleted,initDate: initDate, month: month, year: year, routine: Routine))
@@ -94,6 +97,7 @@ struct DateCardRoutineView: View {
                 Spacer()
                 Text(titleMonth)
                     .font(.system(.headline,design: .monospaced,weight: .semibold))
+                Text(year.formatted())
                 Spacer()
                 Button{
                     updateDate(left: false)

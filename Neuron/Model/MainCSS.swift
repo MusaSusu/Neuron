@@ -68,6 +68,9 @@ extension Routine{
         }
     }
     
+    /// Collects all the routine schedules and compiles into an array [Routine_schedule, Weekdays ]
+    ///
+    /// - Returns: description
     func getDataForTimeLineMenu() -> [(DateInterval,[Int])] {
         guard let schedules = self.schedule?.allObjects as? [Routine_Schedule] else {return []}
         let days : [(DateInterval,[Int])] = schedules.compactMap(
@@ -82,6 +85,7 @@ extension Routine{
                     else{
                         result[index] = 1 //false
                     }
+                    // 0 means that weekday is not in routine
                 }
                 
             return ($0.dateInterval(date: Date.now.startOfDay()),result)
@@ -90,32 +94,20 @@ extension Routine{
         return days
     }
     
-    func initSchedforMonth(firstDayInMonth : Date) -> [Date]{
+    func initSchedforMonth(firstDay : Date, lastDay: Date) -> [Date]{
         let days : [(DateInterval,[Int])] = self.getDataForTimeLineMenu()
         var result : [Date]  = []
         
         let calendar = Calendar.current
-        
-        var iterStart = firstDayInMonth
-        
-        if firstDayInMonth.weekdayAsInt() + 1 != 1 {
-            iterStart = calendar.nextDate(after: firstDayInMonth, matching: .init(weekday: 1), matchingPolicy: .previousTimePreservingSmallerComponents,direction: .backward)!
-        }
-        
-        var lastDayofCal = calendar.dateInterval(of: .month, for: firstDayInMonth)!.end
-        
-        if lastDayofCal.weekdayAsInt() + 1 != 7{
-            lastDayofCal = calendar.nextDate(after: lastDayofCal, matching: .init(weekday: 7), matchingPolicy: .nextTimePreservingSmallerComponents)!
-        }
-        
-        let interval = calendar.dateComponents([.day], from: iterStart, to: lastDayofCal).day!
+            
+        let interval = calendar.dateComponents([.day], from: firstDay, to: lastDay).day!
         
         for i in 0..<7{
             for (_,daysofweek) in days{
                 if daysofweek[i] != 0{
                     var val = 0
                         while( (i + (val*7)) <=  interval  ){
-                        let nextdate =  calendar.date(byAdding: .day, value: (i + (val*7)) , to: iterStart)!
+                        let nextdate =  calendar.date(byAdding: .day, value: (i + (val*7)) , to: firstDay)!
                         result.append(nextdate)
                         val = (val + 1)
                     }
@@ -354,7 +346,8 @@ var previewsRoutine: Routine{
     newItem.color = [0.949,  0.522,  0.1]
     newItem.taskChecker = false
     newItem.completed = 20
-    newItem.notCompleted = .init(repeating: .now, count: 11)
+    let dates_testbuild = convertDate(data: "04-05-2023 00:00")
+    newItem.notCompleted = [dates_testbuild]
     let sched = Routine_Schedule(context: viewContext)
     sched.time = Date().startOfDay().addingTimeInterval(60*60*2)
     newItem.addToSchedule(sched)

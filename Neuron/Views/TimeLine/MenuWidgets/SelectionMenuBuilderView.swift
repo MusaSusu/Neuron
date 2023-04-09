@@ -26,7 +26,7 @@ struct SelectionMenuBuilderView<T: NSManagedObject & isTimelineItem,content : Vi
     @ViewBuilder var TaskButtonView : () -> content
     
     @Binding var taskChecker : Bool
-    @State var helperChecker : Bool = true
+    @State var helperChecker : Bool = true // to refresh view
     
     let capsuleHeight : CGFloat
     let dateInterval : DateInterval
