@@ -34,7 +34,7 @@ struct TimeLineListBuilderView: View {
                 CheckTypeContainer(
                     item: $item,
                     taskChecker: arrayobjects.taskCheckerDict[item.id]!,
-                    nextDuration: arrayobjects.getNextDuration(at:(item.index)/2)
+                    nextDuration: arrayobjects.getNextDuration(at:item.index)
                 )
                 .if(editMode?.wrappedValue.isEditing == true){view in
                     view
@@ -100,7 +100,6 @@ struct TimeLineListBuilderView: View {
             return nextDuration.toHourMin(from: .seconds)
         }
         
-        
         var body: some View{
             VStack(spacing: 0){
                 HStack(spacing: 0){
@@ -126,7 +125,9 @@ struct TimeLineListBuilderView: View {
                 
                 
                 HStack{
-                    
+                    if nextDurationHeight >= 50{
+                        Text(nextDuration.toHourMin(from: .seconds))
+                    }
                 }.frame(height: nextDurationHeight)
             }
             .background(Color(white: 0.99))

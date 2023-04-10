@@ -14,7 +14,7 @@ import SwiftUI
 
 extension Main{
     func getColor() -> Color {
-        self.color?.fromDouble() ?? .red
+        self.color?.fromDouble() ?? .blue
     }
 }
 

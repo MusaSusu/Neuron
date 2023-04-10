@@ -117,7 +117,6 @@ struct CapsuleRowView : View {
                         }
                     }
                 }
-                
             }
         }
     }

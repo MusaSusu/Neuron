@@ -14,6 +14,7 @@
 		E11720AF291E05B600316FBE /* DateListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11720AE291E05B600316FBE /* DateListRow.swift */; };
 		E11720B1291E06FF00316FBE /* TaskModel_Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11720B0291E06FF00316FBE /* TaskModel_Add.swift */; };
 		E11720B32920677900316FBE /* DatePickerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11720B22920677900316FBE /* DatePickerSheet.swift */; };
+		E130F46229E3BF3900636FEA /* SchedulerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E130F46129E3BF3900636FEA /* SchedulerView.swift */; };
 		E132A98F2995B8D00093A4CD /* Calendar_Card_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E132A98E2995B8D00093A4CD /* Calendar_Card_View.swift */; };
 		E132A9962995BED60093A4CD /* AWCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = E132A9952995BED60093A4CD /* AWCalendar */; };
 		E13410082967CD120074100B /* Header_DayOfWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13410072967CD120074100B /* Header_DayOfWeekView.swift */; };
@@ -38,9 +39,8 @@
 		E16BB28528E0F26000ABD2E0 /* NeuronTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB28428E0F26000ABD2E0 /* NeuronTests.swift */; };
 		E16BB28F28E0F26000ABD2E0 /* NeuronUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB28E28E0F26000ABD2E0 /* NeuronUITests.swift */; };
 		E16BB29128E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BB29028E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift */; };
-		E1733100299C506800CD1805 /* InboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17330FF299C506800CD1805 /* InboxView.swift */; };
+		E1733100299C506800CD1805 /* StorageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17330FF299C506800CD1805 /* StorageView.swift */; };
 		E176E14E290B279600B09604 /* AddMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E14D290B279600B09604 /* AddMainView.swift */; };
-		E176E150290B2D6900B09604 /* AddTaskConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E14F290B2D6900B09604 /* AddTaskConfig.swift */; };
 		E176E152290B560C00B09604 /* AddTaskButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E151290B560C00B09604 /* AddTaskButtonView.swift */; };
 		E176E1542910E23C00B09604 /* TabsStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E1532910E23C00B09604 /* TabsStruct.swift */; };
 		E176E156291103B500B09604 /* DatePickerDisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176E155291103B500B09604 /* DatePickerDisc.swift */; };
@@ -132,6 +132,7 @@
 		E11720AE291E05B600316FBE /* DateListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateListRow.swift; sourceTree = "<group>"; };
 		E11720B0291E06FF00316FBE /* TaskModel_Add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel_Add.swift; sourceTree = "<group>"; };
 		E11720B22920677900316FBE /* DatePickerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerSheet.swift; sourceTree = "<group>"; };
+		E130F46129E3BF3900636FEA /* SchedulerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerView.swift; sourceTree = "<group>"; };
 		E132A98E2995B8D00093A4CD /* Calendar_Card_View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar_Card_View.swift; sourceTree = "<group>"; };
 		E132A9912995BA780093A4CD /* Calendar 18-33-17-876 */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "Calendar 18-33-17-876"; path = "../Calendar 18-33-17-876"; sourceTree = "<group>"; };
 		E13410072967CD120074100B /* Header_DayOfWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header_DayOfWeekView.swift; sourceTree = "<group>"; };
@@ -161,9 +162,8 @@
 		E16BB28A28E0F26000ABD2E0 /* NeuronUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeuronUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16BB28E28E0F26000ABD2E0 /* NeuronUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuronUITests.swift; sourceTree = "<group>"; };
 		E16BB29028E0F26000ABD2E0 /* NeuronUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuronUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		E17330FF299C506800CD1805 /* InboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxView.swift; sourceTree = "<group>"; };
+		E17330FF299C506800CD1805 /* StorageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageView.swift; sourceTree = "<group>"; };
 		E176E14D290B279600B09604 /* AddMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMainView.swift; sourceTree = "<group>"; };
-		E176E14F290B2D6900B09604 /* AddTaskConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskConfig.swift; sourceTree = "<group>"; };
 		E176E151290B560C00B09604 /* AddTaskButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskButtonView.swift; sourceTree = "<group>"; };
 		E176E1532910E23C00B09604 /* TabsStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsStruct.swift; sourceTree = "<group>"; };
 		E176E155291103B500B09604 /* DatePickerDisc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerDisc.swift; sourceTree = "<group>"; };
@@ -343,7 +343,6 @@
 				E1EEC75C294C780D005A88D1 /* TimeLineModel.swift */,
 				E1C95DB228E4D50600851C4E /* OptionsModel.swift */,
 				E190A94F297A1F5E00EAAA08 /* NotificationCenter.swift */,
-				E176E14F290B2D6900B09604 /* AddTaskConfig.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -410,8 +409,9 @@
 			isa = PBXGroup;
 			children = (
 				E1B0F71E28FBC61F00925858 /* ContentView.swift */,
-				E17330FF299C506800CD1805 /* InboxView.swift */,
+				E17330FF299C506800CD1805 /* StorageView.swift */,
 				E1B0F71A28FBC60800925858 /* BottomTab.swift */,
+				E130F46129E3BF3900636FEA /* SchedulerView.swift */,
 				E176E151290B560C00B09604 /* AddTaskButtonView.swift */,
 				E134100F296E23A50074100B /* Header_components */,
 				E17E714629736E7B0034B4BC /* TimeLine */,
@@ -423,10 +423,10 @@
 		E1BEFF2D2916676600A2DE56 /* AddItemComponents */ = {
 			isa = PBXGroup;
 			children = (
+				E1A4DB81292CE1E300FB6BDE /* css.swift */,
 				E1CA7DF02921B42E00A41A14 /* NewItemModel.swift */,
 				E1BEFF34291749EC00A2DE56 /* WheelItemsModel.swift */,
 				E13F3952294806A500769255 /* enumWidgets.swift */,
-				E1A4DB81292CE1E300FB6BDE /* css.swift */,
 				E1BEFF322916682F00A2DE56 /* SearchView .swift */,
 				E176E14D290B279600B09604 /* AddMainView.swift */,
 				E13F3954294942F700769255 /* GenericTabView.swift */,
@@ -585,6 +585,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E130F46229E3BF3900636FEA /* SchedulerView.swift in Sources */,
 				E16BB27328E0F25F00ABD2E0 /* Neuron.xcdatamodeld in Sources */,
 				E10FAEA72990CD92005B297C /* DateCard_Routine_View.swift in Sources */,
 				E16BB26E28E0F25F00ABD2E0 /* NeuronApp.swift in Sources */,
@@ -615,14 +616,13 @@
 				E13F395D294AA8D900769255 /* HabitModel.swift in Sources */,
 				E13F394F2945624F00769255 /* RoutineDurationSheet.swift in Sources */,
 				E10FAEA529909112005B297C /* Notes_Card_View.swift in Sources */,
-				E176E150290B2D6900B09604 /* AddTaskConfig.swift in Sources */,
 				E1EEC75D294C780D005A88D1 /* TimeLineModel.swift in Sources */,
 				E1A4DB842935AF7900FB6BDE /* SubTaskAdderDisc.swift in Sources */,
 				E14F6E4029147939009946EB /* SymbolPickerView.swift in Sources */,
 				E13F3953294806A500769255 /* enumWidgets.swift in Sources */,
 				E13F3949293E782E00769255 /* RoutineModel_Add.swift in Sources */,
 				E13F39512945CC7A00769255 /* RoutineSchedPickerDisc.swift in Sources */,
-				E1733100299C506800CD1805 /* InboxView.swift in Sources */,
+				E1733100299C506800CD1805 /* StorageView.swift in Sources */,
 				E1A4DB82292CE1E300FB6BDE /* css.swift in Sources */,
 				E1FA36422988E4E4000353DD /* Menu_Card_Button.swift in Sources */,
 				E176E15A2911F50C00B09604 /* CustomColorPickerView.swift in Sources */,

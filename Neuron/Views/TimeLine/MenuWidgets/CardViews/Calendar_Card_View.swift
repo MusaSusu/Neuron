@@ -63,14 +63,17 @@ struct Calendar_Card_View: View {
                     }
             }
             .disabled(true)
-            
+
+
+#if targetEnvironment(simulator)
+
             ScrollView(.vertical){
                 Text(delegate.selectedCal.completed.sorted().debugDescription)
             }
             ScrollView(.vertical){
                 Text(delegate.selectedCal.firstDay.debugDescription)
             }
-
+#endif
         }
     }
     

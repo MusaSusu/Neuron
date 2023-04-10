@@ -10,9 +10,11 @@ import SwiftUI
 struct DatePickerSheet: View {
     @EnvironmentObject var DateList : TaskModel_Add
     var dismiss: ()-> Void
+    
     var body: some View {
         VStack{
             HStack{
+                
                 DatePicker(
                     "Add Date",
                     selection: $DateList.dates[DateList.currentEdit].date,
@@ -25,6 +27,7 @@ struct DatePickerSheet: View {
             }label: {
                 Text("Finished")
             }
+
         }
         .frame(maxWidth:.infinity, maxHeight:200)
         .background(Color(white:1))

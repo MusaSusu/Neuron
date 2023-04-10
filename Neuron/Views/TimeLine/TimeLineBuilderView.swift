@@ -53,7 +53,7 @@ struct TimeLineBuilderView: View {
     //wrap items into a value struct to allow for other types of classes to be displayed in future
     
     var combinedArray : [( TimelineItemWrapper, Binding<Bool> )] {
-        let temp = routineItems + taskItems
+        let temp =  taskItems + routineItems
         return temp.compactMap({ (TimelineItemWrapper($0.0, date: $0.1, type: $0.2),$0.3) } )
     }
     

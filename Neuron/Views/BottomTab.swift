@@ -40,7 +40,7 @@ struct BottomTabView: View {
                     }
                 }
                 .sheet(isPresented: $inboxSheet){
-                    InboxView()
+                    StorageView()
                 }
                 
                 Spacer()

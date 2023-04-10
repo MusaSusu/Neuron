@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InboxView: View {
+struct StorageView: View {
     
     @UserDefaultsBacked<[Double]>(key: .userColor) var dataColor
     var userColor : Color{
@@ -26,7 +26,7 @@ struct InboxView: View {
     }
     
     var taskItems : [Tasks] {
-        Tasks.compactMap({$0})
+        Tasks.filter({$0.isRecurring == true})
     }
     
     var habitItems : [Habit] {
@@ -37,6 +37,14 @@ struct InboxView: View {
         Projects.compactMap({$0})
     }
     
+    var collection : [ ([Main],String)] {
+        return [
+            (taskItems,"Tasks"),
+            (projectItems,"Projects"),
+            (routineItems,"Routines"),
+            (habitItems,"Habits")
+        ]
+    }
     
     init(){
         _Routines = FetchRequest(sortDescriptors: [])
@@ -63,12 +71,17 @@ struct InboxView: View {
             ScrollView(.vertical){
                 LazyVStack(pinnedViews: .sectionHeaders){
                     
-                    ItemRow(items: routineItems,section: "Routines")
-         
-                    ItemRow(items: habitItems, section: "Habits")
-                    
-                    ItemRow(items: taskItems, section: "Tasks")
-                    
+                    ForEach(collection.indices, id:\.self){ index in
+                        let items = collection[index].0
+                        let titleLabel = collection[index].1
+                        
+                        if items.count == 0{
+                        }
+                        else {
+                           ItemRow(items: items, section: titleLabel)
+                        }
+                    }
+
                     Spacer()
                     
                 }
@@ -93,27 +106,26 @@ struct InboxView: View {
             content:{
                 LazyVStack{
                     ForEach(items){item in
+                        Spacer()
                         HStack{
                             
                             IconView(color: item.getColor(), icon: item.icon!, dims: CGSize(width: 30, height: 30))
                                 .frame(width: 40,height: 40)
-                                .padding(.horizontal)
+                                .padding()
                             
                             HStack{
                                 Text(item.title!)
                                     .font(.title2.weight(.regular))
                             }
-                            .padding(.horizontal)
+                            .padding()
                             
                             Spacer()
                         }.frame(height: 50)
                         
-                        Divider()
+                        Divider().padding(.horizontal,20)
                     }
                 }
-                .padding(10)
-                .backgroundStrokeBorder(opacity: 1, lineWidth: 2)
-                .padding(10)
+                .backgroundStrokeBorder(opacity: 1, lineWidth:1)
             },
             header: {
                 HStack{
@@ -129,11 +141,21 @@ struct InboxView: View {
                 }
             })
     }
+    
+    
+    func checkCount<T: Main>(items : [T]) -> Bool {
+        if items.count == 0 {
+            return false
+        }
+        else {
+            return true
+        }
+    }
 }
 
-struct InboxView_Previews: PreviewProvider {
+struct StorageView_Previews: PreviewProvider {
     static var previews: some View {
-        InboxView()            .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
+        StorageView()            .environment(\.managedObjectContext,PersistenceController.preview.container.viewContext)
     }
 }
 

@@ -6,6 +6,20 @@
 //
 
 import SwiftUI
+import Foundation
+import CoreData
+
+struct AddTaskConfig: Identifiable {
+    let id = UUID()
+    let childContext: NSManagedObjectContext
+    
+    init(withParentContext viewContext: NSManagedObjectContext) {
+        childContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        childContext.parent = viewContext
+    }
+}
+
+
 
 struct AddTaskButtonView: View {
     

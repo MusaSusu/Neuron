@@ -100,7 +100,17 @@ class TimelineItemsArray : ObservableObject{
     var copyforDrop : [TimelineItemWrapper]  = []
     var taskCheckerDict : [TimelineItemWrapper.ID : Binding<Bool>] = [:]
     
-
+    init(combinedarray: [(TimelineItemWrapper,Binding<Bool>)] ) {
+        var resultarray : [TimelineItemWrapper] = []
+        for item in combinedarray{
+            resultarray.append(item.0)
+            self.taskCheckerDict[item.0.id] = item.1
+        }
+        resultarray = resultarray.sorted(by: {$0.dateInterval.start < $1.dateInterval.start})
+        self.nextDurationArray =  calcNextDurationArray(temp: resultarray)
+        self.array = resultarray
+    }
+    
     func calcNextDurationArray(temp: [TimelineItemWrapper]) -> [TimeInterval]{
         var array = [TimeInterval]()
         if temp.count <= 1{
@@ -118,17 +128,6 @@ class TimelineItemsArray : ObservableObject{
     func updateDurationArray(){
         let temp = array
         self.nextDurationArray = calcNextDurationArray(temp: temp)
-    }
-    
-    init(combinedarray: [(TimelineItemWrapper,Binding<Bool>)] ) {
-        var resultarray : [TimelineItemWrapper] = []
-        for item in combinedarray{
-            resultarray.append(item.0)
-            self.taskCheckerDict[item.0.id] = item.1
-        }
-        resultarray = resultarray.sorted(by: {$0.dateInterval.start < $1.dateInterval.start})
-        self.nextDurationArray =  calcNextDurationArray(temp: resultarray)
-        self.array = resultarray
     }
     
     func initIndexes(){
