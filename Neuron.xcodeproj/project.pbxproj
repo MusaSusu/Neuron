@@ -14,6 +14,8 @@
 		E11720AF291E05B600316FBE /* DateListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11720AE291E05B600316FBE /* DateListRow.swift */; };
 		E11720B1291E06FF00316FBE /* TaskModel_Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11720B0291E06FF00316FBE /* TaskModel_Add.swift */; };
 		E11720B32920677900316FBE /* DatePickerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11720B22920677900316FBE /* DatePickerSheet.swift */; };
+		E117A90129E4CF5B00E7014B /* FetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E117A90029E4CF5B00E7014B /* FetchedResultsController.swift */; };
+		E117A90329E8A43B00E7014B /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E117A90229E8A43B00E7014B /* ShopView.swift */; };
 		E130F46229E3BF3900636FEA /* SchedulerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E130F46129E3BF3900636FEA /* SchedulerView.swift */; };
 		E132A98F2995B8D00093A4CD /* Calendar_Card_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E132A98E2995B8D00093A4CD /* Calendar_Card_View.swift */; };
 		E132A9962995BED60093A4CD /* AWCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = E132A9952995BED60093A4CD /* AWCalendar */; };
@@ -132,6 +134,8 @@
 		E11720AE291E05B600316FBE /* DateListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateListRow.swift; sourceTree = "<group>"; };
 		E11720B0291E06FF00316FBE /* TaskModel_Add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel_Add.swift; sourceTree = "<group>"; };
 		E11720B22920677900316FBE /* DatePickerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerSheet.swift; sourceTree = "<group>"; };
+		E117A90029E4CF5B00E7014B /* FetchedResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsController.swift; sourceTree = "<group>"; };
+		E117A90229E8A43B00E7014B /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
 		E130F46129E3BF3900636FEA /* SchedulerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerView.swift; sourceTree = "<group>"; };
 		E132A98E2995B8D00093A4CD /* Calendar_Card_View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar_Card_View.swift; sourceTree = "<group>"; };
 		E132A9912995BA780093A4CD /* Calendar 18-33-17-876 */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "Calendar 18-33-17-876"; path = "../Calendar 18-33-17-876"; sourceTree = "<group>"; };
@@ -226,6 +230,7 @@
 		E10FAEA82991744B005B297C /* CardViews */ = {
 			isa = PBXGroup;
 			children = (
+				E1FA36432988F119000353DD /* TaskCardSheetView.swift */,
 				E10FAEA62990CD92005B297C /* DateCard_Routine_View.swift */,
 				E132A98E2995B8D00093A4CD /* Calendar_Card_View.swift */,
 				E10FAEA2298B1221005B297C /* DatesCard_Task_View.swift */,
@@ -343,6 +348,7 @@
 				E1EEC75C294C780D005A88D1 /* TimeLineModel.swift */,
 				E1C95DB228E4D50600851C4E /* OptionsModel.swift */,
 				E190A94F297A1F5E00EAAA08 /* NotificationCenter.swift */,
+				E117A90029E4CF5B00E7014B /* FetchedResultsController.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -376,7 +382,6 @@
 				E1B0F72428FBC65000925858 /* DescriptionView.swift */,
 				E19B8B03298621F40029F4C6 /* Menu_Routine_CompletetionView.swift */,
 				E1FA36412988E4E4000353DD /* Menu_Card_Button.swift */,
-				E1FA36432988F119000353DD /* TaskCardSheetView.swift */,
 				E10FAEA82991744B005B297C /* CardViews */,
 			);
 			path = MenuWidgets;
@@ -411,6 +416,7 @@
 				E1B0F71E28FBC61F00925858 /* ContentView.swift */,
 				E17330FF299C506800CD1805 /* StorageView.swift */,
 				E1B0F71A28FBC60800925858 /* BottomTab.swift */,
+				E117A90229E8A43B00E7014B /* ShopView.swift */,
 				E130F46129E3BF3900636FEA /* SchedulerView.swift */,
 				E176E151290B560C00B09604 /* AddTaskButtonView.swift */,
 				E134100F296E23A50074100B /* Header_components */,
@@ -594,6 +600,7 @@
 				E1BEFF35291749EC00A2DE56 /* WheelItemsModel.swift in Sources */,
 				E17E714429736D450034B4BC /* TimeLineRowItemModel.swift in Sources */,
 				E11720AB291DF46D00316FBE /* DateListView.swift in Sources */,
+				E117A90129E4CF5B00E7014B /* FetchedResultsController.swift in Sources */,
 				E176E14E290B279600B09604 /* AddMainView.swift in Sources */,
 				E1DDA57C297E085400B5EDC8 /* TimeLineListBuilderView.swift in Sources */,
 				E1DDA57D297F4E7300B5EDC8 /* TimeLineBuilderView.swift in Sources */,
@@ -640,6 +647,7 @@
 				E134100C296D06DB0074100B /* Header_ScrollTabView.swift in Sources */,
 				E134100A2967CE870074100B /* Header_HabitsView.swift in Sources */,
 				E13410082967CD120074100B /* Header_DayOfWeekView.swift in Sources */,
+				E117A90329E8A43B00E7014B /* ShopView.swift in Sources */,
 				E1BEFF332916682F00A2DE56 /* SearchView .swift in Sources */,
 				E1EEC757294B0CDD005A88D1 /* TimeLineMenu.swift in Sources */,
 				E1FA36442988F119000353DD /* TaskCardSheetView.swift in Sources */,

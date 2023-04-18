@@ -9,7 +9,7 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    
+    @Environment(\.editMode) var editMode
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var UserOptions: OptionsModel
     @State private var selectedHeader = true
@@ -52,11 +52,43 @@ struct ContentView: View {
             }.frame(height: 75)
                 
             // Vertical time line view
-            TimeLineBuilderView( date: UserOptions.selectedDay.startOfDay())
-            
-            
-            BottomTabView()
-                .offset(y:-10)
+            VStack{
+                TimeLineBuilderView( date: UserOptions.selectedDay.startOfDay())
+                
+                Group{
+                    if editMode?.wrappedValue == .active {
+                        HStack{
+                            Button{
+                                
+                            } label: {
+                                Text("Undo")
+                                    .font(.title2)
+                            }
+                            Spacer()
+                            Button{
+                                editMode?.wrappedValue = .inactive
+                            } label: {
+                                Text("Done")
+                                    .font(.title2)
+                            }
+                            .buttonBorderShape(.roundedRectangle)
+                        }
+                        .frame(maxWidth: .infinity, minHeight: 30, maxHeight:60)
+                        .padding(EdgeInsets(top: 0, leading: 15, bottom: 10, trailing: 15))
+                    }
+                    else{
+                        BottomTabView()
+                    }
+                }
+                .animation(.linear(duration: 0.2), value: editMode?.wrappedValue)
+                .transition(.move(edge: .bottom))
+            }
+            .cornerRadius(15)
+            .background(
+                Color(white : 0.995)
+                    .cornerRadius(15)
+                    .shadow(radius: 5)
+            )
             
         }.ignoresSafeArea(edges:.bottom)
     }

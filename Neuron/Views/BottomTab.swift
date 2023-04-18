@@ -13,9 +13,7 @@ struct BottomTabView: View {
     
     var body: some View {
         VStack{
-            
             HStack {
-                
                 Button(action: {isSheet.toggle()}) {
                     VStack{
                         Image(systemName: "house.fill")
@@ -28,7 +26,6 @@ struct BottomTabView: View {
                 .sheet(isPresented: $isSheet){
                     
                 }
-
                 Spacer()
                 Button(action: {inboxSheet = true}) {
                     VStack{
@@ -73,13 +70,11 @@ struct BottomTabView: View {
                             .foregroundColor(Color(white:0.5))
                     }
                 }
-                
             }
-            .padding(EdgeInsets(top: 10, leading:15, bottom: 0, trailing: 15))
+            .padding(EdgeInsets(top: 10, leading:15, bottom: 5, trailing: 15))
             .background(Color(white:0.95))
             .frame(maxWidth: .infinity, minHeight: 30, maxHeight:70)
-
-        }
+        }.padding(.bottom,10)
     }
 }
 

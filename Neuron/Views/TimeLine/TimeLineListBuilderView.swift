@@ -118,7 +118,6 @@ struct TimeLineListBuilderView: View {
                                     impactHeavy.impactOccurred()
                                 }
                         }
-
                     SelectTypeForSelectionMenuView(type: item.type)
                 }
                 .frame(height: capsuleHeight)

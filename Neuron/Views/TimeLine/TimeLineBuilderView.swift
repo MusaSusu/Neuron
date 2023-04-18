@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct TimeLineBuilderView: View {
-    
+    @Environment(\.editMode) var editMode
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest var routineDates : FetchedResults<Routine_Schedule>
     @FetchRequest var dates: FetchedResults<DateEntity>
     
     let date : Date
+    
     var dateofweek : Int {
         Int(date.weekdayAsInt())
     }
@@ -21,6 +22,10 @@ struct TimeLineBuilderView: View {
     var taskDates : [TaskDate]{
         return dates.first?.taskDates?.allObjects as? [TaskDate] ?? []
     } //update taskdates for multiple ents if needed later
+    
+    var habitDates : [Habit] {
+        return dates.first?.hasHabit?.allObjects as? [Habit] ?? []
+    }
     
     var routineItems: [(any timelineItems,DateInterval,taskType,Binding<Bool>)]{
         routineDates.compactMap({
@@ -74,7 +79,6 @@ struct TimeLineBuilderView: View {
     }
     
     var body: some View {
-        VStack{
             ScrollView(.vertical,showsIndicators: false){
                 TimeLineListBuilderView(arrayobjects: combinedArray)
                     .padding(.top,10)
@@ -85,19 +89,12 @@ struct TimeLineBuilderView: View {
                     Spacer()
                 }.frame(height:300)
             }
-        }
-        .cornerRadius(15)
-        .background(
-            Color(white : 0.995)
-                .cornerRadius(15)
-                .shadow(radius: 5)
-        )
     }
 }
 
 struct TimeLineBuilderView_Previews: PreviewProvider {
     static var previews: some View {
-   TimeLineBuilderView( date: convertDate(data: "01-07-2023",format: "MM-dd-yyyy").startOfDay())
+        TimeLineBuilderView( date: convertDate(data: "04-15-2023",format: "MM-dd-yyyy").startOfDay())
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

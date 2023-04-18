@@ -58,39 +58,18 @@ struct DropViewDelegate: DropDelegate {
             }
         }
     }
+    
+    func dropExited(info: DropInfo) {
+        itemsArray.array = itemsArray.copyforDrop
+    }
 }
 
+
+//singleton for drag operations
 class DropViewHelper : ObservableObject {
     static let shared = DropViewHelper()
     
     var dragged: TimelineItemWrapper?
-}
-
-struct TimelineItemWrapper : Hashable,Identifiable{
-    
-    let id : NSManagedObjectID
-    let title : String
-    let color : Color
-    let icon : String
-    var dateInterval : DateInterval
-    let duration : Double
-    var index : Int = 0
-    var type : taskType
-    
-    
-    init<T:isTimelineItem>(_ item: T,date: DateInterval,type: taskType) {
-        self.id = item.objectID
-        self.title = item.title!
-        self.color = item.color!.fromDouble()
-        self.icon = item.icon!
-        self.dateInterval = date
-        self.duration = item.duration
-        self.type = type
-    }
-    
-    mutating func updateIndex(_ newVal:Int){
-        self.index = newVal
-    }
 }
 
 class TimelineItemsArray : ObservableObject{
@@ -154,14 +133,15 @@ class TimelineItemsArray : ObservableObject{
         
         self.array[array.firstIndex(of: start)!].dateInterval = first
         self.array[array.firstIndex(of: dest)!].dateInterval = second
-        print(first,second) /// **TEST**
         
+        print(first,second) /// **TEST**
     }
 
     func getNextDuration(at index: Int)-> TimeInterval{
         return nextDurationArray[index]
     }
 }
+
 
 protocol isTimelineItem: NSManagedObject,Identifiable{
     var id : UUID?{get}
@@ -173,6 +153,33 @@ protocol isTimelineItem: NSManagedObject,Identifiable{
     var taskChecker : Bool {get set}
 }
 
+struct TimelineItemWrapper : Hashable,Identifiable{
+    
+    let id : NSManagedObjectID
+    let title : String
+    let color : Color
+    let icon : String
+    var dateInterval : DateInterval
+    let duration : Double
+    var index : Int = 0
+    var type : taskType
+    
+    
+    init<T:isTimelineItem>(_ item: T,date: DateInterval,type: taskType) {
+        self.id = item.objectID
+        self.title = item.title!
+        self.color = item.color!.fromDouble()
+        self.icon = item.icon!
+        self.dateInterval = date
+        self.duration = item.duration
+        self.type = type
+    }
+    
+    mutating func updateIndex(_ newVal:Int){
+        self.index = newVal
+    }
+}
+
 extension isTimelineItem{
     func getColor() -> Color {
         self.color?.fromDouble() ?? .red
@@ -180,6 +187,10 @@ extension isTimelineItem{
 }
 
 extension Tasks : isTimelineItem{
+    
+}
+
+extension Habit : isTimelineItem {
     
 }
 

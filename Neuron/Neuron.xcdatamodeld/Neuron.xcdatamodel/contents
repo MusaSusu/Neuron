@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="DateEntity" representedClassName="DateEntity" syncable="YES" codeGenerationType="class">
         <attribute name="dateGroup" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="hasHabit" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Habit" inverseName="onDate" inverseEntity="Habit"/>
         <relationship name="hasTask" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tasks" inverseName="hasDate" inverseEntity="Tasks"/>
         <relationship name="taskDates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskDate" inverseName="dateGroup" inverseEntity="TaskDate"/>
         <uniquenessConstraints>
@@ -23,7 +24,9 @@
         <attribute name="completed" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="duration" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="frequency" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="sched" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Date]"/>
         <attribute name="timeFrame" optional="YES" attributeType="String"/>
+        <relationship name="onDate" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DateEntity" inverseName="hasHabit" inverseEntity="DateEntity"/>
     </entity>
     <entity name="Main" representedClassName="Main" isAbstract="YES" syncable="YES" codeGenerationType="class">
         <attribute name="color" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Double]"/>
